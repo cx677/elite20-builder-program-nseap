@@ -254,9 +254,130 @@ examples/             Challenge转Cognitive Cell的端到端示例
 knowledge-base/       FAQ和后续知识沉淀入口
 governance/           贡献和评审流程
 .github/              GitHub Issue / PR模板
+teams/                七个Builder Team的分工工作区
 ```
 
-## 六、当前阶段的项目定位
+## 六、按照七个 Builder Team 补充分工结构
+
+根据 Richard 在 `Elite20 Builder Program / NSEAP智能教育平台复制项目（MVP）` 中提出的组织方式，项目建议分成七个 Builder Team。
+
+因此，仓库已新增：
+
+```text
+teams/
+  curriculum-team/
+  challenge-team/
+  agent-team/
+  ontology-team/
+  platform-team/
+  knowledge-team/
+  demo-team/
+```
+
+并新增：
+
+```text
+teams/team-roadmap.md
+teams/github-submission-guide.md
+```
+
+七个团队对应关系如下：
+
+| Team | 负责内容 | 仓库目录 | MVP 输出 |
+|---|---|---|---|
+| Curriculum Team | 重新设计课程 | `teams/curriculum-team/` | Syllabus、Learning Objectives、Weekly Plan、Lecture、Slides、Labs、Assignments |
+| Challenge Team | 设计所有 Challenge | `teams/challenge-team/` | Challenge Catalog、Rubrics、Evaluation |
+| Agent Team | 开发课程 Agent | `teams/agent-team/` | Companion、Tutor、Reviewer、Project Manager、Evaluation、Coding Coach |
+| Ontology Team | 建立本体和知识图谱 | `teams/ontology-team/` | Skill Ontology、Learning Ontology、Knowledge Graph、Schemas |
+| Platform Team | 平台与部署 | `teams/platform-team/` | GitHub、Website、LMS、Deployment |
+| Knowledge Team | 知识沉淀 | `teams/knowledge-team/` | Documentation、Tutorial、Prompt Library、Video、Best Practice |
+| Demo Team | 演示与传播 | `teams/demo-team/` | Website Demo、Demo Video、Presentation、Promotion |
+
+这样后续每个小组都能有明确的工作区，方便分工、提交、评审和沉淀。
+
+## 七、关于“自己建仓库还是提交到主仓库”的建议
+
+针对同学提出的实际问题：
+
+> 模块 MVP 做好了，是自己新建 GitHub 仓库，还是等统一仓库创建后提交？
+
+当前建议是：
+
+```text
+一个共享主仓库
++ 七个团队工作区
++ 可选个人/小组工作仓库
++ 最终必须登记回主仓库
+```
+
+也就是说：
+
+### 1. 文档、模板、方案类内容
+
+如果模块主要是：
+
+- 文档
+- 模板
+- Prompt
+- Rubric
+- Ontology
+- 方案设计
+- Agent 说明
+- Challenge 设计
+
+建议直接提交到主仓库对应团队目录。
+
+例如：
+
+```text
+teams/challenge-team/challenge-catalog/
+teams/ontology-team/skill-ontology/
+teams/knowledge-team/prompt-library/
+```
+
+### 2. 独立可运行项目
+
+如果模块是：
+
+- 网站
+- Agent 服务
+- LMS 原型
+- 可运行工具
+- 独立代码项目
+
+可以由个人或小组新建工作仓库。
+
+但必须在主仓库对应 team 目录下登记：
+
+```text
+项目名称
+成员
+仓库链接
+Demo链接
+当前状态
+和NSEAP的关系
+Review状态
+下一步计划
+```
+
+### 3. 推荐统一回复
+
+可以这样回复组员：
+
+```text
+建议先以这个共享仓库作为统一提交入口：
+https://github.com/a976xw7td/elite20-builder-program-nseap
+
+如果你的模块主要是文档、模板、方案、Prompt、Ontology、Rubric，可以直接提交到对应 team 文件夹。
+
+如果你的模块是独立可运行项目，比如网站、Agent 服务、LMS 原型，可以自己建一个工作仓库，但需要在主仓库对应 team 目录下登记项目链接、说明、状态和下一步。
+
+也就是说：可以自己建仓库干活，但最终必须回到主仓库登记和接受 Review。主仓库是二期 Builder Program 的统一协作和沉淀入口。
+```
+
+这样既不会阻碍小组快速开发，也能保证所有成果最终回到统一 NSEAP Builder OS 中。
+
+## 八、当前阶段的项目定位
 
 当前仓库还不是完整平台，也不是最终 LMS。
 
@@ -275,7 +396,7 @@ Elite20 Builder Program / NSEAP Reference Implementation Workspace
 一个 Challenge 能不能逐步转化为 Skill / Agent / Cognitive Cell。
 ```
 
-## 七、下一步建议
+## 九、下一步建议
 
 下一步建议不要继续堆概念，而是继续做端到端样例。
 
@@ -337,7 +458,7 @@ agent-manifest.schema.yaml
 - 自动生成 Evaluation Report 初稿
 - 自动汇总 Challenge 进度
 
-## 八、一句话总结
+## 十、一句话总结
 
 这次更新之后，项目已经从：
 
@@ -353,4 +474,3 @@ GitHub 作业协作仓库
 以 Situation -> Ontology -> Workflow -> Skill -> Agent -> Evaluation 为生产流程，
 逐步沉淀 NSEAP AI Learning Operating System Reference Implementation 的 MVP 工作台。
 ```
-
