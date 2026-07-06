@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "agent_id": "teacher-companion-{teacher_id}",
+  "agent_type": "teacher-companion",
+  "manifest_version": "1.0",
+  "display_name": "Teacher Companion Agent",
+  "description": "教师教学代理，负责发布 Challenge、查看提交状态、触发评审和汇总反馈。",
+
+  "capabilities": [
+    "publish_challenge",
+    "view_all_submissions",
+    "trigger_review",
+    "confirm_final_score",
+    "send_feedback_to_student",
+    "generate_class_report"
+  ],
+
+  "interfaces": [
+    {
+      "interface_name": "publish_challenge",
+      "description": "发布新的 Challenge",
+      "input_schema": {
+        "type": "object",
+        "required": ["challenge_id", "title", "objective", "rubric_pointer", "deadline"],
+        "properties": {
+          "challenge_id": {"type": "string"},
+          "title": {"type": "string"},
+          "brief": {"type": "string"},
+          "objective": {"type": "string"},
+          "deliverables": {"type": "string"},
+          "rubric_pointer": {"type": "string"},
+          "deadline": {"type": "string", "format": "date-time"},
+          "review_mode": {"type": "string", "enum": ["ai_first", "teacher_first", "peer_first"]}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "challenge_id": {"type": "string"},
+          "status": {"type": "string"},
+          "published_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    {
+      "interface_name": "view_submissions",
+      "description": "查看所有学生提交",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "challenge_id": {"type": "string"},
+          "status_filter": {"type": "string"}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "submissions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "submission_id": {"type": "string"},
+                "student_name": {"type": "string"},
+                "status": {"type": "string"},
+                "submitted_at": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "interface_name": "trigger_manual_review",
+      "description": "触发人工复评",
+      "input_schema": {
+        "type": "object",
+        "required": ["submission_id"],
+        "properties": {
+          "submission_id": {"type": "string"},
+          "review_notes": {"type": "string"}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "request_id": {"type": "string"},
+          "status": {"type": "string"}
+        }
+      }
+    }
+  ],
+
+  "permissions": [
+    "feishu.challenges.create",
+    "feishu.challenges.read",
+    "feishu.submissions.read_all",
+    "feishu.evaluations.read_all",
+    "feishu.evaluations.update",
+    "github.repo.read"
+  ],
+
+  "trusted_agents": [
+    "submission-task-agent",
+    "review-task-agent",
+    "student-companion-*"
+  ],
+
+  "memory_binding": [
+    "ontology.course_context.{teacher_id}",
+    "ontology.class_management.{teacher_id}"
+  ],
+
+  "channel_bindings": [
+    {
+      "channel_type": "feishu",
+      "channel_id": "{feishu_user_id}"
+    },
+    {
+      "channel_type": "web",
+      "channel_id": "web-session-{teacher_id}"
+    }
+  ],
+
+  "constraints": {
+    "cannot_write_submission_record": true,
+    "cannot_access_student_private_memory": true,
+    "can_view_all_class_submissions": true
+  }
+}

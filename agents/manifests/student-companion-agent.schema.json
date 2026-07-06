@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "agent_id": "student-companion-{student_id}",
+  "agent_type": "student-companion",
+  "manifest_version": "1.0",
+  "display_name": "Student Companion Agent",
+  "description": "学生个人学习代理，负责理解 Challenge、检查本地作业、准备提交包、接收反馈。",
+
+  "capabilities": [
+    "understand_challenge",
+    "check_local_workspace",
+    "validate_github_repo",
+    "prepare_submission_package",
+    "send_submission_request",
+    "receive_feedback",
+    "update_student_memory"
+  ],
+
+  "interfaces": [
+    {
+      "interface_name": "submit_challenge",
+      "description": "发起 Challenge 提交请求",
+      "input_schema": {
+        "type": "object",
+        "required": ["challenge_id", "github_repo_url", "aar_text"],
+        "properties": {
+          "challenge_id": {"type": "string"},
+          "project_title": {"type": "string"},
+          "project_summary": {"type": "string"},
+          "github_repo_url": {"type": "string", "format": "uri"},
+          "readme_url": {"type": "string", "format": "uri"},
+          "demo_url": {"type": "string", "format": "uri"},
+          "aar_text": {"type": "string"},
+          "self_evaluation_text": {"type": "string"},
+          "is_public": {"type": "boolean"}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "request_id": {"type": "string"},
+          "status": {"type": "string", "enum": ["submitted", "validation_failed"]},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "interface_name": "check_submission_status",
+      "description": "查询提交状态",
+      "input_schema": {
+        "type": "object",
+        "required": ["submission_id"],
+        "properties": {
+          "submission_id": {"type": "string"}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "submission_id": {"type": "string"},
+          "status": {"type": "string"},
+          "feedback": {"type": "string"}
+        }
+      }
+    }
+  ],
+
+  "permissions": [
+    "github.repo.read",
+    "feishu.submissions.read_own",
+    "feishu.portfolio.read_own",
+    "ontology.student_memory.write_own"
+  ],
+
+  "trusted_agents": [
+    "submission-task-agent",
+    "teacher-companion-*"
+  ],
+
+  "memory_binding": [
+    "ontology.student_memory.{student_id}",
+    "ontology.challenge_progress.{student_id}"
+  ],
+
+  "channel_bindings": [
+    {
+      "channel_type": "web",
+      "channel_id": "web-session-{student_id}"
+    },
+    {
+      "channel_type": "github",
+      "channel_id": "{github_username}"
+    }
+  ],
+
+  "constraints": {
+    "cannot_write_submission_record": true,
+    "cannot_access_other_student_data": true,
+    "can_only_submit_to_active_challenges": true
+  }
+}

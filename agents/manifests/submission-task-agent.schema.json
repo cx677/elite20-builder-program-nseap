@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "agent_id": "submission-task-agent",
+  "agent_type": "submission-task",
+  "manifest_version": "1.0",
+  "display_name": "Submission Task Agent",
+  "description": "系统提交中枢，代表系统管理员身份处理提交、校验、写入飞书、同步 GitHub、路由评审和记录审计。这是整个提交链路的核心 Agent，也是最重要的架构红线：只有 Submission Task Agent 能写入最终 Submission Record。",
+
+  "capabilities": [
+    "validate_submission_request",
+    "verify_agent_identity",
+    "verify_trusted_relationship",
+    "check_github_repo",
+    "create_submission_record",
+    "create_evaluation_record",
+    "create_portfolio_item",
+    "route_to_review",
+    "write_audit_log",
+    "notify_student_companion",
+    "update_submission_status"
+  ],
+
+  "interfaces": [
+    {
+      "interface_name": "process_submission_request",
+      "description": "接收并处理来自 Student Companion Agent 的提交请求",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "from_agent",
+          "student_id",
+          "challenge_id",
+          "github_repo_url",
+          "aar_text"
+        ],
+        "properties": {
+          "from_agent": {"type": "string"},
+          "student_id": {"type": "string"},
+          "challenge_id": {"type": "string"},
+          "project_title": {"type": "string"},
+          "project_summary": {"type": "string"},
+          "github_repo_url": {"type": "string", "format": "uri"},
+          "readme_url": {"type": "string", "format": "uri"},
+          "demo_url": {"type": "string"},
+          "aar_text": {"type": "string"},
+          "self_evaluation_text": {"type": "string"},
+          "is_public": {"type": "boolean"}
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "submission_id": {"type": "string"},
+          "evaluation_id": {"type": "string"},
+          "portfolio_item_id": {"type": "string"},
+          "audit_id": {"type": "string"},
+          "routing_status": {"type": "string"},
+          "status": {"type": "string"}
+        }
+      }
+    },
+    {
+      "interface_name": "publish_challenge",
+      "description": "接收来自 Teacher Companion Agent 的 Challenge 发布请求，写入飞书",
+      "input_schema": {
+        "type": "object",
+        "required": ["from_agent", "challenge_id", "title", "rubric_pointer"],
+        "properties": {
+          "from_agent": {"type": "string"},
+          "challenge_id": {"type": "string"},
+          "title": {"type": "string"},
+          "brief": {"type": "string"},
+          "objective": {"type": "string"},
+          "deliverables": {"type": "string"},
+          "rubric_pointer": {"type": "string"},
+          "teacher_agent_id": {"type": "string"},
+          "deadline": {"type": "string", "format": "date-time"},
+          "review_mode": {
+            "type": "string",
+            "enum": ["ai_first", "teacher_first", "peer_first"]
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "challenge_id": {"type": "string"},
+          "status": {"type": "string"},
+          "feishu_record_id": {"type": "string"}
+        }
+      }
+    }
+  ],
+
+  "permissions": [
+    "feishu.submissions.create",
+    "feishu.submissions.read",
+    "feishu.submissions.update",
+    "feishu.evaluations.create",
+    "feishu.evaluations.update",
+    "feishu.portfolio.create",
+    "feishu.challenges.read",
+    "feishu.challenges.update",
+    "feishu.audit_logs.create",
+    "feishu.inbox_queue.write",
+    "github.repo.read",
+    "ai.evaluation.invoke"
+  ],
+
+  "trusted_agents": [
+    "student-companion-*",
+    "teacher-companion-*",
+    "review-task-agent"
+  ],
+
+  "memory_binding": [
+    "ontology.submission_memory",
+    "ontology.audit_trace"
+  ],
+
+  "channel_bindings": [
+    {
+      "channel_type": "feishu",
+      "channel_id": "bot-submission-task"
+    }
+  ],
+
+  "validation_steps": [
+    "verify_from_agent_identity",
+    "verify_trusted_relationship",
+    "validate_student_id",
+    "validate_challenge_id",
+    "check_challenge_is_active",
+    "check_submission_permission",
+    "check_github_repo_exists",
+    "check_readme_exists",
+    "check_file_completeness",
+    "check_github_pointer"
+  ],
+
+  "constraints": {
+    "is_system_agent": true,
+    "represents_admin_identity": true,
+    "only_agent_that_can_write_submission_record": true,
+    "must_write_audit_log_for_every_action": true,
+    "must_verify_trusted_relationship_before_processing": true
+  }
+}

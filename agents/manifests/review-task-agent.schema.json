@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "agent_id": "review-task-agent",
+  "agent_type": "review-task",
+  "manifest_version": "1.0",
+  "display_name": "Review Task Agent",
+  "description": "评审任务代理，读取提交包和 Rubric，按评分维度生成评审报告，产出教师可审阅和学生可读的两份反馈。",
+
+  "capabilities": [
+    "read_submission_package",
+    "load_rubric",
+    "evaluate_by_rubric",
+    "generate_teacher_feedback",
+    "generate_student_feedback",
+    "return_review_result"
+  ],
+
+  "interfaces": [
+    {
+      "interface_name": "review_submission",
+      "description": "接收来自 Submission Task Agent 的评审请求，按 Rubric 评审并返回结果",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "from_agent",
+          "submission_id",
+          "student_id",
+          "challenge_id",
+          "rubric_pointer",
+          "github_repo_url",
+          "aar_text"
+        ],
+        "properties": {
+          "from_agent": {"type": "string"},
+          "submission_id": {"type": "string"},
+          "student_id": {"type": "string"},
+          "challenge_id": {"type": "string"},
+          "rubric_pointer": {"type": "string"},
+          "github_repo_url": {"type": "string"},
+          "project_summary": {"type": "string"},
+          "aar_text": {"type": "string"},
+          "self_evaluation_text": {"type": "string"},
+          "github_check_result": {"type": "object"},
+          "review_mode": {
+            "type": "string",
+            "enum": ["ai_auto", "teacher_confirm", "peer_review"]
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "submission_id": {"type": "string"},
+          "score_total": {"type": "number", "minimum": 0, "maximum": 100},
+          "scores": {
+            "type": "object",
+            "properties": {
+              "problem_understanding": {"type": "number"},
+              "ai_usage": {"type": "number"},
+              "artifact_completeness": {"type": "number"},
+              "technical_execution": {"type": "number"},
+              "reflection_quality": {"type": "number"}
+            }
+          },
+          "strengths": {"type": "string"},
+          "weaknesses": {"type": "string"},
+          "suggestions": {"type": "string"},
+          "teacher_feedback": {"type": "string"},
+          "student_feedback": {"type": "string"},
+          "review_status": {
+            "type": "string",
+            "enum": ["reviewed", "needs_revision", "escalate_to_teacher"]
+          },
+          "audit_id": {"type": "string"}
+        }
+      }
+    }
+  ],
+
+  "permissions": [
+    "feishu.submissions.read",
+    "feishu.evaluations.create",
+    "feishu.evaluations.read",
+    "feishu.challenges.read",
+    "github.repo.read",
+    "ai.evaluation.invoke"
+  ],
+
+  "trusted_agents": [
+    "submission-task-agent",
+    "teacher-companion-*"
+  ],
+
+  "memory_binding": [
+    "ontology.evaluation_memory",
+    "ontology.rubric_cache"
+  ],
+
+  "channel_bindings": [
+    {
+      "channel_type": "feishu",
+      "channel_id": "bot-review-task"
+    }
+  ],
+
+  "constraints": {
+    "can_only_read_assigned_submissions": true,
+    "cannot_write_final_score_directly": true,
+    "must_return_result_to_submission_task_agent": true,
+    "must_write_audit_log_for_every_review": true
+  }
+}
