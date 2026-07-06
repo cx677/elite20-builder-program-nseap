@@ -80,16 +80,27 @@
 更新为 4 个新 Agent 的协作流程：
 
 ```text
-Teacher Companion Agent 发布 Challenge
+教师（飞书/Web 操作）
+→ Teacher Companion Agent（后台）发出 challenge_publish 消息
 → Submission Task Agent 接收并同步到飞书/GitHub
-→ Student Companion Agent 获取 Challenge
-→ Student Companion Agent 发起 submission request
+→ 【飞书 Bot 群通知学生】
+→ Student Companion Agent（后台）获取 Challenge
+→ 学生（在 GitHub/Web 干活）
+→ Student Companion Agent（后台）发起 submission request
 → Submission Task Agent 校验身份、文件、权限
-→ Submission Task Agent 创建 Submission Record
+→ Submission Task Agent 创建 Submission Record + Audit Log
+→ 【飞书 Bot 私聊学生：提交结果/校验失败原因】
 → Submission Task Agent 路由给 Review Task Agent
 → Review Task Agent 评审并反馈
-→ Submission Task Agent 回传给 Student Companion Agent
+→ Submission Task Agent 回传给 Student Companion Agent（后台）
+→ 【飞书 Bot 私聊学生：评审结果】
+→ 【飞书 Bot 私聊老师：待复核提醒】
+→ 教师确认评分（飞书操作）
+→ Teacher Companion Agent（后台）发出 final_adjustment
+→ 【飞书 Bot 私聊学生：最终结果】
 ```
+
+**关键边界**：上面流程中，`→` 是 Agent 间消息路由，`【】` 包裹的是飞书 Bot 触达人的通知。Agent 不对人直接推送。
 
 ## 关键架构红线
 
@@ -108,6 +119,12 @@ Teacher Companion Agent 发布 Challenge
    - Teacher Companion: `teacher-companion-{teacher_id}`
    - Submission Task Agent: `submission-task-agent`（单例或池）
    - Review Task Agent: `review-task-agent`（单例或池）
+
+4. **Agent 对人通知统一走飞书 Bot，Agent 之间通信走 Message Envelope**
+   - Agent 之间的消息：Message Envelope + Inbox/Outbox + AuditLog
+   - Agent 触达人：飞书 Bot 消息（群通知、私聊通知、交互式卡片）
+   - Agent 不应该自己做推送通知（不需要 24h 在线、不需要 App 推送渠道）
+   - 飞书 Bot 是 MVP 阶段唯一的 Agent→人通知通道
 
 ## 与其他 Team 的接口
 
@@ -130,6 +147,9 @@ Teacher Companion Agent 发布 Challenge
 - [ ] Submission Task Agent 有独立 agent_id 和审计日志
 - [ ] 所有消息都有完整的 Message Envelope
 - [ ] 每次状态变化都有 Audit Trace
+- [ ] 关键状态变更（提交成功/失败、评审完成、待复核）有飞书 Bot 通知
+- [ ] Agent 模块不包含任何推送通知逻辑（通知由飞书 Bot 统一负责）
+- [ ] `agent-collaboration-flow.md` 中 `→` 和 `【】` 的边界清晰可读
 
 ## 参考资料
 
