@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>范畴论与 AI 哲学基础 — 完整课程模块</title>
+<meta name="description" content="范畴论与 AI 哲学基础 — 能指/所指、函子、结构保持的映射">
+<style>
+  :root {
+    --bg: #f8f9fb; --surface: #ffffff; --card: #ffffff;
+    --border: #e2e5ea; --text: #1a1d23; --sec: #6b7280;
+    --acc: #e74c3c; --acc-soft: rgba(231,76,60,.08);
+    --green: #10b981; --amber: #f59e0b; --rose: #ec4899;
+    --radius: 0px; --font: 'Inter',-apple-system,system-ui,sans-serif;
+    --mono: 'JetBrains Mono','SF Mono',monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.7; }
+
+  .hero {
+    background: linear-gradient(135deg, rgba(231,76,60,.06), rgba(52,152,219,.06));
+    padding: 60px 24px 40px; text-align: center; border-bottom: 1px solid var(--border);
+  }
+  .hero .tag {
+    display: inline-block; font-size: .75em; padding: 4px 14px; border-radius: 20px;
+    background: var(--acc-soft); color: var(--acc); margin-bottom: 12px;
+    letter-spacing: .05em; text-transform: uppercase;
+  }
+  .hero h1 { font-size: 2.6em; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px;
+    background: linear-gradient(135deg, #e74c3c, #9b59b6, #3498db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .sub { color: var(--sec); font-size: 1em; max-width: 640px; margin: 0 auto 20px; }
+  .hero .stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: .82em; color: var(--sec); }
+  .hero .stats span { padding: 4px 12px; background: rgba(255,255,255,.04); border-radius: 16px; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  .section { margin-bottom: 56px; }
+  .section h2 {
+    font-size: 1.4em; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px;
+  }
+  .section h2 .num { font-size: .65em; background: var(--acc-soft); color: var(--acc); padding: 2px 10px; border-radius: 16px; }
+  .section h3 { font-size: 1.1em; font-weight: 600; margin: 24px 0 10px; color: #1a1d23; }
+  .section h4 { font-size: .95em; font-weight: 600; margin: 16px 0 6px; color: var(--acc); }
+  .section p { margin-bottom: 12px; color: #374151; }
+  .section ul, .section ol { margin: 8px 0 16px 20px; color: #374151; }
+  .section li { margin-bottom: 6px; }
+
+  .transcript {
+    background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px; margin: 16px 0; font-size: .9em;
+  }
+  .transcript .meta { color: var(--sec); font-size: .8em; margin-bottom: 8px; }
+  .transcript .msg { color: #374151; line-height: 1.6; }
+  .transcript .msg .sender { color: var(--acc); font-weight: 500; }
+  .transcript .msg .quote-block { border-left: 2px solid var(--border); padding-left: 12px; margin: 4px 0; color: #6b7280; }
+
+  .transcript .msg .key-term {
+    display: inline-block; background: rgba(155,89,182,.1); color: #9b59b6;
+    padding: 0 6px; border-radius: 3px; font-weight: 500;
+  }
+
+  .callout { padding: 14px 16px; margin: 16px 0; border-radius: var(--radius); font-size: .9em; }
+  .callout.tip { background: rgba(74,222,128,.06); border: 1px solid rgba(74,222,128,.2); }
+  .callout.warn { background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.2); }
+  .callout.error { background: rgba(244,114,182,.06); border: 1px solid rgba(244,114,182,.2); }
+  .callout.info { background: rgba(231,76,60,.06); border: 1px solid rgba(231,76,60,.2); }
+  .callout .label { font-weight: 600; margin-bottom: 4px; }
+  .callout.tip .label { color: var(--green); }
+  .callout.warn .label { color: var(--amber); }
+  .callout.error .label { color: var(--rose); }
+  .callout.info .label { color: var(--acc); }
+
+  .exercise {
+    background: rgba(231,76,60,.04); border: 1px dashed rgba(231,76,60,.3);
+    border-radius: var(--radius); padding: 20px; margin: 16px 0;
+  }
+  .exercise h4 { color: var(--acc); font-size: .85em; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
+  .exercise .badge {
+    display: inline-block; font-size: .7em; padding: 2px 8px; border-radius: 10px;
+    background: var(--acc-soft); color: var(--acc); margin-right: 4px;
+  }
+
+  code { font-family: var(--mono); font-size: .85em; background: #ffffff; padding: 1px 6px; border-radius: 4px; color: var(--amber); }
+  pre { background: #f3f4f6; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin: 12px 0; overflow-x: auto; font-size: .82em; line-height: 1.5; }
+  pre code { background: none; padding: 0; color: #374151; }
+
+  .checklist { margin: 12px 0; }
+  .checklist .item { padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; font-size: .9em; color: #374151; }
+  .checklist .item::before { content: '□'; color: var(--sec); flex-shrink: 0; font-size: 1.1em; }
+  .checklist .item.done::before { content: '☑'; color: var(--green); }
+
+  .diagram {
+    background: #f8f9fb; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px 16px; margin: 16px 0; text-align: center; font-family: var(--mono); font-size: .85em;
+  }
+  .diagram .arrow { color: var(--sec); padding: 0 8px; }
+  .diagram .node { display: inline-block; padding: 6px 14px; border-radius: 6px; margin: 4px; }
+  .diagram .node.k { background: rgba(231,76,60,.15); color: var(--acc); border: 1px solid rgba(231,76,60,.3); }
+  .diagram .node.s { background: rgba(155,89,182,.15); color: #9b59b6; border: 1px solid rgba(155,89,182,.3); }
+  .diagram .node.t { background: rgba(251,191,36,.15); color: var(--amber); border: 1px solid rgba(251,191,36,.3); }
+  .diagram .node.a { background: rgba(74,222,128,.15); color: var(--green); border: 1px solid rgba(74,222,128,.3); }
+  .diagram .node.r { background: rgba(244,114,182,.15); color: var(--rose); border: 1px solid rgba(244,114,182,.3); }
+  .diagram .node.f { background: rgba(231,76,60,.15); color: var(--acc); border: 1px solid rgba(231,76,60,.3); }
+  .diagram .node.g { background: rgba(155,89,182,.15); color: #9b59b6; border: 1px solid rgba(155,89,182,.3); }
+  .diagram .loop-line { color: var(--sec); font-size: .75em; margin-top: 8px; }
+
+  /* Analogy cards */
+  .analogy-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; margin: 12px 0;
+  }
+  .analogy-card .icon { font-size: 1.5em; margin-bottom: 6px; }
+  .analogy-card .title { font-weight: 600; font-size: 1em; margin-bottom: 6px; color: #1a1d23; }
+  .analogy-card p { font-size: .88em; margin-bottom: 0; }
+  .analogy-card.border-sig { border-left: 3px solid #9b59b6; }
+  .analogy-card.border-func { border-left: 3px solid #fbbf24; }
+  .analogy-card.border-onto { border-left: 3px solid #4ade80; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .88em; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--sec); font-weight: 500; font-size: .82em; text-transform: uppercase; letter-spacing: .03em; }
+  td { color: #374151; }
+
+  /* Concept network */
+  .concept-map {
+    background: #f8f9fb; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; margin: 16px 0; text-align: center;
+  }
+  .concept-map .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 6px 0; }
+  .concept-map .tag {
+    display: inline-block; padding: 4px 12px; border-radius: 14px; font-size: .8em;
+    font-family: var(--mono);
+  }
+  .concept-map .tag.purple { background: rgba(155,89,182,.12); color: #9b59b6; border: 1px solid rgba(155,89,182,.2); }
+  .concept-map .tag.blue { background: rgba(231,76,60,.12); color: var(--acc); border: 1px solid rgba(231,76,60,.2); }
+  .concept-map .tag.green { background: rgba(74,222,128,.12); color: var(--green); border: 1px solid rgba(74,222,128,.2); }
+  .concept-map .tag.amber { background: rgba(251,191,36,.12); color: var(--amber); border: 1px solid rgba(251,191,36,.2); }
+  .concept-map .tag.pink { background: rgba(244,114,182,.12); color: var(--rose); border: 1px solid rgba(244,114,182,.2); }
+
+  footer { text-align: center; padding: 40px 24px; color: var(--sec); font-size: .8em; border-top: 1px solid var(--border); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .container { padding: 24px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#ffffff;border-bottom:1px solid #e2e5ea;padding:0 24px;display:flex;gap:0;overflow-x:auto;">
+  <a href="../index.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">← 课程首页</a>
+  <a href="01_KSTAR学习循环.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 01</a>
+  <a href="02_核心竞争力三层结构.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 02</a>
+  <a href="03_范畴论与AI哲学基础.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 03</a>
+  <a href="04_NEOLAF与AgentSkill.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 04</a>
+  <a href="05_C4A评估体系.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 05</a>
+  <a href="06_作业方法与提交规范.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 06</a>
+  <a href="07_挑战体系C1到C10.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 07</a>
+  <a href="08_学习实践指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 08</a>
+  <a href="09_VibeCoding实战指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 09</a>
+</div>
+
+
+<div class="hero">
+  <div class="tag">模块 03 · 共 8 模块</div>
+  <h1>范畴论与 AI 哲学基础</h1>
+  <div class="sub">符号学、映射、函子 —— 数学如何教会我们"看见"世界的结构，以及这对 LLM 和 Agent 意味着什么</div>
+  <div class="stats">
+    <span>📚 5 条课堂引用</span>
+    <span>⏱ 预计 50 分钟</span>
+    <span>🏋️ 3 个练习</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ========== 1 ========== -->
+<div class="section">
+<h2><span class="num">01</span> 课前准备</h2>
+<p>在进入范畴论与 AI 哲学之前，确认你已有这些基础：</p>
+<div class="checklist">
+  <div class="item">理解"映射"或"函数"的基本概念（输入 → 输出）</div>
+  <div class="item">用过至少一种大语言模型（ChatGPT / Claude / DeepSeek）</div>
+  <div class="item">知道 Token 是 LLM 的基本处理单位</div>
+  <div class="item">见过"能指/所指"这对术语（哪怕只是听说过）</div>
+  <div class="item">准备好接受：这一讲不教写代码——它教你"怎么想"</div>
+</div>
+<div class="callout info">
+  <div class="label">🎯 这一模块不要求数学背景</div>
+  <p>范畴论以"抽象"著称，但 Richard 的讲法完全绕开了形式化定义。你不需要懂群论、拓扑或任何高阶数学。只需要带着常识和好奇心。</p>
+</div>
+</div>
+
+<!-- ========== 2 ========== -->
+<div class="section">
+<h2><span class="num">02</span> 课堂实录：Richard 讲符号学与范畴论</h2>
+
+<p>以下内容来自 2026-05-10 的课堂讨论。Richard 在回答学生关于"LLM 到底理不理解世界"的提问时，给出了两段极其完整的论述——一段关于符号学，一段关于范畴论。建议你逐字阅读。</p>
+
+<h3>2026-05-10：Richard 论符号学与表征</h3>
+<div class="transcript">
+  <div class="meta">Richard Tong 佟博士 · 2026-05-10 · 完整论述</div>
+  <div class="msg">
+    <span class="sender">Richard Tong 佟博士：</span>
+    <p style="margin-top: 6px;">索绪尔提出的"<span class="key-term">能指</span>"和"<span class="key-term">所指</span>"，本质上解释了语言和AI如何通过符号来表示世界。大语言模型主要学习的是词语、Token 等"能指"之间的统计关系，而不是真正直接理解现实世界。</p>
+    <p style="margin-top: 6px;"><span class="key-term">KSTAR</span> 则进一步把这些符号连接到情境、任务、行动和结果，实现从"语言"到"可执行智能"的落地。</p>
+    <p style="margin-top: 6px;">因此，<span class="key-term">符号学</span>、<span class="key-term">表征理论</span>、<span class="key-term">ontology</span>，以及数学中的<span class="key-term">映射与结构关系</span>，构成了现代 LLM 和 Agent 系统最基础的哲学与数学框架。</p>
+  </div>
+</div>
+
+<div class="callout warn">
+  <div class="label">🔑 这段话在说什么？</div>
+  <p>Richard 的核心判断：<strong>LLM 只学会了"能指之间的关系"，没有学会"能指到所指的映射"。</strong>这也是为什么 LLM 会产生"幻觉"——它在一个封闭的符号系统里做概率推理，没有连接到现实世界的"所指"。KSTAR 的五步循环，本质上是给 LLM 补上了这个缺失的映射。</p>
+</div>
+
+<h3>2026-05-10：Richard 论范畴论与函子</h3>
+<div class="transcript">
+  <div class="meta">Richard Tong 佟博士 · 2026-05-10 · 完整论述</div>
+  <div class="msg">
+    <span class="sender">Richard Tong 佟博士：</span>
+    <p style="margin-top: 6px;">映射与函子：数学如何教会我们看见世界的结构。</p>
+    <p style="margin-top: 6px;">很多人以为数学是在研究"数字"，但更深层的数学，其实是在研究"关系"和"结构"。从函数（mapping）开始，数学就在告诉我们：世界上真正重要的，不只是对象本身，而是对象之间如何转换、如何关联。</p>
+    <p style="margin-top: 6px;">而<span class="key-term">范畴论（Category Theory）</span>进一步提出了一个更深刻的观点：我们不应该孤立地看待事物，而应该看它在整个关系网络中的位置。<span class="key-term">函子（Functor）</span>的本质，就是"结构保持的映射"。它描述的是：一个系统中的关系，如何被映射到另一个系统中，同时仍然保留其核心结构。</p>
+    <p style="margin-top: 6px;">这其实不仅仅是数学。语言学中的"能指/所指"、大语言模型中的 Token 与 Embedding、认知科学中的世界模型、AI Agent 的任务规划，甚至人与人之间的协作，本质上都在处理"结构映射"。</p>
+    <p style="margin-top: 6px;">现代 AI 的核心，也越来越不是单纯的数据计算，而是：<strong>如何表示世界、如何理解关系、如何进行结构化映射、如何在不同系统之间保持意义</strong>。</p>
+    <p style="margin-top: 6px;">从某种意义上说：<strong>数学不是让我们更会算，而是让我们学会"看见结构"。</strong></p>
+  </div>
+</div>
+
+<div class="callout tip">
+  <div class="label">💡 Richard 发的链接</div>
+  <p>在这段论述之后，Richard 在群里分享了一些关于范畴论入门和符号学基础的链接。核心参考方向包括：</p>
+  <ul>
+    <li>Category Theory for Programmers (Bartosz Milewski) — 程序员视角的范畴论入门</li>
+    <li>索绪尔《普通语言学教程》中关于能指/所指的章节</li>
+    <li>关于"Latent Space"（潜在空间）的解释文章 — 这是"能指"在现代 AI 中最直接的体现</li>
+  </ul>
+</div>
+
+<div class="concept-map">
+  <div class="row">
+    <span class="tag purple">符号学</span>
+    <span class="tag blue">能指 / 所指</span>
+    <span class="tag green">映射 / 函数</span>
+    <span class="tag amber">范畴论</span>
+    <span class="tag pink">函子</span>
+  </div>
+  <div class="row" style="margin-top:10px; color: var(--sec); font-family: var(--mono); font-size: .8em;">
+    ↓ 从语言学到数学，再到 AI —— 同一个结构在不同层面的投影
+  </div>
+</div>
+</div>
+
+<!-- ========== 3 ========== -->
+<div class="section">
+<h2><span class="num">03</span> 大白话解释</h2>
+
+<p>下面我们用完全不需要数学背景的方式，把上面两段话翻译成每个人都能听懂的东西。</p>
+
+<h3>🍎 能指 vs 所指：地图不是领土</h3>
+
+<div class="analogy-card border-sig">
+  <div class="icon">🗺️</div>
+  <div class="title">地图 &lt;&gt; 领土</div>
+  <p><strong>能指（Signifier）</strong>= 地图上的标记。比如地图上写着"北京"两个字，画着天安门的图标。</p>
+  <p><strong>所指（Signified）</strong>= 真实的北京。那座城市、那里的人、那里的街道和气味。</p>
+  <p style="margin-top: 8px;"><strong>关键：</strong>地图上的"北京"和真实的北京之间有关系，但不是同一个东西。你可以研究地图上两个城市之间的距离（能指之间的关系），但这不代表你去过那些城市。</p>
+  <p style="margin-top: 6px;"><strong>LLM 在做什么：</strong>ChatGPT 就像是一个超级精通地图的专家——它知道每一个词跟其他词之间的"距离"和"关系"（Token 间的统计关联），但它从未踏上过任何一片真实的领土。它不知道"苹果"吃起来是什么味道，只知道"苹果"这个词在文本中通常和"水果"、"红色"、"吃"这些词一起出现。</p>
+  <p style="margin-top: 6px;"><strong>那 KSTAR 呢？</strong>KSTAR 的 S（Situation）和 A（Action）就是在做"从地图到领土的迁移"——它通过具体情境（S）和执行反馈（A/R）把"能指"连接到真实的"所指"。</p>
+</div>
+
+<div class="callout error">
+  <div class="label">🤯 这就是"幻觉"的根源</div>
+  <p>LLM 产生幻觉，本质上是因为它<strong>只在能指的世界里做推理</strong>。它说"2024年奥运会将在巴黎举行"——从能指关系上看，"2024"和"奥运会"和"巴黎"这三个词在训练数据中经常紧密关联，所以这个输出在统计上"合理"。但 LLM 无法验证 2024 年奥运会<strong>实际上</strong>是否在巴黎举行。它没有领土可以核实。</p>
+</div>
+
+<h3>🔄 函子：翻译不失真</h3>
+
+<div class="analogy-card border-func">
+  <div class="icon">🌐</div>
+  <div class="title">函子 = 规矩搬家</div>
+  <p>想象你有一套"家庭规矩"——比如"吃饭前要洗手"、"进门要换鞋"、"晚上11点后不要大声说话"。</p>
+  <p>现在你要搬到另一个国家的新房子里。房子的格局不同、社区文化不同、甚至插座形状都不同。但你希望<strong>那套规矩的核心结构</strong>在新家里仍然保持：吃饭前还是要洗手，进门还是要换鞋，11点后还是要安静。</p>
+  <p style="margin-top: 8px;"><strong>函子就是：</strong>把一个系统中的关系（规矩、结构、模式）<strong>完整地、不变形地</strong>搬运到另一个系统中。</p>
+</div>
+
+<div class="analogy-card border-func">
+  <div class="icon">🧩</div>
+  <div class="title">具体例子：JSON → 数据库</div>
+  <p>你有一份 JSON 数据：</p>
+<pre><code>{
+  "name": "Alice",
+  "age": 30,
+  "friends": ["Bob", "Charlie"]
+}</code></pre>
+  <p>你要把它存到 SQL 数据库里。JSON 和 SQL 是两种不同的"语言系统"（范畴）。"结构保持的映射"意味着：</p>
+  <ul>
+    <li>Alice 这个人（对象）要对应数据库中的一行记录</li>
+    <li>name/age/friends（属性）要对应数据库中的列</li>
+    <li>"朋友关系"（结构）要通过关联表来保持</li>
+  </ul>
+  <p>如果你只是简单地把 JSON 整个扔进一个 TEXT 字段——这就叫"<strong>没保持结构</strong>"。你去查"Alice的朋友是谁"时就查不出来了。</p>
+</div>
+
+<div class="callout info">
+  <div class="label">🔍 函子的数学直觉</div>
+  <p>严格来说，一个函子 F 从范畴 C 到范畴 D 满足：</p>
+  <ul>
+    <li>对 C 中每个对象 X，F(X) 是 D 中的一个对象</li>
+    <li>对 C 中每个箭头 f: X → Y，F(f): F(X) → F(Y) 是 D 中的一个箭头</li>
+    <li>保持恒等箭头和复合操作</li>
+  </ul>
+  <p>翻译成人话：<strong>把物件搬过去，把物件之间的连接也搬过去，连接方式不变。</strong></p>
+</div>
+
+<h3>三个层次的结构映射</h3>
+
+<p>Richard 在论述中提到：符号学、LLM、认知科学、Agent 系统都在做"结构映射"。我们可以用一个表格来看清这些系统的平行关系：</p>
+
+<table>
+  <tr><th>领域</th><th>对象（什么被映射）</th><th>结构（什么被保持）</th><th>函子 / 映射例子</th></tr>
+  <tr><td>语言学</td><td>能指（词语/符号）</td><td>语法规则、语义关系</td><td>不同语言的翻译</td></tr>
+  <tr><td>LLM</td><td>Token</td><td>Token 之间的统计共现关系</td><td>Token → Embedding 向量</td></tr>
+  <tr><td>认知科学</td><td>感知输入</td><td>因果关系、时空结构</td><td>感觉输入 → 世界模型</td></tr>
+  <tr><td>Agent 系统</td><td>任务 / 工具</td><td>子任务依赖、数据流向</td><td>任务规划 → 工具调用序列</td></tr>
+  <tr><td>Hermes Agent</td><td>Skill</td><td>输入/输出接口约束</td><td>Skill 在 Agent A 和 Agent B 之间可迁移</td></tr>
+</table>
+
+<div class="callout tip">
+  <div class="label">💡 一句话总结两个核心概念</div>
+  <p><strong>能指/所指：</strong>地图不等于领土。LLM 在能指世界中推理，KSTAR 把它拉回所指世界。</p>
+  <p><strong>函子：</strong>把一套关系完整地搬到另一个系统中，结构不变。这就是 Skill 可迁移、Agent 可复用的本质原因。</p>
+</div>
+</div>
+
+<!-- ========== 4 ========== -->
+<div class="section">
+<h2><span class="num">04</span> 为什么这对你有用</h2>
+
+<p>这些听上去很"哲学"的概念，实际上直接关系到你每天使用 AI 时的三个核心问题：</p>
+
+<h3>🎯 1. 理解"幻觉"</h3>
+<p>你现在已经能准确解释为什么 LLM 会产生幻觉了：</p>
+<ul>
+  <li><strong>传统解释：</strong>模型生成的概率最高但错误的 Token。这是操作层面的。</li>
+  <li><strong>符号学解释：</strong>LLM 只在"能指"（Token/Term）之间建立统计关系，没有连接"所指"（现实世界的事实/状态）。它生产的是"语言上合理"的文本，而不是"事实上正确"的陈述。</li>
+  <li><strong>范畴论解释：</strong>LLM 处理的是"语言范畴"（Token 之间的关系），但没有建造一个"函子"把语言范畴映射到"现实世界范畴"。它的输出在语言范畴内部可以非常连贯（保持语法结构），但映射到现实范畴时可能完全扭曲。</li>
+</ul>
+
+<div class="callout warn">
+  <div class="label">🧪 试试用这个逻辑分析 prompt</div>
+  <p>当你写"请基于事实回答"时——你其实是在要求 LLM <strong>增加从语言范畴到事实范畴的函子强度</strong>。这解释了为什么 RAG（检索增强生成）会比纯生成更可靠：RAG 在生成时引入了外部文档作为"所指锚点"，相当于在函子中加入了实时的领土检查点。</p>
+</div>
+
+<h3>🎯 2. 理解"Prompt 设计"</h3>
+<p>好的 prompt 本质上是在做什么？</p>
+<ul>
+  <li>你给 LLM 提供一组"能指"（指令 + 上下文）</li>
+  <li>你希望 LLM 在它的 Token 关系网络中定位到正确的"区域"</li>
+  <li>你还希望它生成的输出的"结构"与你的期望"结构"保持一致</li>
+</ul>
+<p>这就是一个"函子"过程：你有一个<strong>意图范畴</strong>（你想达到的目标），你需要 LLM 在你的<strong>语言范畴</strong>中找到一个<strong>结构保持的映射</strong>，使得它的输出正好对应你的意图。</p>
+<p><strong>实践含义：</strong></p>
+<ul>
+  <li>给例子（few-shot）就是在"展示函子路径"——你告诉 LLM 从哪些 Token 到哪些 Token 是一条有效的映射</li>
+  <li>给格式要求（JSON / Markdown）就是在"约束函子的余域"——你告诉 LLM 输出的结构框架</li>
+  <li>Chain-of-Thought 是在"显式化函子的中间步骤"——让结构映射可追踪</li>
+</ul>
+
+<h3>🎯 3. 理解 Agent Skill 的可迁移性</h3>
+<p>这是最直接在实操中应用的：</p>
+<ul>
+  <li>你在 Hermes Agent 中写了一个 skill（比如 wechat-export），这个 skill 定义了一组输入、输出、操作步骤</li>
+  <li>这个 skill 本质上是一个"函子"：它将"用户意图范畴"映射到"系统操作范畴"</li>
+  <li>为什么这个 skill 可以给另一个 Agent（甚至给其他同学）使用？<strong>因为函子的定义保证了结构不变</strong>——只要输入的结构符合预期，输出的结构就可预测</li>
+</ul>
+
+<div class="callout tip">
+  <div class="label">🚀 这意味着什么？</div>
+  <p>当你设计一个 skill 时，你其实是在构建一个<strong>在 Agent 生态中可迁移的函子</strong>。好的 skill 设计 = 清晰的输入范畴定义 + 清晰的结构映射 + 可预测的输出范畴。这就是"可复用性"的数学本质。</p>
+  <p>反过来，如果你写的 skill 对"输入"没有任何约束（随便什么 prompt 都可以），那它就不是一个好的函子——因为它没有明确的结构保持条件。这样的 skill 在别人那里大概率会跑出意外结果。</p>
+</div>
+
+<div class="concept-map">
+  <div class="row">
+    <span class="tag purple">能指/所指</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 解释幻觉</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 指导 Prompt</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 设计 Skill</span>
+  </div>
+  <div class="row" style="margin-top:6px;">
+    <span class="tag amber">函子</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 可迁移性</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 结构保持</span>
+    <span style="color: var(--sec); font-family: var(--mono); font-size: .8em;">→ 可预测输出</span>
+  </div>
+  <div class="row" style="margin-top:10px; color: var(--sec); font-family: var(--mono); font-size: .8em;">
+    三个日常问题 ← 两个核心概念 ← 一个统一的数学-哲学框架
+  </div>
+</div>
+</div>
+
+<!-- ========== 5 ========== -->
+<div class="section">
+<h2><span class="num">05</span> 你的练习</h2>
+
+<div class="exercise">
+  <h4>🏋️ 练习 1：教别人 <span class="badge">15分钟</span></h4>
+  <p>找一个没上过这个课的同学（或者用 ChatGPT / Claude 扮演一个），用你自己的话解释以下三个概念：</p>
+  <ol>
+    <li><strong>能指 vs 所指：</strong>用"地图 vs 领土"的比喻，说明 LLM 为什么"不理解"世界</li>
+    <li><strong>函子是什么：</strong>用"规矩搬家"的比喻，说明函子就是"结构保持的映射"</li>
+    <li><strong>为什么 KSTAR 很重要：</strong>从符号学角度看，KSTAR 的 S-A-R 步骤如何帮助 LLM 从"能指"连接到"所指"</li>
+  </ol>
+  <p style="margin-top: 8px;">如果你能在 3 分钟内让对方大致听懂——说明你真正理解了。</p>
+  <details>
+    <summary style="color: var(--acc); cursor: pointer; font-size: .9em; margin-top: 6px;">💡 参考答案要点</summary>
+    <div style="margin-top: 8px; color: #374151; font-size: .9em;">
+      <p><strong>能指/所指：</strong>地图上的标记（能指）不等于真实的地形（所指）。LLM 就像是一个超级地图专家，但它从未踏上过领土。它知道词语之间的统计关系，但不知道这些词语对应的真实世界事实。</p>
+      <p><strong>函子：</strong>从一个系统到另一个系统的"结构保持映射"。就像你家的一套规矩搬到新房子后核心规则不变一样，函子保证关系在迁移中不丢失。</p>
+      <p><strong>KSTAR + 符号学：</strong>LLM 天然只处理"能指"（Token）。KSTAR 的 S（具体情境）把 Token 连接到现实上下文，A（行动）产生真实世界的结果，R（反思）把经验写回 Knowledge。这就构成了从"能指世界"到"所指世界"的完整桥梁。</p>
+    </div>
+  </details>
+</div>
+
+<div class="exercise">
+  <h4>🏋️ 练习 2：用"函子"思维分析 wx-cli <span class="badge">20分钟</span></h4>
+  <p>你在前面的模块中已经用过 <code>wx-cli</code> 这个工具。现在用函子的角度来分析它：</p>
+  <p><code>wx-cli</code> 在 Hermes Agent 中是怎么工作的？</p>
+  <ol>
+    <li><strong>输入范畴（源范畴）：</strong>用户输入的自然语言指令（如"帮我导出 AI+X 群的聊天记录"）</li>
+    <li><strong>中间映射：</strong>Agent 把自然语言理解 → 解析为 <code>wx export</code> 命令行调用</li>
+    <li><strong>输出范畴（目标范畴）：</strong>系统执行结果（文件、数据、状态反馈）</li>
+  </ol>
+  <p>请用这个框架填空：</p>
+<pre><code>## 函子分析：wx-cli in Hermes Agent
+
+### 源范畴 C（用户意图）
+- 对象（可能的输入类型）：
+  - 
+  - 
+- 箭头（输入之间的转换关系）：
+  - 
+
+### 函子 F: C → D（wx-cli skill 的执行流程）
+- 对每个对象 X，F(X) 是：
+  - 
+- 对每个箭头 f: X → Y，F(f) 是：
+  - 
+
+### 目标范畴 D（系统执行结果）
+- 对象（可能的输出类型）：
+  - 
+  - 
+- 箭头（输出之间的关联关系）：
+  - 
+
+### 结构保持检查
+- 输入中的"群 A 和群 B 是相似的关系"是否在输出中保持？
+  - 
+- 有没有信息丢失的情况？
+  - </code></pre>
+  <details>
+    <summary style="color: var(--acc); cursor: pointer; font-size: .9em; margin-top: 6px;">💡 参考答案要点</summary>
+    <div style="margin-top: 8px; color: #374151; font-size: .9em;">
+      <p><strong>源范畴 C 的对象：</strong>"导出聊天记录"、"确认群名"、"查看联系人"</p>
+      <p><strong>函子 F 的对象映射：</strong>每个意图 → 对应的 wx-cli 命令（wx export、wx sessions、wx contacts）</p>
+      <p><strong>结构保持检查：</strong>如果你说"先查群名再导出"（对象间的顺序关系），函子应该保持这个顺序：先跑 wx sessions 拿到群名，再用群名跑 wx export。如果函子丢失了这个顺序关系（先导出再查群名），那就叫"结构没保持"。</p>
+      <p><strong>信息丢失：</strong>wx-cli 的 JSON 输出中包含一些字段（如数据库内部 ID），这些信息在最终展示给用户的 Markdown 文件里被过滤掉了。这是"函子"主动选择的有损映射——在不破坏核心结构的前提下压缩信息复杂度。</p>
+    </div>
+  </details>
+</div>
+
+<div class="exercise">
+  <h4>🏋️ 练习 3：设计一个"函子 skill" <span class="badge">25分钟</span></h4>
+  <p>假设你要设计一个新的 Hermes Agent skill，叫作 <code>obsidian-notes-functor</code>。它的功能是：<strong>把 Obsidian 笔记库中的笔记，按照 Tag 结构和链接结构，映射到 AI+X 课程知识图谱</strong>。</p>
+  <p>用函子的思维回答以下问题：</p>
+  <ol>
+    <li><strong>源范畴是什么？</strong>Obsidian 笔记中的哪些结构需要被保持？（Tag 层级？双向链接？文件夹结构？Front Matter 元数据？）</li>
+    <li><strong>目标范畴是什么？</strong>知识图谱需要什么样的结构？（节点分类？边类型？属性？）</li>
+    <li><strong>函子映射规则是什么？</strong>Obsidian 的 Tag → 知识图谱的什么？Obsidian 的链接 → 知识图谱的什么？</li>
+    <li><strong>什么情况下这个函子会失效？</strong>比如 Obsidian 中有循环链接，知识图谱不支持循环？</li>
+    <li><strong>这个 skill 的可迁移性如何？</strong>如果另一个同学用的是 Notion 而不是 Obsidian，这个函子的结构还能保持吗？</li>
+  </ol>
+  <p style="margin-top: 8px; color: var(--sec); font-size: .85em;">💡 提示：没有标准答案。重点是把"函子"思维用在实际设计决策中。</p>
+</div>
+</div>
+
+<!-- ========== 6 ========== -->
+<div class="section">
+<h2><span class="num">06</span> 检查清单</h2>
+
+<p>做完上面的练习后，用这个清单确认你掌握了：</p>
+
+<div class="checklist">
+  <div class="item">我能用自己的话解释"能指"和"所指"的区别</div>
+  <div class="item">我能用"地图 vs 领土"的比喻向别人说清楚</div>
+  <div class="item">我能解释 LLM 幻觉的符号学根源（只在能指世界推理）</div>
+  <div class="item">我能理解"函子"就是结构保持的映射</div>
+  <div class="item">我能用"规矩搬家"的比喻解释函子</div>
+  <div class="item">我能理解为什么好的 Prompt / Skill 设计 = 好的函子设计</div>
+  <div class="item">我能从函子角度分析 wx-cli 在 Hermes 中的工作方式</div>
+  <div class="item">我知道 KSTAR 在符号学层面的意义（连接能指和所指）</div>
+  <div class="item">我理解了 Richard 说的"数学不是让我们更会算，而是让我们学会看见结构"</div>
+</div>
+
+<div class="callout tip" style="margin-top: 16px;">
+  <div class="label">✅ 全部勾上？你可以进入下一个模块了</div>
+  <p>如果有项没勾上，回头再看"大白话解释"部分，或者用练习 1 再走一遍。</p>
+</div>
+</div>
+
+<!-- ========== 7 ========== -->
+<div class="section">
+<h2><span class="num">07</span> 参考资源</h2>
+
+<table>
+  <tr><th>资源</th><th>位置 / 说明</th></tr>
+  <tr><td>Richard 论符号学与范畴论（完整原文）</td><td>见本模块"课堂实录"部分，2026-05-10</td></tr>
+  <tr><td>Category Theory for Programmers (Bartosz Milewski)</td><td>程序员友好，有免费的 PDF 和视频版本</td></tr>
+  <tr><td>索绪尔《普通语言学教程》</td><td>能指/所指的原始出处</td></tr>
+  <tr><td>"Latent Space" 可视化解释</td><td>理解 Embedding 空间的几何直觉</td></tr>
+  <tr><td>函子（Functor）维基百科</td><td>形式化定义，适合查证</td></tr>
+  <tr><td>KSTAR 学习循环模块</td><td>本课程模块 01，理解 KSTAR 在实操中的使用</td></tr>
+  <tr><td>Richard 核心理念一句话</td><td>"数学不是让我们更会算，而是让我们学会看见结构。"</td></tr>
+</table>
+
+<div class="callout info" style="margin-top: 16px;">
+  <div class="label">📖 探索建议</div>
+  <p>如果你对这个方向感兴趣，推荐的学习路径是：</p>
+  <ol>
+    <li>先搞懂"能指 vs 所指"（这个模块帮你了）</li>
+    <li>再看"函子"在编程中的应用（Functor in Haskell / Rust / TypeScript）</li>
+    <li>然后理解"自然变换"（Natural Transformation）——这是函子之间的映射，直接对应 skill 之间的组合和转换</li>
+    <li>最后回到 AI：看 Latent Space 中的"流形假设"（manifold hypothesis），它是范畴论思想在深度学习中的具体体现</li>
+  </ol>
+</div>
+</div>
+
+</div>
+
+<div style="display:flex;gap:10px;margin:40px 0 20px;"><a href="02_核心竞争力三层结构.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">← 上一节</div><div style="font-size:.85em;font-weight:500;">核心竞争力三层结构</div></a><a href="04_NEOLAF与AgentSkill.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;text-align:right;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">下一节 →</div><div style="font-size:.85em;font-weight:500;">NEOLAF 与 Agent Skill</div></a></div><footer>
+  <p>模块 03/08 · 上一模块：核心竞争力三层结构 · 下一模块：Agent 系统架构</p>
+  <p>基于 Elite20 Builder Program 课堂内容 · 整理于 2026-05-11</p>
+</footer>
+
+
+<!-- ===== Floating Chat Bot ===== -->
+<style>
+.chat-fab { position:fixed; bottom:24px; right:24px; z-index:9999; }
+.chat-fab-btn {
+  width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#e74c3c,#9b59b6);
+  border:none; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 4px 16px rgba(231,76,60,.4);
+  transition:.2s; display:flex; align-items:center; justify-content:center;
+}
+.chat-fab-btn:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(231,76,60,.5); }
+.chat-fab-btn .pulse { position:absolute; width:52px; height:52px; border-radius:50%; animation:pulse 2s infinite; background:rgba(231,76,60,.3); }
+@keyframes pulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+
+.chat-window {
+  position:fixed; bottom:88px; right:24px; width:380px; max-height:560px;
+  background:#ffffff; border:1px solid #e2e5ea; border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15); z-index:9998; display:none; overflow:hidden;
+  flex-direction:column;
+}
+.chat-window.open { display:flex; }
+.chat-header {
+  padding:14px 16px; background: #ffffff; border-bottom:1px solid #e2e5ea;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.chat-header h3 { font-size:.85em; font-weight:600; color: #1a1d23; letter-spacing:-.01em; }
+.chat-header .close-btn { background:none; border:none; color:#888; cursor:pointer; font-size:1.1em; padding:2px 6px; border-radius:4px; }
+.chat-header .close-btn:hover { background:#e2e5ea; }
+.chat-body { flex:1; overflow-y:auto; padding:12px 14px; min-height:200px; max-height:400px; }
+.chat-body::-webkit-scrollbar { width:4px; }
+.chat-body::-webkit-scrollbar-thumb { background:#e2e5ea; border-radius:2px; }
+.chat-input-area { padding:10px 12px; border-top:1px solid #e2e5ea; display:flex; gap:8px; }
+.chat-input-area input {
+  flex:1; background: #ffffff; border:1px solid #e2e5ea; border-radius:8px;
+  padding:10px 14px; color:#1a1d23; font-size:.85em; outline:none; font-family:inherit;
+}
+.chat-input-area input:focus { border-color:#e74c3c; }
+.chat-input-area button {
+  background:linear-gradient(135deg,#e74c3c,#9b59b6); border:none; border-radius:8px;
+  color:#fff; padding:8px 14px; cursor:pointer; font-size:.8em; font-weight:500;
+}
+.chat-input-area button:hover { opacity:.9; }
+
+.chat-msg { margin-bottom:10px; max-width:90%; }
+.chat-msg.user { margin-left:auto; }
+.chat-msg.bot { margin-right:auto; }
+.chat-msg .bubble {
+  padding:8px 12px; border-radius:10px; font-size:.82em; line-height:1.5;
+}
+.chat-msg.user .bubble { background:#e74c3c; color:#fff; border-bottom-right-radius:3px; }
+.chat-msg.bot .bubble { background: #f3f4f6; color: #374151; border-bottom-left-radius:3px; }
+.chat-msg.bot .src { font-size:.65em; color: #6b7280; margin-top:2px; padding-left:4px; }
+.chat-msg .typing { display:flex; gap:4px; padding:4px 0; }
+.chat-msg .typing span { width:6px; height:6px; border-radius:50%; background:#555; animation:typing 1.4s infinite; }
+.chat-msg .typing span:nth-child(2) { animation-delay:.2s; }
+.chat-msg .typing span:nth-child(3) { animation-delay:.4s; }
+@keyframes typing { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
+
+.chat-footer { padding:6px 14px; border-top:1px solid #e2e5ea; display:flex; justify-content:space-between; font-size:.65em; color: #6b7280; }
+.chat-footer .ai-toggle { cursor:pointer; color: #6b7280; }
+.chat-footer .ai-toggle.on { color:#4ade80; }
+.chat-footer .ai-toggle.off { color: #6b7280; }
+
+@media (max-width:600px) {
+  .chat-window { width:calc(100vw - 32px); right:16px; bottom:80px; max-height:70vh; }
+}
+</style>
+
+<div class="chat-fab">
+  <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+    <div class="pulse"></div>
+    <span>💬</span>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <h3>💬 课程小助手</h3>
+    <button class="close-btn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">
+      <div class="bubble">👋 你好！我是 Elite20 Builder Program 课程小助手。<br><br>
+      你可以问我任何课程相关的问题，比如：<br>
+      • "KSTAR 的 S 是什么？"<br>
+      • "C4A 怎么评分？"<br>
+      • "Richard 说过什么关于核心竞争力的话？"</div>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chatInput" placeholder="问个课程问题…" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">发送</button>
+  </div>
+  <div class="chat-footer">
+    <span id="chatResultCount"></span>
+    <span class="ai-toggle off" id="chatAiToggle" onclick="toggleChatAI()">🤖 AI 总结 关</span>
+  </div>
+</div>
+
+<script>
+// State
+var chatIndex = [];
+var chatAIKey = '';
+var chatAIOn = false;
+
+// Load search index
+fetch('../search-index.json').then(function(r){return r.json()}).then(function(d){
+  chatIndex = d.entries || [];
+}).catch(function(){});
+
+// Try load saved API key
+try {
+  var saved = localStorage.getItem('aix-ai-key');
+  if (saved && saved.length > 10) {
+    chatAIKey = saved;
+    chatAIOn = true;
+    document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+    document.getElementById('chatAiToggle').className = 'ai-toggle on';
+  }
+} catch(e){}
+
+function toggleChat() {
+  var w = document.getElementById('chatWindow');
+  w.classList.toggle('open');
+  if (w.classList.contains('open')) {
+    setTimeout(function(){document.getElementById('chatInput').focus();}, 200);
+  }
+}
+
+function toggleChatAI() {
+  if (!chatAIKey) {
+    var key = prompt('输入 API Key 启用 AI 总结功能\n(DeepSeek / OpenAI 兼容格式)');
+    if (key && key.length > 10) {
+      chatAIKey = key;
+      chatAIOn = true;
+      localStorage.setItem('aix-ai-key', key);
+      document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+      document.getElementById('chatAiToggle').className = 'ai-toggle on';
+    }
+  } else {
+    chatAIOn = !chatAIOn;
+    var tog = document.getElementById('chatAiToggle');
+    tog.textContent = chatAIOn ? '🤖 AI 总结 开' : '🤖 AI 总结 关';
+    tog.className = chatAIOn ? 'ai-toggle on' : 'ai-toggle off';
+  }
+}
+
+function sendChat() {
+  var input = document.getElementById('chatInput');
+  var q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+  
+  // Add user message
+  addMsg('user', q);
+  
+  // Show typing
+  var typingId = 'typing-' + Date.now();
+  var typingHtml = '<div class="chat-msg bot" id="' + typingId + '"><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', typingHtml);
+  scrollChat();
+  
+  // Search
+  var results = searchCourse(q);
+  document.getElementById('chatResultCount').textContent = '找到 ' + results.length + ' 条结果';
+  
+  if (results.length === 0) {
+    document.getElementById(typingId).outerHTML = '<div class="chat-msg bot"><div class="bubble">😕 没找到相关结果。试试换个问法，或者问得更具体一些。</div></div>';
+    scrollChat();
+    return;
+  }
+  
+  if (chatAIOn && chatAIKey) {
+    // AI mode: search + summarize
+    callAI(q, results, typingId);
+  } else {
+    // Search-only mode: show results directly
+    var html = '<div class="chat-msg bot"><div class="bubble">';
+    results.slice(0, 5).forEach(function(r) {
+      var mod = r.entry.module || '';
+      var txt = r.snippet || r.entry.text.substring(0, 120);
+      html += '<div style="margin-bottom:6px;padding:6px 8px;background:rgba(231,76,60,.06);border-radius:6px;border-left:2px solid #e74c3c;">';
+      html += '<div style="font-size:.72em;color:#e74c3c;margin-bottom:2px;">' + mod + '</div>';
+      html += '<div>' + txt + '</div></div>';
+    });
+    if (results.length > 5) html += '<div style="font-size:.72em;color: #6b7280;margin-top:4px;">…还有 ' + (results.length - 5) + ' 条结果</div>';
+    html += '</div><div class="src">💡 配置 API Key 可启用 AI 总结</div></div>';
+    document.getElementById(typingId).outerHTML = html;
+    scrollChat();
+  }
+}
+
+function searchCourse(q) {
+  var query = q.toLowerCase();
+  if (!query || query.length < 1) return [];
+  var scored = [];
+  for (var i = 0; i < chatIndex.length; i++) {
+    var entry = chatIndex[i];
+    var text = (entry.text || '').toLowerCase();
+    var score = 0;
+    if (text.indexOf(query) >= 0) {
+      score += (text.split(query).length - 1) * 3;
+    }
+    // bigram for fuzzy chinese match
+    for (var j = 0; j < query.length - 1 && j < 6; j++) {
+      var bg = query.substring(j, j + 2);
+      if (text.indexOf(bg) >= 0) score += 0.5;
+    }
+    if (score > 0) scored.push({entry: entry, score: score});
+  }
+  scored.sort(function(a,b){return b.score - a.score});
+  
+  // Build snippets
+  var out = [];
+  for (var i = 0; i < Math.min(scored.length, 10); i++) {
+    var r = scored[i];
+    var text = r.entry.text;
+    var idx = text.toLowerCase().indexOf(query);
+    if (idx >= 0) {
+      var start = Math.max(0, idx - 20);
+      var end = Math.min(text.length, idx + query.length + 40);
+      r.snippet = (start > 0 ? '…' : '') + text.substring(start, end) + (end < text.length ? '…' : '');
+    } else {
+      r.snippet = text.substring(0, 100);
+    }
+    out.push(r);
+  }
+  return out;
+}
+
+function callAI(query, results, typingId) {
+  var context = results.slice(0, 5).map(function(r){
+    return '[' + (r.entry.module || '') + '] ' + (r.entry.text || '');
+  }).join('\n\n');
+  
+  var body = JSON.stringify({
+    model: 'deepseek-chat',
+    messages: [
+      {role:'system',content:'你是 Elite20 Builder Program 课程助教。基于提供的课程内容回答。只基于已有内容，不编造。用中文，简洁。'},
+      {role:'user',content:'课程资料：\n' + context + '\n\n问题：' + query}
+    ],
+    temperature: 0.3,
+    max_tokens: 500
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://api.deepseek.com/chat/completions');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + chatAIKey);
+  xhr.onload = function() {
+    try {
+      var data = JSON.parse(xhr.responseText);
+      var answer = data.choices && data.choices[0] ? data.choices[0].message.content : '无法获取回答';
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">' + answer.replace(/\n/g,'<br>') + '</div></div>';
+    } catch(e) {
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">AI 服务出错，请检查 API Key</div></div>';
+    }
+    scrollChat();
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById(typingId);
+    if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">网络错误，请检查连接</div></div>';
+    scrollChat();
+  };
+  xhr.send(body);
+}
+
+function addMsg(role, text) {
+  var cls = role === 'user' ? 'user' : 'bot';
+  var html = '<div class="chat-msg ' + cls + '"><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', html);
+  scrollChat();
+}
+
+function scrollChat() {
+  var body = document.getElementById('chatBody');
+  body.scrollTop = body.scrollHeight;
+}
+</script>
+
+</body>
+</html>

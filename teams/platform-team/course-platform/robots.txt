@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elite20.edu/sitemap.xml

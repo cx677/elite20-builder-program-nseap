@@ -1,0 +1,8 @@
+# Elite20 GitHub Pages 配置
+title: Elite20 Builder Program
+description: NSEAP AI Learning Operating System - Reference Implementation
+url: "https://elite20.edu"
+baseurl: ""
+
+# 禁用 Jekyll 处理（用纯静态文件）
+plugins: []

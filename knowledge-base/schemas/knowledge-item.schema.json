@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elite20.local/schemas/knowledge-item.schema.json",
+  "title": "KnowledgeItem",
+  "type": "object",
+  "required": ["id", "title", "type", "summary", "content", "tags", "review_status"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["faq", "prompt", "best_practice", "case_study", "rubric", "agent_note", "reference"]
+    },
+    "summary": { "type": "string" },
+    "content": { "type": "string" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source": { "type": "string" },
+    "related_challenges": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_agents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "related_assets": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "agent_notes": { "type": "string" },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "published", "deprecated"]
+    },
+    "updated_at": { "type": "string" }
+  }
+}
+

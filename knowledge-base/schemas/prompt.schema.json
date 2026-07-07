@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elite20.local/schemas/prompt.schema.json",
+  "title": "PromptAsset",
+  "type": "object",
+  "required": ["id", "title", "purpose", "prompt", "inputs", "outputs"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "purpose": { "type": "string" },
+    "prompt": { "type": "string" },
+    "inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "outputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "used_by_agents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "published", "deprecated"]
+    }
+  }
+}
+

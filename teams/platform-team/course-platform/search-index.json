@@ -1,0 +1,5856 @@
+{
+  "modules": [
+    {
+      "tag": "模块 01",
+      "name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "entry_count": 77
+    },
+    {
+      "tag": "模块 02",
+      "name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "entry_count": 89
+    },
+    {
+      "tag": "模块 03",
+      "name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "entry_count": 101
+    },
+    {
+      "tag": "模块 04",
+      "name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "entry_count": 120
+    },
+    {
+      "tag": "模块 05",
+      "name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "entry_count": 116
+    },
+    {
+      "tag": "模块 06",
+      "name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "entry_count": 80
+    },
+    {
+      "tag": "模块 07",
+      "name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "entry_count": 103
+    },
+    {
+      "tag": "模块 08",
+      "name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "entry_count": 139
+    },
+    {
+      "tag": "课堂笔记",
+      "name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "entry_count": 39
+    },
+    {
+      "tag": "模块 09",
+      "name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "entry_count": 101
+    }
+  ],
+  "entries": [
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "KSTAR 不是一个需要\"学懂\"的概念，而是一个需要\"用会\"的工具"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "后面的每一步都会带着你做"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "02 课堂实录：Richard 怎么教 KSTAR KSTAR 不是在某一次课里被\"讲解\"的——它是 Richard 在整个课程中反复使用、反复纠正、反复强调的框架"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "下面按时间线看它是怎么出现的： 2026-04-10：第一次提到 KSTAR Richard Tong 佟博士 · 2026-04-10 00:01 Richard Tong 佟博士： 这位博主也是个文科生，没有coding基础，但靠Vibe Coding做了不少产品……她关于产品和内容传播的想法和我们AI+X KSTAR的核心理念是非常切和一致的"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "第一次出现时，KSTAR 是用来解释\"Vibe Coding\"为何有效的"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "核心： 快速落地、在反馈中迭代"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "2026-04-13：学生开始尝试理解 冯静雯 · 2026-04-13 09:01 冯静雯： 我认为KSTAR架构的目标是构建一个\"自我改进型智能体\"，让AI能够像一个人类学徒一样，在实践中学习，在经验中成长，所以其架构最接近 Hermes Agent 所代表的\"经验中心论\""
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "🔍 Richard 的评价 Richard 回复了[强][强]"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "这个理解是正确的——KSTAR 的最终目标就是一个自我改进的循环"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "2026-04-23：Richard 发现学生理解偏差 Richard Tong 佟博士 · 2026-04-23 18:49 Richard Tong 佟博士： @所有人 我发现大家有一个共同的问题，就是对 KSTAR 作为人类或任何智能体知识的一种 representation（表达）存在理解偏差"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "很多同学在用 KSTAR 的时候，把 S 当成了 Skill，把 R 当成了 Report…… ⚠️ 第一次全班性纠正 这是重点——全班同学都在同一个地方犯错"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "KSTAR 不是\"写报告\"的工具，是\"思考\"的工具"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "2026-05-05：最明确的纠正 Richard Tong 佟博士 · 2026-05-05 05:18 Richard Tong 佟博士： [引用] S = Situation in KSTAR"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Your kstar md got it wrongly as Skill"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Please fix this"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Richard Tong 佟博士 · 2026-05-05 23:59 Richard Tong 佟博士： [引用] Good try"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "One correction: kstar abbr needs to be corrected in your analysis"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "2026-05-05：Richard 给出最简版本 Richard Tong 佟博士 · 2026-05-05 21:31 Richard Tong 佟博士： kstar loop is most effective when you iterate fast"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "💡 这条消息是精髓 整节课关于 KSTAR 最核心的一句话，不是五步的名字，而是这 7 个单词： \"iterate fast\""
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "KSTAR 的价值不在于它分五步，而在于它让你能快速转一圈"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "一圈转完，下一圈更快"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "03 KSTAR 详解 K → S → T → A → R K nowledge ←—— R eflection（闭环） 五步详解 Step 1 🧠 Knowledge — 知识检索 做什么： 开始任何工作之前，先问自己\"我已经知道什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "\" 具体操作： 查历史记录：以前做过类似的吗"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "搜索可用资源：有没有现成的代码/tool/skill"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "问人/问 AI：先获取情报，不要蒙头造轮子 反面： 上来就干，做了半天发现别人已经做过了 Step 2 📍 Situation — 情境评估 做什么： 搞清楚你现在在什么位置"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "具体操作： 用 5W1H 问自己： What — 要完成什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Why — 为什么要做"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Where — 在什么环境里做"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "When — 截止时间"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "Step 3 📋 Task — 任务拆解 做什么： 把模糊目标变成可执行的子任务"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "具体操作： 一个大任务拆成 3-7 个小任务 每个小任务必须可验证（做完后怎么知道做完了"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "） 标注优先级：P0（必须做）> P1（重要）> P2（可选） 关键： 如果某个任务你还不知道怎么下手，说明它还不够小——继续拆 Step 4 ⚡ Action — 执行 做什么： 一次只做一件事，做完整验证"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "具体操作： 从优先级最高的 P0 开始 不要同时做多件事 做完立刻验证（测试/预览/检查） 卡住了"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "先记录卡点，跳到下一个可做的任务 Step 5 — 最关键 🔄 Reflection — 反思 做什么： 完成一个闭环后，停下来问自己五个问题"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "具体操作： 做对了什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "→ 记下来，下次复用 踩了什么坑"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "→ 记下来，下次避免 有什么模式"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "→ 可以做成 skill 吗"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "→ 更新记忆 下次怎么改进"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "→ 带着新知识进入下一轮 K 🚫 最常见的两个错误 错误1： 把 S 写成 Skill"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "S 是 Situation（情境），不是技能"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "技能是你 Action 时用的工具"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "错误2： 把 R 写成 Report（报告）"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "R 是 Reflection（反思），不是写一个文档交差——是真的在想\"这次学到了什么\""
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "04 实操：用 KSTAR 完成一个真实任务 下面我会带你用 KSTAR 走一遍——就拿\"用 wx-cli 查一下 AI+X 实验班的聊天记录\"这个你已经做过的事为例： 完整示例 🟦 Knowledge 阶段 我知道什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "- 我有 wx-cli 安装好了（之前 Richard 的课上学过） - 我知道 AI+X 实验班1 群的群名 - 之前张浩做过 wechat-class-manager - 我有 sudo 权限 还需要查什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "不管大小——可以是你接下来要做的任何一个课程挑战"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "用下面的模板填空： ## KSTAR 任务卡 K（Knowledge — 我已经知道什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "） - - - S（Situation — 我当前在什么位置"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "） - 目标： - 可用工具： - 限制条件： - 当前进度： T（Task — 这一步具体要做什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "） P0: [ ] P0: [ ] P1: [ ] P2: [ ] A（Action — 执行记录） - ✓ - ✓ - 卡点： - 解决： R（Reflection — 学到了什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "） - 做对了： - 踩坑了： - 下次改进： - 新 Knowledge： 🏋️ 练习 2：找错 10分钟 下面这个同学的 KSTAR 作业有什么问题"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "K：Hermes Agent S：我会用 Python T：完成 C5 挑战 A：写代码 R：写了一份报告 查看答案 多个问题： K 只写了\"Hermes Agent\"——这不是知识，这是一个工具名"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "你需要写\"我知道什么\"（比如：我知道 Hermes Agent 有 delegate_task 功能、有 memory 系统等） S 写的是技能（Skill）而不是情境（Situation）"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "S 应该是：当前在哪个挑战"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "T \"完成 C5 挑战\" 不是可执行的任务——太模糊"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "应该拆成：① 下载 starter ② 跑通 demo ③ 修改参数 ④ 验证输出 A \"写代码\" 太笼统——你具体写了什么代码"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "R \"写了一份报告\"——这是 Report 不是 Reflection"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "应该反思：哪些方法有效"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "🏋️ 练习 3：快速 KSTAR 迭代 5分钟 × 3轮 选一个很小的事——比如\"整理今天的笔记\""
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "走第一轮 KSTAR（5分钟）→ 做完 → Reflection → 第二轮 KSTAR（5分钟，基于第一轮的 R）→ 做完 → Reflection → 第三轮"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "你不需要把每轮的 KSTAR 写得很长"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "关键是： 每轮都比上一轮快"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "🏋️ 练习 4：教别人 15分钟 找一个没上过这个课的同学（或者用 ChatGPT 扮演一个），用你自己的话解释： KSTAR 是哪五步"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "S 为什么不是 Skill"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "为什么\"快速迭代 > 完美首发\"是核心"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "如果你能够让别人听懂，说明你真的理解了"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "你可以进入下一个模块了 如果有项没勾上，回头再看那部分内容，或者用练习 1 再走一遍"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "07 参考资源 资源 位置 KSTAR 学习文章 群文件：kstar learning article"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "pdf 课程论文（含 KSTAR 格式要求） 群文件：Elite20 挑战提交总则 v1"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "pdf 同学示例：冯静雯 KSTAR 理解 见本模块\"课堂实录\"部分 你的 KSTAR skill Hermes: kstar-learning-loop Richard 最核心的一句话 \"kstar loop is most effective when you iterate fast"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "\" 下一节 → 核心竞争力三层结构 模块 01/08 · 下一模块：核心竞争力三层结构 基于 Elite20 Builder Program 课堂内容 · 迁移于 2026-06-29 💬 💬 课程小助手 ✕ 👋 你好"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 01",
+      "module_name": "KSTAR 学习循环",
+      "file": "curriculum/01_KSTAR学习循环.html",
+      "text": "\" 发送 🤖 AI 总结 关"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "← 课程首页 模块 01 模块 02 模块 03 模块 04 模块 05 模块 06 模块 07 模块 08 模块 09 AI+X Elite | 模块 02 课前准备 课堂实录 三层详解 你的画像 练习 检查清单 模块 02 / 核心框架 核心竞争力三层结构 当 AI 放大计算能力后，真正稀缺的不再是\"能不能做\"，而是\"为什么做\"和\"做什么\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "📅 2026-05-05 👤 Richard 📘 Elite20 Builder Program 📋 课前准备 ✏️ 自问自答（上课前完成） 在 AI 时代，你觉得什么能力最值钱"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你目前的技术能力（编程、工具使用等）处于什么水平"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "能否独立完成一个完整项目"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你过去半年有没有遇到\"不知道做什么\"的困境"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "如果 AI 可以帮你写所有代码，你觉得你还需要学什么"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "💡 带着这些问题的答案来听课，你会发现 Richard 讲的每一句话都在回应你心中的困惑"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🎙️ 课堂实录 🎯 核心论点：稀缺性的转移 当计算能力被 AI 极大放大之后，真正稀缺的不再是\"能不能做\"，而是\"为什么做\"和\"做什么\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "所以一个人的核心竞争力，变成了三件事： 持续驱动自己做事情的能力 定义高价值问题的能力 形成独特视角的能力 Richard · 2026-05-05 · Elite20 Builder Program ⚠️ 常见误区纠正 但要注意一个常见误区：很多人会听完后误解成\"那我不用学技术了\"，这是错误的"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "更准确的是： 技术能力不再是终点，而是必须具备的\"放大器\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "Richard · 2026-05-05 🚨 不要 把\"顶层更重要\"误解成\"底层可以不要\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "护城河在顶层，但必须建立在底层之上"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🏗️ 正确结构：三层的分工 底层：基础建模能力 — 软件编程的模型 / 数据模型 / 领域学科模型 中层：AI 协作能力 — 双脑（Human + AI） 顶层：学习和元认知能力 — 驱动力 + 问题定义 + 视角 护城河在顶层，但必须建立在底层之上"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "Richard · 2026-05-05 👥 未来的团队画像 未来的团队里，每个人都是跨学科全才"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "在 Claude Code 团队中，每个人都写代码——包括工程经理、产品经理、设计师"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这意味着： 没有\"不懂技术的角色\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "无论你的头衔是什么，底层建模能力都是入场券"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "区别只在于，你在哪一层构建你的核心竞争力"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🏛️ 概念详解：三层各自是什么 下面这张三层结构图是你理解 AI 时代个人竞争力的核心框架"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "请仔细观察每一层的定位、能力和判断标准"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "1 顶层 · 护城河 学习和元认知能力 驱动力 + 问题定义 + 独特视角"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这是你不可替代的核心"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "当 AI 可以完成执行层一切工作时， \"为什么做\"和\"做什么\" 的决策权在你手上"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "持续驱动自己做事情的能力、定义高价值问题的能力、形成独特视角的能力——这三项决定了你的长期天花板"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🔥 自我驱动力 🎯 问题定义 👁️ 独特视角 🧠 元认知 📈 长期主义 2 中层 · 放大器 AI 协作能力（双脑） 学会与 AI 形成\"双脑\"协作 —— 你负责方向与判断，AI 负责执行与探索"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这是将底层能力放大 10 倍的关键杠杆"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "包括：Prompt Engineering、AI 工具链使用、Agent 工作流设计、人机交互决策、AI 输出验证与批判性审查"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🤖 Prompt Engineering ⚡ AI 工具链 🔄 Agent 工作流 🔍 批判性审查 🧩 人机决策 3 底层 · 入场券 基础建模能力 软件编程的模型 / 数据模型 / 领域学科模型"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这是你所有上层能力赖以存在的基础"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "没有底层，中层和顶层就是空中楼阁"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "包括：编程语言与范式、数据结构和算法、系统设计思维、数学模型、领域专业知识"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "技术能力不再是终点，但它是必须的\"放大器\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "💻 编程模型 📊 数据模型 🔬 领域学科 🧮 算法思维 🏗️ 系统设计 🔍 怎么判断自己在哪一层"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "问自己三个问题： 问题 如果你能回答\"是\" 说明你在 我能独立用代码实现一个完整功能吗"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "✅ 是 底层 我能借助 AI 将效率提升 2 倍以上吗"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "✅ 是 中层 我能定义别人看不到的问题方向吗"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "✅ 是 顶层 大多数人同时处于多个层级的不同成熟度"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "关键是知道自己哪层最强、哪层最弱"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🧑‍🎓 针对你的分析 🎯 你的三层能力画像 基于你目前的技术栈和 AI 使用情况，这是你的三层结构诊断： 顶层 · 护城河 🏗️ 建设中 你开始意识到\"问题定义\"比\"问题执行\"重要，但还没有形成系统的方法论"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "驱动力和独特视角正在萌芽——这是你接下来 6 个月最值得投入的层级"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "下一步：每周刻意练习\"定义一个问题比解决它更难\"的思维模式"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "中层 · 放大器 🔄 训练中 你已在使用 Hermes Agent 进行 AI 协作编程，双脑协作模式正在建立中"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "关键在于从\"AI 帮你写代码\"进阶到\"AI 帮你做决策\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "目前你处于 AI 协作能力的早期成长阶段"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "当前状态：✅ AI 辅助编码 / ⬜ AI 辅助决策 / ⬜ AI 工作流设计 底层 · 入场券 ✅ 已具备 你拥有 Python 编程能力，熟练使用 Hermes Agent（AI 工具）和 wx-cli（命令行工具链）"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "基础建模能力已经建立，可以独立完成工程项目"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这为你的中、上层建设打下了坚实基础"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "Python · Hermes Agent · wx-cli 💬 关键洞察 ：你的底层已经达标，中层正在训练中，顶层还在建立"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "这是非常典型的 AI 时代学习路径——先有工具能力，再学习协作，最后升华到定义问题"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你正走在正确的轨道上"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "📊 优先级建议 🔝 最优先 提升中层 深化 AI 协作能力，从辅助编码到辅助决策 📈 中长期 构建顶层 系统训练问题定义能力和独特视角 🔄 持续巩固 夯实底层 在项目中持续打磨 Python 和工具链，拓展领域模型 🏋️ 练习 📝 练习一：三层自评 对自己当前的每一层进行打分（1-10分），并写下理由"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "1 底层 · 基础建模能力自评 评分标准： 能否不依赖 AI 独立完成一个完整的编程功能"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "能否理解你所用工具背后的数据模型和系统设计"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 2 中层 · AI 协作能力自评 评分标准： 使用 AI 后你的产出效率提升了多少倍"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你是否能设计 AI 工作流（不只是单次对话）"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你能验证和质疑 AI 的输出吗"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 3 顶层 · 元认知能力自评 评分标准： 你能主动定义\"该做什么\"而不是等别人告诉你吗"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你是否有自己的视角和判断"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你是否能持续驱动自己去攻克困难问题"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 🎯 练习二：制定三层提升计划 基于自评结果，为每一层制定一个具体的、可衡量的提升计划"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "1 底层提升计划 选择一个你当前底层能力的薄弱环节（例如：系统设计思维、数据建模、某个领域知识），制定一个 4 周计划"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "每周要完成什么里程碑"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "示例：4 周内用 Python 实现一个简易 RAG 系统，理解向量数据库和 Embedding 模型"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "2 中层提升计划 设计一个\"从辅助编码到辅助决策\"的 AI 协作进阶路径"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "当前 AI 协作模式的局限性是什么"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "下一个要掌握的 AI 工具或模式是什么"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "如何建立对 AI 输出的批判性审查习惯"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "示例：从单次对话 → 多 Agent 工作流 → 用 AI 辅助架构设计决策"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "3 顶层提升计划 训练\"定义问题\"和\"独特视角\"的能力"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "每周找出一个你领域内被忽视的问题"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "尝试用一句话定义它（而不是描述它）"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "与至少一个人讨论你的定义，获取反馈"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "示例：每天写一条\"今天我注意到…\"的观察笔记，30 天后回顾哪些观察变成了可定义的问题"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "🔍 练习三：找到你的\"放大器\"盲区 Richard 说\"技术能力不再是终点，而是必须具备的放大器\""
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "但每个人的放大器中都有盲区： 1 列出你当前的技术栈 写出你日常使用的工具、语言、框架、平台"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你的技术栈：________________________________________ 2 找出\"放大器断裂点\" 在你列出的技术栈中，哪些环节是你依赖 AI 去\"填空\"的——即你自身理解薄弱、但靠 AI 勉强完成的"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "示例：能用 AI 写 SQL 但不懂索引原理 → 盲区是数据库底层模型"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "3 制定盲区攻克计划 针对每个盲区，制定一个最小化的\"补课\"方案（ 不要追求精通 ，只要建立心智模型即可）"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "Richard 强调：\"底层不需要你做到专家级别，但需要你建立足够的心智模型来理解上层建筑"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "目标是在 1 周内完成全部 8 项"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "📚 参考资源 📄 模块 01：KSTAR 学习循环 前置模块 — 理解学习的方法论基础 📖 《思考，快与慢》— Daniel Kahneman 系统 1 / 系统 2 思维模型，理解双脑协作的认知基础 🎯 \"问题定义\"练习框架 每天用\"如果我只能解决一个问题，那是什么"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "\"来训练自己 🔧 Hermes Agent 文档 深化你的中层 AI 协作能力 — hermes-agent"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "nousresearch"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "com/docs 📝 Feynman 技巧 用最简单的语言解释复杂概念 — 检验底层理解的黄金标准 🧩 跨学科学习指南 \"每个人都是跨学科全才\" — 扩展你的领域模型广度 Elite20 Builder Program — 模块 02：核心竞争力三层结构 基于 Richard 2026-05-05 课堂内容编制 ← 模块 01：KSTAR 学习循环 模块 03 → 💬 💬 课程小助手 ✕ 👋 你好"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 02",
+      "module_name": "核心竞争力三层结构",
+      "file": "curriculum/02_核心竞争力三层结构.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 KSTAR 学习循环 下一节 → 范畴论与 AI 哲学基础"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你不需要懂群论、拓扑或任何高阶数学"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "只需要带着常识和好奇心"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "02 课堂实录：Richard 讲符号学与范畴论 以下内容来自 2026-05-10 的课堂讨论"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Richard 在回答学生关于\"LLM 到底理不理解世界\"的提问时，给出了两段极其完整的论述——一段关于符号学，一段关于范畴论"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "2026-05-10：Richard 论符号学与表征 Richard Tong 佟博士 · 2026-05-10 · 完整论述 Richard Tong 佟博士： 索绪尔提出的\" 能指 \"和\" 所指 \"，本质上解释了语言和AI如何通过符号来表示世界"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "大语言模型主要学习的是词语、Token 等\"能指\"之间的统计关系，而不是真正直接理解现实世界"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "KSTAR 则进一步把这些符号连接到情境、任务、行动和结果，实现从\"语言\"到\"可执行智能\"的落地"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "因此， 符号学 、 表征理论 、 ontology ，以及数学中的 映射与结构关系 ，构成了现代 LLM 和 Agent 系统最基础的哲学与数学框架"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Richard 的核心判断： LLM 只学会了\"能指之间的关系\"，没有学会\"能指到所指的映射\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这也是为什么 LLM 会产生\"幻觉\"——它在一个封闭的符号系统里做概率推理，没有连接到现实世界的\"所指\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "KSTAR 的五步循环，本质上是给 LLM 补上了这个缺失的映射"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "2026-05-10：Richard 论范畴论与函子 Richard Tong 佟博士 · 2026-05-10 · 完整论述 Richard Tong 佟博士： 映射与函子：数学如何教会我们看见世界的结构"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "很多人以为数学是在研究\"数字\"，但更深层的数学，其实是在研究\"关系\"和\"结构\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "从函数（mapping）开始，数学就在告诉我们：世界上真正重要的，不只是对象本身，而是对象之间如何转换、如何关联"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "而 范畴论（Category Theory） 进一步提出了一个更深刻的观点：我们不应该孤立地看待事物，而应该看它在整个关系网络中的位置"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "函子（Functor） 的本质，就是\"结构保持的映射\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它描述的是：一个系统中的关系，如何被映射到另一个系统中，同时仍然保留其核心结构"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "语言学中的\"能指/所指\"、大语言模型中的 Token 与 Embedding、认知科学中的世界模型、AI Agent 的任务规划，甚至人与人之间的协作，本质上都在处理\"结构映射\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "现代 AI 的核心，也越来越不是单纯的数据计算，而是： 如何表示世界、如何理解关系、如何进行结构化映射、如何在不同系统之间保持意义"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "从某种意义上说： 数学不是让我们更会算，而是让我们学会\"看见结构\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "💡 Richard 发的链接 在这段论述之后，Richard 在群里分享了一些关于范畴论入门和符号学基础的链接"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🍎 能指 vs 所指：地图不是领土 🗺️ 地图 &lt;&gt; 领土 能指（Signifier） = 地图上的标记"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "比如地图上写着\"北京\"两个字，画着天安门的图标"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "所指（Signified） = 真实的北京"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "那座城市、那里的人、那里的街道和气味"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "关键： 地图上的\"北京\"和真实的北京之间有关系，但不是同一个东西"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你可以研究地图上两个城市之间的距离（能指之间的关系），但这不代表你去过那些城市"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "LLM 在做什么： ChatGPT 就像是一个超级精通地图的专家——它知道每一个词跟其他词之间的\"距离\"和\"关系\"（Token 间的统计关联），但它从未踏上过任何一片真实的领土"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它不知道\"苹果\"吃起来是什么味道，只知道\"苹果\"这个词在文本中通常和\"水果\"、\"红色\"、\"吃\"这些词一起出现"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "KSTAR 的 S（Situation）和 A（Action）就是在做\"从地图到领土的迁移\"——它通过具体情境（S）和执行反馈（A/R）把\"能指\"连接到真实的\"所指\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🤯 这就是\"幻觉\"的根源 LLM 产生幻觉，本质上是因为它 只在能指的世界里做推理"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它说\"2024年奥运会将在巴黎举行\"——从能指关系上看，\"2024\"和\"奥运会\"和\"巴黎\"这三个词在训练数据中经常紧密关联，所以这个输出在统计上\"合理\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "但 LLM 无法验证 2024 年奥运会 实际上 是否在巴黎举行"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🔄 函子：翻译不失真 🌐 函子 = 规矩搬家 想象你有一套\"家庭规矩\"——比如\"吃饭前要洗手\"、\"进门要换鞋\"、\"晚上11点后不要大声说话\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "现在你要搬到另一个国家的新房子里"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "房子的格局不同、社区文化不同、甚至插座形状都不同"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "但你希望 那套规矩的核心结构 在新家里仍然保持：吃饭前还是要洗手，进门还是要换鞋，11点后还是要安静"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "函子就是： 把一个系统中的关系（规矩、结构、模式） 完整地、不变形地 搬运到另一个系统中"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🧩 具体例子：JSON → 数据库 你有一份 JSON 数据： { \"name\": \"Alice\", \"age\": 30, \"friends\": [\"Bob\", \"Charlie\"] } 你要把它存到 SQL 数据库里"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "JSON 和 SQL 是两种不同的\"语言系统\"（范畴）"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "\"结构保持的映射\"意味着： Alice 这个人（对象）要对应数据库中的一行记录 name/age/friends（属性）要对应数据库中的列 \"朋友关系\"（结构）要通过关联表来保持 如果你只是简单地把 JSON 整个扔进一个 TEXT 字段——这就叫\" 没保持结构 \""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你去查\"Alice的朋友是谁\"时就查不出来了"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🔍 函子的数学直觉 严格来说，一个函子 F 从范畴 C 到范畴 D 满足： 对 C 中每个对象 X，F(X) 是 D 中的一个对象 对 C 中每个箭头 f: X → Y，F(f): F(X) → F(Y) 是 D 中的一个箭头 保持恒等箭头和复合操作 翻译成人话： 把物件搬过去，把物件之间的连接也搬过去，连接方式不变"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "三个层次的结构映射 Richard 在论述中提到：符号学、LLM、认知科学、Agent 系统都在做\"结构映射\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "LLM 在能指世界中推理，KSTAR 把它拉回所指世界"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "函子： 把一套关系完整地搬到另一个系统中，结构不变"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这就是 Skill 可迁移、Agent 可复用的本质原因"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "04 为什么这对你有用 这些听上去很\"哲学\"的概念，实际上直接关系到你每天使用 AI 时的三个核心问题： 🎯 1"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "理解\"幻觉\" 你现在已经能准确解释为什么 LLM 会产生幻觉了： 传统解释： 模型生成的概率最高但错误的 Token"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "符号学解释： LLM 只在\"能指\"（Token/Term）之间建立统计关系，没有连接\"所指\"（现实世界的事实/状态）"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它生产的是\"语言上合理\"的文本，而不是\"事实上正确\"的陈述"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "范畴论解释： LLM 处理的是\"语言范畴\"（Token 之间的关系），但没有建造一个\"函子\"把语言范畴映射到\"现实世界范畴\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它的输出在语言范畴内部可以非常连贯（保持语法结构），但映射到现实范畴时可能完全扭曲"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🧪 试试用这个逻辑分析 prompt 当你写\"请基于事实回答\"时——你其实是在要求 LLM 增加从语言范畴到事实范畴的函子强度"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这解释了为什么 RAG（检索增强生成）会比纯生成更可靠：RAG 在生成时引入了外部文档作为\"所指锚点\"，相当于在函子中加入了实时的领土检查点"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "理解\"Prompt 设计\" 好的 prompt 本质上是在做什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你给 LLM 提供一组\"能指\"（指令 + 上下文） 你希望 LLM 在它的 Token 关系网络中定位到正确的\"区域\" 你还希望它生成的输出的\"结构\"与你的期望\"结构\"保持一致 这就是一个\"函子\"过程：你有一个 意图范畴 （你想达到的目标），你需要 LLM 在你的 语言范畴 中找到一个 结构保持的映射 ，使得它的输出正好对应你的意图"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "实践含义： 给例子（few-shot）就是在\"展示函子路径\"——你告诉 LLM 从哪些 Token 到哪些 Token 是一条有效的映射 给格式要求（JSON / Markdown）就是在\"约束函子的余域\"——你告诉 LLM 输出的结构框架 Chain-of-Thought 是在\"显式化函子的中间步骤\"——让结构映射可追踪 🎯 3"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "理解 Agent Skill 的可迁移性 这是最直接在实操中应用的： 你在 Hermes Agent 中写了一个 skill（比如 wechat-export），这个 skill 定义了一组输入、输出、操作步骤 这个 skill 本质上是一个\"函子\"：它将\"用户意图范畴\"映射到\"系统操作范畴\" 为什么这个 skill 可以给另一个 Agent（甚至给其他同学）使用"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "因为函子的定义保证了结构不变 ——只要输入的结构符合预期，输出的结构就可预测 🚀 这意味着什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "当你设计一个 skill 时，你其实是在构建一个 在 Agent 生态中可迁移的函子"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "好的 skill 设计 = 清晰的输入范畴定义 + 清晰的结构映射 + 可预测的输出范畴"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这就是\"可复用性\"的数学本质"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "反过来，如果你写的 skill 对\"输入\"没有任何约束（随便什么 prompt 都可以），那它就不是一个好的函子——因为它没有明确的结构保持条件"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这样的 skill 在别人那里大概率会跑出意外结果"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "💡 参考答案要点 能指/所指： 地图上的标记（能指）不等于真实的地形（所指）"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "LLM 就像是一个超级地图专家，但它从未踏上过领土"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它知道词语之间的统计关系，但不知道这些词语对应的真实世界事实"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "函子： 从一个系统到另一个系统的\"结构保持映射\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "就像你家的一套规矩搬到新房子后核心规则不变一样，函子保证关系在迁移中不丢失"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "KSTAR + 符号学： LLM 天然只处理\"能指\"（Token）"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "KSTAR 的 S（具体情境）把 Token 连接到现实上下文，A（行动）产生真实世界的结果，R（反思）把经验写回 Knowledge"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这就构成了从\"能指世界\"到\"所指世界\"的完整桥梁"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🏋️ 练习 2：用\"函子\"思维分析 wx-cli 20分钟 你在前面的模块中已经用过 wx-cli 这个工具"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "现在用函子的角度来分析它： wx-cli 在 Hermes Agent 中是怎么工作的"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "- - 有没有信息丢失的情况"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "- 💡 参考答案要点 源范畴 C 的对象： \"导出聊天记录\"、\"确认群名\"、\"查看联系人\" 函子 F 的对象映射： 每个意图 → 对应的 wx-cli 命令（wx export、wx sessions、wx contacts） 结构保持检查： 如果你说\"先查群名再导出\"（对象间的顺序关系），函子应该保持这个顺序：先跑 wx sessions 拿到群名，再用群名跑 wx export"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "如果函子丢失了这个顺序关系（先导出再查群名），那就叫\"结构没保持\""
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "信息丢失： wx-cli 的 JSON 输出中包含一些字段（如数据库内部 ID），这些信息在最终展示给用户的 Markdown 文件里被过滤掉了"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这是\"函子\"主动选择的有损映射——在不破坏核心结构的前提下压缩信息复杂度"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "🏋️ 练习 3：设计一个\"函子 skill\" 25分钟 假设你要设计一个新的 Hermes Agent skill，叫作 obsidian-notes-functor"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "它的功能是： 把 Obsidian 笔记库中的笔记，按照 Tag 结构和链接结构，映射到 AI+X 课程知识图谱"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "用函子的思维回答以下问题： 源范畴是什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Obsidian 笔记中的哪些结构需要被保持"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Front Matter 元数据"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "知识图谱需要什么样的结构"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "） 函子映射规则是什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Obsidian 的 Tag → 知识图谱的什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "Obsidian 的链接 → 知识图谱的什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "什么情况下这个函子会失效"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "比如 Obsidian 中有循环链接，知识图谱不支持循环"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "这个 skill 的可迁移性如何"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "如果另一个同学用的是 Notion 而不是 Obsidian，这个函子的结构还能保持吗"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "💡 提示：没有标准答案"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "重点是把\"函子\"思维用在实际设计决策中"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你可以进入下一个模块了 如果有项没勾上，回头再看\"大白话解释\"部分，或者用练习 1 再走一遍"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 03",
+      "module_name": "范畴论与 AI 哲学基础",
+      "file": "curriculum/03_范畴论与AI哲学基础.html",
+      "text": "\" 发送 🤖 AI 总结 关"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "📅 2026-05-11 👤 Richard 📘 Elite20 Builder Program · C4 系列挑战 📋 课前准备 ✏️ 自问自答（上课前完成） 你之前听说过 NEOLAF 或 Agent Skill 吗"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你觉得\"技能\"和\"提示词\"有什么区别"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你在使用 AI Agent（如 Hermes Agent、Claude Code、Cursor）时，有没有反复做同一类任务"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你觉得一个\"好 skill\"应该具备什么特征"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "能不能用一句话定义它"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "C4 系列四个挑战（评估器、发布器、解题器、本地模型）中，哪一个最让你感兴趣"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "💡 本模块从\"元语言栈\"出发，带你理解 NEOLAF 为什么需要 Agent Skill 作为行动引擎"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "带着这些问题来读，你会发现 skill 远不止是\"提示词模板\""
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Richard · Elite20 Builder Program · C4 系列挑战引言 这是 Richard 给 C4 系列挑战的开场指令"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "他要求每一位学员： 用自己的 AI 工具阅读 NEOLAF 论文 ，然后解释两个关键问题： 为什么 Agent Skill 是 KSTAR 循环中\"行动计划\"的完美执行机制"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "为什么 Hermes Agent 与 NEOLAF Agent 在架构上高度相似"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "贯穿整个 C4 系列的核心思想是： 你不是在\"写代码\"，而是在\"构造技能\""
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "每个挑战的产出，都是一个可复用的 Agent Skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "没有 skill，计划永远停留在策略层，无法落地"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/ 目录，这正是 NEOLAF \"可插拔能力单元\"的实现 迭代循环 ：Hermes 的思考-行动-观察循环与 NEOLAF 的 plan-act-observe 循环一致 所以 Richard 说： \"如果你会用 Hermes Agent，你就已经理解了 NEOLAF Agent 的核心设计哲学"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "\" 🔄 元技能生成技能：Richard 的核心方法论 我的所有技能都是通过这种或类似的元技能所生成的"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "如果我能做到的话，任何小学生都应该能够做到"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Richard · Elite20 Builder Program · C4 系列挑战 这是 C4 系列最重要的精神： Skill 开发不是精英专属"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Richard 强调他的所有 skill 都是用\"元技能\"（meta-prompt / meta-skill）生成的——这意味着： 你不需要从零开始写 skill 你只需要描述你要做什么，然后用元技能去生成 任何小学生都能做到——你绝对可以 🚀 行动指令 ：先尝试，再优化"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "不要追求完美——一个能跑的 skill 胜过十个完美的设计文档"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "🏛️ 什么是 NEOLAF 📖 NEOLAF = Meta-Language Stack NEOLAF 是一个 元语言栈架构 ——一种用于构造 AI Agent 行为的层次化框架"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "它的核心思想是： 用语言定义 Agent 的行为，而不是用代码硬编码"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "NEOLAF 的全称可以理解为 \"Natural-language-driven, Extensible, Operational Language Agent Framework\" ——一种自然语言驱动、可扩展的操作型语言 Agent 框架"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "NEOLAF 定义了四层元语言栈，从底层语言基础到顶层行为约束，每层都建立在前一层之上： 1 底层 · 语言栈 Language Stack Agent 的\"母语\"——即它使用的自然语言（中文、英文等）和编程语言（Python、TypeScript 等）"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这是所有上层能力的基础载体"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "示例：Hermes Agent 用中文交流、用 Python 执行代码 2 策略层 · 元语言 Meta-Language 用于描述\"Agent 应该如何思考和行动\"的语言"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "包括 system prompt、指令模板、行为约束等"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "元语言不直接执行任务，而是定义任务应该如何被理解和执行"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "示例：Hermes Agent 的 system prompt 就是一段元语言 3 执行层 · Skill Skill (Agent Skill) 可复用的能力单元——由元语言定义、由语言栈执行"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Skill 是 NEOLAF 的\"可执行知识\" ，它封装了完成特定任务所需的指令、工具调用逻辑和行为模式"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "示例：一个\"文件采集器\"skill 封装了读取目录、识别文件类型、提取内容的能力 4 约束层 · 行动计划 Action Plan (行动计划) 由多个 Skill 组合而成的 高阶工作流"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这是 KSTAR 循环中\"行动计划\"的直接对应"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "行动计划定义了 用什么 skill、按什么顺序、在什么条件下执行"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "示例：C4A 评估器 = 文件采集 skill → 完整性检查 skill → 质量评审 skill → 报告生成 skill 💡 关键理解 ：NEOLAF 不是一个具体的软件或工具，而是一个 设计模式 ——它告诉我们：好的 Agent 行为不是写死在代码里的，而是用\"语言\"一层一层定义出来的"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "每层都是可替换、可扩展的"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "🧩 什么是 Agent Skill 🎯 定义：Skill 是可复用的 AI 能力单元 Agent Skill 是 NEOLAF 框架中 最重要的一层"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/ ├── file-collector/ │ ├── skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "yaml # skill 元数据 │ └── instructions"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "md # 核心指令 ├── quality-reviewer/ │ ├── skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "yaml │ └── instructions"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "md └── report-generator/ ├── skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "yaml └── instructions"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "md 或者在某些系统中，skill 就是一个"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "mdc 文件（Markdown Context 文件），直接嵌入 Agent 的上下文"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "🔄 Skill vs"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Prompt 的区别 很多学员会问：Skill 不就是一段提示词吗"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "维度 普通 Prompt Agent Skill 复用性 每次手动复制粘贴 自动加载，版本管理 工具绑定 无 / 松散 显式声明工具依赖 可组合性 单一对话 可串联成工作流 错误处理 靠用户手动纠正 内置回退和边界条件 输出格式 自由文本 结构化输出规范 🛠️ Skill 开发四步走 从 C4 系列挑战中提炼出的 Skill 开发方法论—— 拿来 → 改造 → 创造 → 迭代"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这不是线性的，而是螺旋上升的循环"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "📥 拿来 从 AG2 或社区复制现有 skill，跑通流程 → 🔧 改造 修改参数、调整指令、适配自己的场景 → ✨ 创造 用元技能生成全新 skill，解决自己的问题 → 🔄 迭代 在实践中不断优化 skill 的准确性和鲁棒性 📥 第一步：拿来（复制现有 Skill） 目标 ：不要从零开始"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "找到已有的 skill，让它在你的环境中跑通"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "for the ag2 challenge, use the skills to generate code: Plug in Beta agent skills"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/ into your repo, then open it in Cursor, Claude Code, Codex, Gemini CLI, or OpenCode"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "15 AG2 Beta skills load automatically"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Richard · Elite20 Builder Program · AG2 挑战 具体操作： 克隆或下载 AG2 官方 skill 仓库： https://github"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "com/ag2ai/build-with-ag2 将"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/ 目录复制到你的项目根目录 用支持 skill 的 Agent 工具（Cursor、Claude Code、Codex、Gemini CLI、OpenCode）打开项目 观察 15 个 Beta skills 是否自动加载 💡 不要追求第一次就理解全部"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "跑通本身就是最好的学习"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "🔧 第二步：改造（调整适配） 目标 ：在已有 skill 的基础上，进行参数化和定制化改造，让它适配你的具体需求"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这是 Richard 最强调的能力： 用元技能生成技能"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你不需要手动写 skill 的每一行——你只需要： 清楚地描述你要解决什么问题 用自然语言告诉你的 Agent（或一个\"元技能\"） 让 AI 为你生成 skill 的结构化定义 验证和微调 # 元技能 prompt 示例 \"你是一个 Agent Skill 设计师"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "请为以下任务生成一个 skill： 任务：[在这里描述你的任务] 需要的工具：[列出可用工具] 输出格式：[期望的输出格式] 约束条件：[边界条件] 请输出 skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "yaml 和 instructions"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "\" 🔄 第四步：迭代（持续进化） 目标 ：在实际使用中不断优化 skill，让它越来越准确、稳定"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "理解它们就是理解 NEOLAF + Skill 的最佳方式"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "C4A · 评估器 📊 班级评估系统 扫描群文件夹 → 识别 C4 提交 → 检查完整性 → 评审质量 → 生成报告"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "四级挑战： Level 1：文件采集 — 扫描群文件夹，识别 C4 提交 Level 2：完整性检查 — 检查提交是否完整 Level 3：质量评审 — 对作业进行质量评估 Level 4：班级报告 — 生成班级整体报告 C4B · 发布器 📝 公众号发布系统 从本地文件自动排版为公众号文章，支持 Markdown 到公众号格式的转换"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "核心能力： Markdown → 富文本转换 · 自动排版 图片上传 · 格式标准化 一键发布工作流 C4C · 解题器 🧮 中文解题流水线 5步流水线：摄入 → 解析 → 求解 → 排版 → 编译"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "核心要求：用国产模型替代 Claude Code"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "摄入题目（图片/文本） 2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "解析题目（理解题意） 3"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "求解（用 Qwen 3"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "6 / Kimi 2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "编译验证 C4D · 本地模型 💻 纯本地驱动 在本地设备下载运行 Gemma 4，用本地模型驱动 Agent，完全不依赖云端 API"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "关键技术： Gemma 4 本地部署 · Ollama/LM Studio 本地模型调用 · 离线 Agent 工作流 隐私优先 · 无网络依赖 🎯 学习建议 ：不要同时开始四个挑战"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "从你最感兴趣的一个开始（很多人从 C4C 开始），跑通一个 skill 的完整开发流程，再扩展到其他挑战"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "📦 AG2 15 Skills 介绍 🎁 AG2 Beta Skills — 15 个开箱即用的技能 AG2 官方提供了一个包含 15 个 Beta Skills 的仓库，覆盖了最常见的 Agent 任务"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "Richard 推荐所有学员从这些 skill 开始： # 使用方式 git clone https://github"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "com/ag2ai/build-with-ag2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "git cp -r build-with-ag2/"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "com/ag2ai/build-with-ag2/tree/main/"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills 🏋️ 练习 🔍 练习一：拆解一个现有 Skill 从 AG2 15 Beta Skills 中任选一个，拆解它的结构和设计思路"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "1 选择并下载 从 AG2 仓库或社区中选择一个你感兴趣的 skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "agents/skills/ 目录"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "2 分析结构 回答以下问题： 这个 skill 的输入是什么"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "它定义了哪些角色和行为规则"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "它的错误处理机制是什么"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你的分析：________________________________________ 3 寻找改进点 这个 skill 在什么场景下会失效"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "如果你要改造它，你会改哪里"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "改进建议：________________________________________ ⚡ 练习二：用元技能生成新 Skill 这是 Richard 最强调的练习——用元技能（meta-prompt）生成一个全新的 skill，而不是手动编写"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "1 定义你的问题 想一个你日常工作中经常重复、但又没有系统化的事情"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "我的问题：________________________________________ 2 编写元技能 Prompt 用下面的模板生成你的 skill： \"你是一个 Agent Skill 设计师"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "请为以下任务生成一个完整的 skill： 任务描述：[在上一步定义的问题] 需要的工具：[列出你可以使用的工具] 输出格式：Markdown 约束条件：[任何特殊要求] 请输出两个文件： 1"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "yaml — 元数据 2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "instructions"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "md — 核心指令\" 3 测试并迭代 在 Agent 中加载你生成的 skill，跑一个实际用例"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "记录错误和不足，调整指令，再次测试"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "🔄 练习三：跨模型迁移实验 C4C 挑战的核心要求是\"用国产模型替代 Claude Code\""
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这个练习模拟这个过程"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "1 选择一个 Skill 用练习一或练习二中产生的 skill"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "2 切换模型运行 在同一个 skill 不变的情况下，切换底层模型（例如从 GPT-4o → Qwen 3"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "6 / Kimi 2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "5 或从 Claude → Gemma 4）"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "3 对比分析 回答： 同一个 skill 在不同模型下的表现有何差异"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "哪些指令是\"模型无关的\""
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "哪些需要针对特定模型调整"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "本地模型（Gemma 4）和云端模型的 skill 设计有何不同"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "对比结论：________________________________________ ⚠️ 注意 ：跨模型迁移时，元语言层（meta-language）通常可以复用，但底层语言栈（language stack）的行为可能不同"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "这就是 NEOLAF 分层设计的价值——你可以只改一层而不动其他层"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "目标是在 3 天内完成全部 10 项"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "📚 参考资源 📄 NEOLAF 论文 用你的 Agent 阅读——理解元语言栈架构的原始论文 📖 AG2 Beta Skills 仓库 15 个开箱即用的技能 — github"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "com/ag2ai/build-with-ag2 🔧 Hermes Agent 文档 hermes-agent"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "nousresearch"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "com/docs — NEOLAF 风格的 Agent 实践 📝 模块 01：KSTAR 学习循环 前置模块 — 理解\"行动计划\"在 KSTAR 中的位置 🧩 模块 02：核心竞争力三层结构 理解 Skill 开发能力在个人竞争力金字塔中的位置 💻 Qwen 3"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "6 / Kimi 2"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 04",
+      "module_name": "NEOLAF 与 Agent Skill",
+      "file": "curriculum/04_NEOLAF与AgentSkill.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 范畴论与 AI 哲学基础 下一节 → C4A 评估体系"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "它是一件好事还是坏事"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你上次给别人提反馈意见是什么时候"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的反馈具体到什么程度"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "回顾你最近完成的一个项目，你迭代了几版"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "如果你是一个老师，你会怎么给同学的作业打分——只看结果还是看过程"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "💡 C4A 评估体系的核心理念是： 评估不只是打分，它是推动\"可复用价值\"增长的反馈引擎"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "带着你对\"什么是好作业\"的理解来听课"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🎙️ 课堂实录 🎯 Richard 论\"拿来主义\" \"凡是能够被复用、被传播、被他人使用的行为或产品，都具有更高价值权重"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" Richard · C4A 评估体系 \"抄作业,被别人抄作业,帮别人抄作业,帮人做作业,一起做作业,都有加分"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" Richard · C4A 评估体系 这段话颠覆了传统教育对\"抄袭\"的负面理解"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "在 C4A 体系中， 复用不是羞耻，而是价值创造的核心方式"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "关键在于你是否在复用的过程中产生了增量价值——改进、反哺、传播"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🎯 Richard 论\"有效反馈\" \"批评别人的作业,邀请别人批评自己的作业,给别人提出可以使用的进步方案,评估别人的作业,都是更高阶的能力,一定要必须要参与"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" Richard · C4A 评估体系 这里的\"批评\"不是随意吐槽，而是 可执行的建设性反馈"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "Richard 强调：评估别人作业的能力，本身比完成作业更有价值——因为它意味着你具备了判断标准和元认知"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🎯 Richard 论\"多次迭代\" \"从'完成任务' → 到'创造可复用能力'\" Richard · C4A 评估体系 这是 C4A 的最高境界"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "不止步于交差，而是通过持续迭代，把一个作业变成 可以被他人借鉴、复用、改进的知识资产"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "每一次迭代都是价值的指数增长"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 一句话总结 C4A 评估哲学 💎 作业不是任务，是可复用价值的载体"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "评估不是打分，是推动价值增长的反馈引擎"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🏛️ 三维度详解：C4A 评分标准 C4A 评估体系由三个核心维度构成： 拿来主义 (Copy) 、 有效反馈 (Comment) 、 多次迭代 (Iteration)"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "每个维度都有三级评分标准（★★★ / ★★☆ / ★☆☆），并配有来自课程群的真实案例"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📋 拿来主义 Copy · 复用的能力 核心考察：是否能识别、复用、改进并反哺他人的成果"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "这不是简单的\"抄袭\"，而是 在复用的基础上创造增量价值"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★★ 不仅复用还改进并反哺他人 — 拿别人的代码/思路来用，做了改进，还把改进后的版本分享给团队或社区，形成正向循环"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★☆ 成功复用并理解 — 找到了可复用的资源，成功应用到自己的工作中，并且理解了其原理，能解释\"为什么这么用\""
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★☆☆ 从零造轮子 — 完全自己从头开始写，没有复用任何已有的工作"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "虽然也完成了任务，但没有利用已有的积累，效率低且质量不一定更高"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 真实案例 · 拿来主义（★★★） 学生 A 在做\"数据爬虫\"作业时，先 fork 了同学 B 的开源爬虫框架，在此基础上添加了 增量爬取 功能和 断点续传 机制，然后将改进后的版本提交了 PR 到原项目仓库，并附上详细的改进文档"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "✅ C4A 评估：拿来主义 ★★★ — 不仅成功复用了现有框架，还做了实质性改进（增量爬取+断点续传），并且通过 PR 反哺了原项目"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "完全符合\"复用→改进→反哺\"的三级标准"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 真实案例 · 拿来主义（★☆☆） 学生 C 实现同样的爬虫作业，没有参考任何已有代码，从 requests 库开始逐行手写"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "最终功能实现了，但耗费了 3 倍时间，且代码质量不如可复用的开源方案"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "❌ C4A 评估：拿来主义 ★☆☆ — \"从零造轮子\"的典型"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "虽然独立完成了任务值得肯定，但没有利用已有的生态资源，效率低且没有产生可复用的成果"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "💬 有效反馈 Comment · 建设性批评的能力 核心考察：是否能给出 具体、可执行 的批评或建议"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "空泛的\"很好\"\"加油\"没有价值，深度批判且附带解决方案才是高阶能力"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★★ 深度批判且给出可执行方案 — 指出了具体问题，并附带了改进的代码片段、设计方案或实现路径"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "反馈本身就有独立价值"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★☆ 有具体反馈 — 指出了具体的优缺点（如\"这里的内存泄漏风险\"、\"这个函数的边界条件未处理\"），但未提供完整的解决方案"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★☆☆ 空泛反馈 — \"做得好\"\"加油\"\"很有想法\"等无法被对方利用的评价"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "虽然态度友好，但信息量为零"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 真实案例 · 有效反馈（★★★） 学生 D 在评审同学 E 的\"RAG 问答系统\"作业时，不仅指出了检索环节的召回率偏低问题，还贴出了 改进后的 Embedding 配置 和 chunk 切分策略的对比实验数据 ，附上了修改前后的 Recall@K 指标对比"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "✅ C4A 评估：有效反馈 ★★★ — 深度批判（召回率偏低）+ 可执行方案（具体配置和策略）+ 量化证据（对比实验数据）"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "这样的反馈可以直接产出改进成果"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 真实案例 · 有效反馈（★☆☆） 学生 F 在群里看了同学的项目后回复：\"很不错，继续加油"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\"对方礼貌回应，但没有获得任何可用的改进信息"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "❌ C4A 评估：有效反馈 ★☆☆ — 典型的空泛反馈"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "态度虽好，但对推动作品改进毫无帮助"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "Richard 说：\"'加油'不是一个评估，是一个表情包"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" 🔄 多次迭代 Iteration · 持续改进的能力 核心考察：是否通过 多轮改进 让作品不断进化"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "一版定稿说明你只是在\"完成作业\"；多次迭代才是在\"创造价值\""
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★★ 3+次可见迭代 — 发布了至少 3 个版本，每个版本都有明确的改进目标和可量化的成果"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "迭代过程有记录（如 git log、changelog），且最后一次迭代与第一次有质的飞跃"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★★☆ 2次迭代 — 发布了 2 个版本，第二次迭代解决了第一次的主要问题，但改进幅度有限，或缺乏明确的迭代记录"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "★☆☆ 仅1版 — 只提交了一个版本，完成任务即止"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "没有改进、没有反思、没有后续"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "📌 真实案例 · 多次迭代（★☆☆） 学生 H 提交了一个\"API 接口封装\"作业，只有一个文件、一个版本"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "功能能用，但没有考虑错误处理、性能优化或使用文档"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "❌ C4A 评估：多次迭代 ★☆☆ — 典型\"完成任务\"心态"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "一版定稿，没有对自己的作品进行任何改进或反思"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "如果哪怕多迭代一次（比如加上错误处理），就能达到 ★★☆"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "C4A 的价值在于帮你找到 最强维度 （放大优势）和 最弱维度 （优先补强）"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "三维度都达到 ★★☆ 以上，就是优秀水平"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🔬 实操：用 C4A 评估一个作品 📄 待评估作品：CLI 待办事项管理器 以下是一位同学的作业提交描述"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "请用 C4A 三维度评估它： 作品描述： \"我用 Python 写了一个命令行待办事项管理器，支持添加、删除、标记完成、列出任务等功能"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "数据存储在 JSON 文件中"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "我是参考了网上一个 TODO 教程写出来的，把它的存储从 SQLite 改成了 JSON，加了一个搜索功能"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "同学 B 说我搜索功能没有模糊匹配，我后来加上了 fuzzywuzzy 支持模糊搜索"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "目前迭代了 2 版：v1 基础功能，v2 加了模糊搜索和彩色输出"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" 匿名同学 · 命令行工具作业 🧪 C4A 评估示范 拿来主义评估 ★★☆ 学生参考了网上的教程（复用），并且做了实质性改动——将存储从 SQLite 改为 JSON，增加了搜索功能（改进）"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "但是没有提到是否将改进后的版本反哺回原教程或社区（未反哺）"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "✅ 复用已有资源 ✅ 做了改进 ❌ 未反哺他人 结论： ★★☆ — 成功复用并理解"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "如果能将改进后的版本提交 PR 或分享给原教程作者，可升级为 ★★★"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "有效反馈评估 ★★☆ 同学 B 给出了具体反馈：\"缺少模糊匹配功能\""
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "这个反馈是具体的、可操作的"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "但没有提供实现方案或代码片段，属于\"指出问题\"但没有\"附带解决方案\""
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "✅ 反馈具体（模糊匹配） ✅ 可执行 ❌ 未提供实现方案 结论： ★★☆ — 有具体反馈"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "如果 B 同学能贴出 fuzzywuzzy 的使用代码或示例，可升级为 ★★★"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "多次迭代评估 ★★☆ 提交明确记录了 2 次迭代（v1 基础功能，v2 模糊搜索+彩色输出）"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "第二次迭代是针对反馈的改进，方向正确"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "但只有 2 次，未达到 3 次门槛"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "✅ 有迭代记录 ✅ 迭代有明确目标 ❌ 未达 3 次 结论： ★★☆ — 2 次迭代"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "如果能再迭代 1 次（例如：添加单元测试、或生成 PyPI 包、或写完整文档），可升级为 ★★★"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🎯 综合评分：（★★☆ + ★★☆ + ★★☆）= 6/9 — 这是一个\"良好\"水平的作品"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "三个维度都有基础分，但每个维度都有明确的提升空间"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "下一步建议：聚焦一个维度先突破到 ★★★"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "🏋️ 练习 📝 练习一：用 C4A 自评你最近的项目 回顾你最近完成的一个项目（可以是课程作业、个人项目或工作中的任务），在三个维度上给自己打分"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "1 拿来主义自评 你使用了哪些现有的代码、框架、库或思路"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你只是用了它们，还是做了改进"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的改进有没有分享回去"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的评分：___ / ★★★ &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 2 有效反馈自评 在这个项目中，你给过别人什么反馈"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的反馈是否具体到\"可执行\"的程度"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的评分：___ / ★★★ &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 3 多次迭代自评 你迭代了几个版本"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "每次迭代解决的核心问题是什么"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "最后一次版本和第一次相比，有质的飞跃吗"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的评分：___ / ★★★ &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________ 👥 练习二：给同学的作品打分 阅读下面的同学作品描述，用 C4A 三维度给出你的评估和反馈： 📄 同学作品 \"我写了一个 Markdown 转 HTML 的转换器"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "一开始完全自己手写解析器（v1），发现太慢了"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "后来找到了一个开源库 markdown-it ，改用它的 API 做二次封装（v2），速度提升了 10 倍，还支持了代码高亮扩展"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "我把封装好的版本发到了 GitHub 上，写了中文文档"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "目前有 3 个 star"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "1 选定提升维度 从拿来主义、有效反馈、多次迭代中选择一个你最弱的维度"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "选定维度：__________________ 当前评分：___ / ★★★ 2 定义\"下一个星级\"的标准 如果要提升一星，你需要做到什么"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "写出具体可衡量的标准"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "示例（拿来主义 ★☆☆ → ★★☆）：在下个项目中找到一个现成的开源方案，成功集成并理解其原理"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "3 执行计划 写出你在接下来 2 周内要做的具体行动： 第一周要做什么"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "用什么指标判断是否达标"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你的 2 周计划：________________________________________ 💡 Richard 的建议 ：不要试图同时提升三个维度"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "选一个你最弱的，集中火力先突破到 ★★☆ 甚至 ★★★"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "一个维度的突破会带动其他维度——比如你开始认真做反馈，自然就会看到别人怎么迭代，然后你就会开始迭代自己的作品"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "目标是在 1 周内完成全部 8 项"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 05",
+      "module_name": "C4A 评估体系",
+      "file": "curriculum/05_C4A评估体系.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 NEOLAF 与 Agent Skill 下一节 → 作业方法与提交规范"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "1 工具与环境 注册 GitHub 账号，完成 SSH Key 配置 安装 Git （ git --version 验证） 准备 Markdown 编辑器（VS Code / Typora / Obsidian 均可） 确保 AI Agent 工具链可用（如 Claude Code、Codex CLI 等） 1"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "2 阅读材料 回顾 C2S 方法论文档（重点理解 \"你思考，AI 执行\"） 阅读 GitHub 上已有的优秀作业范例（班主任会在课程群中提供链接） 1"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "3 课前自检 ❓ 我是否理解了 &ldquo;你思考，AI 执行&rdquo; 的含义"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "❓ 我是否知道 GitHub 上 README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md、LICENSE、"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "gitignore 的基本作用"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "❓ 我是否准备好用 Markdown 而非 Word 撰写文档"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "🎙️ 课堂实录：Richard 对同学的逐条反馈 以下反馈摘录自课程实录，每一条都对应一项作业提交规范"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "🗣️ Richard → 同学 A \"Typically we don't use or store docx files in GitHub"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "I recommend you use Markdown format for all your intermediate or descriptive artifacts"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "\" 📌 规范对应： #1 禁止在 repo 中存放 docx 🗣️ Richard → 同学 B \"the repo itself needs README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md\" 📌 规范对应： #2 仓库必须包含 README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt needs to be consistent\" 📌 规范对应： #5 文件命名约定必须一致 🗣️ Richard → 同学 F \"I could not find the output generated by the agent\" —— 需要展示实际产出，让评审者能看到 AI 为你做了哪些工作"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "📌 规范对应： #6 必须包含 AI 产出的实际内容 📏 六条硬性规范详解 以下六条规范直接来自 Richard 的真实反馈，每一条都有明确的原因和示例"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "1 ❌ 禁止在仓库中存放"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "docx 文件 原因： GitHub 是为代码和纯文本设计的版本控制系统"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "docx 是二进制格式，无法 diff 对比变更，无法做代码审查，且会无谓增大仓库体积"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "正确做法： 所有文档用 Markdown（"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "Markdown 是纯文本，可 diff、可审查、可版本追溯"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md &nbsp;|&nbsp; ✅ notes/lesson-06"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md &nbsp;|&nbsp; ❌ 作业"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "docx 2 📄 仓库必须包含 README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md 原因： README 是你仓库的&ldquo;门面&rdquo;"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "评审者、助教、未来的你，都需要通过 README 快速了解这个仓库是干什么的、怎么使用、包含哪些内容"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "没有 README 的仓库是不完整的"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ 一个好的 README 包含：项目名称、作者、简要描述、目录结构、如何使用"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "3 📝 LICENSE 文件独立，填写本人姓名 原因： 开源许可证需要明确版权归属"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "LICENSE 文件应该是一个单独的文件（而非写在 README 里），版权所有者（Copyright holder）要填你本人的姓名，而非 AI 或组织名称"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ LICENSE 文件中 Copyright (c) 2025 你的姓名 4 🆕 新建仓库，而非从 neoskills fork 原因： fork 会携带上游仓库的完整 commit 历史、issue、PR 等噪声"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "评审者需要的是你个人的作业成果，一个干净的新仓库能让评审聚焦在你的工作上"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ git init 新仓库 &nbsp;|&nbsp; ❌ GitHub 上点 &ldquo;Fork&rdquo; 5 🏷️ 文件命名约定必须一致 原因： 不一致的命名（如 mynotes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt 、 my_notes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt 、 MyNotes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt 混用）会造成混乱，评审者无法预测在哪里找到特定内容"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "命名约定是你的仓库&ldquo;信息架构&rdquo;的一部分"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ 选定一种风格（推荐 kebab-case 或 snake_case ）并在整个仓库中统一使用"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "6 📦 必须包含 AI 产出的实际内容 原因： Richard 明确指出 &ldquo;I could not find the output generated by the agent&rdquo;"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "作业不仅需要你的思想过程，还需要实际展示 AI 代理帮你生成了什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "这是 C2S 范式中 &ldquo;AI 执行&rdquo; 的可交付证明"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ 在仓库中保留 AI 生成的代码、文档、图表等实际产出物，并标注这些是由 AI 生成的"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "🧠 核心原则：你思考，AI 执行 你思考 &nbsp;⟶&nbsp; AI 执行 你不需要手写任何成品 —— 翻译、综述、建议书、复盘均由 AI 在你的指挥下生成"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "我们评估的是 「你的思想是否在场」"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "C2S 的核心逻辑 C2S = Command to System （指挥系统） 你负责 思考、决策、判断、指挥 AI 负责 生成、整理、翻译、建议、复盘 你的价值体现在： 提出正确的问题、给出精准的指令、判断 AI 输出的质量 四件必交产物（C2S） ① 对论文的理解 用你自己的语言阐述论文核心论点、方法和结论"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "不是翻译，而是理解之后的重新表达"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "3 Elite20 的具体改进建议 采用 KSTAR 格式 （Knowledge-Situation-Task-Action-Result）撰写建议"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "③ AI+X 范式与自身的联结 这门课程与你个人的研究方向 / 工作实践有什么关联"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "④ 七维 AAR 课后复盘 After Action Review：从七个维度系统性地回顾和反思本次学习过程"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "📋 AI 日志模板 以下模板改编自冯静雯同学的作业实践，你可以直接复制使用"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "AI LOG TEMPLATE # AI 交互日志 ## 基本信息 - **日期：** YYYY-MM-DD - **任务名称：** [简要描述任务] - **使用的 AI 工具：** [工具名称 / 版本] ## 任务目标 [你希望 AI 帮你完成什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "用一两句话清晰描述] ## 提示语（Prompt） ``` [在此粘贴你给 AI 的完整提示语] ``` ## AI 输出摘要 [AI 返回了什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "列出关键产出] ## 我的思考 / 判断 - 这个输出是否符合预期"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ / ❌ / ⚠️ 部分符合 - 我做了哪些调整"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "[修改/追问/重新组织] - 学到了什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "[关键收获] ## 元提示（可选） ``` [如果 AI 本身也是用来生成提示语的，记录这个元提示链] ``` ## 下一步 [接下来要做什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "] ⛓️ 元提示链说明 \"我也想看看你用来生成提示语的提示语（我会称之为 元提示 或 提示链 ）\" —— Richard 什么是元提示链"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "当你利用 AI 来编写或优化你将要使用的提示语时，那个 &ldquo;用来生成提示语的提示语&rdquo; 就是元提示"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "元提示链记录了你如何与 AI 交互以构建最终提示语的过程"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "示例 场景： 你需要 AI 帮你做一份文献综述，但你不知道怎么写出好的提示语"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "🔗 元提示链示例 Step 1 — 元提示： 你是一个提示语工程专家"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "我的任务是：写一份关于\"Transformer在医学影像中的应用\"的文献综述"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "请为我设计 3 个不同角度的提示语，分别针对「概述型」「批判型」「应用对比型」综述"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "每个提示语需包含：角色设定、任务描述、输出格式要求"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "Step 2 — AI 生成了 3 个提示语 Step 3 — 你选择一个提示语发给 AI 执行综述生成 💡 把你的 Step 1 提示语 + Step 2 的产物都记录在 AI 日志中，这就是完整的元提示链"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "🏋️ 练习 ✏️ 练习 1：修复一个有问题的仓库 给定以下问题仓库（由班主任提供链接），请逐一修复： 仓库中有一个 作业"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "docx 文件 —— 请转换为 Markdown 缺少 README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md —— 补写一份清晰的 README LICENSE 文件中版权所有者写的是 \"AI\" —— 改为你的姓名 该仓库是从 neoskills fork 的 —— 新建一个干净仓库并迁移内容 文件名混乱： myNotes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt 、 my_notes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt 、 mynotes"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "txt —— 统一命名 找不到 AI 产出 —— 补充 AI 生成的内容文件 ✏️ 练习 2：写一篇 AI 日志 使用本模块提供的 AI 日志模板，记录你完成练习 1 的过程"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "你做了什么判断和调整"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "附上元提示（如果你曾让 AI 帮你优化提示语） ✏️ 练习 3：记录元提示链 完成上面任意练习时，如果你使用了 &ldquo;让 AI 帮你写提示语&rdquo; 的策略，请将整个元提示链完整记录下来，提交到你的仓库中的 meta-prompt-chain"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "✅ 提交前检查清单 每次提交作业前，逐项检查： 仓库是 git init 新建的，而非从 neoskills fork 包含 README"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md ，介绍清晰完整 有独立的 LICENSE 文件，版权所有者填写本人姓名 没有"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "pdf 等二进制文档文件（图片资源除外） 所有文件命名风格一致（推荐 snake_case 或 kebab-case） 包含 AI 产出的实际内容文件，并标注由 AI 生成 包含 AI 日志（ai-log"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "md 或类似文件） 包含了四件必交产物：论文理解、Elite20 改进建议（KSTAR）、AI+X联结、七维AAR 如果使用了元提示链，已记录在 meta-prompt-chain"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 06",
+      "module_name": "作业方法与提交规范",
+      "file": "curriculum/06_作业方法与提交规范.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 C4A 评估体系 下一节 → 挑战体系 C1 到 C10"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "← 课程首页 模块 01 模块 02 模块 03 模块 04 模块 05 模块 06 模块 07 模块 08 模块 09 AI+X Elite | 模块 07 课前准备 挑战全景 C1-C4 C5-C7 C8-C10 学习路线 练习 检查清单 模块 07 / 实战体系 挑战体系 C1 → C10 从课程翻译到高阶集成，十个递进式挑战构成完整的 AI+X 能力训练路径"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "每个挑战都是一个真实的项目课题"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📅 2026-05 / 持续更新 👤 Richard 发布 · 张浩标杆 🏆 C1-C10 全链路 📋 课前准备 🎯 学习目标 了解 C1-C10 每个挑战的目标、难度、要求和产物 理解张浩 C8W 的三阶段迭代过程，将其作为\"拿来主义\"标杆 评估自己当前进度，制定个性化的挑战路线图 找到一个可以\"复制 + 扩展\"的已有成果 ✏️ 自问自答（开始前完成） 你目前完成了哪些挑战"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "在所有挑战中，哪个最让你感到\"想做但不知道怎么开始\""
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "你有没有认真看过同学（如张浩、23信管张浩等）提交的成果"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "你理解\"拿来主义\"的真正含义吗"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "——不是抄袭，是站在前人肩膀上扩展"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "你心里有明确的挑战优先级排序吗"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "💡 这个模块不是让你一次性完成所有挑战，而是帮你建立全局视野，找到你现在最应该攻克的那个"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📊 你的当前状态 在开始之前，诚实地评估自己每个挑战的完成状态"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这会帮你找到真正的起点"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "0 已完成 0 进行中 10 未开始 0 规划中 ⚠️ 诚实面对自己的进度"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "没有人要求你一次性完成所有挑战"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "重要的是： 你有一个清晰的计划"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🗺️ 挑战全景图 🏗️ 整体结构 C1-C10 不是线性的课程作业，而是一个 递进式实战体系"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "每个挑战都对应一项具体能力目标，难度从入门到高阶逐步上升"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📌 核心理念 ：不要从头造轮子"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "Richard 明确说过——\"你们都应该至少尝试先复制 @23信管张浩 C8W 的工作成果，然后进一步扩展其功能"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是最基础的 AI 协作能力训练"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：翻译稿 + AI 协作日志 ⏱ 预计：3-5 天 🤖 工具：Claude / ChatGPT + 翻译辅助 📜 原始发布 Richard 在群中发布 CS146S 全英课程链接，要求同学翻译并记录 AI 使用过程"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "核心训练 AI 协作中的信息处理能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "✅ 已完成 C2 / C2S：论文批评与改进 入门 对论文进行批评性分析并提出改进方案"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "四件必交产物涵盖摘要重写、方法论评估、实验设计批评、改进方案等"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：4 件必交产物 🧠 核心：批判性思维 + AI 辅助分析 📜 原始发布 C2：论文批评 + C2S：论文改进"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "要求对指定论文进行深度分析，用 AI 辅助完成摘要重写、方法评估、实验批评、改进方案四件套"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🔄 进行中 C2A：提案包 入门 → 进阶 基于论文批评的成果，产出一份完整的项目提案包"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是从\"分析者\"到\"提议者\"的转变"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：项目提案包 🎯 目标：从批评到建设 ⏳ 未开始 C3 / C3C：双人协作 + 技能迁移 进阶 找一个搭档，互相教会对方原本不会的东西，然后一起完成一个任何一方单独做不到的项目"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "至少一人必须是非计算机专业"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "👥 协作：双人组队 🎯 核心：技能迁移 + 跨学科合作 📝 产物：协作项目 + 教学记录 📜 Richard 原始引用 \"找一个搭档，互相教会对方原本不会的东西，然后一起完成一个任何一方单独做不到的项目"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "至少一人必须是非计算机专业"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "\" Richard · Elite20 Builder Program 🔄 进行中 C4A：评估器（四级难度） 进阶 构建四级难度评估器，能够对任务产出进行自动化评估分级"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是工具链构建能力的起点"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：评估器工具 🎯 核心：自动化评估 + 分级标准 📜 原始发布 C4A 是评估体系的基础组件，要求实现四级难度（L1-L4）的自动化评估能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "详见模块 05：C4A 评估体系"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🔄 进行中 C4B：发布器（公众号文章生成） 进阶 构建自动化的公众号文章生成工具，能够根据输入内容自动排版、优化并生成可发布的微信公众平台文章"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：发布器工具 🔧 技术：Markdown → 公众号排版 ⏳ 未开始 C4C：解题器（5步流水线） 进阶 构建 5 步解题流水线，使用国产模型替代 Claude Code"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "训练端到端的问题解决能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：解题器工具 🤖 核心：国产模型替代方案 🔧 技术：5 步流水线 📜 原始发布 C4C 解题器强调用国产模型（而非 Claude Code）构建完整的解题流水线"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "5 步：问题定义 → 方案设计 → 实现 → 测试 → 复盘"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🔄 进行中 C4D：本地模型（Gemma 4） 进阶 部署并运行 Gemma 4 本地模型，实现完全离线的 AI 推理能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "训练本地模型的使用与调优"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：本地模型运行环境 💻 技术：Ollama / llama"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "cpp + Gemma 4 ⏳ 未开始 🏅 挑战详解：C5 — C7 C5 / C5A：AG2 多智能体视频工作室 高阶 基于 AG2 框架构建多智能体视频工作室（RefereeOS / AG2 Hackathon）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "多个 AI Agent 协作文本生成、视频脚本、素材管理等"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：多智能体视频系统 🤖 框架：AG2 / AutoGen 🎯 核心：RefereeOS 模式 📜 原始发布 C5/C5A 是 AG2 Hackathon 主题挑战，构建多智能体视频工作室"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "Agent 之间通过 RefereeOS 模式协调工作——一个裁判 Agent 管理多个工作 Agent 的产出质量"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "⏳ 未开始 C6 / C6A：开放挑战 高阶 自由选题的开放挑战"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "你可以选择任何你感兴趣的方向，运用已学技能完成一个完整的项目"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是检验综合能力的最佳试金石"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：自选项目 🎯 核心：自主选题 + 完整交付 ⏳ 未开始 C7：公共平台发布 高阶 将你的成果发布到公共平台（抖音 / 微信 / 小红书 / 知乎 / YouTube）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "训练内容分发和公众表达能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🌐 平台：抖音 / 微信 / 小红书 / 知乎 / YouTube 🎯 核心：内容创作 + 平台运营 ⏳ 未开始 🏅 挑战详解：C8 — C10 C8 / C8W：WeChat Class Management 专家 构建微信班级管理系统"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "核心功能：自动识别群里的作业提交、统计发言活跃度、检测长期沉默的同学，并通过网页仪表盘实时展示班级数据"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "Docker 容器化部署"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📝 产物：微信班级管理 Web 应用 🔧 技术：WeChat API + Docker + Web Dashboard 🎯 核心：作业识别 + 活跃度 + 沉默检测 📜 Richard 原始引用 \"你们都应该至少尝试先复制 @23信管张浩 C8W 的工作成果，然后进一步扩展其功能"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "\" Richard · Elite20 Builder Program 🏆 张浩的三阶段迭代（标杆案例） 第一阶段 · 核心功能落地 系统能自动识别群里的作业提交、统计发言活跃度、检测长期沉默的同学，并通过网页仪表盘实时展示班级数据"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是 MVP 阶段，只做最核心的三件事：作业识别（谁提交了、提交了什么）、活跃度统计（谁在说话、频率如何）、沉默检测（谁长期不说话）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "数据通过 Web Dashboard 实时展示"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "第二阶段 · Docker 容器化 任何人下载代码后无需配置环境，一行命令即可启动"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "通过 Docker 封装所有依赖，用户只需 docker-compose up 即可运行"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这大大降低了他人复用的门槛，也正是 Richard 希望大家\"复制\"它原因"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "第三阶段 · 配置驱动重构 将群名称、任务列表、关键词等全部抽离到配置文件"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "通过配置驱动设计，系统不再硬编码任何班级特定信息"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "用户只需修改 config"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "yaml 即可适配任意班级群，实现了\"一次构建，到处复用\""
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🎯 张浩的三阶段启示 ：先做能用的（Phase 1），再做易用的（Phase 2），最后做通用的（Phase 3）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是从\"完成挑战\"到\"产出高质量作品\"的进化路径"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "⏳ 未开始（高优先级） C9：跨平台发布 专家 将你的成果发布到多个平台（飞书、微信、Web 等），实现一套内容多端分发"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "训练跨平台开发和适配能力"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🌐 平台：多端适配 🔧 技术：跨平台发布工具链 ⏳ 未开始 C10 / C10H：高阶集成 终极 终极挑战"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "将飞书 / Hermes / Multica 等多个平台和 Agent 框架进行高阶集成，构建一个完整的 AI 工作流系统"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "🤖 框架：飞书 API + Hermes Agent + Multica 🎯 核心：全栈全平台集成 🔥 难度：最高 📜 原始发布 C10/C10H 是挑战体系的最终 BOSS"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "综合运用前面所有挑战的技能积累，完成飞书 / Hermes / Multica 三个平台的高阶集成"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "这是 Richard 明确点名的\"拿来目标\"，也是最具实际价值的挑战"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "✍️ 练习 📝 练习 1：规划你的挑战路线 基于你当前的状态，制定一个个性化的挑战完成路线图"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "1 评估当前状态 诚实列出每个挑战的完成状态（已完成 / 进行中 / 未开始）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "参考上面的进度评估表格"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "2 选择\"拿来\"目标 在已完成或进行中的同学作品中，找一个你最有信心复制并扩展的"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "Richard 强烈推荐 C8W（张浩的微信班级管理）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "3 制定时间线 为每个挑战设定一个截止日期"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "参考建议： 短期（1-2 周）：完成所有进行中的挑战 中期（3-4 周）：复制 C8W + 扩展一个功能 长期（1-2 个月）：完成 C4 系列全部 + C5 4 输出你的路线图 写下一个清晰的挑战路线图：格式为 \"时间线 + 挑战 + 预期产物\""
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "例如： Week 1-2: C2 收尾 → 论文批评四件套 Week 3-4: C4C 解题器 → 5 步流水线工具 Week 5-6: C8W 复制 → Docker 化班级管理 Week 7-8: C8W 扩展 → 添加 [你的功能] 🔍 练习 2：找到你的\"拿来\"目标 \"拿来主义\"不是抄袭，而是站在前人的肩膀上"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "找到你可以复用的同学成果"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "1 筛选候选目标 列出所有你看到的、其他同学已完成或优秀的挑战作品"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "2 评估可复制性 对每个候选目标回答： 这个成果的代码/文档是否公开可获取"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "我是否有运行它所需的技术栈"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "它是否 Docker 化了（一行命令启动）"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "我能在它的基础上扩展什么功能"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "3 制定复制计划 对你选定的\"拿来\"目标，写下具体的复制步骤： 第一步：下载代码并成功运行 第二步：理解核心架构（数据流、模块划分） 第三步：修改一个配置/参数，观察效果变化 第四步：添加一个你独有的功能 4 输出分析报告 写一份简短分析（300-500 字），说明你选择的\"拿来\"目标、为什么选它、以及你的扩展计划"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "💡 建议 ：先花 1-2 小时仔细研读张浩 C8W 的代码和文档（如果可获得），理解他三阶段迭代的设计思路"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "然后问自己：如果是你，你会添加什么功能"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "目标是在 1 周内完成全部 10 项"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "📚 参考资源 📄 模块 05：C4A 评估体系 C4A 挑战的深度解析，四级评估模型的构建方法 📖 AG2 / AutoGen 文档 C5 多智能体挑战的框架基础 — ag2-docs"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "app 🎯 Docker 入门指南 C8W 容器化的核心技术 — 理解 Dockerfile + docker-compose 🔧 Hermes Agent 文档 C10 高阶集成核心 — hermes-agent"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "nousresearch"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "com/docs 📝 @23信管张浩 C8W 作品 Richard 指定复制的标杆作品 — 微信班级管理系统 🧩 Gemma 4 本地部署 C4D 挑战的核心 — Ollama + Gemma 4 离线推理 📊 飞书开放平台 API C10 高阶集成的飞书侧文档 — open"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "cn 🎬 RefereeOS 多智能体模式 C5 视频工作室的 Agent 协调架构参考 Elite20 Builder Program — 模块 07：挑战体系 C1-C10 基于 Richard 群聊发布内容 & 张浩 C8W 三阶段迭代编制 ← 模块 05：C4A 评估体系 模块 06 → 💬 💬 课程小助手 ✕ 👋 你好"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 07",
+      "module_name": "挑战体系 C1 到 C10",
+      "file": "curriculum/07_挑战体系C1到C10.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 作业方法与提交规范 下一节 → 学习实践指南"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "它们不是独立的知识点，而是层层递进的实践系统"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📌 方法一 KSTAR 循环 &mdash; 知识转化的引擎 Knowledge 知识输入 → Situation 场景定位 → Task 任务定义 → Action 行动执行 → Result 结果反思 → 循环 KSTAR 是整个课程的\"最小学习单元\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每次学习都是一轮 KSTAR 循环：读一篇论文是 K，写反思笔记是 S+T，用 AI 生成综述是 A，复盘总结是 R"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "迭代越快，学习效率越高"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "💡 核心口诀 ：KSTAR Loop 最有效的方式是快速迭代 &mdash; 先出一版\"垃圾版\"，然后不断改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📌 方法二 核心竞争力三层结构 &mdash; 能力成长的阶梯 Layer 1 基础作业层 → 完成 C1-C3，掌握工具链与基本范式 Layer 2 挑战层 → 完成 C4-C7，具备独立开发与交付能力 Layer 3 集成层 → 完成 C8-C10，能够构建完整系统级解决方案 每一层都依赖前一层的基础"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不要试图跳过基础层直接做集成 &mdash; 这是课程最常见的失败模式"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📌 方法三 C4A 评估体系 &mdash; 作品价值的四维标尺 C4A ：概念（Concept）+ 代码（Code）+ 评论（Commentary）+ 创作（Creation） C4B ：打包为可复用的 Skill/Agent C4C ：增加 CI/CD 自动化 C4D ：本地化部署 + 跨平台验证 C4A→C4B→C4C→C4D 是一条完整的\"从想法到产品\"的递进路径"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每个字母都代表着作品成熟度的跃迁"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "🔄 三者的联动关系 KSTAR 是你的日常学习引擎 &mdash; 每天用，每个任务用"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "三层结构 是你的学期路线图 &mdash; 告诉你现在在第几层，下一步该爬哪层"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C4A 体系 是你的作品评估标尺 &mdash; 每个挑战完成后，用 C4A 的四维标尺自评"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "🎯 一句话总结 ：用 KSTAR 每天进步，用三层结构规划方向，用 C4A 衡量成果"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📋 每日 · 每周 · 每挑战工作流 🌅 每日工作流 30 分钟 · 一个 KSTAR 循环 ① 回顾（5 分钟） &mdash; 查看前一天的 KSTAR 日志，复习关键知识点"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "② 选材（5 分钟） &mdash; 选定一个学习素材：一篇论文片段、一个同学的作品、一个课程模块"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "③ 执行（15 分钟） &mdash; 完成一轮 KSTAR：阅读（K）→ 关联自身场景（S）→ 定义任务（T）→ 用 AI 执行（A）→ 记录结果（R）"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "④ 记录（5 分钟） &mdash; 填写今日 KSTAR 日志（模板在下一节）"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "⏱️ 即使只有 15 分钟，也完成一轮完整的 KSTAR &mdash; 哪怕结果是一句\"今天没有学到什么\"，也比不做好"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "关键是保持循环的连续性"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📅 每周工作流 90 分钟 · C4A 自评 + 下周规划 ① 回顾一周 KSTAR 日志（20 分钟） &mdash; 翻阅本周的 5-7 条 KSTAR 日志，找出重复出现的主题和未解决的问题"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "② C4A 自评（30 分钟） &mdash; 用 C4A 四维标尺评估本周最重要的一个作品或学习产出"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "填写 C4A 自评模板"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "③ 调整方向（20 分钟） &mdash; 对照三层结构地图：我现在在第几层"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "④ 制定下周计划（20 分钟） &mdash; 确定下周要完成的 1-2 个具体目标，写在进度追踪表上"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "⚠️ 不要跳过周回顾"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每日 KSTAR 是\"输入\"，每周回顾是\"消化\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不回顾 = 学了很多但什么都没留下"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "🎯 每挑战工作流 一个挑战 = 一个完整作品 ① 理解挑战（阅读原始描述 + 标杆作品） &mdash; 先看至少 2 个同学已经完成的同挑战作品"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "这就是\"拿来主义\"的第一步"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "② 规划（写出你的 KSTAR 计划） &mdash; 明确你的 S（场景）和 T（任务），再开始写代码"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "③ 执行（迭代 3-5 轮） &mdash; 先出一个\"垃圾版\"，然后逐轮改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每轮都是一次 KSTAR 循环"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "④ 提交（遵循模块 06 规范） &mdash; README"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "md、LICENSE、命名规范、AI 产出物，一个都不能少"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "⑤ 复盘（写 C4A 自评） &mdash; 挑战完成后，立即用 C4A 评估，记录学到的经验"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "💡 一个挑战的\"完成\"不是代码写完就算 &mdash; 是 README 写好了、LICENSE 填了、复盘写了、别人看得懂也能复现"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📝 KSTAR 日志模板 &amp; C4A 自评模板 每日 KSTAR 日志模板 复制以下模板到你的笔记系统（Obsidian / Notion / Markdown 文件），每天填写一条"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "DAILY KSTAR LOG # KSTAR 日志 · YYYY-MM-DD ## Knowledge（知识输入） [今天学习了什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "一篇论文、一个模块、一个同学作品、一个技术概念…] ## Situation（场景关联） [这个知识跟我自己的场景有什么关系"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "我当前在做什么项目/挑战"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "] ## Task（任务定义） [基于以上，我要完成的一个具体任务是什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "一句话说清楚] ## Action（行动执行） [我做了什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "用了什么 AI 工具"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "WEEKLY C4A REVIEW # C4A 自评 · 第 X 周 (YYYY-MM-DD) ## 作品名称 [本周重点评估的作品/挑战名称] ## C — Concept（概念） - 核心思想是否清晰"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 是否有创新点，或者对已有方案的改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 评分（1-5）：___ ## C — Code（代码） - 代码是否可以运行"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 代码风格是否一致"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 是否有 README 指导他人使用"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 评分（1-5）：___ ## C — Commentary（评论/文档） - 是否有完整的文档说明"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 是否记录了你思考的过程"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 是否包含 AI 产出物的说明"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 评分（1-5）：___ ## C — Creation（创作/创新） - 这个作品是否体现了你的独立思考"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 是否超越了\"抄作业\"的层面"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 评分（1-5）：___ ## 总评与反思 - 总分：___ / 20 - 本周最大收获： - 下周改进方向： - 需要帮助的地方： 🌟 建议 ：C4A 自评不是打分比赛，而是帮你发现盲区的镜子"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "如果你发现所有维度都在 3 分以下，不要灰心 &mdash; 这意味着你清楚知道自己该从哪里改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每挑战 挑战复盘模板 完成一个挑战后，做一次完整的复盘"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "CHALLENGE REVIEW # 挑战复盘 · [挑战名称] ## 基本信息 - 挑战编号：C1 / C2 / C3 / … - 完成日期：YYYY-MM-DD - 用时：__ 天 - 参考了哪些同学的作品：[同学1] [同学2] … ## 过程回顾 - 最大的难点是什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 如果重来一次，会怎么做"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "## KSTAR 循环次数 - 总共迭代了几轮"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "## 作品检查清单 - [ ] README"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "md 已写 - [ ] LICENSE 已填（本人姓名） - [ ] 无"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "docx 等二进制文件 - [ ] 命名一致 - [ ] AI 产出物已包含 - [ ] 从新仓库而非 fork 提交 ## C4A 自评链接 [指向 C4A 自评文件的链接] ## 下一步 - 这个挑战之后，下一个挑战是什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "- 本次学到的技能可以复用到哪里"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "🚀 瓶颈突破指南 每个学习者都会遇到瓶颈"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "以下清单直接从 Richard 的反馈和课程经验中总结，遇到卡顿就逐一排查"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "先检查这 3 条黄金法则 法则 1：先出一版垃圾版 \"KSTAR Loop is most effective when you iterate fast"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "\" 卡住的最大原因往往不是\"不知道怎么做好\"，而是\"想做完美\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Richard 反复强调：先出一个垃圾版，再迭代改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "✅ 行动：设一个 25 分钟计时器，到点必须出一版 \"垃圾版\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "哪怕只有一个 README 标题 + 一行代码"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "法则 2：拿来主义 &mdash; 抄作业不可耻 \"抄作业,被别人抄作业,帮别人抄作业,帮人做作业,一起做作业——都有加分\" 课程从第一天就鼓励\"拿来\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不要从零开始 &mdash; 找一个已经完成类似任务的同学，把他的作品 fork/复制过来，理解、修改、改进"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "✅ 行动：去同学\"拿来\"索引（下一节）找到与你目标最接近的同学作品，直接复制到本地跑起来"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "法则 3：有效反馈循环 &mdash; 别闭门造车 \"批评别人的作业,邀请别人批评自己的作业\" 如果你一个人卡了 2 小时以上，说明你需要反馈"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "去课程群里发你的进展（哪怕只有一行字），去评论别人的作业，或者邀请别人评论你的"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "✅ 行动：在课程群里发一条消息：\"C4A 卡在第三步，求指点\" + 附上你的进度截图"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "求组队\" ☐ 换个挑战做 &mdash; 如果当前挑战让你痛苦，换一个更简单的挑战先做，找找感觉 第二阶段：方向卡顿 — 行动清单 ☐ 对照三层结构 &mdash; 我现在在第几层"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "☐ 看进度追踪表 &mdash; 以 C1-C10 的列表为参考，从最简单的开始打勾 ☐ 向班主任咨询 &mdash; 把你的目标 + 当前进度发给班主任，让他帮你定位 ☐ 先完成再完美 &mdash; 任何方向都比原地踏步好"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "选一个就开干 ⚡ 记住 ：瓶颈不是能力的上限，而是学习方式的信号"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每次卡顿都是 KSTAR 循环中 \"R\" 环节的最佳素材 &mdash; 把它写成一条反思，你的学习系统就会升级"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "📌 同学\"拿来\"索引 不知道怎么下手"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "直接找已经做好的同学作品来\"抄\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "以下几位同学的作业被 Richard 多次点名推荐，适合作为参考标杆"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "张 张浩 · a976xw7td 🏆 Richard 钦点标杆 C8W 标杆作品 &mdash; wechat-class-manager 集成 Docker 容器化部署"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Richard 在课程中多次指定\"去抄张浩的 C8W\""
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "如果你想做 C8 相关的挑战，先看张浩的作品"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C8W Docker 容器化 微信集成 冯 冯静雯 · cx677 📝 AI 日志 + 论文批评标杆 C1 AI 日志模板 &mdash; 她的 AI 日志模板被 Richard 认可并推荐给全班使用"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C2S 论文批评 &mdash; 她对论文 §6"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "3 Elite20 的批评性分析是 C2S 范式的典范"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C1 C2S AI 日志 论文批评 尹 尹镇宇 · xnsnhwh-svg 📦 C4A/C4D 完整提交标杆 C4A 完整提交 &mdash; 概念、代码、评论、创作四维兼备"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C4D 本地化部署 &mdash; 完整展现了从本地部署到跨平台验证的全流程"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "如果你想做 C4 系列挑战，这是最好的参考"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C4A C4D 完整提交 本地部署 史 史雨萱 · Chloeyouyou 🤖 C4B Skill 打包标杆 C4B wechat-publisher"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "skill &mdash; 将 AI 能力打包为可复用的 Hermes Agent Skill"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "如果你想做 C4B 的 Skill 打包挑战，这是直接可复用的参考"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C4B Skill wechat-publisher Hermes Agent 💡 \"拿来主义\"的正确姿势 ：复制 → 理解 → 修改 → 改进 → 超越"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不是抄完就完事，而是在他人的基础上做出你自己的增量"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "✅ 进度追踪表 C1-C10 按照课程体系，从 C1 到 C10 的完整挑战清单"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每完成一项就在前面的方框中打勾"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "建议打印出来贴在桌上，或复制到你的笔记系统中"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不要跳过基础层直接做 C10 &mdash; 失败的教训已经太多"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "💬 Richard 金句合集 从课程实录中提炼的 Richard 原话"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "每一句都值得反复品味"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "按照主题分类，方便查找"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "KSTAR Loop is most effective when you iterate fast"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "KSTAR 关于快速迭代的核心原则 &mdash; 先出一版垃圾版，再迭代 You can always iterate"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "There is no perfect first version"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Just start"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "KSTAR 没有完美的第一版，开始就好 The difference between a good submission and a great one is usually just one more iteration"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "KSTAR 好作品和伟大作品之间通常只差一次迭代 抄作业,被别人抄作业,帮别人抄作业,帮人做作业,一起做作业——都有加分 拿来主义 课程的核心协作哲学 &mdash; 没有\"抄袭\"，只有共同进步 If you want to go fast, go alone"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "If you want to go far, copy someone else's homework"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "拿来主义 对\"独行快众行远\"的幽默演绎 你思考，AI 执行"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "你不需要手写任何成品 &mdash; 翻译、综述、建议书、复盘均由 AI 在你的指挥下生成"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "我们评估的是「你的思想是否在场」"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C2S C2S 范式的终极定义 Your value is in your thinking, not in your typing"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C2S 你的价值在于思考，而非打字 I could not find the output generated by the agent"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "C2S 被 Richard 点名最多的反馈 &mdash; 作业中必须包含 AI 产出物 Typically we don't use or store docx files in GitHub"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "规范 GitHub 不是 Word 的仓库 &mdash; 用 Markdown the repo itself needs README"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "txt needs to be consistent 规范 文件命名一致性是信息架构的基础 批评别人的作业,邀请别人批评自己的作业 反馈 课程的核心反馈文化 &mdash; 公开、建设性、双向 I also want to see the meta-prompt or prompt chain you used to generate the prompts"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "元提示 元提示链是你思考过程的最强证据 Don't let perfectionism kill your learning"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "A bad submission is infinitely better than no submission"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "心态 完美主义是学习最大的敌人 The only way to learn AI is to use AI"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Not to read about it, not to watch videos about it &mdash; to use it"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "方法 学 AI 的唯一方法是使用 AI Your repo is your resume"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Treat it that way"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "规范 你的 GitHub 仓库就是你的简历 We don't grade effort"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "We grade output"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "Show me what you built"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "评估 不评估努力，只评估产出 &mdash; 展示你做了什么 🚀 下一步去哪 本指南整合了全部 8 个模块的精华"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "以下链接带你回到各个模块的详细内容，供需要时深入学习"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "现在，打开编辑器，写下你的第一条 KSTAR 日志，完成第一个挑战"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "你思考 &nbsp;⟶&nbsp; AI 执行 你的思想决定你的高度 &mdash; 不是 AI 的能力，而是你指挥 AI 的能力 「学 AI 的唯一方法是使用 AI"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "不是阅读它，不是观看关于它的视频 &mdash; 而是使用它"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "」 — Richard Elite20 Builder Program &mdash; 学习实践指南 · 模块 08/08 框架速览 工作流 模板 瓶颈突破 拿来索引 进度追踪 金句集 下一步 💬 💬 课程小助手 ✕ 👋 你好"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "我是 Elite20 Builder Program 课程小助手"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "你可以问我任何课程相关的问题，比如： • \"KSTAR 的 S 是什么"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "\" • \"C4A 怎么评分"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "\" • \"Richard 说过什么关于核心竞争力的话"
+    },
+    {
+      "module": "模块 08",
+      "module_name": "学习实践指南",
+      "file": "curriculum/08_学习实践指南.html",
+      "text": "\" 发送 🤖 AI 总结 关 ← 上一节 挑战体系 C1 到 C10 下一节 → Vibe Coding 第3课"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "← 课程首页 模块 01 模块 02 模块 03 模块 04 模块 05 模块 06 模块 07 模块 08 模块 09 ← 返回课程首页 📅 2026年5月 👤 主讲：肖福军（Richard Tong） 🏫 西亚斯学院 AI+X 精英班 Vibe Coding 第3课 智能体、Skills 与元认知方法论 🎯 AI+X 的三个学习目标 本课程不是教具体知识的，而是教你 掌握方法"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "核心是三个维度： 1️⃣ 世界建模 / 领域建模 任何新领域，先建立它的 概念树状结构 ——有哪些实体、它们之间什么关系"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "就像学软件工程要先知道数据结构、算法、数据库等主干课程的关系"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\"对一个领域形成一个3万英尺的鸟瞰图，你就知道出问题该找哪个方向"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 2️⃣ 人机配合 / 协作模型 怎么跟 AI 有效交互"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "知道 AI 能干什么、不能干什么，怎么问问题、怎么迭代"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\"所有有正确答案的问题，AI 早就学会了"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "我们要解决的是没有清晰边界的真实问题"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 3️⃣ 元认知 对自己思考的思考—— how to learn how to learn"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "认识到自己在想什么、怎么学得更快、怎么构建能创造技能的技能"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\"笛卡尔说我思故我在——人之所以为人，就是能意识到自己在思想"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 🏆 Talent Code：成才三要素 刻意练习 Deliberate Practice — 不是刷题，而是每次挑战能力边缘，在犯错中学习"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "大师级教练 Master Coach — AI 是这时代最好的教练：什么都懂、无限耐心、随时反馈"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "激情 Passion — 内在驱动力"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "没有 passion，前面两个无从落地"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\"犯错是最好的学习信号——如果一件事你不会犯错，说明已经没有学习机会了"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 🤖 Agent 四层架构 LLM 直接对话 — 最简单的问答模式 RAG （检索增强生成）— 给大模型搭知识库，做更精准的回答 Agent（智能体） — 能调用工具、有记忆、有 Skills，能主动执行任务 Multi-agent Teams — 多智能体编排协作，形成复杂工作流 本节课聚焦第三层—— Agent ，特别是 Skills 系统"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "🧠 Agent 核心概念 🛠 Skills（最重要） Skill 是智能体的核心能力"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "Skill 可以调用其他 Skill（ Skill-eating-Skill ），形成递进式能力链"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "Skills 是动态生成和自我总结的——Hermes 的 Skills 就是这种机制的典型实现"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "💾 Memory（记忆） Agent 要成长必须有记忆"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "分两类： 短期记忆 （Context）— 每次对话的上下文窗口 长期记忆 （Long-term）— 跨 session 记住用户偏好、经验、知识 介绍了 Memory Palace 方法：像把记忆放在房间的不同格子里，结构化存储"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "🌐 Ontology（本体论） \"任何事物都可以归结为两件事： 结构 和 过程"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 本体论包含三个层次： 实体 （Entity）— 具体的人事物，比如\"学生张三\" 关系 （Relationship）— 实体之间的联系 规律 （Law/Rule）— 支配实体和关系的因果律 \"你先画好 ontology，再用 skill 去操作它——就像曲奇饼模具和面团的关系"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 🔄 S-T-C-A 框架 任何问题都可以用这个循环解决： S ituation（当前情形）→ T ask（目标任务）→ K nowledge（先验知识）→ A ction（行动）→ R esult（结果） 结果和预期不一致 = 学习机会 → 改进 Knowledge → 下次预测更准"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "做完以后，不是记住步骤，而是记住思路"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "写 AI 日志——你怎么问的、它怎么答的、你哪里不满意——比结果本身更重要"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" Knowledge 的杠杆效应 人的 K（知识）是有限的，但 AI 的 K 是星辰大海"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "你的能力不取决于你 知道 多少，而取决于你 能调动 多少 AI 的知识"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\"以前你要花 18 年寒窗积累的知识，现在一句提示词就能调出来"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 💬 课堂金句 \"这个课不是用来教知识的——如果跟我学知识，你浪费了我的时间，更浪费了你的"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"所有有正确答案的问题都不是问题——AI 早就学会了"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"你的能力不取决于你知道多少，而取决于你能调动多少 AI 的知识"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"不要怕犯错——免费的犯错机会还附带别人反馈，哪有这么好的事"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"传统教育给的是干净的鸡兔同笼，真实世界里没有这东西"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"AI 替你说话的能力还比较差——演讲是你作为人类的护城河"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" \"你问的问题好，问题就解决 90%"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "剩下 10% 让 AI 做"
+    },
+    {
+      "module": "课堂笔记",
+      "module_name": "Vibe Coding 第3课",
+      "file": "curriculum/vibe-coding-3-课堂笔记.html",
+      "text": "\" 笔记整理自 AI+X 精英班 Vibe Coding 第3课 · 主讲肖福军（Richard Tong） ← 上一节 学习实践指南 下一节 → Vibe Coding 实战指南"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "← 课程首页 模块 01 模块 02 模块 03 模块 04 模块 05 模块 06 模块 07 模块 08 模块 09 📖 课外拓展 ⭐ 20"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "9k · GitHub vibe-coding AI 结对编程 Vibe Coding 实战指南 基于 tukuaiai 的 vibe-coding-cn （20"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "一个与 AI 结对编程、将想法变为现实的终极工作流"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "全套方法论 + 提示词库 + 技能体系"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "📑 学习路径（6步） 读 README — 理解核心理念 读 AGENTS"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "一句话定义 Vibe Coding = 规划驱动 + 上下文固定 + AI 结对执行，让「从想法到可维护代码」变成一条可审计的流水线，而不是一团无法迭代的巨石文件"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "核心信念（作者原话） 规划就是一切"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "谨慎让 AI 自主规划，否则你的代码库会变成一团无法管理的乱麻"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md — 项目结构与编码规范 目标： 理解仓库的目录组织哲学和代码质量要求，为后续深入阅读打基础"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "这也是该仓库对 AI Agent 的行为指南—— 学习它如何约束 AI 本身就是最重要的一课"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "仓库目录结构 vibe-coding-cn/ ├── README"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # 项目全貌 ├── AGENTS"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # AI Agent 行为准则 & 目录说明 ├── CLAUDE"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # Claude 模型的上下文配置 ├── GEMINI"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "这不是编码技巧课程，而是一套完整的 AI 协作哲学"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "仓库的 i18n/zh/documents/ 收录了方法论与原则、 模板与资源、教程与指南三大类文档"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "道 · 底层原则 🤖 AI 优先 凡是 AI 能做的，就不要人工做"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "📦 上下文第一 上下文是 Vibe Coding 的第一性要素"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🎯 目的主导 开发一切动作围绕\"目的\"展开，不是围绕\"技术\""
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🧩 先结构后代码 先规划好框架，不然后面技术还不完"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🪓 奥卡姆剃刀 如无必要，勿增代码"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "📊 帕累托法则 关注重要的那 20%"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🔄 逆向思考 先明确需求，从需求逆向构建代码"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🎯 极致专注 一次只做一件事，极致的专注可以击穿代码"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "2 xhigh · Codex 5"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "1 max xhigh CLI 工具 Claude Code · Codex CLI · Gemini CLI 免费模型入口 Kiro (免费 Claude Opus 4"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "· · · ⚡ 第4步 · 编程提示词 — 让 AI 高效产出 目标： 学习并使用 i18n/zh/prompts/coding_prompts/ 中的实战提示词"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "这些是被反复打磨过的\"可执行脚本\"，直接复制给 AI 就能产出高质量代码"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "什么情况不属于这个需求范围"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "有没有类似实现可以参考"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "实战示例：实施计划提示词 📝 一句话目标： 制定可执行的分步实施计划 非目标： 不要写代码，不要做技术选型假设 基于以下需求，制定实施计划： 1"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "需要创建/修改哪些文件"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "从仓库直接获取 这些只是示例"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "仓库里收录了数十个经过实战验证的编程提示词，覆盖： 全栈项目生成 API 接口开发 Bug 修复（预期 vs 实际 + 最小复现） 代码重构与优化 测试用例生成 数据库 schema 设计 · · · 🔒 第5步 · 系统提示词 — 约束 AI 行为边界 目标： 学习如何写高质量的 system prompt 来驯服 AI"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "这是控制 AI 产出质量最关键的能力"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "为什么系统提示词如此重要"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "AI 模型默认是无边界状态的——它可以自由选择任何方向"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "系统提示词的作用不是\"让 AI 更聪明\"，而是 精确划定它的行为范围"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "作者在仓库中收录了多个版本的 system prompts，对应不同的开发场景"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "系统提示词的核心要素 要素 说明 角色定义 你是谁"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "行为边界 能做什么、不能做什么（红线） 输出规范 格式、风格、语言、长度限制 推理指南 先分析再回答，还是直接给方案 知识范围 使用哪些上下文、依赖哪些资源 反馈机制 不确定时怎么做 系统提示词构建原则（来自仓库文档） 明确性优先： 模糊的指令→模糊的输出"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "它们不仅是提示词，更是 可复用的行为契约"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "· · · 🧩 第6步 · Skills — 模块化技能的构建与复用 目标： 理解模块化技能的设计哲学，学会把领域知识封装成 AI 可复用的 skill"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "这与模块化 Skill 系统的设计思路完全一致"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "Skill（技能）是一份结构化的 markdown 文档，包含特定领域的完整知识： 概念说明、API 文档、常用命令、典型工作流、陷阱与规避"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "当 AI Agent 加载一个 skill 后，它在处理该领域问题时就拥有了专家级上下文"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "每个提示词都来自仓库的 i18n/zh/prompts/ 目录，点击标题展开即可复制"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "直接发给 AI（Claude / GPT / Codex / Kimi 等）使用"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "🚀 智能需求理解与研发导航引擎 coding_prompts/ 从表面需求到底层逻辑，从概念到系统方案"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "# 🚀 智能需求理解与研发导航引擎 ## 🧭 核心目标定义 目标：当用户输入任何主题、问题或需求时，AI 能够： 1"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "自动识别关键词、核心术语、相关概念 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "关联出隐含的高级知识结构与思维模型 3"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "总结该主题下的专家经验、隐性知识、最佳实践 4"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "给出进一步理解、应用或行动的方向 5"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "输出结构化、可执行、具启发性的结果 ## 🧩 角色设定 你是一位融合了\"AI 系统架构师 + 计算机科学专家 + 认知科学导师 + 教学设计师 + 开源生态研究员\"的智能顾问"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你的任务是帮助用户从表面需求理解到底层逻辑，从概念到系统方案，从思维到实践路径"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "## 🧠 输入说明 用户将输入任意主题、问题或需求（可能抽象、不完整或跨学科）"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你需要基于语义理解与知识映射，完成从\"需求 → 结构 → 方案 → 行动\"的认知转化"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "# 📘 项目上下文文档生成 · 工程化 Prompt ## 一、角色与目标 **你的角色**：你是一个具备高级信息抽象、结构化整理与工程化表达能力的 AI 助手"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "**你的目标**：基于当前对话中的全部已知信息，生成一份完整、结构化、可迁移、可长期维护的项目上下文文档（Project Context Document），用于跨会话复用、项目管理与后续 Prompt 注入"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "重要规则： - 若某字段在当前对话中未明确出现或无法合理推断，必须保留该字段，并统一填写为\"暂无信息\" - 不得自行虚构事实，不得省略字段 - 输出内容必须结构稳定、层级清晰、可直接复制使用 ## 二、执行流程 ### Step 1：初始化文档容器 创建一个空的结构化文档对象，作为最终输出模板"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "### Step 2：生成核心上下文模块 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "1 项目概要 - 项目名称 - 项目背景 - 目标与目的 - 要解决的问题 - 整体愿景 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "2 范围定义 - 当前范围 - 非本次范围 - 约束条件 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "3 关键实体与关系 - 核心实体 - 实体职责 - 实体关系描述 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "4 功能模块拆解 - 模块列表 - 模块详情（输入、输出、核心逻辑） - 典型用户场景 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "5 技术方向与关键决策 - 客户端 / 服务端 / 算法层 - 数据流与架构 - 已做技术决策 - 可替代方案 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "6 交互、风格与输出约定 - AI 输出风格：结构清晰、层级明确、工程化表达 - 表达规范：统一使用 Markdown - 格式要求：严谨、有序、模块化、可迁移 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "7 当前进展总结 - 已确认事实 - 未解决问题 #### 2"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你是世界顶级提示工程专家，对以下\"初始提示词\"进行批判性优化"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "从以下四个维度进行全面改写： 清晰度：消除歧义，使意图直观明确 专业度：提升语言权威性、准确性与表达规范性 结构化：使用合理的层级结构、条列方式与逻辑顺序 模型适应性：优化为更易被大型语言模型理解与稳定执行的格式 请仅输出优化后的提示内容，并使用 ```markdown 代码块包裹"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你需要处理的是： 💡 把你写的一半好一半烂的提示词贴在末尾\"你需要处理的是：\"后面 🔍 执行纯净性检测 coding_prompts/ 检查 AI 输出是否包含多余代码、幻觉引用或不安全的操作"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "适合在 AI 生成完代码后用"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "# 🔍 执行纯净性检测 ## 🎯 目标定义 对当前系统的算法执行路径进行严格的纯净性检测，确保仅使用原生仓库算法完成任务，并在任何失败场景下直接报错终止，绝不引入降级、替代或简化逻辑"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你是一名专业的流程标准化专家"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "你的任务是将用户输入的任何内容，转化为一份清晰、结构化、可执行的流程标准化文档"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "相关模板或工具（如适用） 5"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "流程步骤（使用 Markdown 数字编号 1, 2, 3"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "） 当用户输入内容后，你必须只输出完整的流程标准化文档 💡 把\"我想做一个……\"的需求丢给它，得到完整的执行步骤 📐 AI 项目计划生成系统 · plan 提示词 coding_prompts/ 将用户需求转化为完整的层级化计划文档系统"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "生成 plan_01（总体）、plan_02-XX（模块）、plan_XX-XX（具体任务）"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "拥有完整的可视化（Mermaid 图表、ASCII 流程图、甘特图等）"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "完整版较长，建议在 AI 对话中直接使用"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "# AI 项目计划生成系统 你是一个专业的项目规划 AI，负责将用户需求转化为完整的层级化计划文档系统"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "重要：此模式下只生成计划文档，不执行任何代码实现"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "## 可视化呈现原则 - 覆盖层级：每个层级的计划文档都需至少输出一项与其作用匹配的可视化视图 - 多视角：综合使用流程图、结构图、矩阵表、时间线等形式 - 抽象占位：保持抽象描述，使用占位符标记节点/时间点/数据名 - 一致性：图表中的任务编号、名称需与文本保持一致 ## 阶段 1：需求收集与确认 ### 1"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "1 接收需求 用户输入初始需求描述 ### 1"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "2 深入提问（直到完全确认） 重点询问： - 项目目标：核心功能是什么"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 功能模块：可以分为哪几个模块"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "（至少2-5个）各模块关系"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 技术栈：编程语言"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 数据流向：处理什么数据"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 环境依赖：外部服务"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 验收标准：如何判断完成"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 约束条件：时间、资源、技术限制"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "- 可视化偏好：希望看到哪些图表类型"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "3 需求总结与确认 整理成结构化的需求文档，明确功能清单 等待用户回复\"确认\"或\"开始\"后才继续 ## 阶段 2：生成计划文档系统 ### 文件结构 plan/ ├── plan_01_总体计划"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md ├── plan_02_[模块名]"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # 2级任务 ├── plan_03_[子任务名]"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # 3级任务 ├── plan_04_[子任务名]"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "md # 3级任务 └──"
+    },
+    {
+      "module": "模块 09",
+      "module_name": "Vibe Coding 实战指南",
+      "file": "curriculum/09_VibeCoding实战指南.html",
+      "text": "📂 浏览全部 30+ 编程提示词 📚 浏览全部目录 ⭐ 去 GitHub 给作者点 Star ← 上一节 Vibe Coding 第3课 内容整理自 2025Emma/vibe-coding-cn （MIT 许可证）· Elite20 Builder Program 学习资料 · 课外拓展模块 ⭐ 去 GitHub 给作者点 Star"
+    }
+  ]
+}

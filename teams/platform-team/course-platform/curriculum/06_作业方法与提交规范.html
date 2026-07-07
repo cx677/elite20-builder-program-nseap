@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块06 — 作业方法与提交规范</title>
+<meta name="description" content="作业方法与提交规范 — Richard 的 6 条硬性规范 + AI 日志模板">
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #e2e5ea;
+    --surface2: #f3f4f6;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+    --purple: #bc8cff;
+    --pink: #f778ba;
+    --cyan: #39d7c6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* ── Header ── */
+  .module-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: .25rem .75rem;
+    border-radius: 999px;
+    letter-spacing: .04em;
+    margin-bottom: .5rem;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: .35rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  /* ── Section ── */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .section h2 .icon { font-size: 1.3rem; }
+  .section h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+    margin-left: .5rem;
+  }
+  .section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 1.5rem 0 .6rem;
+  }
+  .section h3:first-of-type { margin-top: 0; }
+  .section p { margin-bottom: .8rem; color: var(--text); }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── Code / Pre ── */
+  code {
+    background: var(--surface2);
+    color: var(--cyan);
+    padding: .15em .45em;
+    border-radius: 4px;
+    font-size: .88em;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+  pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: .8rem 0 1.2rem;
+    overflow-x: auto;
+    font-size: .85rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* ── Blockquote ── */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    background: rgba(88,166,255,.08);
+    padding: .8rem 1.2rem;
+    margin: .8rem 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  blockquote strong { color: var(--text); font-style: normal; }
+
+  /* ── Lists ── */
+  ul, ol { margin: .6rem 0 1rem; padding-left: 1.5rem; }
+  li { margin-bottom: .35rem; }
+
+  /* ── Rule Cards ── */
+  .rule-card {
+    background: var(--surface2);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: .8rem 0;
+  }
+  .rule-card.danger { border-left-color: var(--danger); }
+  .rule-card.warning { border-left-color: var(--warning); }
+  .rule-card.success { border-left-color: var(--accent2); }
+  .rule-card.purple  { border-left-color: var(--purple); }
+  .rule-card .label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: .3rem;
+  }
+  .rule-card .label .num {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: .7rem;
+    font-weight: 800;
+    padding: 0 .45rem;
+    border-radius: 4px;
+    margin-right: .4rem;
+    vertical-align: middle;
+  }
+  .rule-card.danger .label .num { background: var(--danger); color: #fff; }
+  .rule-card.warning .label .num { background: var(--warning); color: #000; }
+  .rule-card.success .label .num { background: var(--accent2); color: #000; }
+  .rule-card.purple .label .num { background: var(--purple); color: #000; }
+  .rule-card .reason {
+    font-size: .88rem;
+    color: var(--text-muted);
+    margin-top: .35rem;
+  }
+
+  /* ── Student Feedback ── */
+  .feedback {
+    background: rgba(188,140,255,.06);
+    border: 1px solid rgba(188,140,255,.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: .6rem 0;
+  }
+  .feedback .speaker {
+    font-weight: 700;
+    color: var(--purple);
+  }
+  .feedback .speaker-sm {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: .85rem;
+  }
+  .feedback .spec {
+    color: var(--text-muted);
+    font-size: .86rem;
+  }
+
+  /* ── Template Blocks ── */
+  .template-block {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: .8rem 0;
+    position: relative;
+  }
+  .template-block .tmpl-label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--bg);
+    padding: 0 .5rem;
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+
+  /* ── Tag / Badge ── */
+  .tag {
+    display: inline-block;
+    background: rgba(88,166,255,.15);
+    color: var(--accent);
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .1rem .55rem;
+    border-radius: 4px;
+  }
+  .tag.green { background: rgba(63,185,80,.15); color: var(--accent2); }
+  .tag.yellow { background: rgba(210,153,34,.15); color: var(--warning); }
+  .tag.red { background: rgba(248,81,73,.15); color: var(--danger); }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding: .4rem 0 .4rem 1.8rem;
+    position: relative;
+    margin-bottom: .15rem;
+  }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+  .checklist li.done::before { content: '☑'; color: var(--accent2); }
+
+  /* ── Principle Spotlight ── */
+  .principle-box {
+    background: linear-gradient(135deg, rgba(63,185,80,.06), rgba(88,166,255,.06));
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.2rem 0;
+    text-align: center;
+  }
+  .principle-box .big {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent2);
+    margin-bottom: .3rem;
+  }
+  .principle-box .sub {
+    font-size: .95rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Two Column ── */
+  .two-col {
+    display: flex;
+    gap: 1.2rem;
+    margin: .8rem 0;
+  }
+  .two-col > * { flex: 1; }
+  @media (max-width: 640px) { .two-col { flex-direction: column; } }
+
+  /* ── Exercise Box ── */
+  .exercise {
+    background: rgba(210,153,34,.06);
+    border: 1px solid rgba(210,153,34,.3);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: .8rem 0;
+  }
+  .exercise .ex-label {
+    font-weight: 700;
+    color: var(--warning);
+    margin-bottom: .4rem;
+  }
+
+  /* ── Metadata ── */
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: .82rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    padding: .6rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-row span { white-space: nowrap; }
+
+  /* ── Misc ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.2rem 0;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .text-muted { color: var(--text-muted); }
+  .mt-1 { margin-top: 1rem; }
+  .mb-0 { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div style="background:#ffffff;border-bottom:1px solid #e2e5ea;padding:0 24px;display:flex;gap:0;overflow-x:auto;">
+  <a href="../index.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">← 课程首页</a>
+  <a href="01_KSTAR学习循环.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 01</a>
+  <a href="02_核心竞争力三层结构.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 02</a>
+  <a href="03_范畴论与AI哲学基础.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 03</a>
+  <a href="04_NEOLAF与AgentSkill.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 04</a>
+  <a href="05_C4A评估体系.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 05</a>
+  <a href="06_作业方法与提交规范.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 06</a>
+  <a href="07_挑战体系C1到C10.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 07</a>
+  <a href="08_学习实践指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 08</a>
+  <a href="09_VibeCoding实战指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 09</a>
+</div>
+
+
+<div class="container">
+
+  <!-- ════════════ HEADER ════════════ -->
+  <span class="module-badge">MODULE 06</span>
+  <h1>作业方法与提交规范</h1>
+  <div class="subtitle">
+    从 Richard 的真实反馈中提炼出的 GitHub 作业准则 &mdash; 让每一次提交都清晰、规范、可复现
+  </div>
+
+  <div class="meta-row">
+    <span>📅 课程：Elite20 Builder Program</span>
+    <span>🎯 目标：掌握作业提交流程 &amp; C2S 核心原则</span>
+    <span>⚡ 核心原则：你思考，AI 执行</span>
+  </div>
+
+  <!-- ════════════ 1. 课前准备 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">📖</span>课前准备</h2>
+
+    <h3>1.1 工具与环境</h3>
+    <ul>
+      <li>注册 <strong>GitHub</strong> 账号，完成 SSH Key 配置</li>
+      <li>安装 <strong>Git</strong>（<code>git --version</code> 验证）</li>
+      <li>准备 <strong>Markdown</strong> 编辑器（VS Code / Typora / Obsidian 均可）</li>
+      <li>确保 <strong>AI Agent</strong> 工具链可用（如 Claude Code、Codex CLI 等）</li>
+    </ul>
+
+    <h3>1.2 阅读材料</h3>
+    <ul>
+      <li>回顾 C2S 方法论文档（重点理解 "你思考，AI 执行"）</li>
+      <li>阅读 GitHub 上已有的优秀作业范例（班主任会在课程群中提供链接）</li>
+    </ul>
+
+    <h3>1.3 课前自检</h3>
+    <ul>
+      <li>❓ 我是否理解了 &ldquo;你思考，AI 执行&rdquo; 的含义？</li>
+      <li>❓ 我是否知道 GitHub 上 README.md、LICENSE、.gitignore 的基本作用？</li>
+      <li>❓ 我是否准备好用 Markdown 而非 Word 撰写文档？</li>
+    </ul>
+  </div>
+
+  <!-- ════════════ 2. 课堂实录 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">🎙️</span>课堂实录：Richard 对同学的逐条反馈</h2>
+    <p class="text-muted" style="margin-bottom:1rem">以下反馈摘录自课程实录，每一条都对应一项作业提交规范。</p>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 A</div>
+      <p><strong>"Typically we don't use or store docx files in GitHub. I recommend you use Markdown format for all your intermediate or descriptive artifacts."</strong></p>
+      <div class="spec">📌 规范对应：<span class="tag">#1 禁止在 repo 中存放 docx</span></div>
+    </div>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 B</div>
+      <p><strong>"the repo itself needs README.md"</strong></p>
+      <div class="spec">📌 规范对应：<span class="tag">#2 仓库必须包含 README.md</span></div>
+    </div>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 C</div>
+      <p><strong>"your LICENSE file should be separate and put your name in as the license owner"</strong></p>
+      <div class="spec">📌 规范对应：<span class="tag">#3 LICENSE 文件独立，填写本人姓名</span></div>
+    </div>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 D</div>
+      <p><strong>"you probably should started as a new repo rather than a fork from neoskills"</strong></p>
+      <div class="spec">📌 规范对应：<span class="tag">#4 新建仓库而非从 neoskills fork</span></div>
+    </div>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 E</div>
+      <p><strong>"your naming conventions for mynotes.txt needs to be consistent"</strong></p>
+      <div class="spec">📌 规范对应：<span class="tag">#5 文件命名约定必须一致</span></div>
+    </div>
+
+    <div class="feedback">
+      <div class="speaker">🗣️ Richard → 同学 F</div>
+      <p><strong>"I could not find the output generated by the agent"</strong> —— 需要展示实际产出，让评审者能看到 AI 为你做了哪些工作。</p>
+      <div class="spec">📌 规范对应：<span class="tag">#6 必须包含 AI 产出的实际内容</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════ 3. 六条硬性规范详解 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">📏</span>六条硬性规范详解</h2>
+    <p>以下六条规范直接来自 Richard 的真实反馈，每一条都有明确的原因和示例。</p>
+
+    <div class="rule-card danger">
+      <span class="label"><span class="num">1</span>❌ 禁止在仓库中存放 .docx 文件</span>
+      <p><strong>原因：</strong>GitHub 是为代码和纯文本设计的版本控制系统。docx 是二进制格式，无法 diff 对比变更，无法做代码审查，且会无谓增大仓库体积。</p>
+      <p><strong>正确做法：</strong>所有文档用 Markdown（.md）撰写。Markdown 是纯文本，可 diff、可审查、可版本追溯。</p>
+      <div class="reason">✅ <code>readme.md</code> &nbsp;|&nbsp; ✅ <code>notes/lesson-06.md</code> &nbsp;|&nbsp; ❌ <code>作业.docx</code></div>
+    </div>
+
+    <div class="rule-card warning">
+      <span class="label"><span class="num">2</span>📄 仓库必须包含 README.md</span>
+      <p><strong>原因：</strong>README 是你仓库的&ldquo;门面&rdquo;。评审者、助教、未来的你，都需要通过 README 快速了解这个仓库是干什么的、怎么使用、包含哪些内容。没有 README 的仓库是不完整的。</p>
+      <div class="reason">✅ 一个好的 README 包含：项目名称、作者、简要描述、目录结构、如何使用。</div>
+    </div>
+
+    <div class="rule-card success">
+      <span class="label"><span class="num">3</span>📝 LICENSE 文件独立，填写本人姓名</span>
+      <p><strong>原因：</strong>开源许可证需要明确版权归属。LICENSE 文件应该是一个单独的文件（而非写在 README 里），版权所有者（Copyright holder）要填你本人的姓名，而非 AI 或组织名称。</p>
+      <div class="reason">✅ <code>LICENSE</code> 文件中 <code>Copyright (c) 2025 你的姓名</code></div>
+    </div>
+
+    <div class="rule-card purple">
+      <span class="label"><span class="num">4</span>🆕 新建仓库，而非从 neoskills fork</span>
+      <p><strong>原因：</strong>fork 会携带上游仓库的完整 commit 历史、issue、PR 等噪声。评审者需要的是你个人的作业成果，一个干净的新仓库能让评审聚焦在你的工作上。</p>
+      <div class="reason">✅ <code>git init</code> 新仓库 &nbsp;|&nbsp; ❌ GitHub 上点 &ldquo;Fork&rdquo;</div>
+    </div>
+
+    <div class="rule-card danger">
+      <span class="label"><span class="num">5</span>🏷️ 文件命名约定必须一致</span>
+      <p><strong>原因：</strong>不一致的命名（如 <code>mynotes.txt</code>、<code>my_notes.txt</code>、<code>MyNotes.txt</code> 混用）会造成混乱，评审者无法预测在哪里找到特定内容。命名约定是你的仓库&ldquo;信息架构&rdquo;的一部分。</p>
+      <div class="reason">✅ 选定一种风格（推荐 <code>kebab-case</code> 或 <code>snake_case</code>）并在整个仓库中统一使用。</div>
+    </div>
+
+    <div class="rule-card warning">
+      <span class="label"><span class="num">6</span>📦 必须包含 AI 产出的实际内容</span>
+      <p><strong>原因：</strong>Richard 明确指出 &ldquo;I could not find the output generated by the agent&rdquo;。作业不仅需要你的思想过程，还需要实际展示 AI 代理帮你生成了什么。这是 C2S 范式中 &ldquo;AI 执行&rdquo; 的可交付证明。</p>
+      <div class="reason">✅ 在仓库中保留 AI 生成的代码、文档、图表等实际产出物，并标注这些是由 AI 生成的。</div>
+    </div>
+  </div>
+
+  <!-- ════════════ 4. 核心原则：你思考AI执行 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">🧠</span>核心原则：你思考，AI 执行</h2>
+
+    <div class="principle-box">
+      <div class="big">你思考 &nbsp;⟶&nbsp; AI 执行</div>
+      <div class="sub">你不需要手写任何成品 —— 翻译、综述、建议书、复盘均由 AI 在你的指挥下生成。<br>我们评估的是 <strong>「你的思想是否在场」</strong>。</div>
+    </div>
+
+    <h3>C2S 的核心逻辑</h3>
+    <ul>
+      <li><strong>C2S = Command to System</strong>（指挥系统）</li>
+      <li>你负责 <strong>思考、决策、判断、指挥</strong></li>
+      <li>AI 负责 <strong>生成、整理、翻译、建议、复盘</strong></li>
+      <li>你的价值体现在：<strong>提出正确的问题、给出精准的指令、判断 AI 输出的质量</strong></li>
+    </ul>
+
+    <h3>四件必交产物（C2S）</h3>
+    <div class="two-col">
+      <div>
+        <div class="rule-card success">
+          <span class="label">① 对论文的理解</span>
+          <p>用你自己的语言阐述论文核心论点、方法和结论。不是翻译，而是理解之后的重新表达。</p>
+        </div>
+        <div class="rule-card success">
+          <span class="label">② 针对 §6.3 Elite20 的具体改进建议</span>
+          <p>采用 <strong>KSTAR 格式</strong>（Knowledge-Situation-Task-Action-Result）撰写建议。</p>
+        </div>
+      </div>
+      <div>
+        <div class="rule-card success">
+          <span class="label">③ AI+X 范式与自身的联结</span>
+          <p>这门课程与你个人的研究方向 / 工作实践有什么关联？你打算如何应用？</p>
+        </div>
+        <div class="rule-card success">
+          <span class="label">④ 七维 AAR 课后复盘</span>
+          <p>After Action Review：从七个维度系统性地回顾和反思本次学习过程。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ 5. AI 日志模板 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">📋</span>AI 日志模板</h2>
+    <p class="text-muted">以下模板改编自冯静雯同学的作业实践，你可以直接复制使用。</p>
+
+    <div class="template-block">
+      <div class="tmpl-label">AI LOG TEMPLATE</div>
+      <pre><code># AI 交互日志
+
+## 基本信息
+- **日期：** YYYY-MM-DD
+- **任务名称：** [简要描述任务]
+- **使用的 AI 工具：** [工具名称 / 版本]
+
+## 任务目标
+[你希望 AI 帮你完成什么？用一两句话清晰描述]
+
+## 提示语（Prompt）
+```
+[在此粘贴你给 AI 的完整提示语]
+```
+
+## AI 输出摘要
+[AI 返回了什么？列出关键产出]
+
+## 我的思考 / 判断
+- 这个输出是否符合预期？ ✅ / ❌ / ⚠️ 部分符合
+- 我做了哪些调整？ [修改/追问/重新组织]
+- 学到了什么？ [关键收获]
+
+## 元提示（可选）
+```
+[如果 AI 本身也是用来生成提示语的，记录这个元提示链]
+```
+
+## 下一步
+[接下来要做什么？是否需要迭代？]</code></pre>
+    </div>
+  </div>
+
+  <!-- ════════════ 6. 元提示链说明 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">⛓️</span>元提示链说明</h2>
+
+    <blockquote>
+      "我也想看看你用来生成提示语的提示语（我会称之为<strong>元提示</strong>或<strong>提示链</strong>）"
+      <br>—— Richard
+    </blockquote>
+
+    <p><strong>什么是元提示链？</strong></p>
+    <p>当你利用 AI 来编写或优化你将要使用的提示语时，那个 &ldquo;用来生成提示语的提示语&rdquo; 就是元提示。元提示链记录了你如何与 AI 交互以构建最终提示语的过程。</p>
+
+    <h3>示例</h3>
+    <p><strong>场景：</strong>你需要 AI 帮你做一份文献综述，但你不知道怎么写出好的提示语。</p>
+
+    <div class="rule-card">
+      <span class="label">🔗 元提示链示例</span>
+      <p><strong>Step 1 — 元提示：</strong></p>
+      <pre><code>你是一个提示语工程专家。我的任务是：写一份关于"Transformer在医学影像中的应用"的文献综述。
+请为我设计 3 个不同角度的提示语，分别针对「概述型」「批判型」「应用对比型」综述。
+每个提示语需包含：角色设定、任务描述、输出格式要求。</code></pre>
+
+      <p><strong>Step 2 — AI 生成了 3 个提示语</strong></p>
+      <p><strong>Step 3 — 你选择一个提示语发给 AI 执行综述生成</strong></p>
+
+      <div class="reason">💡 把你的 Step 1 提示语 + Step 2 的产物都记录在 AI 日志中，这就是完整的元提示链。</div>
+    </div>
+  </div>
+
+  <!-- ════════════ 7. 练习 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">🏋️</span>练习</h2>
+
+    <div class="exercise">
+      <div class="ex-label">✏️ 练习 1：修复一个有问题的仓库</div>
+      <p>给定以下问题仓库（由班主任提供链接），请逐一修复：</p>
+      <ul>
+        <li>仓库中有一个 <code>作业.docx</code> 文件 —— 请转换为 Markdown</li>
+        <li>缺少 README.md —— 补写一份清晰的 README</li>
+        <li>LICENSE 文件中版权所有者写的是 "AI" —— 改为你的姓名</li>
+        <li>该仓库是从 neoskills fork 的 —— 新建一个干净仓库并迁移内容</li>
+        <li>文件名混乱：<code>myNotes.txt</code>、<code>my_notes.txt</code>、<code>mynotes.txt</code> —— 统一命名</li>
+        <li>找不到 AI 产出 —— 补充 AI 生成的内容文件</li>
+      </ul>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-label">✏️ 练习 2：写一篇 AI 日志</div>
+      <p>使用本模块提供的 AI 日志模板，记录你完成练习 1 的过程。</p>
+      <ul>
+        <li>你使用了哪些提示语？</li>
+        <li>AI 如何帮助你？</li>
+        <li>你做了什么判断和调整？</li>
+        <li>附上元提示（如果你曾让 AI 帮你优化提示语）</li>
+      </ul>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-label">✏️ 练习 3：记录元提示链</div>
+      <p>完成上面任意练习时，如果你使用了 &ldquo;让 AI 帮你写提示语&rdquo; 的策略，请将整个元提示链完整记录下来，提交到你的仓库中的 <code>meta-prompt-chain.md</code> 文件。</p>
+    </div>
+  </div>
+
+  <!-- ════════════ 8. 检查清单 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">✅</span>提交前检查清单</h2>
+    <p class="text-muted">每次提交作业前，逐项检查：</p>
+
+    <ul class="checklist">
+      <li class="done">仓库是 <code>git init</code> 新建的，而非从 neoskills fork</li>
+      <li class="done">包含 <code>README.md</code>，介绍清晰完整</li>
+      <li class="done">有独立的 <code>LICENSE</code> 文件，版权所有者填写本人姓名</li>
+      <li class="done">没有 <code>.docx</code>、<code>.pdf</code> 等二进制文档文件（图片资源除外）</li>
+      <li class="done">所有文件命名风格一致（推荐 snake_case 或 kebab-case）</li>
+      <li class="done">包含 AI 产出的实际内容文件，并标注由 AI 生成</li>
+      <li class="done">包含 AI 日志（ai-log.md 或类似文件）</li>
+      <li class="done">包含了四件必交产物：论文理解、Elite20 改进建议（KSTAR）、AI+X联结、七维AAR</li>
+      <li class="done">如果使用了元提示链，已记录在 <code>meta-prompt-chain.md</code></li>
+      <li class="done">仓库结构整洁，没有无用的临时文件</li>
+    </ul>
+  </div>
+
+  <!-- ════════════ 9. 参考资源 ════════════ -->
+  <div class="section">
+    <h2><span class="icon">📚</span>参考资源</h2>
+
+    <h3>Git 与 GitHub 基础</h3>
+    <ul>
+      <li><a href="https://git-scm.com/book/zh/v2" >Pro Git 中文版</a> — 最权威的 Git 学习资源</li>
+      <li><a href="https://docs.github.com/zh/get-started" >GitHub 官方文档 — 快速入门</a></li>
+      <li><a href="https://www.markdownguide.org/" >Markdown Guide</a> — Markdown 语法速查</li>
+    </ul>
+
+    <h3>规范与最佳实践</h3>
+    <ul>
+      <li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" >GitHub — 关于 README</a></li>
+      <li><a href="https://choosealicense.com/" >Choose an Open Source License</a> — 帮助你选择适合的许可证</li>
+      <li><a href="https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository" >GitHub — 添加许可证</a></li>
+    </ul>
+
+    <h3>C2S 与 AI+X 相关</h3>
+    <ul>
+      <li>C2S 方法论文档（课程内部资料）</li>
+      <li>KSTAR 格式参考（课程内部资料）</li>
+      <li>七维 AAR 模板（课程内部资料）</li>
+      <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" >Prompt Engineering 指南（Anthropic）</a></li>
+    </ul>
+
+    <h3>推荐工具</h3>
+    <ul>
+      <li><strong>VS Code</strong> + <strong>Markdown Preview Enhanced</strong> 插件</li>
+      <li><strong>Typora</strong> — 所见即所得的 Markdown 编辑器</li>
+      <li><strong>Obsidian</strong> — 知识管理 + Markdown 编辑</li>
+      <li><strong>Claude Code / Codex CLI</strong> — AI Agent 工具链</li>
+    </ul>
+  </div>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <div style="text-align:center;color:var(--text-muted);font-size:.8rem;padding:1.5rem 0 0;border-top:1px solid var(--border);margin-top:1rem;">
+    <p>Elite20 Builder Program — 模块 06：作业方法与提交规范</p>
+    <p style="margin-top:.3rem;">核心原则：🧠 你思考 &nbsp;⟶&nbsp; ⚡ AI 执行</p>
+  </div>
+
+</div>
+
+
+<!-- ===== Floating Chat Bot ===== -->
+<style>
+.chat-fab { position:fixed; bottom:24px; right:24px; z-index:9999; }
+.chat-fab-btn {
+  width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#e74c3c,#9b59b6);
+  border:none; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 4px 16px rgba(231,76,60,.4);
+  transition:.2s; display:flex; align-items:center; justify-content:center;
+}
+.chat-fab-btn:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(231,76,60,.5); }
+.chat-fab-btn .pulse { position:absolute; width:52px; height:52px; border-radius:50%; animation:pulse 2s infinite; background:rgba(231,76,60,.3); }
+@keyframes pulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+
+.chat-window {
+  position:fixed; bottom:88px; right:24px; width:380px; max-height:560px;
+  background:#ffffff; border:1px solid #e2e5ea; border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15); z-index:9998; display:none; overflow:hidden;
+  flex-direction:column;
+}
+.chat-window.open { display:flex; }
+.chat-header {
+  padding:14px 16px; background: #ffffff; border-bottom:1px solid #e2e5ea;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.chat-header h3 { font-size:.85em; font-weight:600; color: #1a1d23; letter-spacing:-.01em; }
+.chat-header .close-btn { background:none; border:none; color:#888; cursor:pointer; font-size:1.1em; padding:2px 6px; border-radius:4px; }
+.chat-header .close-btn:hover { background:#e2e5ea; }
+.chat-body { flex:1; overflow-y:auto; padding:12px 14px; min-height:200px; max-height:400px; }
+.chat-body::-webkit-scrollbar { width:4px; }
+.chat-body::-webkit-scrollbar-thumb { background:#e2e5ea; border-radius:2px; }
+.chat-input-area { padding:10px 12px; border-top:1px solid #e2e5ea; display:flex; gap:8px; }
+.chat-input-area input {
+  flex:1; background: #ffffff; border:1px solid #e2e5ea; border-radius:8px;
+  padding:10px 14px; color:#1a1d23; font-size:.85em; outline:none; font-family:inherit;
+}
+.chat-input-area input:focus { border-color:#e74c3c; }
+.chat-input-area button {
+  background:linear-gradient(135deg,#e74c3c,#9b59b6); border:none; border-radius:8px;
+  color:#fff; padding:8px 14px; cursor:pointer; font-size:.8em; font-weight:500;
+}
+.chat-input-area button:hover { opacity:.9; }
+
+.chat-msg { margin-bottom:10px; max-width:90%; }
+.chat-msg.user { margin-left:auto; }
+.chat-msg.bot { margin-right:auto; }
+.chat-msg .bubble {
+  padding:8px 12px; border-radius:10px; font-size:.82em; line-height:1.5;
+}
+.chat-msg.user .bubble { background:#e74c3c; color:#fff; border-bottom-right-radius:3px; }
+.chat-msg.bot .bubble { background: #f3f4f6; color: #374151; border-bottom-left-radius:3px; }
+.chat-msg.bot .src { font-size:.65em; color: #6b7280; margin-top:2px; padding-left:4px; }
+.chat-msg .typing { display:flex; gap:4px; padding:4px 0; }
+.chat-msg .typing span { width:6px; height:6px; border-radius:50%; background:#555; animation:typing 1.4s infinite; }
+.chat-msg .typing span:nth-child(2) { animation-delay:.2s; }
+.chat-msg .typing span:nth-child(3) { animation-delay:.4s; }
+@keyframes typing { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
+
+.chat-footer { padding:6px 14px; border-top:1px solid #e2e5ea; display:flex; justify-content:space-between; font-size:.65em; color: #6b7280; }
+.chat-footer .ai-toggle { cursor:pointer; color: #6b7280; }
+.chat-footer .ai-toggle.on { color:#4ade80; }
+.chat-footer .ai-toggle.off { color: #6b7280; }
+
+@media (max-width:600px) {
+  .chat-window { width:calc(100vw - 32px); right:16px; bottom:80px; max-height:70vh; }
+}
+</style>
+
+<div class="chat-fab">
+  <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+    <div class="pulse"></div>
+    <span>💬</span>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <h3>💬 课程小助手</h3>
+    <button class="close-btn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">
+      <div class="bubble">👋 你好！我是 Elite20 Builder Program 课程小助手。<br><br>
+      你可以问我任何课程相关的问题，比如：<br>
+      • "KSTAR 的 S 是什么？"<br>
+      • "C4A 怎么评分？"<br>
+      • "Richard 说过什么关于核心竞争力的话？"</div>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chatInput" placeholder="问个课程问题…" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">发送</button>
+  </div>
+  <div class="chat-footer">
+    <span id="chatResultCount"></span>
+    <span class="ai-toggle off" id="chatAiToggle" onclick="toggleChatAI()">🤖 AI 总结 关</span>
+  </div>
+</div>
+
+<script>
+// State
+var chatIndex = [];
+var chatAIKey = '';
+var chatAIOn = false;
+
+// Load search index
+fetch('../search-index.json').then(function(r){return r.json()}).then(function(d){
+  chatIndex = d.entries || [];
+}).catch(function(){});
+
+// Try load saved API key
+try {
+  var saved = localStorage.getItem('aix-ai-key');
+  if (saved && saved.length > 10) {
+    chatAIKey = saved;
+    chatAIOn = true;
+    document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+    document.getElementById('chatAiToggle').className = 'ai-toggle on';
+  }
+} catch(e){}
+
+function toggleChat() {
+  var w = document.getElementById('chatWindow');
+  w.classList.toggle('open');
+  if (w.classList.contains('open')) {
+    setTimeout(function(){document.getElementById('chatInput').focus();}, 200);
+  }
+}
+
+function toggleChatAI() {
+  if (!chatAIKey) {
+    var key = prompt('输入 API Key 启用 AI 总结功能\n(DeepSeek / OpenAI 兼容格式)');
+    if (key && key.length > 10) {
+      chatAIKey = key;
+      chatAIOn = true;
+      localStorage.setItem('aix-ai-key', key);
+      document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+      document.getElementById('chatAiToggle').className = 'ai-toggle on';
+    }
+  } else {
+    chatAIOn = !chatAIOn;
+    var tog = document.getElementById('chatAiToggle');
+    tog.textContent = chatAIOn ? '🤖 AI 总结 开' : '🤖 AI 总结 关';
+    tog.className = chatAIOn ? 'ai-toggle on' : 'ai-toggle off';
+  }
+}
+
+function sendChat() {
+  var input = document.getElementById('chatInput');
+  var q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+  
+  // Add user message
+  addMsg('user', q);
+  
+  // Show typing
+  var typingId = 'typing-' + Date.now();
+  var typingHtml = '<div class="chat-msg bot" id="' + typingId + '"><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', typingHtml);
+  scrollChat();
+  
+  // Search
+  var results = searchCourse(q);
+  document.getElementById('chatResultCount').textContent = '找到 ' + results.length + ' 条结果';
+  
+  if (results.length === 0) {
+    document.getElementById(typingId).outerHTML = '<div class="chat-msg bot"><div class="bubble">😕 没找到相关结果。试试换个问法，或者问得更具体一些。</div></div>';
+    scrollChat();
+    return;
+  }
+  
+  if (chatAIOn && chatAIKey) {
+    // AI mode: search + summarize
+    callAI(q, results, typingId);
+  } else {
+    // Search-only mode: show results directly
+    var html = '<div class="chat-msg bot"><div class="bubble">';
+    results.slice(0, 5).forEach(function(r) {
+      var mod = r.entry.module || '';
+      var txt = r.snippet || r.entry.text.substring(0, 120);
+      html += '<div style="margin-bottom:6px;padding:6px 8px;background:rgba(231,76,60,.06);border-radius:6px;border-left:2px solid #e74c3c;">';
+      html += '<div style="font-size:.72em;color:#e74c3c;margin-bottom:2px;">' + mod + '</div>';
+      html += '<div>' + txt + '</div></div>';
+    });
+    if (results.length > 5) html += '<div style="font-size:.72em;color: #6b7280;margin-top:4px;">…还有 ' + (results.length - 5) + ' 条结果</div>';
+    html += '</div><div class="src">💡 配置 API Key 可启用 AI 总结</div></div>';
+    document.getElementById(typingId).outerHTML = html;
+    scrollChat();
+  }
+}
+
+function searchCourse(q) {
+  var query = q.toLowerCase();
+  if (!query || query.length < 1) return [];
+  var scored = [];
+  for (var i = 0; i < chatIndex.length; i++) {
+    var entry = chatIndex[i];
+    var text = (entry.text || '').toLowerCase();
+    var score = 0;
+    if (text.indexOf(query) >= 0) {
+      score += (text.split(query).length - 1) * 3;
+    }
+    // bigram for fuzzy chinese match
+    for (var j = 0; j < query.length - 1 && j < 6; j++) {
+      var bg = query.substring(j, j + 2);
+      if (text.indexOf(bg) >= 0) score += 0.5;
+    }
+    if (score > 0) scored.push({entry: entry, score: score});
+  }
+  scored.sort(function(a,b){return b.score - a.score});
+  
+  // Build snippets
+  var out = [];
+  for (var i = 0; i < Math.min(scored.length, 10); i++) {
+    var r = scored[i];
+    var text = r.entry.text;
+    var idx = text.toLowerCase().indexOf(query);
+    if (idx >= 0) {
+      var start = Math.max(0, idx - 20);
+      var end = Math.min(text.length, idx + query.length + 40);
+      r.snippet = (start > 0 ? '…' : '') + text.substring(start, end) + (end < text.length ? '…' : '');
+    } else {
+      r.snippet = text.substring(0, 100);
+    }
+    out.push(r);
+  }
+  return out;
+}
+
+function callAI(query, results, typingId) {
+  var context = results.slice(0, 5).map(function(r){
+    return '[' + (r.entry.module || '') + '] ' + (r.entry.text || '');
+  }).join('\n\n');
+  
+  var body = JSON.stringify({
+    model: 'deepseek-chat',
+    messages: [
+      {role:'system',content:'你是 Elite20 Builder Program 课程助教。基于提供的课程内容回答。只基于已有内容，不编造。用中文，简洁。'},
+      {role:'user',content:'课程资料：\n' + context + '\n\n问题：' + query}
+    ],
+    temperature: 0.3,
+    max_tokens: 500
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://api.deepseek.com/chat/completions');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + chatAIKey);
+  xhr.onload = function() {
+    try {
+      var data = JSON.parse(xhr.responseText);
+      var answer = data.choices && data.choices[0] ? data.choices[0].message.content : '无法获取回答';
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">' + answer.replace(/\n/g,'<br>') + '</div></div>';
+    } catch(e) {
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">AI 服务出错，请检查 API Key</div></div>';
+    }
+    scrollChat();
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById(typingId);
+    if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">网络错误，请检查连接</div></div>';
+    scrollChat();
+  };
+  xhr.send(body);
+}
+
+function addMsg(role, text) {
+  var cls = role === 'user' ? 'user' : 'bot';
+  var html = '<div class="chat-msg ' + cls + '"><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', html);
+  scrollChat();
+}
+
+function scrollChat() {
+  var body = document.getElementById('chatBody');
+  body.scrollTop = body.scrollHeight;
+}
+</script>
+
+<div style="display:flex;gap:10px;margin:40px 0 20px;"><a href="05_C4A评估体系.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">← 上一节</div><div style="font-size:.85em;font-weight:500;">C4A 评估体系</div></a><a href="07_挑战体系C1到C10.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;text-align:right;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">下一节 →</div><div style="font-size:.85em;font-weight:500;">挑战体系 C1 到 C10</div></a></div></body>
+</html>

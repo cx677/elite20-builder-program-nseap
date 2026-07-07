@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块02：核心竞争力三层结构 | Elite20 Builder Program</title>
+<meta name="description" content="核心竞争力三层结构 — 底层建模 → 中层 AI 协作 → 顶层元认知">
+<style>
+  :root {
+    --bg-primary: #f3f4f6;
+    --bg-secondary: #e2e5ea;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #f8f9fb;
+    --border: #30363d;
+    --border-accent: #58a6ff;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-cyan: #39d2c0;
+    --accent-green: #3fb950;
+    --accent-yellow: #d29922;
+    --accent-orange: #f0883e;
+    --accent-purple: #bc8cff;
+    --accent-pink: #f778ba;
+    --accent-red: #f85149;
+    --gradient-top: linear-gradient(135deg, #58a6ff 0%, #bc8cff 50%, #f778ba 100%);
+    --gradient-mid: linear-gradient(135deg, #39d2c0 0%, #58a6ff 100%);
+    --gradient-bottom: linear-gradient(135deg, #f0883e 0%, #d29922 100%);
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Scrollbar ===== */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* ===== Navigation ===== */
+  .nav-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-bar .brand {
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--gradient-top);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-bar .brand span { color: var(--text-muted); -webkit-text-fill-color: var(--text-muted); }
+  .nav-bar .nav-links { display: flex; gap: 20px; }
+  .nav-bar .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .nav-bar .nav-links a:hover { color: var(--accent-blue); }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 100px 32px 60px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero .module-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: rgba(88,166,255,0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(88,166,255,0.25);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: var(--gradient-top);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .hero .meta {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ===== Layout ===== */
+  .container { max-width: 880px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* ===== Section ===== */
+  .section { margin-bottom: 48px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header .icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .section-header .line {
+    flex: 1; height: 1px;
+    background: var(--border);
+    margin-left: 8px;
+  }
+
+  /* ===== Cards ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    border-color: rgba(88,166,255,0.3);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li { color: var(--text-secondary); font-size: 15px; }
+  .card p + p { margin-top: 12px; }
+  .card ul, .card ol { padding-left: 20px; }
+  .card li { margin-bottom: 8px; }
+
+  /* ===== Blockquote ===== */
+  .blockquote {
+    background: rgba(88,166,255,0.06);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .blockquote p {
+    color: var(--text-primary) !important;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .blockquote .attribution {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .blockquote .attribution::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--text-muted);
+  }
+
+  /* ===== Three Layers ===== */
+  .layer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 32px 0;
+    position: relative;
+  }
+  .layer-stack::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+      rgba(240,136,62,0.4) 0%,
+      rgba(57,210,192,0.4) 50%,
+      rgba(188,140,255,0.4) 100%
+    );
+  }
+  .layer-item {
+    position: relative;
+    padding: 24px 24px 24px 72px;
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .layer-item:hover {
+    border-color: rgba(88,166,255,0.3);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .layer-item + .layer-item { margin-top: 4px; }
+  .layer-item .layer-num {
+    position: absolute;
+    left: 18px;
+    top: 24px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--bg-tertiary);
+    border: 2px solid;
+  }
+  .layer-item.top .layer-num { border-color: var(--accent-purple); color: var(--accent-purple); }
+  .layer-item.mid .layer-num { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .layer-item.base .layer-num { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+  .layer-item .layer-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .layer-item.top .layer-label { color: var(--accent-purple); }
+  .layer-item.mid .layer-label { color: var(--accent-cyan); }
+  .layer-item.base .layer-label { color: var(--accent-orange); }
+
+  .layer-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .layer-item p { color: var(--text-secondary); font-size: 14.5px; line-height: 1.7; }
+  .layer-item .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .layer-item .pill {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  /* ===== Profile Card ===== */
+  .profile-card {
+    background: linear-gradient(135deg, rgba(88,166,255,0.06) 0%, rgba(188,140,255,0.06) 100%);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .profile-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 700px) { .profile-grid { grid-template-columns: 1fr; } }
+  .profile-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+  }
+  .profile-box .box-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .profile-box .box-label.l1 { color: var(--accent-orange); }
+  .profile-box .box-label.l2 { color: var(--accent-cyan); }
+  .profile-box .box-label.l3 { color: var(--accent-purple); }
+  .profile-box .box-status {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .profile-box .box-status.ready { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+  .profile-box .box-status.training { background: rgba(210,153,34,0.15); color: var(--accent-yellow); }
+  .profile-box .box-status.building { background: rgba(248,120,186,0.15); color: var(--accent-pink); }
+  .profile-box .box-tech {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .profile-box .box-tech span { display: block; margin-top: 4px; }
+
+  /* ===== Exercise ===== */
+  .exercise {
+    background: rgba(57,210,192,0.04);
+    border: 1px solid rgba(57,210,192,0.2);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .exercise h3 {
+    color: var(--accent-cyan);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .exercise .step {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .exercise .step .step-num {
+    display: inline-block;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(57,210,192,0.15);
+    color: var(--accent-cyan);
+    text-align: center;
+    line-height: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .exercise .step h4 {
+    display: inline;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .exercise .step p { margin-top: 8px; font-size: 14px; color: var(--text-secondary); }
+  .exercise .step ul { margin-top: 8px; padding-left: 20px; }
+  .exercise .step li { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
+
+  /* ===== Checklist ===== */
+  .checklist { list-style: none; padding: 0 !important; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    transition: border-color 0.2s;
+  }
+  .checklist li:hover { border-color: rgba(88,166,255,0.3); }
+  .checklist li .box {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 2px solid var(--text-muted);
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+  .checklist li .text {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .checklist li .text strong { color: var(--text-primary); }
+
+  /* ===== Resources ===== */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .resource-grid { grid-template-columns: 1fr; } }
+  .resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .resource-item:hover {
+    border-color: var(--accent-blue);
+    background: rgba(88,166,255,0.04);
+  }
+  .resource-item .r-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: var(--bg-tertiary);
+  }
+  .resource-item .r-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .resource-item .r-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ===== Warning / Tip ===== */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .callout p { font-size: 14px !important; }
+  .callout.warning {
+    background: rgba(210,153,34,0.08);
+    border: 1px solid rgba(210,153,34,0.25);
+  }
+  .callout.warning p { color: var(--accent-yellow) !important; }
+  .callout.tip {
+    background: rgba(57,210,192,0.08);
+    border: 1px solid rgba(57,210,192,0.25);
+  }
+  .callout.tip p { color: var(--accent-cyan) !important; }
+  .callout.info {
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.25);
+  }
+  .callout.info p { color: var(--accent-blue) !important; }
+
+  /* ===== Gap / Spacer ===== */
+  .gap-8 { height: 8px; }
+  .gap-16 { height: 16px; }
+  .gap-24 { height: 24px; }
+
+  /* ===== Divider with text ===== */
+  .divider-text {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .divider-text::before, .divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== Micro Animations ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeInUp 0.4s ease forwards; }
+  .section:nth-child(2) { animation-delay: 0.05s; }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 40px 32px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .footer p { color: var(--text-muted); font-size: 13px; }
+  .footer .footer-links { display: flex; justify-content: center; gap: 16px; margin-top: 8px; }
+  .footer .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; }
+  .footer .footer-links a:hover { color: var(--accent-blue); }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .hero { padding: 80px 16px 40px; }
+    .container { padding: 0 16px 60px; }
+    .card { padding: 20px; }
+    .layer-item { padding: 20px 20px 20px 60px; }
+    .layer-item .layer-num { left: 14px; top: 20px; width: 26px; height: 26px; font-size: 12px; }
+    .layer-stack::before { left: 26px; }
+    .nav-bar { padding: 0 16px; }
+    .nav-bar .nav-links { gap: 12px; }
+    .nav-bar .nav-links a { font-size: 12px; }
+    .hero .meta { flex-direction: column; gap: 8px; }
+    .profile-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#ffffff;border-bottom:1px solid #e2e5ea;padding:0 24px;display:flex;gap:0;overflow-x:auto;">
+  <a href="../index.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">← 课程首页</a>
+  <a href="01_KSTAR学习循环.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 01</a>
+  <a href="02_核心竞争力三层结构.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 02</a>
+  <a href="03_范畴论与AI哲学基础.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 03</a>
+  <a href="04_NEOLAF与AgentSkill.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 04</a>
+  <a href="05_C4A评估体系.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 05</a>
+  <a href="06_作业方法与提交规范.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 06</a>
+  <a href="07_挑战体系C1到C10.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 07</a>
+  <a href="08_学习实践指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 08</a>
+  <a href="09_VibeCoding实战指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 09</a>
+</div>
+
+
+<!-- ===== Navigation ===== -->
+<nav class="nav-bar">
+  <div class="brand">AI+X Elite <span>| 模块 02</span></div>
+  <div class="nav-links">
+    <a href="#prep">课前准备</a>
+    <a href="#transcript">课堂实录</a>
+    <a href="#layers">三层详解</a>
+    <a href="#profile">你的画像</a>
+    <a href="#practice">练习</a>
+    <a href="#checklist">检查清单</a>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="module-badge">模块 02 / 核心框架</div>
+  <h1>核心竞争力三层结构</h1>
+  <p class="subtitle">当 AI 放大计算能力后，真正稀缺的不再是"能不能做"，而是"为什么做"和"做什么"。</p>
+  <div class="meta">
+    <span>📅 2026-05-05</span>
+    <span>👤 Richard</span>
+    <span>📘 Elite20 Builder Program</span>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- ===== 课前准备 ===== -->
+<section class="section" id="prep">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(88,166,255,0.12);">📋</div>
+    <h2>课前准备</h2>
+    <div class="line"></div>
+  </div>
+  <div class="card">
+    <h3>✏️ 自问自答（上课前完成）</h3>
+    <ol>
+      <li>在 AI 时代，你觉得什么能力最值钱？为什么？</li>
+      <li>你目前的技术能力（编程、工具使用等）处于什么水平？能否独立完成一个完整项目？</li>
+      <li>你过去半年有没有遇到"不知道做什么"的困境？在什么场景下发生的？</li>
+      <li>如果 AI 可以帮你写所有代码，你觉得你还需要学什么？</li>
+    </ol>
+    <div class="gap-8"></div>
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <p>带着这些问题的答案来听课，你会发现 Richard 讲的每一句话都在回应你心中的困惑。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 课堂实录 ===== -->
+<section class="section" id="transcript">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(188,140,255,0.12);">🎙️</div>
+    <h2>课堂实录</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 核心论点：稀缺性的转移</h3>
+    <div class="blockquote">
+      <p>当计算能力被 AI 极大放大之后，真正稀缺的不再是"能不能做"，而是"为什么做"和"做什么"。</p>
+      <p style="margin-top:12px;">所以一个人的核心竞争力，变成了三件事：</p>
+      <ol style="margin-top:8px; padding-left:20px; color:var(--text-primary);">
+        <li><strong style="color:var(--accent-purple);">持续驱动自己做事情的能力</strong></li>
+        <li><strong style="color:var(--accent-cyan);">定义高价值问题的能力</strong></li>
+        <li><strong style="color:var(--accent-blue);">形成独特视角的能力</strong></li>
+      </ol>
+      <div class="attribution">Richard · 2026-05-05 · Elite20 Builder Program</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚠️ 常见误区纠正</h3>
+    <div class="blockquote">
+      <p>但要注意一个常见误区：很多人会听完后误解成"那我不用学技术了"，这是错误的。</p>
+      <p style="margin-top:12px;">更准确的是：<strong style="color:var(--accent-yellow);">技术能力不再是终点，而是必须具备的"放大器"</strong>。</p>
+      <div class="attribution">Richard · 2026-05-05</div>
+    </div>
+    <div class="callout warning" style="margin-top:16px;">
+      <div class="callout-icon">🚨</div>
+      <p><strong>不要</strong>把"顶层更重要"误解成"底层可以不要"。护城河在顶层，但必须建立在底层之上。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏗️ 正确结构：三层的分工</h3>
+    <div class="blockquote">
+      <p><strong style="color:var(--accent-orange);">底层：基础建模能力</strong> — 软件编程的模型 / 数据模型 / 领域学科模型</p>
+      <p><strong style="color:var(--accent-cyan);">中层：AI 协作能力</strong> — 双脑（Human + AI）</p>
+      <p><strong style="color:var(--accent-purple);">顶层：学习和元认知能力</strong> — 驱动力 + 问题定义 + 视角</p>
+      <p style="margin-top:12px;">护城河在顶层，但必须建立在底层之上。</p>
+      <div class="attribution">Richard · 2026-05-05</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>👥 未来的团队画像</h3>
+    <p>未来的团队里，每个人都是跨学科全才。在 Claude Code 团队中，每个人都写代码——包括工程经理、产品经理、设计师。</p>
+    <p style="margin-top:8px;">这意味着：<strong>没有"不懂技术的角色"</strong>。无论你的头衔是什么，底层建模能力都是入场券。区别只在于，你在哪一层构建你的核心竞争力。</p>
+  </div>
+</section>
+
+<!-- ===== 概念详解 ===== -->
+<section class="section" id="layers">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(57,210,192,0.12);">🏛️</div>
+    <h2>概念详解：三层各自是什么</h2>
+    <div class="line"></div>
+  </div>
+
+  <p style="color:var(--text-secondary); margin-bottom:24px; font-size:15px;">
+    下面这张三层结构图是你理解 AI 时代个人竞争力的核心框架。请仔细观察每一层的定位、能力和判断标准。
+  </p>
+
+  <!-- Layer Stack Visualization -->
+  <div class="layer-stack">
+    <div class="layer-item top">
+      <div class="layer-num">1</div>
+      <div class="layer-label">顶层 · 护城河</div>
+      <h3 style="color:var(--accent-purple);">学习和元认知能力</h3>
+      <p>驱动力 + 问题定义 + 独特视角。这是你不可替代的核心。当 AI 可以完成执行层一切工作时，<strong style="color:var(--text-primary);">"为什么做"和"做什么"</strong> 的决策权在你手上。</p>
+      <p style="margin-top:8px;">持续驱动自己做事情的能力、定义高价值问题的能力、形成独特视角的能力——这三项决定了你的长期天花板。</p>
+      <div class="pill-list">
+        <span class="pill">🔥 自我驱动力</span>
+        <span class="pill">🎯 问题定义</span>
+        <span class="pill">👁️ 独特视角</span>
+        <span class="pill">🧠 元认知</span>
+        <span class="pill">📈 长期主义</span>
+      </div>
+    </div>
+
+    <div class="layer-item mid">
+      <div class="layer-num">2</div>
+      <div class="layer-label">中层 · 放大器</div>
+      <h3 style="color:var(--accent-cyan);">AI 协作能力（双脑）</h3>
+      <p>学会与 AI 形成"双脑"协作 —— 你负责方向与判断，AI 负责执行与探索。这是将底层能力放大 10 倍的关键杠杆。</p>
+      <p style="margin-top:8px;">包括：Prompt Engineering、AI 工具链使用、Agent 工作流设计、人机交互决策、AI 输出验证与批判性审查。</p>
+      <div class="pill-list">
+        <span class="pill">🤖 Prompt Engineering</span>
+        <span class="pill">⚡ AI 工具链</span>
+        <span class="pill">🔄 Agent 工作流</span>
+        <span class="pill">🔍 批判性审查</span>
+        <span class="pill">🧩 人机决策</span>
+      </div>
+    </div>
+
+    <div class="layer-item base">
+      <div class="layer-num">3</div>
+      <div class="layer-label">底层 · 入场券</div>
+      <h3 style="color:var(--accent-orange);">基础建模能力</h3>
+      <p>软件编程的模型 / 数据模型 / 领域学科模型。这是你所有上层能力赖以存在的基础。<strong style="color:var(--text-primary);">没有底层，中层和顶层就是空中楼阁。</strong></p>
+      <p style="margin-top:8px;">包括：编程语言与范式、数据结构和算法、系统设计思维、数学模型、领域专业知识。技术能力不再是终点，但它是必须的"放大器"。</p>
+      <div class="pill-list">
+        <span class="pill">💻 编程模型</span>
+        <span class="pill">📊 数据模型</span>
+        <span class="pill">🔬 领域学科</span>
+        <span class="pill">🧮 算法思维</span>
+        <span class="pill">🏗️ 系统设计</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 判断自己在哪层 -->
+  <div class="card" style="margin-top:24px;">
+    <h3>🔍 怎么判断自己在哪一层？</h3>
+    <p>问自己三个问题：</p>
+    <div class="gap-8"></div>
+    <table style="width:100%; border-collapse:collapse; font-size:14px; color:var(--text-secondary);">
+      <tr style="border-bottom:1px solid var(--border);">
+        <th style="text-align:left; padding:10px 8px; color:var(--text-primary); font-weight:600;">问题</th>
+        <th style="text-align:left; padding:10px 8px; color:var(--text-primary); font-weight:600;">如果你能回答"是"</th>
+        <th style="text-align:left; padding:10px 8px; color:var(--text-primary); font-weight:600;">说明你在</th>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 8px;">我能独立用代码实现一个完整功能吗？</td>
+        <td style="padding:10px 8px;">✅ 是</td>
+        <td style="padding:10px 8px; color:var(--accent-orange); font-weight:600;">底层</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:10px 8px;">我能借助 AI 将效率提升 2 倍以上吗？</td>
+        <td style="padding:10px 8px;">✅ 是</td>
+        <td style="padding:10px 8px; color:var(--accent-cyan); font-weight:600;">中层</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 8px;">我能定义别人看不到的问题方向吗？</td>
+        <td style="padding:10px 8px;">✅ 是</td>
+        <td style="padding:10px 8px; color:var(--accent-purple); font-weight:600;">顶层</td>
+      </tr>
+    </table>
+    <div class="gap-8"></div>
+    <p style="font-size:13px; color:var(--text-muted);">大多数人同时处于多个层级的不同成熟度。关键是知道自己哪层最强、哪层最弱。</p>
+  </div>
+</section>
+
+<!-- ===== 针对你的分析 ===== -->
+<section class="section" id="profile">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(248,120,186,0.12);">🧑‍🎓</div>
+    <h2>针对你的分析</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="profile-card">
+    <h3>🎯 你的三层能力画像</h3>
+    <p style="color:var(--text-secondary); margin-bottom:16px;">基于你目前的技术栈和 AI 使用情况，这是你的三层结构诊断：</p>
+
+    <div class="profile-grid">
+      <div class="profile-box">
+        <div class="box-label l3">顶层 · 护城河</div>
+        <div class="box-status building">🏗️ 建设中</div>
+        <p style="font-size:13px; color:var(--text-secondary);">你开始意识到"问题定义"比"问题执行"重要，但还没有形成系统的方法论。驱动力和独特视角正在萌芽——这是你接下来 6 个月最值得投入的层级。</p>
+        <div class="box-tech">下一步：每周刻意练习"定义一个问题比解决它更难"的思维模式。</div>
+      </div>
+
+      <div class="profile-box">
+        <div class="box-label l2">中层 · 放大器</div>
+        <div class="box-status training">🔄 训练中</div>
+        <p style="font-size:13px; color:var(--text-secondary);">你已在使用 Hermes Agent 进行 AI 协作编程，双脑协作模式正在建立中。关键在于从"AI 帮你写代码"进阶到"AI 帮你做决策"。目前你处于 AI 协作能力的早期成长阶段。</p>
+        <div class="box-tech">当前状态：✅ AI 辅助编码 / ⬜ AI 辅助决策 / ⬜ AI 工作流设计</div>
+      </div>
+
+      <div class="profile-box">
+        <div class="box-label l1">底层 · 入场券</div>
+        <div class="box-status ready">✅ 已具备</div>
+        <p style="font-size:13px; color:var(--text-secondary);">你拥有 Python 编程能力，熟练使用 Hermes Agent（AI 工具）和 wx-cli（命令行工具链）。基础建模能力已经建立，可以独立完成工程项目。这为你的中、上层建设打下了坚实基础。</p>
+        <div class="box-tech">Python · Hermes Agent · wx-cli</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">💬</div>
+    <p><strong>关键洞察</strong>：你的底层已经达标，中层正在训练中，顶层还在建立。这是非常典型的 AI 时代学习路径——先有工具能力，再学习协作，最后升华到定义问题。你正走在正确的轨道上。</p>
+  </div>
+
+  <div class="card">
+    <h3>📊 优先级建议</h3>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;">
+      <div style="flex:1; min-width:200px; padding:16px; background:var(--bg-tertiary); border-radius:8px; border:1px solid var(--border);">
+        <div style="font-size:12px; color:var(--accent-purple); font-weight:600;">🔝 最优先</div>
+        <div style="font-size:14px; color:var(--text-primary); font-weight:600; margin-top:4px;">提升中层</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">深化 AI 协作能力，从辅助编码到辅助决策</div>
+      </div>
+      <div style="flex:1; min-width:200px; padding:16px; background:var(--bg-tertiary); border-radius:8px; border:1px solid var(--border);">
+        <div style="font-size:12px; color:var(--accent-pink); font-weight:600;">📈 中长期</div>
+        <div style="font-size:14px; color:var(--text-primary); font-weight:600; margin-top:4px;">构建顶层</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">系统训练问题定义能力和独特视角</div>
+      </div>
+      <div style="flex:1; min-width:200px; padding:16px; background:var(--bg-tertiary); border-radius:8px; border:1px solid var(--border);">
+        <div style="font-size:12px; color:var(--accent-orange); font-weight:600;">🔄 持续巩固</div>
+        <div style="font-size:14px; color:var(--text-primary); font-weight:600; margin-top:4px;">夯实底层</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">在项目中持续打磨 Python 和工具链，拓展领域模型</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 练习 ===== -->
+<section class="section" id="practice">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(240,136,62,0.12);">🏋️</div>
+    <h2>练习</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="exercise">
+    <h3>📝 练习一：三层自评</h3>
+    <p style="color:var(--text-secondary); font-size:14px;">对自己当前的每一层进行打分（1-10分），并写下理由。</p>
+
+    <div class="step">
+      <h4><span class="step-num">1</span> 底层 · 基础建模能力自评</h4>
+      <p><strong>评分标准：</strong>能否不依赖 AI 独立完成一个完整的编程功能？能否理解你所用工具背后的数据模型和系统设计？</p>
+      <p style="margin-top:8px; color:var(--accent-orange); font-weight:600; font-family:var(--font-mono);">你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________</p>
+    </div>
+
+    <div class="step">
+      <h4><span class="step-num">2</span> 中层 · AI 协作能力自评</h4>
+      <p><strong>评分标准：</strong>使用 AI 后你的产出效率提升了多少倍？你是否能设计 AI 工作流（不只是单次对话）？你能验证和质疑 AI 的输出吗？</p>
+      <p style="margin-top:8px; color:var(--accent-cyan); font-weight:600; font-family:var(--font-mono);">你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________</p>
+    </div>
+
+    <div class="step">
+      <h4><span class="step-num">3</span> 顶层 · 元认知能力自评</h4>
+      <p><strong>评分标准：</strong>你能主动定义"该做什么"而不是等别人告诉你吗？你是否有自己的视角和判断？你是否能持续驱动自己去攻克困难问题？</p>
+      <p style="margin-top:8px; color:var(--accent-purple); font-weight:600; font-family:var(--font-mono);">你的评分：___ / 10 &nbsp;&nbsp;|&nbsp;&nbsp; 理由：__________________</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <h3>🎯 练习二：制定三层提升计划</h3>
+    <p style="color:var(--text-secondary); font-size:14px;">基于自评结果，为每一层制定一个具体的、可衡量的提升计划。</p>
+
+    <div class="step">
+      <h4><span class="step-num">1</span> 底层提升计划</h4>
+      <p>选择一个你当前底层能力的薄弱环节（例如：系统设计思维、数据建模、某个领域知识），制定一个 4 周计划。</p>
+      <ul>
+        <li>具体目标是什么？</li>
+        <li>每周要完成什么里程碑？</li>
+        <li>怎么检验是否达标？</li>
+      </ul>
+      <p style="margin-top:8px; color:var(--text-muted); font-family:var(--font-mono); font-size:13px;">示例：4 周内用 Python 实现一个简易 RAG 系统，理解向量数据库和 Embedding 模型。</p>
+    </div>
+
+    <div class="step">
+      <h4><span class="step-num">2</span> 中层提升计划</h4>
+      <p>设计一个"从辅助编码到辅助决策"的 AI 协作进阶路径。</p>
+      <ul>
+        <li>当前 AI 协作模式的局限性是什么？</li>
+        <li>下一个要掌握的 AI 工具或模式是什么？</li>
+        <li>如何建立对 AI 输出的批判性审查习惯？</li>
+      </ul>
+      <p style="margin-top:8px; color:var(--text-muted); font-family:var(--font-mono); font-size:13px;">示例：从单次对话 → 多 Agent 工作流 → 用 AI 辅助架构设计决策。</p>
+    </div>
+
+    <div class="step">
+      <h4><span class="step-num">3</span> 顶层提升计划</h4>
+      <p>训练"定义问题"和"独特视角"的能力。</p>
+      <ul>
+        <li>每周找出一个你领域内被忽视的问题。</li>
+        <li>尝试用一句话定义它（而不是描述它）。</li>
+        <li>与至少一个人讨论你的定义，获取反馈。</li>
+      </ul>
+      <p style="margin-top:8px; color:var(--text-muted); font-family:var(--font-mono); font-size:13px;">示例：每天写一条"今天我注意到…"的观察笔记，30 天后回顾哪些观察变成了可定义的问题。</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <h3>🔍 练习三：找到你的"放大器"盲区</h3>
+    <p style="color:var(--text-secondary); font-size:14px;">Richard 说"技术能力不再是终点，而是必须具备的放大器"。但每个人的放大器中都有盲区：</p>
+    <div class="step">
+      <h4><span class="step-num">1</span> 列出你当前的技术栈</h4>
+      <p>写出你日常使用的工具、语言、框架、平台。</p>
+      <p style="margin-top:8px; color:var(--text-muted); font-family:var(--font-mono); font-size:13px;">你的技术栈：________________________________________</p>
+    </div>
+    <div class="step">
+      <h4><span class="step-num">2</span> 找出"放大器断裂点"</h4>
+      <p>在你列出的技术栈中，哪些环节是你依赖 AI 去"填空"的——即你自身理解薄弱、但靠 AI 勉强完成的？这就是你的盲区。</p>
+      <p style="margin-top:8px; color:var(--text-muted); font-family:var(--font-mono); font-size:13px;">示例：能用 AI 写 SQL 但不懂索引原理 → 盲区是数据库底层模型。</p>
+    </div>
+    <div class="step">
+      <h4><span class="step-num">3</span> 制定盲区攻克计划</h4>
+      <p>针对每个盲区，制定一个最小化的"补课"方案（<strong>不要追求精通</strong>，只要建立心智模型即可）。</p>
+      <p style="margin-top:8px; font-size:13px; color:var(--text-secondary);">Richard 强调："底层不需要你做到专家级别，但需要你建立足够的心智模型来理解上层建筑。"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 检查清单 ===== -->
+<section class="section" id="checklist">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(63,185,80,0.12);">✅</div>
+    <h2>检查清单</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card">
+    <h3>📌 完成模块后的自检项</h3>
+    <p style="color:var(--text-secondary); font-size:14px; margin-bottom:16px;">逐项核对，确保你已经掌握了本模块的核心内容：</p>
+    <ul class="checklist">
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 理解稀缺性转移</strong> — 能用自己的话解释"为什么在 AI 时代，'做什么'比'能不能做'更重要"
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 三层结构记忆</strong> — 能准确说出三层结构名称及其顺序（底层→中层→顶层）
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 避免误区</strong> — 理解"技术能力不再是终点，而是放大器"，不会陷入"不用学技术"的误区
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 自我定位</strong> — 完成了三层自评，清楚自己当前每层的状态和薄弱环节
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 提升计划</strong> — 为每一层制定了具体、可衡量的提升计划（含时间节点）
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 盲区识别</strong> — 找到了至少一个"放大器断裂点"，并制定了最小化补课方案
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 团队认知</strong> — 理解了"未来的团队里每个人都是跨学科全才"的含义
+        </div>
+      </li>
+      <li>
+        <div class="box"></div>
+        <div class="text">
+          <strong>☐ 区分三层特质</strong> — 能清晰区分驱动力/问题定义/视角（顶层）与 AI 工具使用（中层）与编程建模（底层）
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">🌟</div>
+    <p><strong>建议</strong>：把检查清单截图或复制到你的笔记系统中，每完成一项就打勾。目标是在 1 周内完成全部 8 项。</p>
+  </div>
+</section>
+
+<!-- ===== 参考资源 ===== -->
+<section class="section" id="resources">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(210,153,34,0.12);">📚</div>
+    <h2>参考资源</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="resource-grid">
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-cyan);">📄</div>
+      <div class="r-info">
+        <h4>模块 01：KSTAR 学习循环</h4>
+        <p>前置模块 — 理解学习的方法论基础</p>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-blue);">📖</div>
+      <div class="r-info">
+        <h4>《思考，快与慢》— Daniel Kahneman</h4>
+        <p>系统 1 / 系统 2 思维模型，理解双脑协作的认知基础</p>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-purple);">🎯</div>
+      <div class="r-info">
+        <h4>"问题定义"练习框架</h4>
+        <p>每天用"如果我只能解决一个问题，那是什么？"来训练自己</p>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-orange);">🔧</div>
+      <div class="r-info">
+        <h4>Hermes Agent 文档</h4>
+        <p>深化你的中层 AI 协作能力 — hermes-agent.nousresearch.com/docs</p>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-yellow);">📝</div>
+      <div class="r-info">
+        <h4>Feynman 技巧</h4>
+        <p>用最简单的语言解释复杂概念 — 检验底层理解的黄金标准</p>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div class="r-icon" style="color:var(--accent-pink);">🧩</div>
+      <div class="r-info">
+        <h4>跨学科学习指南</h4>
+        <p>"每个人都是跨学科全才" — 扩展你的领域模型广度</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>Elite20 Builder Program — 模块 02：核心竞争力三层结构</p>
+  <p style="margin-top:4px; font-size:12px;">基于 Richard 2026-05-05 课堂内容编制</p>
+  <div class="footer-links">
+    <a href="#">← 模块 01：KSTAR 学习循环</a>
+    <a href="#">模块 03 →</a>
+  </div>
+</footer>
+
+</div>
+
+<!-- ===== Floating Chat Bot ===== -->
+<style>
+.chat-fab { position:fixed; bottom:24px; right:24px; z-index:9999; }
+.chat-fab-btn {
+  width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#e74c3c,#9b59b6);
+  border:none; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 4px 16px rgba(231,76,60,.4);
+  transition:.2s; display:flex; align-items:center; justify-content:center;
+}
+.chat-fab-btn:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(231,76,60,.5); }
+.chat-fab-btn .pulse { position:absolute; width:52px; height:52px; border-radius:50%; animation:pulse 2s infinite; background:rgba(231,76,60,.3); }
+@keyframes pulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+
+.chat-window {
+  position:fixed; bottom:88px; right:24px; width:380px; max-height:560px;
+  background:#ffffff; border:1px solid #e2e5ea; border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15); z-index:9998; display:none; overflow:hidden;
+  flex-direction:column;
+}
+.chat-window.open { display:flex; }
+.chat-header {
+  padding:14px 16px; background: #ffffff; border-bottom:1px solid #e2e5ea;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.chat-header h3 { font-size:.85em; font-weight:600; color: #1a1d23; letter-spacing:-.01em; }
+.chat-header .close-btn { background:none; border:none; color:#888; cursor:pointer; font-size:1.1em; padding:2px 6px; border-radius:4px; }
+.chat-header .close-btn:hover { background:#e2e5ea; }
+.chat-body { flex:1; overflow-y:auto; padding:12px 14px; min-height:200px; max-height:400px; }
+.chat-body::-webkit-scrollbar { width:4px; }
+.chat-body::-webkit-scrollbar-thumb { background:#e2e5ea; border-radius:2px; }
+.chat-input-area { padding:10px 12px; border-top:1px solid #e2e5ea; display:flex; gap:8px; }
+.chat-input-area input {
+  flex:1; background: #ffffff; border:1px solid #e2e5ea; border-radius:8px;
+  padding:10px 14px; color:#1a1d23; font-size:.85em; outline:none; font-family:inherit;
+}
+.chat-input-area input:focus { border-color:#e74c3c; }
+.chat-input-area button {
+  background:linear-gradient(135deg,#e74c3c,#9b59b6); border:none; border-radius:8px;
+  color:#fff; padding:8px 14px; cursor:pointer; font-size:.8em; font-weight:500;
+}
+.chat-input-area button:hover { opacity:.9; }
+
+.chat-msg { margin-bottom:10px; max-width:90%; }
+.chat-msg.user { margin-left:auto; }
+.chat-msg.bot { margin-right:auto; }
+.chat-msg .bubble {
+  padding:8px 12px; border-radius:10px; font-size:.82em; line-height:1.5;
+}
+.chat-msg.user .bubble { background:#e74c3c; color:#fff; border-bottom-right-radius:3px; }
+.chat-msg.bot .bubble { background: #f3f4f6; color: #374151; border-bottom-left-radius:3px; }
+.chat-msg.bot .src { font-size:.65em; color: #6b7280; margin-top:2px; padding-left:4px; }
+.chat-msg .typing { display:flex; gap:4px; padding:4px 0; }
+.chat-msg .typing span { width:6px; height:6px; border-radius:50%; background:#555; animation:typing 1.4s infinite; }
+.chat-msg .typing span:nth-child(2) { animation-delay:.2s; }
+.chat-msg .typing span:nth-child(3) { animation-delay:.4s; }
+@keyframes typing { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
+
+.chat-footer { padding:6px 14px; border-top:1px solid #e2e5ea; display:flex; justify-content:space-between; font-size:.65em; color: #6b7280; }
+.chat-footer .ai-toggle { cursor:pointer; color: #6b7280; }
+.chat-footer .ai-toggle.on { color:#4ade80; }
+.chat-footer .ai-toggle.off { color: #6b7280; }
+
+@media (max-width:600px) {
+  .chat-window { width:calc(100vw - 32px); right:16px; bottom:80px; max-height:70vh; }
+}
+</style>
+
+<div class="chat-fab">
+  <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+    <div class="pulse"></div>
+    <span>💬</span>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <h3>💬 课程小助手</h3>
+    <button class="close-btn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">
+      <div class="bubble">👋 你好！我是 Elite20 Builder Program 课程小助手。<br><br>
+      你可以问我任何课程相关的问题，比如：<br>
+      • "KSTAR 的 S 是什么？"<br>
+      • "C4A 怎么评分？"<br>
+      • "Richard 说过什么关于核心竞争力的话？"</div>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chatInput" placeholder="问个课程问题…" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">发送</button>
+  </div>
+  <div class="chat-footer">
+    <span id="chatResultCount"></span>
+    <span class="ai-toggle off" id="chatAiToggle" onclick="toggleChatAI()">🤖 AI 总结 关</span>
+  </div>
+</div>
+
+<script>
+// State
+var chatIndex = [];
+var chatAIKey = '';
+var chatAIOn = false;
+
+// Load search index
+fetch('../search-index.json').then(function(r){return r.json()}).then(function(d){
+  chatIndex = d.entries || [];
+}).catch(function(){});
+
+// Try load saved API key
+try {
+  var saved = localStorage.getItem('aix-ai-key');
+  if (saved && saved.length > 10) {
+    chatAIKey = saved;
+    chatAIOn = true;
+    document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+    document.getElementById('chatAiToggle').className = 'ai-toggle on';
+  }
+} catch(e){}
+
+function toggleChat() {
+  var w = document.getElementById('chatWindow');
+  w.classList.toggle('open');
+  if (w.classList.contains('open')) {
+    setTimeout(function(){document.getElementById('chatInput').focus();}, 200);
+  }
+}
+
+function toggleChatAI() {
+  if (!chatAIKey) {
+    var key = prompt('输入 API Key 启用 AI 总结功能\n(DeepSeek / OpenAI 兼容格式)');
+    if (key && key.length > 10) {
+      chatAIKey = key;
+      chatAIOn = true;
+      localStorage.setItem('aix-ai-key', key);
+      document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+      document.getElementById('chatAiToggle').className = 'ai-toggle on';
+    }
+  } else {
+    chatAIOn = !chatAIOn;
+    var tog = document.getElementById('chatAiToggle');
+    tog.textContent = chatAIOn ? '🤖 AI 总结 开' : '🤖 AI 总结 关';
+    tog.className = chatAIOn ? 'ai-toggle on' : 'ai-toggle off';
+  }
+}
+
+function sendChat() {
+  var input = document.getElementById('chatInput');
+  var q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+  
+  // Add user message
+  addMsg('user', q);
+  
+  // Show typing
+  var typingId = 'typing-' + Date.now();
+  var typingHtml = '<div class="chat-msg bot" id="' + typingId + '"><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', typingHtml);
+  scrollChat();
+  
+  // Search
+  var results = searchCourse(q);
+  document.getElementById('chatResultCount').textContent = '找到 ' + results.length + ' 条结果';
+  
+  if (results.length === 0) {
+    document.getElementById(typingId).outerHTML = '<div class="chat-msg bot"><div class="bubble">😕 没找到相关结果。试试换个问法，或者问得更具体一些。</div></div>';
+    scrollChat();
+    return;
+  }
+  
+  if (chatAIOn && chatAIKey) {
+    // AI mode: search + summarize
+    callAI(q, results, typingId);
+  } else {
+    // Search-only mode: show results directly
+    var html = '<div class="chat-msg bot"><div class="bubble">';
+    results.slice(0, 5).forEach(function(r) {
+      var mod = r.entry.module || '';
+      var txt = r.snippet || r.entry.text.substring(0, 120);
+      html += '<div style="margin-bottom:6px;padding:6px 8px;background:rgba(231,76,60,.06);border-radius:6px;border-left:2px solid #e74c3c;">';
+      html += '<div style="font-size:.72em;color:#e74c3c;margin-bottom:2px;">' + mod + '</div>';
+      html += '<div>' + txt + '</div></div>';
+    });
+    if (results.length > 5) html += '<div style="font-size:.72em;color: #6b7280;margin-top:4px;">…还有 ' + (results.length - 5) + ' 条结果</div>';
+    html += '</div><div class="src">💡 配置 API Key 可启用 AI 总结</div></div>';
+    document.getElementById(typingId).outerHTML = html;
+    scrollChat();
+  }
+}
+
+function searchCourse(q) {
+  var query = q.toLowerCase();
+  if (!query || query.length < 1) return [];
+  var scored = [];
+  for (var i = 0; i < chatIndex.length; i++) {
+    var entry = chatIndex[i];
+    var text = (entry.text || '').toLowerCase();
+    var score = 0;
+    if (text.indexOf(query) >= 0) {
+      score += (text.split(query).length - 1) * 3;
+    }
+    // bigram for fuzzy chinese match
+    for (var j = 0; j < query.length - 1 && j < 6; j++) {
+      var bg = query.substring(j, j + 2);
+      if (text.indexOf(bg) >= 0) score += 0.5;
+    }
+    if (score > 0) scored.push({entry: entry, score: score});
+  }
+  scored.sort(function(a,b){return b.score - a.score});
+  
+  // Build snippets
+  var out = [];
+  for (var i = 0; i < Math.min(scored.length, 10); i++) {
+    var r = scored[i];
+    var text = r.entry.text;
+    var idx = text.toLowerCase().indexOf(query);
+    if (idx >= 0) {
+      var start = Math.max(0, idx - 20);
+      var end = Math.min(text.length, idx + query.length + 40);
+      r.snippet = (start > 0 ? '…' : '') + text.substring(start, end) + (end < text.length ? '…' : '');
+    } else {
+      r.snippet = text.substring(0, 100);
+    }
+    out.push(r);
+  }
+  return out;
+}
+
+function callAI(query, results, typingId) {
+  var context = results.slice(0, 5).map(function(r){
+    return '[' + (r.entry.module || '') + '] ' + (r.entry.text || '');
+  }).join('\n\n');
+  
+  var body = JSON.stringify({
+    model: 'deepseek-chat',
+    messages: [
+      {role:'system',content:'你是 Elite20 Builder Program 课程助教。基于提供的课程内容回答。只基于已有内容，不编造。用中文，简洁。'},
+      {role:'user',content:'课程资料：\n' + context + '\n\n问题：' + query}
+    ],
+    temperature: 0.3,
+    max_tokens: 500
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://api.deepseek.com/chat/completions');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + chatAIKey);
+  xhr.onload = function() {
+    try {
+      var data = JSON.parse(xhr.responseText);
+      var answer = data.choices && data.choices[0] ? data.choices[0].message.content : '无法获取回答';
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">' + answer.replace(/\n/g,'<br>') + '</div></div>';
+    } catch(e) {
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">AI 服务出错，请检查 API Key</div></div>';
+    }
+    scrollChat();
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById(typingId);
+    if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">网络错误，请检查连接</div></div>';
+    scrollChat();
+  };
+  xhr.send(body);
+}
+
+function addMsg(role, text) {
+  var cls = role === 'user' ? 'user' : 'bot';
+  var html = '<div class="chat-msg ' + cls + '"><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', html);
+  scrollChat();
+}
+
+function scrollChat() {
+  var body = document.getElementById('chatBody');
+  body.scrollTop = body.scrollHeight;
+}
+</script>
+
+<div style="display:flex;gap:10px;margin:40px 0 20px;"><a href="01_KSTAR学习循环.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">← 上一节</div><div style="font-size:.85em;font-weight:500;">KSTAR 学习循环</div></a><a href="03_范畴论与AI哲学基础.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;text-align:right;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">下一节 →</div><div style="font-size:.85em;font-weight:500;">范畴论与 AI 哲学基础</div></a></div></body>
+</html>

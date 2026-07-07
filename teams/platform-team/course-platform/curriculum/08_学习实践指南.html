@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块08：学习实践指南 | Elite20 Builder Program</title>
+<meta name="description" content="学习实践指南 — 每日 KSTAR 日志 + C4A 自评 + 瓶颈突破">
+<style>
+  :root {
+    --bg-primary: #f3f4f6;
+    --bg-secondary: #e2e5ea;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #f8f9fb;
+    --border: #30363d;
+    --border-accent: #58a6ff;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-cyan: #39d2c0;
+    --accent-green: #3fb950;
+    --accent-yellow: #d29922;
+    --accent-orange: #f0883e;
+    --accent-purple: #bc8cff;
+    --accent-pink: #f778ba;
+    --accent-red: #f85149;
+    --gradient-top: linear-gradient(135deg, #58a6ff 0%, #bc8cff 50%, #f778ba 100%);
+    --gradient-mid: linear-gradient(135deg, #39d2c0 0%, #58a6ff 100%);
+    --gradient-bottom: linear-gradient(135deg, #f0883e 0%, #d29922 100%);
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* ── Navigation ── */
+  .nav-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-bar .brand {
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--gradient-top);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-bar .brand span { color: var(--text-muted); -webkit-text-fill-color: var(--text-muted); }
+  .nav-bar .nav-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-bar .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-bar .nav-links a:hover { color: var(--accent-blue); }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 100px 32px 50px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero .module-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: rgba(57,210,192,0.12);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(57,210,192,0.25);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: var(--gradient-top);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .hero .meta {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ── Container ── */
+  .container { max-width: 880px; margin: 0 auto; padding: 0 32px 80px; }
+  .section { margin-bottom: 48px; animation: fadeInUp 0.4s ease forwards; }
+
+  /* ── Section Header ── */
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header .icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .section-header .line {
+    flex: 1; height: 1px;
+    background: var(--border);
+    margin-left: 8px;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    border-color: rgba(88,166,255,0.3);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li { color: var(--text-secondary); font-size: 15px; }
+  .card p + p { margin-top: 12px; }
+  .card ul, .card ol { padding-left: 20px; }
+  .card li { margin-bottom: 8px; }
+
+  /* ── Blockquote ── */
+  .blockquote {
+    background: rgba(88,166,255,0.06);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .blockquote p {
+    color: var(--text-primary) !important;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .blockquote .attribution {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .blockquote .attribution::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--text-muted);
+  }
+
+  /* ── Code / Pre ── */
+  code {
+    background: var(--bg-tertiary);
+    color: var(--accent-cyan);
+    padding: .15em .45em;
+    border-radius: 4px;
+    font-size: .88em;
+    font-family: var(--font-mono);
+  }
+  pre {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: .8rem 0 1.2rem;
+    overflow-x: auto;
+    font-size: .85rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* ── Tag / Badge ── */
+  .tag {
+    display: inline-block;
+    background: rgba(88,166,255,.15);
+    color: var(--accent-blue);
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .1rem .55rem;
+    border-radius: 4px;
+  }
+  .tag.green { background: rgba(63,185,80,.15); color: var(--accent-green); }
+  .tag.yellow { background: rgba(210,153,34,.15); color: var(--accent-yellow); }
+  .tag.red { background: rgba(248,81,73,.15); color: var(--accent-red); }
+  .tag.purple { background: rgba(188,140,255,.15); color: var(--accent-purple); }
+  .tag.pink { background: rgba(248,120,186,.15); color: var(--accent-pink); }
+  .tag.cyan { background: rgba(57,210,192,.15); color: var(--accent-cyan); }
+
+  /* ── Template Block ── */
+  .template-block {
+    background: var(--bg-tertiary);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+  }
+  .template-block .tmpl-label {
+    position: absolute;
+    top: -11px;
+    left: 14px;
+    background: var(--bg-primary);
+    padding: 0 .6rem;
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .template-block pre {
+    margin: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  .template-block pre code {
+    background: none;
+    color: var(--text-secondary);
+  }
+
+  /* ── Callout ── */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .callout p { font-size: 14px !important; }
+  .callout.warning {
+    background: rgba(210,153,34,0.08);
+    border: 1px solid rgba(210,153,34,0.25);
+  }
+  .callout.warning p { color: var(--accent-yellow) !important; }
+  .callout.tip {
+    background: rgba(57,210,192,0.08);
+    border: 1px solid rgba(57,210,192,0.25);
+  }
+  .callout.tip p { color: var(--accent-cyan) !important; }
+  .callout.info {
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.25);
+  }
+  .callout.info p { color: var(--accent-blue) !important; }
+  .callout.important {
+    background: rgba(248,120,186,0.08);
+    border: 1px solid rgba(248,120,186,0.25);
+  }
+  .callout.important p { color: var(--accent-pink) !important; }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; padding: 0 !important; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    transition: border-color 0.2s;
+  }
+  .checklist li:hover { border-color: rgba(88,166,255,0.3); }
+  .checklist li .box {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 2px solid var(--text-muted);
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+  .checklist li .text {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .checklist li .text strong { color: var(--text-primary); }
+
+  /* ── Resource Grid ── */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .resource-grid { grid-template-columns: 1fr; } }
+  .resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .resource-item:hover {
+    border-color: var(--accent-blue);
+    background: rgba(88,166,255,0.04);
+  }
+  .resource-item .r-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: var(--bg-tertiary);
+  }
+  .resource-item .r-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .resource-item .r-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── Rule Card ── */
+  .rule-card {
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: .8rem 0;
+  }
+  .rule-card.gold { border-left-color: var(--accent-yellow); }
+  .rule-card.green { border-left-color: var(--accent-green); }
+  .rule-card.purple { border-left-color: var(--accent-purple); }
+  .rule-card.pink { border-left-color: var(--accent-pink); }
+  .rule-card.cyan { border-left-color: var(--accent-cyan); }
+  .rule-card .label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: .3rem;
+  }
+  .rule-card .reason {
+    font-size: .88rem;
+    color: var(--text-muted);
+    margin-top: .35rem;
+  }
+
+  /* ── Stats Grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-box .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    background: var(--gradient-top);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-box .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── Phase Box ── */
+  .phase-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid;
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .phase-box.phase1 { border-left-color: var(--accent-green); }
+  .phase-box.phase2 { border-left-color: var(--accent-yellow); }
+  .phase-box.phase3 { border-left-color: var(--accent-purple); }
+  .phase-box.phase4 { border-left-color: var(--accent-pink); }
+  .phase-box .phase-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .phase-box.phase1 .phase-label { color: var(--accent-green); }
+  .phase-box.phase2 .phase-label { color: var(--accent-yellow); }
+  .phase-box.phase3 .phase-label { color: var(--accent-purple); }
+  .phase-box.phase4 .phase-label { color: var(--accent-pink); }
+  .phase-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .phase-box p { font-size: 14px; color: var(--text-secondary); }
+
+  /* ── Principle Spotlight ── */
+  .principle-box {
+    background: linear-gradient(135deg, rgba(63,185,80,.06), rgba(88,166,255,.06));
+    border: 2px solid var(--accent-green);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.2rem 0;
+    text-align: center;
+  }
+  .principle-box .big {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent-green);
+    margin-bottom: .3rem;
+  }
+  .principle-box .sub {
+    font-size: .95rem;
+    color: var(--text-secondary);
+  }
+
+  /* ── Progress Table ── */
+  .progress-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 16px 0;
+  }
+  .progress-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-table td {
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .progress-table td:first-child { border-radius: 8px 0 0 8px; }
+  .progress-table td:last-child { border-radius: 0 8px 8px 0; }
+  .progress-table td .checkbox-empty {
+    display: inline-block;
+    width: 18px; height: 18px;
+    border: 2px solid var(--text-muted);
+    border-radius: 3px;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .progress-table td .ch-num {
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-right: 8px;
+  }
+  .progress-table td .ch-name {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .progress-table tr.completed td .checkbox-empty {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    position: relative;
+  }
+  .progress-table tr.completed td .checkbox-empty::after {
+    content: '✓';
+    color: #000;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 18px;
+  }
+  .progress-table tr.completed td { opacity: 0.7; }
+
+  /* ── Quote Wall ── */
+  .quote-wall {
+    display: grid;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .quote-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    position: relative;
+  }
+  .quote-card::before {
+    content: '"';
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    font-size: 32px;
+    color: var(--accent-blue);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .quote-card .q-text {
+    font-size: 15px;
+    color: var(--text-primary);
+    font-style: italic;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+  .quote-card .q-context {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-left: 18px;
+  }
+  .quote-card .q-context .q-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 8px;
+    margin-right: 6px;
+  }
+  .quote-card .q-context .q-tag.kstar { background: rgba(57,210,192,0.12); color: var(--accent-cyan); }
+  .quote-card .q-context .q-tag.c2s { background: rgba(88,166,255,0.12); color: var(--accent-blue); }
+  .quote-card .q-context .q-tag.mindset { background: rgba(248,120,186,0.12); color: var(--accent-pink); }
+  .quote-card .q-context .q-tag.action { background: rgba(210,153,34,0.12); color: var(--accent-yellow); }
+  .quote-card .q-context .q-tag.c4a { background: rgba(188,140,255,0.12); color: var(--accent-purple); }
+
+  /* ── Link Card ── */
+  .link-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .link-card:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+  .link-card .lc-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .link-card .lc-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .link-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .link-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-left: 52px;
+  }
+
+  /* ── Two Column ── */
+  .two-col {
+    display: flex;
+    gap: 1.2rem;
+    margin: .8rem 0;
+  }
+  .two-col > * { flex: 1; }
+  @media (max-width: 640px) { .two-col { flex-direction: column; } }
+
+  /* ── Peer Index Card ── */
+  .peer-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .peer-card:hover { border-color: rgba(88,166,255,0.3); }
+  .peer-card .pc-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+  }
+  .peer-card .pc-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .peer-card .pc-info .pc-id {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: 6px;
+  }
+  .peer-card .pc-info .pc-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .peer-card .pc-info .pc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  /* ── TOC ── */
+  .toc-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .toc-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .toc-card ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    padding: 0;
+  }
+  .toc-card ol li {
+    counter-increment: toc-counter;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(48,54,61,0.4);
+  }
+  .toc-card ol li:last-child { border-bottom: none; }
+  .toc-card ol li::before {
+    content: counter(toc-counter);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+  }
+  .toc-card ol li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+    flex: 1;
+  }
+  .toc-card ol li a:hover { color: var(--accent-blue); }
+
+  /* ── Misc ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.2rem 0;
+  }
+  a { color: var(--accent-blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .text-muted { color: var(--text-muted); }
+  .mt-1 { margin-top: 1rem; }
+  .mb-0 { margin-bottom: 0; }
+  .gap-8 { height: 8px; }
+  .gap-16 { height: 16px; }
+  .gap-24 { height: 24px; }
+  .divider-text {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .divider-text::before, .divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 32px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .footer p { color: var(--text-muted); font-size: 13px; }
+  .footer .footer-links { display: flex; justify-content: center; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .footer .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; }
+  .footer .footer-links a:hover { color: var(--accent-blue); }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero { padding: 80px 20px 40px; }
+    .container { padding: 0 20px 60px; }
+    .nav-bar { padding: 0 16px; }
+    .nav-bar .nav-links a { font-size: 11px; }
+    .card { padding: 20px; }
+    .quote-card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#ffffff;border-bottom:1px solid #e2e5ea;padding:0 24px;display:flex;gap:0;overflow-x:auto;">
+  <a href="../index.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">← 课程首页</a>
+  <a href="01_KSTAR学习循环.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 01</a>
+  <a href="02_核心竞争力三层结构.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 02</a>
+  <a href="03_范畴论与AI哲学基础.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 03</a>
+  <a href="04_NEOLAF与AgentSkill.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 04</a>
+  <a href="05_C4A评估体系.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 05</a>
+  <a href="06_作业方法与提交规范.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 06</a>
+  <a href="07_挑战体系C1到C10.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 07</a>
+  <a href="08_学习实践指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 08</a>
+  <a href="09_VibeCoding实战指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 09</a>
+</div>
+
+
+<!-- ════════════ NAV ════════════ -->
+<nav class="nav-bar">
+  <div class="brand">AI+X Elite <span>| 模块 08</span></div>
+  <div class="nav-links">
+    <a href="#framework">框架速览</a>
+    <a href="#workflow">工作流</a>
+    <a href="#bottleneck">突破瓶颈</a>
+    <a href="#peer-index">拿来索引</a>
+    <a href="#progress">进度追踪</a>
+    <a href="#quotes">金句集</a>
+    <a href="#next">下一步</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <span class="module-badge">MODULE 08 · 综合指南</span>
+  <h1>学习实践指南</h1>
+  <p class="subtitle">从知识到行动 · 从同学到标杆 · 从入门到精通</p>
+  <div class="meta">
+    <span>📅 课程：Elite20 Builder Program</span>
+    <span>🎯 将全部模块串联为可执行的学习路线</span>
+    <span>⚡ 学完即用，每日精进</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ════════════ TABLE OF CONTENTS ════════════ -->
+  <div class="toc-card">
+    <h3>目录</h3>
+    <ol>
+      <li><a href="#framework">学习框架速览 &mdash; KSTAR + 三层 + C4A</a></li>
+      <li><a href="#workflow">每日 · 每周 · 每挑战工作流</a></li>
+      <li><a href="#templates">KSTAR 日志模板 &amp; C4A 自评模板</a></li>
+      <li><a href="#bottleneck">瓶颈突破指南</a></li>
+      <li><a href="#peer-index">同学"拿来"索引</a></li>
+      <li><a href="#progress">进度追踪表 C1-C10</a></li>
+      <li><a href="#quotes">Richard 金句合集</a></li>
+      <li><a href="#next">下一步去哪</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 1: 学习框架速览                        -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="framework">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(57,210,192,0.12);">🧭</div>
+      <h2>学习框架速览</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:20px;">
+      课程的核心方法论可以用三个框架概括。它们不是独立的知识点，而是层层递进的实践系统。
+    </p>
+
+    <!-- KSTAR -->
+    <div class="phase-box phase4">
+      <div class="phase-label">📌 方法一</div>
+      <h3>KSTAR 循环 &mdash; 知识转化的引擎</h3>
+      <p><strong>Knowledge</strong> 知识输入 → <strong>Situation</strong> 场景定位 → <strong>Task</strong> 任务定义 → <strong>Action</strong> 行动执行 → <strong>Result</strong> 结果反思 → 循环</p>
+      <div class="gap-8"></div>
+      <p>KSTAR 是整个课程的"最小学习单元"。每次学习都是一轮 KSTAR 循环：读一篇论文是 K，写反思笔记是 S+T，用 AI 生成综述是 A，复盘总结是 R。迭代越快，学习效率越高。</p>
+      <div class="callout tip" style="margin:12px 0 0;">
+        <div class="callout-icon">💡</div>
+        <p><strong>核心口诀</strong>：KSTAR Loop 最有效的方式是快速迭代 &mdash; 先出一版"垃圾版"，然后不断改进。</p>
+      </div>
+    </div>
+
+    <!-- 三层结构 -->
+    <div class="phase-box phase1">
+      <div class="phase-label">📌 方法二</div>
+      <h3>核心竞争力三层结构 &mdash; 能力成长的阶梯</h3>
+      <p><strong>Layer 1 基础作业层</strong> → 完成 C1-C3，掌握工具链与基本范式</p>
+      <p><strong>Layer 2 挑战层</strong> → 完成 C4-C7，具备独立开发与交付能力</p>
+      <p><strong>Layer 3 集成层</strong> → 完成 C8-C10，能够构建完整系统级解决方案</p>
+      <div class="gap-8"></div>
+      <p>每一层都依赖前一层的基础。不要试图跳过基础层直接做集成 &mdash; 这是课程最常见的失败模式。</p>
+    </div>
+
+    <!-- C4A -->
+    <div class="phase-box phase3">
+      <div class="phase-label">📌 方法三</div>
+      <h3>C4A 评估体系 &mdash; 作品价值的四维标尺</h3>
+      <p><strong>C4A</strong>：概念（Concept）+ 代码（Code）+ 评论（Commentary）+ 创作（Creation）</p>
+      <p><strong>C4B</strong>：打包为可复用的 Skill/Agent</p>
+      <p><strong>C4C</strong>：增加 CI/CD 自动化</p>
+      <p><strong>C4D</strong>：本地化部署 + 跨平台验证</p>
+      <div class="gap-8"></div>
+      <p>C4A→C4B→C4C→C4D 是一条完整的"从想法到产品"的递进路径。每个字母都代表着作品成熟度的跃迁。</p>
+    </div>
+
+    <!-- 三角联动 -->
+    <div class="card">
+      <h3>🔄 三者的联动关系</h3>
+      <p><strong>KSTAR</strong> 是你的日常学习引擎 &mdash; 每天用，每个任务用。</p>
+      <p><strong>三层结构</strong> 是你的学期路线图 &mdash; 告诉你现在在第几层，下一步该爬哪层。</p>
+      <p><strong>C4A 体系</strong> 是你的作品评估标尺 &mdash; 每个挑战完成后，用 C4A 的四维标尺自评。</p>
+      <div class="callout info" style="margin:12px 0 0;">
+        <div class="callout-icon">🎯</div>
+        <p><strong>一句话总结</strong>：用 KSTAR 每天进步，用三层结构规划方向，用 C4A 衡量成果。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 2: 每日 · 每周 · 每挑战工作流          -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="workflow">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(88,166,255,0.12);">📋</div>
+      <h2>每日 · 每周 · 每挑战工作流</h2>
+      <div class="line"></div>
+    </div>
+
+    <!-- 每日 -->
+    <div class="phase-box phase1">
+      <div class="phase-label">🌅 每日工作流</div>
+      <h3>30 分钟 · 一个 KSTAR 循环</h3>
+      <p><strong>① 回顾（5 分钟）</strong> &mdash; 查看前一天的 KSTAR 日志，复习关键知识点。</p>
+      <p><strong>② 选材（5 分钟）</strong> &mdash; 选定一个学习素材：一篇论文片段、一个同学的作品、一个课程模块。</p>
+      <p><strong>③ 执行（15 分钟）</strong> &mdash; 完成一轮 KSTAR：阅读（K）→ 关联自身场景（S）→ 定义任务（T）→ 用 AI 执行（A）→ 记录结果（R）。</p>
+      <p><strong>④ 记录（5 分钟）</strong> &mdash; 填写今日 KSTAR 日志（模板在下一节）。</p>
+      <div class="callout tip" style="margin:10px 0 0;">
+        <div class="callout-icon">⏱️</div>
+        <p>即使只有 15 分钟，也完成一轮完整的 KSTAR &mdash; 哪怕结果是一句"今天没有学到什么"，也比不做好。关键是保持循环的连续性。</p>
+      </div>
+    </div>
+
+    <!-- 每周 -->
+    <div class="phase-box phase2">
+      <div class="phase-label">📅 每周工作流</div>
+      <h3>90 分钟 · C4A 自评 + 下周规划</h3>
+      <p><strong>① 回顾一周 KSTAR 日志（20 分钟）</strong> &mdash; 翻阅本周的 5-7 条 KSTAR 日志，找出重复出现的主题和未解决的问题。</p>
+      <p><strong>② C4A 自评（30 分钟）</strong> &mdash; 用 C4A 四维标尺评估本周最重要的一个作品或学习产出。填写 C4A 自评模板。</p>
+      <p><strong>③ 调整方向（20 分钟）</strong> &mdash; 对照三层结构地图：我现在在第几层？下个挑战是什么？是否需要回退补基础？</p>
+      <p><strong>④ 制定下周计划（20 分钟）</strong> &mdash; 确定下周要完成的 1-2 个具体目标，写在进度追踪表上。</p>
+      <div class="callout warning" style="margin:10px 0 0;">
+        <div class="callout-icon">⚠️</div>
+        <p><strong>不要跳过周回顾。</strong> 每日 KSTAR 是"输入"，每周回顾是"消化"。不回顾 = 学了很多但什么都没留下。</p>
+      </div>
+    </div>
+
+    <!-- 每挑战 -->
+    <div class="phase-box phase3">
+      <div class="phase-label">🎯 每挑战工作流</div>
+      <h3>一个挑战 = 一个完整作品</h3>
+      <p><strong>① 理解挑战（阅读原始描述 + 标杆作品）</strong> &mdash; 先看至少 2 个同学已经完成的同挑战作品。这就是"拿来主义"的第一步。</p>
+      <p><strong>② 规划（写出你的 KSTAR 计划）</strong> &mdash; 明确你的 S（场景）和 T（任务），再开始写代码。</p>
+      <p><strong>③ 执行（迭代 3-5 轮）</strong> &mdash; 先出一个"垃圾版"，然后逐轮改进。每轮都是一次 KSTAR 循环。</p>
+      <p><strong>④ 提交（遵循模块 06 规范）</strong> &mdash; README.md、LICENSE、命名规范、AI 产出物，一个都不能少。</p>
+      <p><strong>⑤ 复盘（写 C4A 自评）</strong> &mdash; 挑战完成后，立即用 C4A 评估，记录学到的经验。</p>
+      <div class="callout info" style="margin:10px 0 0;">
+        <div class="callout-icon">💡</div>
+        <p>一个挑战的"完成"不是代码写完就算 &mdash; 是 README 写好了、LICENSE 填了、复盘写了、别人看得懂也能复现。这才是真正的作品。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 3: 模板                                 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="templates">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(188,140,255,0.12);">📝</div>
+      <h2>KSTAR 日志模板 &amp; C4A 自评模板</h2>
+      <div class="line"></div>
+    </div>
+
+    <!-- 每日 KSTAR 日志 -->
+    <h3 style="font-size:17px; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <span class="tag cyan">每日</span> KSTAR 日志模板
+    </h3>
+    <p class="text-muted" style="margin-bottom:12px;">
+      复制以下模板到你的笔记系统（Obsidian / Notion / Markdown 文件），每天填写一条。
+    </p>
+
+    <div class="template-block">
+      <div class="tmpl-label">DAILY KSTAR LOG</div>
+      <pre><code># KSTAR 日志 · YYYY-MM-DD
+
+## Knowledge（知识输入）
+[今天学习了什么？一篇论文、一个模块、一个同学作品、一个技术概念…]
+
+## Situation（场景关联）
+[这个知识跟我自己的场景有什么关系？我当前在做什么项目/挑战？]
+
+## Task（任务定义）
+[基于以上，我要完成的一个具体任务是什么？一句话说清楚]
+
+## Action（行动执行）
+[我做了什么？用了什么 AI 工具？提示语是什么？]
+
+## Result（结果与反思）
+- 实际产出：
+- 与预期对比：✅ / ⚠️ / ❌
+- 关键领悟：
+- 下一步行动：</code></pre>
+    </div>
+
+    <div class="callout info" style="margin-bottom:24px;">
+      <div class="callout-icon">💡</div>
+      <p><strong>示例</strong>：K"读了一篇关于 RAG 的论文"→ S"我正好在做 C4B，需要检索增强"→ T"用 RAG 改进我的 wechat-publisher"→ A"让 AI 帮我设计检索模块架构"→ R"得到了一份架构设计图，但还需要补充数据源配置"</p>
+    </div>
+
+    <!-- 每周 C4A 自评 -->
+    <h3 style="font-size:17px; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <span class="tag purple">每周</span> C4A 自评模板
+    </h3>
+    <p class="text-muted" style="margin-bottom:12px;">
+      每周选择本周最重要的一个作品，用 C4A 四维标尺评估。
+    </p>
+
+    <div class="template-block">
+      <div class="tmpl-label">WEEKLY C4A REVIEW</div>
+      <pre><code># C4A 自评 · 第 X 周 (YYYY-MM-DD)
+
+## 作品名称
+[本周重点评估的作品/挑战名称]
+
+## C — Concept（概念）
+- 核心思想是否清晰？能否用一句话说清楚？
+- 是否有创新点，或者对已有方案的改进？
+- 评分（1-5）：___
+
+## C — Code（代码）
+- 代码是否可以运行？有无明显 bug？
+- 代码风格是否一致？注释是否充分？
+- 是否有 README 指导他人使用？
+- 评分（1-5）：___
+
+## C — Commentary（评论/文档）
+- 是否有完整的文档说明？
+- 是否记录了你思考的过程？
+- 是否包含 AI 产出物的说明？
+- 评分（1-5）：___
+
+## C — Creation（创作/创新）
+- 这个作品是否体现了你的独立思考？
+- 是否超越了"抄作业"的层面？
+- 评分（1-5）：___
+
+## 总评与反思
+- 总分：___ / 20
+- 本周最大收获：
+- 下周改进方向：
+- 需要帮助的地方：</code></pre>
+    </div>
+
+    <div class="callout tip" style="margin-bottom:24px;">
+      <div class="callout-icon">🌟</div>
+      <p><strong>建议</strong>：C4A 自评不是打分比赛，而是帮你发现盲区的镜子。如果你发现所有维度都在 3 分以下，不要灰心 &mdash; 这意味着你清楚知道自己该从哪里改进。</p>
+    </div>
+
+    <!-- 每挑战复盘 -->
+    <h3 style="font-size:17px; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+      <span class="tag yellow">每挑战</span> 挑战复盘模板
+    </h3>
+    <p class="text-muted" style="margin-bottom:12px;">
+      完成一个挑战后，做一次完整的复盘。
+    </p>
+
+    <div class="template-block">
+      <div class="tmpl-label">CHALLENGE REVIEW</div>
+      <pre><code># 挑战复盘 · [挑战名称]
+
+## 基本信息
+- 挑战编号：C1 / C2 / C3 / …
+- 完成日期：YYYY-MM-DD
+- 用时：__ 天
+- 参考了哪些同学的作品：[同学1] [同学2] …
+
+## 过程回顾
+- 最大的难点是什么？
+- 是怎么突破的？
+- 如果重来一次，会怎么做？
+
+## KSTAR 循环次数
+- 总共迭代了几轮？
+- 哪一轮最关键？
+
+## 作品检查清单
+- [ ] README.md 已写
+- [ ] LICENSE 已填（本人姓名）
+- [ ] 无 .docx 等二进制文件
+- [ ] 命名一致
+- [ ] AI 产出物已包含
+- [ ] 从新仓库而非 fork 提交
+
+## C4A 自评链接
+[指向 C4A 自评文件的链接]
+
+## 下一步
+- 这个挑战之后，下一个挑战是什么？
+- 本次学到的技能可以复用到哪里？</code></pre>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 4: 瓶颈突破指南                         -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="bottleneck">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(248,120,186,0.12);">🚀</div>
+      <h2>瓶颈突破指南</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:20px;">
+      每个学习者都会遇到瓶颈。以下清单直接从 Richard 的反馈和课程经验中总结，遇到卡顿就逐一排查。
+    </p>
+
+    <!-- 第一性原则 -->
+    <div class="card">
+      <h3>🔑 卡住了？先检查这 3 条黄金法则</h3>
+
+      <div class="rule-card green">
+        <span class="label">法则 1：先出一版垃圾版</span>
+        <p><strong>"KSTAR Loop is most effective when you iterate fast!"</strong></p>
+        <p>卡住的最大原因往往不是"不知道怎么做好"，而是"想做完美"。Richard 反复强调：先出一个垃圾版，再迭代改进。完美的敌人是完成。</p>
+        <div class="reason">✅ 行动：设一个 25 分钟计时器，到点必须出一版 "垃圾版"。哪怕只有一个 README 标题 + 一行代码。</div>
+      </div>
+
+      <div class="rule-card gold">
+        <span class="label">法则 2：拿来主义 &mdash; 抄作业不可耻</span>
+        <p><strong>"抄作业,被别人抄作业,帮别人抄作业,帮人做作业,一起做作业——都有加分"</strong></p>
+        <p>课程从第一天就鼓励"拿来"。不要从零开始 &mdash; 找一个已经完成类似任务的同学，把他的作品 fork/复制过来，理解、修改、改进。</p>
+        <div class="reason">✅ 行动：去同学"拿来"索引（下一节）找到与你目标最接近的同学作品，直接复制到本地跑起来。</div>
+      </div>
+
+      <div class="rule-card purple">
+        <span class="label">法则 3：有效反馈循环 &mdash; 别闭门造车</span>
+        <p><strong>"批评别人的作业,邀请别人批评自己的作业"</strong></p>
+        <p>如果你一个人卡了 2 小时以上，说明你需要反馈。去课程群里发你的进展（哪怕只有一行字），去评论别人的作业，或者邀请别人评论你的。</p>
+        <div class="reason">✅ 行动：在课程群里发一条消息："C4A 卡在第三步，求指点" + 附上你的进度截图。</div>
+      </div>
+    </div>
+
+    <!-- 详细检查清单 -->
+    <div class="card">
+      <h3>🔍 瓶颈检查清单（遇到卡顿时逐项排查）</h3>
+
+      <p style="margin-bottom:8px;"><strong>第一阶段：诊断卡点类型</strong></p>
+      <ul class="checklist">
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>技术卡顿</strong> &mdash; 代码跑不起来、API 调用失败、环境配置出错</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>概念卡顿</strong> &mdash; 不理解某个概念、阅读论文看不懂、不知道怎么做</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>动力卡顿</strong> &mdash; 不想做、拖延、觉得太难、怀疑自己</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>方向卡顿</strong> &mdash; 不知道该做哪个挑战、不确定怎么做、选择困难</div>
+        </li>
+      </ul>
+
+      <div class="gap-16"></div>
+
+      <p style="margin-bottom:8px;"><strong>第二阶段：技术卡顿 — 行动清单</strong></p>
+      <ul class="checklist">
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 先看同学的实现</strong> &mdash; 去"拿来索引"找一个完成该挑战的同学，看他的完整代码</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 把错误信息喂给 AI</strong> &mdash; 复制完整的错误日志，告诉 AI "帮我诊断这个错误"</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 简化问题</strong> &mdash; 把大问题拆成小问题。比如"部署整个系统"拆成"先让 Docker 跑一个 hello world"</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 换工具</strong> &mdash; 如果某个工具一直报错，换个同类工具试试</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 发课程群求助</strong> &mdash; 附上错误信息 + 你尝试过的解决步骤</div>
+        </li>
+      </ul>
+
+      <div class="gap-16"></div>
+
+      <p style="margin-bottom:8px;"><strong>第二阶段：概念卡顿 — 行动清单</strong></p>
+      <ul class="checklist">
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 让 AI 用类比解释</strong> &mdash; "请用我奶奶也能听懂的方式解释 [概念]"</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 找到该概念的原始出处</strong> &mdash; 回看课程中对应的模块</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 看同学怎么理解这个概念的</strong> &mdash; 找同学作业中的概念描述部分</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 用自己的话写一遍</strong> &mdash; 不要怕写错，写出来才能被纠正</div>
+        </li>
+      </ul>
+
+      <div class="gap-16"></div>
+
+      <p style="margin-bottom:8px;"><strong>第二阶段：动力卡顿 — 行动清单</strong></p>
+      <ul class="checklist">
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 做最小可行版本</strong> &mdash; 设一个 5 分钟计时器，只做一件事：打开编辑器写一行字</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 回看 Richard 金句</strong> &mdash; 翻到本页金句集部分，找到一句能击中你的</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 找一个人聊聊</strong> &mdash; 在群里发一句"有人也在做 C5 吗？求组队"</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 换个挑战做</strong> &mdash; 如果当前挑战让你痛苦，换一个更简单的挑战先做，找找感觉</div>
+        </li>
+      </ul>
+
+      <div class="gap-16"></div>
+
+      <p style="margin-bottom:8px;"><strong>第二阶段：方向卡顿 — 行动清单</strong></p>
+      <ul class="checklist">
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 对照三层结构</strong> &mdash; 我现在在第几层？下一层需要什么能力？</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 看进度追踪表</strong> &mdash; 以 C1-C10 的列表为参考，从最简单的开始打勾</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 向班主任咨询</strong> &mdash; 把你的目标 + 当前进度发给班主任，让他帮你定位</div>
+        </li>
+        <li>
+          <div class="box"></div>
+          <div class="text"><strong>☐ 先完成再完美</strong> &mdash; 任何方向都比原地踏步好。选一个就开干</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="callout important" style="margin-top:20px;">
+      <div class="callout-icon">⚡</div>
+      <p><strong>记住</strong>：瓶颈不是能力的上限，而是学习方式的信号。每次卡顿都是 KSTAR 循环中 "R" 环节的最佳素材 &mdash; 把它写成一条反思，你的学习系统就会升级。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 5: 同学拿来索引                          -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="peer-index">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(210,153,34,0.12);">📌</div>
+      <h2>同学"拿来"索引</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:16px;">
+      不知道怎么下手？直接找已经做好的同学作品来"抄"。以下几位同学的作业被 Richard 多次点名推荐，适合作为参考标杆。
+    </p>
+
+    <div class="peer-card">
+      <div class="pc-avatar">张</div>
+      <div class="pc-info">
+        <h4>张浩 <span style="font-weight:400; font-size:14px; color:var(--text-secondary);">· a976xw7td</span></h4>
+        <div class="pc-id">🏆 Richard 钦点标杆</div>
+        <div class="pc-desc">
+          <strong>C8W 标杆作品</strong> &mdash; wechat-class-manager 集成 Docker 容器化部署。Richard 在课程中多次指定"去抄张浩的 C8W"。如果你想做 C8 相关的挑战，先看张浩的作品。
+        </div>
+        <div class="pc-tags">
+          <span class="tag">C8W</span>
+          <span class="tag green">Docker</span>
+          <span class="tag green">容器化</span>
+          <span class="tag">微信集成</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="peer-card">
+      <div class="pc-avatar">冯</div>
+      <div class="pc-info">
+        <h4>冯静雯 <span style="font-weight:400; font-size:14px; color:var(--text-secondary);">· cx677</span></h4>
+        <div class="pc-id">📝 AI 日志 + 论文批评标杆</div>
+        <div class="pc-desc">
+          <strong>C1 AI 日志模板</strong> &mdash; 她的 AI 日志模板被 Richard 认可并推荐给全班使用。<strong>C2S 论文批评</strong> &mdash; 她对论文 §6.3 Elite20 的批评性分析是 C2S 范式的典范。
+        </div>
+        <div class="pc-tags">
+          <span class="tag">C1</span>
+          <span class="tag">C2S</span>
+          <span class="tag purple">AI 日志</span>
+          <span class="tag">论文批评</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="peer-card">
+      <div class="pc-avatar">尹</div>
+      <div class="pc-info">
+        <h4>尹镇宇 <span style="font-weight:400; font-size:14px; color:var(--text-secondary);">· xnsnhwh-svg</span></h4>
+        <div class="pc-id">📦 C4A/C4D 完整提交标杆</div>
+        <div class="pc-desc">
+          <strong>C4A 完整提交</strong> &mdash; 概念、代码、评论、创作四维兼备。<strong>C4D 本地化部署</strong> &mdash; 完整展现了从本地部署到跨平台验证的全流程。如果你想做 C4 系列挑战，这是最好的参考。
+        </div>
+        <div class="pc-tags">
+          <span class="tag">C4A</span>
+          <span class="tag">C4D</span>
+          <span class="tag cyan">完整提交</span>
+          <span class="tag yellow">本地部署</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="peer-card">
+      <div class="pc-avatar">史</div>
+      <div class="pc-info">
+        <h4>史雨萱 <span style="font-weight:400; font-size:14px; color:var(--text-secondary);">· Chloeyouyou</span></h4>
+        <div class="pc-id">🤖 C4B Skill 打包标杆</div>
+        <div class="pc-desc">
+          <strong>C4B wechat-publisher.skill</strong> &mdash; 将 AI 能力打包为可复用的 Hermes Agent Skill。如果你想做 C4B 的 Skill 打包挑战，这是直接可复用的参考。
+        </div>
+        <div class="pc-tags">
+          <span class="tag">C4B</span>
+          <span class="tag pink">Skill</span>
+          <span class="tag">wechat-publisher</span>
+          <span class="tag purple">Hermes Agent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip" style="margin-top:16px;">
+      <div class="callout-icon">💡</div>
+      <p><strong>"拿来主义"的正确姿势</strong>：复制 → 理解 → 修改 → 改进 → 超越。不是抄完就完事，而是在他人的基础上做出你自己的增量。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 6: 进度追踪表 C1-C10                    -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="progress">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(63,185,80,0.12);">✅</div>
+      <h2>进度追踪表 C1-C10</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:16px;">
+      按照课程体系，从 C1 到 C10 的完整挑战清单。每完成一项就在前面的方框中打勾。建议打印出来贴在桌上，或复制到你的笔记系统中。
+    </p>
+
+    <table class="progress-table">
+      <thead>
+        <tr>
+          <th style="width:60px;">状态</th>
+          <th>挑战</th>
+          <th style="width:140px;">关键词</th>
+          <th style="width:80px;">难度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C1</span><span class="ch-name">AI X 入门日志</span></td>
+          <td>AI 日志模板 · 基础工具链</td>
+          <td><span class="tag green">入门</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C2</span><span class="ch-name">论文阅读理解 + C2S 提交</span></td>
+          <td>论文分析 · KSTAR · 四件套</td>
+          <td><span class="tag green">入门</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C3</span><span class="ch-name">GitHub 作业规范掌握</span></td>
+          <td>README · LICENSE · 命名规范</td>
+          <td><span class="tag green">入门</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C4A</span><span class="ch-name">概念 + 代码 + 评论 + 创作</span></td>
+          <td>四维作品 · 完整提交</td>
+          <td><span class="tag yellow">进阶</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C4B</span><span class="ch-name">Skill/Agent 打包</span></td>
+          <td>可复用 · Hermes Agent Skill</td>
+          <td><span class="tag yellow">进阶</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C4C</span><span class="ch-name">CI/CD 自动化</span></td>
+          <td>GitHub Actions · 自动测试</td>
+          <td><span class="tag yellow">进阶</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C4D</span><span class="ch-name">本地化部署 + 跨平台验证</span></td>
+          <td>Ollama · Gemma 4 · 离线推理</td>
+          <td><span class="tag yellow">进阶</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C5</span><span class="ch-name">多智能体系统</span></td>
+          <td>AG2/AutoGen · 多 Agent 协作</td>
+          <td><span class="tag yellow">进阶</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C6</span><span class="ch-name">高级 AI 应用开发</span></td>
+          <td>复杂应用 · 多工具链</td>
+          <td><span class="tag">高级</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C7</span><span class="ch-name">飞书集成（Webhook）</span></td>
+          <td>飞书 API · 自动通知</td>
+          <td><span class="tag">高级</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C8W</span><span class="ch-name">Docker 容器化 + 微信集成</span></td>
+          <td>Docker · 微信 API · 容器化</td>
+          <td><span class="tag">高级</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C9</span><span class="ch-name">完整前端 + 后端集成</span></td>
+          <td>全栈 · 前后端联调</td>
+          <td><span class="tag purple">专家</span></td>
+        </tr>
+        <tr>
+          <td><span class="checkbox-empty"></span></td>
+          <td><span class="ch-num">C10</span><span class="ch-name">高阶集成 + Hermes Agent + 飞书</span></td>
+          <td>完整系统 · 高阶 Agent</td>
+          <td><span class="tag purple">专家</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <h3>📊 完成度统计</h3>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="completed-count" style="font-size:32px;">0</div>
+          <div class="stat-label">已完成的挑战</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" style="font-size:32px;">13</div>
+          <div class="stat-label">总共挑战数</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="progress-pct" style="font-size:32px;">0%</div>
+          <div class="stat-label">完成进度</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">🎯</div>
+      <p><strong>推荐路径</strong>：C1 → C2 → C3（基础三件套）→ C4A（第一个完整作品）→ 然后根据兴趣选择 C4B/C4C/C4D 或直接挑战 C5-C8。不要跳过基础层直接做 C10 &mdash; 失败的教训已经太多。</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 7: Richard 金句合集                      -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="quotes">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(248,120,186,0.12);">💬</div>
+      <h2>Richard 金句合集</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:16px;">
+      从课程实录中提炼的 Richard 原话。每一句都值得反复品味。按照主题分类，方便查找。
+    </p>
+
+    <div class="quote-wall">
+
+      <!-- KSTAR / 迭代 -->
+      <div class="quote-card">
+        <div class="q-text">KSTAR Loop is most effective when you iterate fast!</div>
+        <div class="q-context"><span class="q-tag kstar">KSTAR</span> 关于快速迭代的核心原则 &mdash; 先出一版垃圾版，再迭代</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">You can always iterate. There is no perfect first version. Just start.</div>
+        <div class="q-context"><span class="q-tag kstar">KSTAR</span> 没有完美的第一版，开始就好</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">The difference between a good submission and a great one is usually just one more iteration.</div>
+        <div class="q-context"><span class="q-tag kstar">KSTAR</span> 好作品和伟大作品之间通常只差一次迭代</div>
+      </div>
+
+      <!-- 拿来主义 -->
+      <div class="quote-card">
+        <div class="q-text">抄作业,被别人抄作业,帮别人抄作业,帮人做作业,一起做作业——都有加分</div>
+        <div class="q-context"><span class="q-tag mindset">拿来主义</span> 课程的核心协作哲学 &mdash; 没有"抄袭"，只有共同进步</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">If you want to go fast, go alone. If you want to go far, copy someone else's homework.</div>
+        <div class="q-context"><span class="q-tag mindset">拿来主义</span> 对"独行快众行远"的幽默演绎</div>
+      </div>
+
+      <!-- C2S -->
+      <div class="quote-card">
+        <div class="q-text">你思考，AI 执行。你不需要手写任何成品 &mdash; 翻译、综述、建议书、复盘均由 AI 在你的指挥下生成。我们评估的是「你的思想是否在场」。</div>
+        <div class="q-context"><span class="q-tag c2s">C2S</span> C2S 范式的终极定义</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">Your value is in your thinking, not in your typing.</div>
+        <div class="q-context"><span class="q-tag c2s">C2S</span> 你的价值在于思考，而非打字</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">I could not find the output generated by the agent.</div>
+        <div class="q-context"><span class="q-tag c2s">C2S</span> 被 Richard 点名最多的反馈 &mdash; 作业中必须包含 AI 产出物</div>
+      </div>
+
+      <!-- 作业规范 -->
+      <div class="quote-card">
+        <div class="q-text">Typically we don't use or store docx files in GitHub.</div>
+        <div class="q-context"><span class="q-tag action">规范</span> GitHub 不是 Word 的仓库 &mdash; 用 Markdown</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">the repo itself needs README.md</div>
+        <div class="q-context"><span class="q-tag action">规范</span> 没有 README 的仓库是不完整的仓库</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">your LICENSE file should be separate and put your name in as the license owner</div>
+        <div class="q-context"><span class="q-tag action">规范</span> LICENSE 独立文件，版权人写你的名字，不是 AI</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">you probably should started as a new repo rather than a fork from neoskills</div>
+        <div class="q-context"><span class="q-tag action">规范</span> 新建仓库而非 fork &mdash; 保持干净的历史</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">your naming conventions for mynotes.txt needs to be consistent</div>
+        <div class="q-context"><span class="q-tag action">规范</span> 文件命名一致性是信息架构的基础</div>
+      </div>
+
+      <!-- 反馈文化 -->
+      <div class="quote-card">
+        <div class="q-text">批评别人的作业,邀请别人批评自己的作业</div>
+        <div class="q-context"><span class="q-tag mindset">反馈</span> 课程的核心反馈文化 &mdash; 公开、建设性、双向</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">I also want to see the meta-prompt or prompt chain you used to generate the prompts.</div>
+        <div class="q-context"><span class="q-tag c4a">元提示</span> 元提示链是你思考过程的最强证据</div>
+      </div>
+
+      <!-- 学习态度 -->
+      <div class="quote-card">
+        <div class="q-text">Don't let perfectionism kill your learning. A bad submission is infinitely better than no submission.</div>
+        <div class="q-context"><span class="q-tag mindset">心态</span> 完美主义是学习最大的敌人</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">The only way to learn AI is to use AI. Not to read about it, not to watch videos about it &mdash; to use it.</div>
+        <div class="q-context"><span class="q-tag mindset">方法</span> 学 AI 的唯一方法是使用 AI</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">Your repo is your resume. Treat it that way.</div>
+        <div class="q-context"><span class="q-tag action">规范</span> 你的 GitHub 仓库就是你的简历</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="q-text">We don't grade effort. We grade output. Show me what you built.</div>
+        <div class="q-context"><span class="q-tag mindset">评估</span> 不评估努力，只评估产出 &mdash; 展示你做了什么</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 8: 下一步去哪                           -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="section" id="next">
+    <div class="section-header">
+      <div class="icon" style="background:rgba(57,210,192,0.12);">🚀</div>
+      <h2>下一步去哪</h2>
+      <div class="line"></div>
+    </div>
+
+    <p class="text-muted" style="margin-bottom:20px;">
+      本指南整合了全部 8 个模块的精华。以下链接带你回到各个模块的详细内容，供需要时深入学习。
+    </p>
+
+    <div class="resource-grid">
+
+      <a href="01_KSTAR学习循环.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-blue);">01</div>
+        <div class="r-info">
+          <h4>模块 01：认知升级与 AI 范式</h4>
+          <p>从传统思维到 AI+X 范式的转变 &mdash; 理解"你思考，AI 执行"</p>
+        </div>
+      </a>
+
+      <a href="02_核心竞争力三层结构.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-green);">02</div>
+        <div class="r-info">
+          <h4>模块 02：核心竞争力三层结构</h4>
+          <p>Layer 1→Layer 2→Layer 3 的能力成长阶梯</p>
+        </div>
+      </a>
+
+      <a href="01_KSTAR学习循环.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-cyan);">03</div>
+        <div class="r-info">
+          <h4>模块 03：KSTAR 学习方法</h4>
+          <p>知识转化的循环引擎 &mdash; 每天进步的具体方法</p>
+        </div>
+      </a>
+
+      <a href="04_NEOLAF与AgentSkill.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-purple);">04</div>
+        <div class="r-info">
+          <h4>模块 04：NEOLAF &amp; Agent Skill</h4>
+          <p>C2S 范式的技术实现 &mdash; 让 AI 真正为你工作</p>
+        </div>
+      </a>
+
+      <a href="05_C4A评估体系.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-yellow);">05</div>
+        <div class="r-info">
+          <h4>模块 05：C4A 评估体系</h4>
+          <p>四维标尺 + C4A→C4B→C4C→C4D 递进路径</p>
+        </div>
+      </a>
+
+      <a href="06_作业方法与提交规范.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-pink);">06</div>
+        <div class="r-info">
+          <h4>模块 06：作业方法与提交规范</h4>
+          <p>六条硬性规范 + AI 日志模板 + 元提示链</p>
+        </div>
+      </a>
+
+      <a href="07_挑战体系C1到C10.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-orange);">07</div>
+        <div class="r-info">
+          <h4>模块 07：挑战体系 C1-C10</h4>
+          <p>全部 13 个挑战的详细描述、难度分级与完成指南</p>
+        </div>
+      </a>
+
+      <a href="08_学习实践指南.html" class="resource-item" >
+        <div class="r-icon" style="color:var(--accent-cyan);">08</div>
+        <div class="r-info">
+          <h4>模块 08：学习实践指南（当前）</h4>
+          <p>综合指南 &mdash; 框架速览、模板、瓶颈突破、拿来索引、进度追踪</p>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="card" style="margin-top:24px; text-align:center;">
+      <h3 style="justify-content:center;">🎉 你已经完成了全部 8 个模块的学习！</h3>
+      <p style="margin-top:8px;">
+        现在，打开编辑器，写下你的第一条 KSTAR 日志，完成第一个挑战。
+      </p>
+      <div class="principle-box" style="margin:16px auto; max-width:500px;">
+        <div class="big">你思考 &nbsp;⟶&nbsp; AI 执行</div>
+        <div class="sub">你的思想决定你的高度 &mdash; 不是 AI 的能力，而是你指挥 AI 的能力</div>
+      </div>
+      <p class="text-muted">
+        「学 AI 的唯一方法是使用 AI。不是阅读它，不是观看关于它的视频 &mdash; 而是使用它。」
+      </p>
+      <p class="text-muted" style="margin-top:4px;">— Richard</p>
+    </div>
+  </section>
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <div class="footer">
+    <p>Elite20 Builder Program &mdash; 学习实践指南 · 模块 08/08</p>
+    <div class="footer-links">
+      <a href="#framework">框架速览</a>
+      <a href="#workflow">工作流</a>
+      <a href="#templates">模板</a>
+      <a href="#bottleneck">瓶颈突破</a>
+      <a href="#peer-index">拿来索引</a>
+      <a href="#progress">进度追踪</a>
+      <a href="#quotes">金句集</a>
+      <a href="#next">下一步</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ INTERACTIVE JS ════════════════ -->
+<script>
+(function() {
+  // ── Checkbox toggle for progress table ──
+  const checkboxes = document.querySelectorAll('.progress-table .checkbox-empty');
+  checkboxes.forEach(function(box) {
+    box.addEventListener('click', function() {
+      const tr = this.closest('tr');
+      tr.classList.toggle('completed');
+      updateStats();
+    });
+  });
+
+  // ── Checklist toggles ──
+  const checklistBoxes = document.querySelectorAll('.checklist li .box');
+  checklistBoxes.forEach(function(box) {
+    box.addEventListener('click', function() {
+      const li = this.closest('li');
+      li.classList.toggle('done');
+      if (li.classList.contains('done')) {
+        this.style.background = 'var(--accent-green)';
+        this.style.borderColor = 'var(--accent-green)';
+        this.textContent = '✓';
+        this.style.color = '#000';
+        this.style.display = 'flex';
+        this.style.alignItems = 'center';
+        this.style.justifyContent = 'center';
+        this.style.fontSize = '13px';
+        this.style.fontWeight = '800';
+      } else {
+        this.style.background = '';
+        this.style.borderColor = '';
+        this.textContent = '';
+        this.style.display = '';
+        this.style.alignItems = '';
+        this.style.justifyContent = '';
+        this.style.fontSize = '';
+        this.style.fontWeight = '';
+      }
+    });
+  });
+
+  function updateStats() {
+    const total = document.querySelectorAll('.progress-table tbody tr').length;
+    const completed = document.querySelectorAll('.progress-table tbody tr.completed').length;
+    const countEl = document.getElementById('completed-count');
+    const pctEl = document.getElementById('progress-pct');
+    if (countEl) countEl.textContent = completed;
+    if (pctEl) pctEl.textContent = Math.round((completed / total) * 100) + '%';
+  }
+
+  // Initial render for checklist boxes (needs proper box state)
+  document.querySelectorAll('.checklist li .box').forEach(function(box) {
+    box.style.cursor = 'pointer';
+  });
+})();
+</script>
+
+
+<!-- ===== Floating Chat Bot ===== -->
+<style>
+.chat-fab { position:fixed; bottom:24px; right:24px; z-index:9999; }
+.chat-fab-btn {
+  width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#e74c3c,#9b59b6);
+  border:none; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 4px 16px rgba(231,76,60,.4);
+  transition:.2s; display:flex; align-items:center; justify-content:center;
+}
+.chat-fab-btn:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(231,76,60,.5); }
+.chat-fab-btn .pulse { position:absolute; width:52px; height:52px; border-radius:50%; animation:pulse 2s infinite; background:rgba(231,76,60,.3); }
+@keyframes pulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+
+.chat-window {
+  position:fixed; bottom:88px; right:24px; width:380px; max-height:560px;
+  background:#ffffff; border:1px solid #e2e5ea; border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15); z-index:9998; display:none; overflow:hidden;
+  flex-direction:column;
+}
+.chat-window.open { display:flex; }
+.chat-header {
+  padding:14px 16px; background: #ffffff; border-bottom:1px solid #e2e5ea;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.chat-header h3 { font-size:.85em; font-weight:600; color: #1a1d23; letter-spacing:-.01em; }
+.chat-header .close-btn { background:none; border:none; color:#888; cursor:pointer; font-size:1.1em; padding:2px 6px; border-radius:4px; }
+.chat-header .close-btn:hover { background:#e2e5ea; }
+.chat-body { flex:1; overflow-y:auto; padding:12px 14px; min-height:200px; max-height:400px; }
+.chat-body::-webkit-scrollbar { width:4px; }
+.chat-body::-webkit-scrollbar-thumb { background:#e2e5ea; border-radius:2px; }
+.chat-input-area { padding:10px 12px; border-top:1px solid #e2e5ea; display:flex; gap:8px; }
+.chat-input-area input {
+  flex:1; background: #ffffff; border:1px solid #e2e5ea; border-radius:8px;
+  padding:10px 14px; color:#1a1d23; font-size:.85em; outline:none; font-family:inherit;
+}
+.chat-input-area input:focus { border-color:#e74c3c; }
+.chat-input-area button {
+  background:linear-gradient(135deg,#e74c3c,#9b59b6); border:none; border-radius:8px;
+  color:#fff; padding:8px 14px; cursor:pointer; font-size:.8em; font-weight:500;
+}
+.chat-input-area button:hover { opacity:.9; }
+
+.chat-msg { margin-bottom:10px; max-width:90%; }
+.chat-msg.user { margin-left:auto; }
+.chat-msg.bot { margin-right:auto; }
+.chat-msg .bubble {
+  padding:8px 12px; border-radius:10px; font-size:.82em; line-height:1.5;
+}
+.chat-msg.user .bubble { background:#e74c3c; color:#fff; border-bottom-right-radius:3px; }
+.chat-msg.bot .bubble { background: #f3f4f6; color: #374151; border-bottom-left-radius:3px; }
+.chat-msg.bot .src { font-size:.65em; color: #6b7280; margin-top:2px; padding-left:4px; }
+.chat-msg .typing { display:flex; gap:4px; padding:4px 0; }
+.chat-msg .typing span { width:6px; height:6px; border-radius:50%; background:#555; animation:typing 1.4s infinite; }
+.chat-msg .typing span:nth-child(2) { animation-delay:.2s; }
+.chat-msg .typing span:nth-child(3) { animation-delay:.4s; }
+@keyframes typing { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
+
+.chat-footer { padding:6px 14px; border-top:1px solid #e2e5ea; display:flex; justify-content:space-between; font-size:.65em; color: #6b7280; }
+.chat-footer .ai-toggle { cursor:pointer; color: #6b7280; }
+.chat-footer .ai-toggle.on { color:#4ade80; }
+.chat-footer .ai-toggle.off { color: #6b7280; }
+
+@media (max-width:600px) {
+  .chat-window { width:calc(100vw - 32px); right:16px; bottom:80px; max-height:70vh; }
+}
+</style>
+
+<div class="chat-fab">
+  <button class="chat-fab-btn" onclick="toggleChat()" id="chatFabBtn">
+    <div class="pulse"></div>
+    <span>💬</span>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <h3>💬 课程小助手</h3>
+    <button class="close-btn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">
+      <div class="bubble">👋 你好！我是 Elite20 Builder Program 课程小助手。<br><br>
+      你可以问我任何课程相关的问题，比如：<br>
+      • "KSTAR 的 S 是什么？"<br>
+      • "C4A 怎么评分？"<br>
+      • "Richard 说过什么关于核心竞争力的话？"</div>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chatInput" placeholder="问个课程问题…" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">发送</button>
+  </div>
+  <div class="chat-footer">
+    <span id="chatResultCount"></span>
+    <span class="ai-toggle off" id="chatAiToggle" onclick="toggleChatAI()">🤖 AI 总结 关</span>
+  </div>
+</div>
+
+<script>
+// State
+var chatIndex = [];
+var chatAIKey = '';
+var chatAIOn = false;
+
+// Load search index
+fetch('../search-index.json').then(function(r){return r.json()}).then(function(d){
+  chatIndex = d.entries || [];
+}).catch(function(){});
+
+// Try load saved API key
+try {
+  var saved = localStorage.getItem('aix-ai-key');
+  if (saved && saved.length > 10) {
+    chatAIKey = saved;
+    chatAIOn = true;
+    document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+    document.getElementById('chatAiToggle').className = 'ai-toggle on';
+  }
+} catch(e){}
+
+function toggleChat() {
+  var w = document.getElementById('chatWindow');
+  w.classList.toggle('open');
+  if (w.classList.contains('open')) {
+    setTimeout(function(){document.getElementById('chatInput').focus();}, 200);
+  }
+}
+
+function toggleChatAI() {
+  if (!chatAIKey) {
+    var key = prompt('输入 API Key 启用 AI 总结功能\n(DeepSeek / OpenAI 兼容格式)');
+    if (key && key.length > 10) {
+      chatAIKey = key;
+      chatAIOn = true;
+      localStorage.setItem('aix-ai-key', key);
+      document.getElementById('chatAiToggle').textContent = '🤖 AI 总结 开';
+      document.getElementById('chatAiToggle').className = 'ai-toggle on';
+    }
+  } else {
+    chatAIOn = !chatAIOn;
+    var tog = document.getElementById('chatAiToggle');
+    tog.textContent = chatAIOn ? '🤖 AI 总结 开' : '🤖 AI 总结 关';
+    tog.className = chatAIOn ? 'ai-toggle on' : 'ai-toggle off';
+  }
+}
+
+function sendChat() {
+  var input = document.getElementById('chatInput');
+  var q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+  
+  // Add user message
+  addMsg('user', q);
+  
+  // Show typing
+  var typingId = 'typing-' + Date.now();
+  var typingHtml = '<div class="chat-msg bot" id="' + typingId + '"><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', typingHtml);
+  scrollChat();
+  
+  // Search
+  var results = searchCourse(q);
+  document.getElementById('chatResultCount').textContent = '找到 ' + results.length + ' 条结果';
+  
+  if (results.length === 0) {
+    document.getElementById(typingId).outerHTML = '<div class="chat-msg bot"><div class="bubble">😕 没找到相关结果。试试换个问法，或者问得更具体一些。</div></div>';
+    scrollChat();
+    return;
+  }
+  
+  if (chatAIOn && chatAIKey) {
+    // AI mode: search + summarize
+    callAI(q, results, typingId);
+  } else {
+    // Search-only mode: show results directly
+    var html = '<div class="chat-msg bot"><div class="bubble">';
+    results.slice(0, 5).forEach(function(r) {
+      var mod = r.entry.module || '';
+      var txt = r.snippet || r.entry.text.substring(0, 120);
+      html += '<div style="margin-bottom:6px;padding:6px 8px;background:rgba(231,76,60,.06);border-radius:6px;border-left:2px solid #e74c3c;">';
+      html += '<div style="font-size:.72em;color:#e74c3c;margin-bottom:2px;">' + mod + '</div>';
+      html += '<div>' + txt + '</div></div>';
+    });
+    if (results.length > 5) html += '<div style="font-size:.72em;color: #6b7280;margin-top:4px;">…还有 ' + (results.length - 5) + ' 条结果</div>';
+    html += '</div><div class="src">💡 配置 API Key 可启用 AI 总结</div></div>';
+    document.getElementById(typingId).outerHTML = html;
+    scrollChat();
+  }
+}
+
+function searchCourse(q) {
+  var query = q.toLowerCase();
+  if (!query || query.length < 1) return [];
+  var scored = [];
+  for (var i = 0; i < chatIndex.length; i++) {
+    var entry = chatIndex[i];
+    var text = (entry.text || '').toLowerCase();
+    var score = 0;
+    if (text.indexOf(query) >= 0) {
+      score += (text.split(query).length - 1) * 3;
+    }
+    // bigram for fuzzy chinese match
+    for (var j = 0; j < query.length - 1 && j < 6; j++) {
+      var bg = query.substring(j, j + 2);
+      if (text.indexOf(bg) >= 0) score += 0.5;
+    }
+    if (score > 0) scored.push({entry: entry, score: score});
+  }
+  scored.sort(function(a,b){return b.score - a.score});
+  
+  // Build snippets
+  var out = [];
+  for (var i = 0; i < Math.min(scored.length, 10); i++) {
+    var r = scored[i];
+    var text = r.entry.text;
+    var idx = text.toLowerCase().indexOf(query);
+    if (idx >= 0) {
+      var start = Math.max(0, idx - 20);
+      var end = Math.min(text.length, idx + query.length + 40);
+      r.snippet = (start > 0 ? '…' : '') + text.substring(start, end) + (end < text.length ? '…' : '');
+    } else {
+      r.snippet = text.substring(0, 100);
+    }
+    out.push(r);
+  }
+  return out;
+}
+
+function callAI(query, results, typingId) {
+  var context = results.slice(0, 5).map(function(r){
+    return '[' + (r.entry.module || '') + '] ' + (r.entry.text || '');
+  }).join('\n\n');
+  
+  var body = JSON.stringify({
+    model: 'deepseek-chat',
+    messages: [
+      {role:'system',content:'你是 Elite20 Builder Program 课程助教。基于提供的课程内容回答。只基于已有内容，不编造。用中文，简洁。'},
+      {role:'user',content:'课程资料：\n' + context + '\n\n问题：' + query}
+    ],
+    temperature: 0.3,
+    max_tokens: 500
+  });
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://api.deepseek.com/chat/completions');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + chatAIKey);
+  xhr.onload = function() {
+    try {
+      var data = JSON.parse(xhr.responseText);
+      var answer = data.choices && data.choices[0] ? data.choices[0].message.content : '无法获取回答';
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">' + answer.replace(/\n/g,'<br>') + '</div></div>';
+    } catch(e) {
+      var el = document.getElementById(typingId);
+      if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">AI 服务出错，请检查 API Key</div></div>';
+    }
+    scrollChat();
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById(typingId);
+    if (el) el.outerHTML = '<div class="chat-msg bot"><div class="bubble">网络错误，请检查连接</div></div>';
+    scrollChat();
+  };
+  xhr.send(body);
+}
+
+function addMsg(role, text) {
+  var cls = role === 'user' ? 'user' : 'bot';
+  var html = '<div class="chat-msg ' + cls + '"><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div></div>';
+  document.getElementById('chatBody').insertAdjacentHTML('beforeend', html);
+  scrollChat();
+}
+
+function scrollChat() {
+  var body = document.getElementById('chatBody');
+  body.scrollTop = body.scrollHeight;
+}
+</script>
+
+<div style="display:flex;gap:10px;margin:40px 0 20px;"><a href="07_挑战体系C1到C10.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">← 上一节</div><div style="font-size:.85em;font-weight:500;">挑战体系 C1 到 C10</div></a><a href="vibe-coding-3-课堂笔记.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;text-align:right;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">下一节 →</div><div style="font-size:.85em;font-weight:500;">Vibe Coding 第3课</div></a></div></body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding 第3课 — AI+X 精英班</title>
+<meta name="description" content="Vibe Coding 第3课课堂笔记 — 智能体 · Skills · 元认知方法论">
+  
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --card: #f3f4f6;
+      --border: #2a2a4a;
+      --text: #e0e0f0;
+      --muted: #8888aa;
+      --accent: #7c5cfc;
+      --accent2: #f472b6;
+      --accent3: #34d399;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+
+    /* Header */
+    .lesson-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lesson-header .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .lesson-header h1 {
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .lesson-header .speaker {
+      color: var(--accent3);
+      font-weight: 500;
+    }
+
+    /* Section */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .section h2 {
+      font-size: 1.25rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section h3 {
+      font-size: 1.05rem;
+      color: var(--accent2);
+      margin: 1rem 0 0.5rem;
+    }
+    .section h4 {
+      color: var(--accent3);
+      font-weight: 500;
+      margin: 0.75rem 0 0.25rem;
+    }
+    .section p { margin-bottom: 0.75rem; color: #cccce0; }
+    .section ul, .section ol { margin: 0.5rem 0 0.75rem 1.5rem; color: #cccce0; }
+    .section li { margin-bottom: 0.3rem; }
+
+    /* Cards within sections */
+    .concept-card {
+      background: rgba(124, 92, 252, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+    .concept-card.green { border-left-color: var(--accent3); background: rgba(52, 211, 153, 0.06); }
+    .concept-card.pink { border-left-color: var(--accent2); background: rgba(244, 114, 182, 0.06); }
+
+    .quote {
+      font-style: italic;
+      color: #9999bb;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      margin: 0.75rem 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+    .tag.purple { background: rgba(124,92,252,0.2); color: var(--accent); }
+    .tag.green { background: rgba(52,211,153,0.2); color: var(--accent3); }
+    .tag.pink { background: rgba(244,114,182,0.2); color: var(--accent2); }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .lesson-header h1 { font-size: 1.5rem; }
+      body { padding: 1rem 0.75rem; }
+      .section { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div style="background:#ffffff;border-bottom:1px solid #e2e5ea;padding:0 24px;display:flex;gap:0;overflow-x:auto;">
+  <a href="../index.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">← 课程首页</a>
+  <a href="01_KSTAR学习循环.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 01</a>
+  <a href="02_核心竞争力三层结构.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 02</a>
+  <a href="03_范畴论与AI哲学基础.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 03</a>
+  <a href="04_NEOLAF与AgentSkill.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 04</a>
+  <a href="05_C4A评估体系.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 05</a>
+  <a href="06_作业方法与提交规范.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 06</a>
+  <a href="07_挑战体系C1到C10.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 07</a>
+  <a href="08_学习实践指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 08</a>
+  <a href="09_VibeCoding实战指南.html" style="padding:10px 14px;font-size:.78em;color:#6b7280;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;">模块 09</a>
+</div>
+
+<div class="container">
+
+  <a href="../index.html" class="back-link">← 返回课程首页</a>
+
+  <div class="lesson-header">
+    <div class="meta">
+      <span>📅 2026年5月</span>
+      <span>👤 主讲：肖福军（Richard Tong）</span>
+      <span>🏫 西亚斯学院 AI+X 精英班</span>
+    </div>
+    <h1>Vibe Coding 第3课</h1>
+    <p class="speaker">智能体、Skills 与元认知方法论</p>
+  </div>
+
+  <!-- 1. Three Learning Objectives -->
+  <div class="section">
+    <h2>🎯 AI+X 的三个学习目标</h2>
+    <p>本课程不是教具体知识的，而是教你<strong>掌握方法</strong>。核心是三个维度：</p>
+
+    <div class="concept-card">
+      <h4>1️⃣ 世界建模 / 领域建模</h4>
+      <p>任何新领域，先建立它的<strong>概念树状结构</strong>——有哪些实体、它们之间什么关系。就像学软件工程要先知道数据结构、算法、数据库等主干课程的关系。</p>
+      <p class="quote">"对一个领域形成一个3万英尺的鸟瞰图，你就知道出问题该找哪个方向。"</p>
+    </div>
+
+    <div class="concept-card green">
+      <h4>2️⃣ 人机配合 / 协作模型</h4>
+      <p>怎么跟 AI 有效交互。知道 AI 能干什么、不能干什么，怎么问问题、怎么迭代。</p>
+      <p class="quote">"所有有正确答案的问题，AI 早就学会了。我们要解决的是没有清晰边界的真实问题。"</p>
+    </div>
+
+    <div class="concept-card pink">
+      <h4>3️⃣ 元认知</h4>
+      <p>对自己思考的思考——<strong>how to learn how to learn</strong>。认识到自己在想什么、怎么学得更快、怎么构建能创造技能的技能。</p>
+      <p class="quote">"笛卡尔说我思故我在——人之所以为人，就是能意识到自己在思想。"</p>
+    </div>
+  </div>
+
+  <!-- 2. Talent Code -->
+  <div class="section">
+    <h2>🏆 Talent Code：成才三要素</h2>
+
+    <ul>
+      <li><strong>刻意练习</strong> <span class="tag purple">Deliberate Practice</span> — 不是刷题，而是每次挑战能力边缘，在犯错中学习。</li>
+      <li><strong>大师级教练</strong> <span class="tag green">Master Coach</span> — AI 是这时代最好的教练：什么都懂、无限耐心、随时反馈。</li>
+      <li><strong>激情</strong> <span class="tag pink">Passion</span> — 内在驱动力。没有 passion，前面两个无从落地。</li>
+    </ul>
+
+    <p class="quote">"犯错是最好的学习信号——如果一件事你不会犯错，说明已经没有学习机会了。"</p>
+  </div>
+
+  <!-- 3. Agent Architecture -->
+  <div class="section">
+    <h2>🤖 Agent 四层架构</h2>
+
+    <ol>
+      <li><strong>LLM 直接对话</strong> — 最简单的问答模式</li>
+      <li><strong>RAG</strong>（检索增强生成）— 给大模型搭知识库，做更精准的回答</li>
+      <li><strong>Agent（智能体）</strong>— 能调用工具、有记忆、有 Skills，能主动执行任务</li>
+      <li><strong>Multi-agent Teams</strong> — 多智能体编排协作，形成复杂工作流</li>
+    </ol>
+
+    <p>本节课聚焦第三层——<strong>Agent</strong>，特别是 Skills 系统。</p>
+  </div>
+
+  <!-- 4. Agent Core Concepts -->
+  <div class="section">
+    <h2>🧠 Agent 核心概念</h2>
+
+    <div class="concept-card">
+      <h4>🛠 Skills（最重要）</h4>
+      <p>Skill 是智能体的核心能力。Skill 可以调用其他 Skill（<strong>Skill-eating-Skill</strong>），形成递进式能力链。Skills 是动态生成和自我总结的——Hermes 的 Skills 就是这种机制的典型实现。</p>
+    </div>
+
+    <div class="concept-card green">
+      <h4>💾 Memory（记忆）</h4>
+      <p>Agent 要成长必须有记忆。分两类：</p>
+      <ul>
+        <li><strong>短期记忆</strong>（Context）— 每次对话的上下文窗口</li>
+        <li><strong>长期记忆</strong>（Long-term）— 跨 session 记住用户偏好、经验、知识</li>
+      </ul>
+      <p>介绍了 <strong>Memory Palace</strong> 方法：像把记忆放在房间的不同格子里，结构化存储。</p>
+    </div>
+
+    <div class="concept-card pink">
+      <h4>🌐 Ontology（本体论）</h4>
+      <p>"任何事物都可以归结为两件事：<strong>结构</strong>和<strong>过程</strong>。"</p>
+      <p>本体论包含三个层次：</p>
+      <ul>
+        <li><strong>实体</strong>（Entity）— 具体的人事物，比如"学生张三"</li>
+        <li><strong>关系</strong>（Relationship）— 实体之间的联系</li>
+        <li><strong>规律</strong>（Law/Rule）— 支配实体和关系的因果律</li>
+      </ul>
+      <p class="quote">"你先画好 ontology，再用 skill 去操作它——就像曲奇饼模具和面团的关系。"</p>
+    </div>
+
+    <div class="concept-card">
+      <h4>🔄 S-T-C-A 框架</h4>
+      <p>任何问题都可以用这个循环解决：</p>
+      <p style="text-align:center;font-size:1.1rem;margin:0.8rem 0;">
+        <strong>S</strong>ituation（当前情形）→ <strong>T</strong>ask（目标任务）→ <strong>K</strong>nowledge（先验知识）→ <strong>A</strong>ction（行动）→ <strong>R</strong>esult（结果）
+      </p>
+      <p>结果和预期不一致 = 学习机会 → 改进 Knowledge → 下次预测更准。</p>
+    </div>
+  </div>
+
+  <!-- 5. Methodology -->
+  <div class="section">
+    <h2>📐 核心方法论</h2>
+
+    <h3>领域学习的正确姿势</h3>
+    <ol>
+      <li>拿到一个新领域 → 先用 AI 生成 <strong>Concept Graph / Mind Map</strong></li>
+      <li>从 3 万英尺高度建立整体认知，知道不同概念之间的关系</li>
+      <li>根据需求深入细节，而不是从头到尾通读</li>
+      <li>用 <strong>降维解释法</strong>：不懂就问 AI "用小学生能听懂的方式给我讲"</li>
+    </ol>
+
+    <h3>学习的四个环节</h3>
+    <ul>
+      <li><strong>动手做</strong>（做是最好的学）</li>
+      <li><strong>犯错 + 反馈</strong>（犯错是学习的信号）</li>
+      <li><strong>循环迭代</strong>（S-T-C-A 循环）</li>
+      <li><strong>提炼复用</strong>（把经验固化为 Skill）</li>
+    </ul>
+
+    <div class="quote">
+      💡 "能用 AI 做的事情一定不要手动去做。做完以后，不是记住步骤，而是记住思路。写 AI 日志——你怎么问的、它怎么答的、你哪里不满意——比结果本身更重要。"
+    </div>
+
+    <h3>Knowledge 的杠杆效应</h3>
+    <p>人的 K（知识）是有限的，但 AI 的 K 是星辰大海。你的能力不取决于你<strong>知道</strong>多少，而取决于你<strong>能调动</strong>多少 AI 的知识。</p>
+    <p class="quote">"以前你要花 18 年寒窗积累的知识，现在一句提示词就能调出来。"</p>
+  </div>
+
+  <!-- 6. Key Quotes -->
+  <div class="section">
+    <h2>💬 课堂金句</h2>
+    <ul>
+      <li>"这个课不是用来教知识的——如果跟我学知识，你浪费了我的时间，更浪费了你的。"</li>
+      <li>"所有有正确答案的问题都不是问题——AI 早就学会了。"</li>
+      <li>"你的能力不取决于你知道多少，而取决于你能调动多少 AI 的知识。"</li>
+      <li>"不要怕犯错——免费的犯错机会还附带别人反馈，哪有这么好的事？"</li>
+      <li>"传统教育给的是干净的鸡兔同笼，真实世界里没有这东西。"</li>
+      <li>"AI 替你说话的能力还比较差——演讲是你作为人类的护城河。"</li>
+      <li>"你问的问题好，问题就解决 90%。剩下 10% 让 AI 做。"</li>
+    </ul>
+  </div>
+
+  <div style="text-align:center;color:var(--muted);font-size:0.85rem;padding:2rem 0;border-top:1px solid var(--border);margin-top:2rem;">
+    笔记整理自 AI+X 精英班 Vibe Coding 第3课 · 主讲肖福军（Richard Tong）
+  </div>
+
+</div>
+<div style="display:flex;gap:10px;margin:40px 0 20px;"><a href="08_学习实践指南.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">← 上一节</div><div style="font-size:.85em;font-weight:500;">学习实践指南</div></a><a href="09_VibeCoding实战指南.html" style="flex:1;padding:14px 18px;background:#ffffff;border:1px solid #e2e5ea;text-decoration:none;color:#1a1d23;text-align:right;"><div style="font-size:.7em;color:#6b7280;margin-bottom:2px;">下一节 →</div><div style="font-size:.85em;font-weight:500;">Vibe Coding 实战指南</div></a></div></body>
+</html>

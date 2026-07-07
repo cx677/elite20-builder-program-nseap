@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Elite20 Builder Program — NSEAP AI Learning Operating System 的参考实现。建设下一代 Agent Native 教育平台。">
+<title>Elite20 — NSEAP AI Learning Operating System</title>
+<style>
+  :root {
+    --bg: #f8f9fb; --surface: #ffffff; --card: #ffffff;
+    --border: #e2e5ea; --text: #1a1d23; --sec: #6b7280;
+    --red: #e74c3c; --blue: #3498db;
+    --grad: linear-gradient(135deg, var(--red), #e74c3c 30%, #9b59b6 55%, var(--blue) 80%, #2e86de);
+    --grad-soft: linear-gradient(135deg, rgba(231,76,60,.06), rgba(52,152,219,.06));
+    --acc: #e74c3c; --acc2: #3498db;
+    --radius: 0px; --font: 'Inter',-apple-system,system-ui,sans-serif;
+    --mono: 'JetBrains Mono','SF Mono',monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; }
+
+  .hero {
+    padding: 72px 24px 56px; text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--grad-soft);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero .badge {
+    display: inline-block; font-size: .7em; padding: 4px 14px;
+    background: var(--grad); color: #fff; margin-bottom: 14px; font-weight: 500;
+    letter-spacing: .04em;
+  }
+  .hero h1 {
+    font-size: 2.6em; font-weight: 800; letter-spacing: -.03em; margin-bottom: 12px;
+    background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p { color: var(--sec); font-size: 1.02em; max-width: 560px; margin: 0 auto 16px; }
+  .hero .meta {
+    font-size: .76em; color: var(--sec); display: flex; justify-content: center;
+    gap: 14px; flex-wrap: wrap; margin-top: 18px;
+  }
+  .hero .meta span { padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 48px 24px 60px; }
+
+  .section-label {
+    font-size: .68em; font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--sec); margin-bottom: 16px;
+  }
+
+  .nseap-stack {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    border: 1px solid var(--border); background: var(--surface); margin-bottom: 48px;
+  }
+  .nseap-layer {
+    display: flex; align-items: center; padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nseap-layer:last-child { border-bottom: none; }
+  .nseap-layer .num {
+    font-family: var(--mono); font-size: .72em; font-weight: 600;
+    color: #fff; background: var(--grad);
+    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+    margin-right: 16px; flex-shrink: 0;
+  }
+  .nseap-layer .content { flex: 1; }
+  .nseap-layer .title { font-weight: 600; font-size: .92em; margin-bottom: 2px; }
+  .nseap-layer .desc { font-size: .78em; color: var(--sec); }
+  .nseap-layer .tag {
+    font-size: .65em; color: var(--sec); padding: 2px 8px;
+    background: var(--bg); border: 1px solid var(--border);
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 18px 20px; text-decoration: none; color: inherit; display: block;
+    transition: .15s; position: relative;
+  }
+  .card:hover { border-color: var(--red); transform: translateY(-1px); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+  .card .num {
+    font-size: .65em; font-weight: 500;
+    background: var(--grad); color: #fff; display: inline-block;
+    padding: 2px 10px; margin-bottom: 10px;
+  }
+  .card .icon { font-size: 1.5em; margin-bottom: 6px; }
+  .card h3 { font-size: .92em; font-weight: 600; margin-bottom: 4px; }
+  .card p { font-size: .78em; color: var(--sec); line-height: 1.5; }
+  .card .tag {
+    font-size: .65em; color: var(--sec); margin-top: 8px;
+    display: inline-block; padding: 1px 8px; background: var(--bg);
+  }
+
+  .section { margin-top: 48px; }
+  .section h2 {
+    font-size: 1.15em; font-weight: 700; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section h2 .line { flex: 1; height: 1px; background: var(--border); }
+
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .team-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+  .team-card .team-id {
+    font-family: var(--mono); font-size: .65em; font-weight: 600;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .team-card .team-name { font-weight: 600; font-size: .85em; margin-bottom: 2px; }
+  .team-card .team-desc { font-size: .72em; color: var(--sec); }
+  .team-card.current { border-color: var(--red); border-width: 1.5px; }
+  .team-card.current .team-id { color: var(--red); }
+
+  .workflow { display: flex; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+  .workflow-step {
+    flex: 1; min-width: 90px; padding: 10px 12px; background: var(--surface);
+    border: 1px solid var(--border); font-size: .72em; text-align: center;
+    color: var(--sec); border-right: none;
+  }
+  .workflow-step:last-child { border-right: 1px solid var(--border); }
+  .workflow-step b { color: var(--text); display: block; margin-bottom: 2px; font-size: 1.1em; }
+
+  .info-box {
+    padding: 20px; background: var(--surface); border: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  .info-box h3 { font-size: .85em; font-weight: 600; margin-bottom: 8px; }
+  .info-box p { font-size: .8em; color: var(--sec); line-height: 1.6; margin-bottom: 6px; }
+  .info-box a { color: var(--blue); text-decoration: none; }
+  .info-box a:hover { text-decoration: underline; }
+
+  footer { text-align: center; padding: 32px 24px; color: var(--sec); font-size: .72em; border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6em; }
+    .grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .workflow-step { min-width: 70px; font-size: .68em; }
+    .nseap-layer { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">NSEAP Reference Implementation</div>
+  <h1>Elite20 Builder Program</h1>
+  <p>不是学习课程，而是建设下一代 AI 教育平台。基于 IEEE P3394 Agent 接口标准，构建可部署、可复制的 Agent Native Learning Operating System。</p>
+  <div class="meta">
+    <span>IEEE P3394 对齐</span>
+    <span>7 个 Builder Team</span>
+    <span>10 个 Challenge</span>
+    <span>7 个 Agent</span>
+  </div>
+  <div style="margin-top:18px;">
+    <button onclick="openSearch()" style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:#ffffff;border:1px solid #e2e5ea;color:#6b7280;font-size:.82em;cursor:pointer;font-family:inherit;">
+      <span>搜索课程内容…</span>
+      <span style="font-size:.7em;background:#f3f4f6;padding:1px 6px;border:1px solid #e2e5ea;">Cmd+K</span>
+    </button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-label">NSEAP 标准体系</div>
+  <div class="nseap-stack">
+    <div class="nseap-layer">
+      <div class="num">1</div>
+      <div class="content">
+        <div class="title">P3394 — LLM Agent Interface Standard</div>
+        <div class="desc">Agent 互操作五大模块：Manifest / Channel Adapter / UMF / Session / Security</div>
+      </div>
+      <div class="tag">通信层</div>
+    </div>
+    <div class="nseap-layer">
+      <div class="num">2</div>
+      <div class="content">
+        <div class="title">AAMF / P3428 — Adaptive Agent Model Framework</div>
+        <div class="desc">Learner + Instructor + AI Tutor 三方协作，KSTAR 持续学习循环</div>
+      </div>
+      <div class="tag">应用层</div>
+    </div>
+    <div class="nseap-layer">
+      <div class="num">3</div>
+      <div class="content">
+        <div class="title">P2807.6 — Educational Knowledge Graph</div>
+        <div class="desc">教育知识图谱：本体、知识表示、Graph-RAG、与 LLM 集成</div>
+      </div>
+      <div class="tag">知识层</div>
+    </div>
+    <div class="nseap-layer">
+      <div class="num">4</div>
+      <div class="content">
+        <div class="title">FDE Methodology — Field Deployment Engineer</div>
+        <div class="desc">Situation → Context → Ontology → Skill → Agent → Evaluation</div>
+      </div>
+      <div class="tag">实现层</div>
+    </div>
+  </div>
+
+  <div class="section-label">BUILDER WORKFLOW</div>
+  <div class="workflow">
+    <div class="workflow-step"><b>发现</b>识别痛点</div>
+    <div class="workflow-step"><b>方案</b>设计方案</div>
+    <div class="workflow-step"><b>开发</b>AI 辅助</div>
+    <div class="workflow-step"><b>提交</b>GitHub PR</div>
+    <div class="workflow-step"><b>互审</b>Peer Review</div>
+    <div class="workflow-step"><b>机审</b>Agent Review</div>
+    <div class="workflow-step"><b>合并</b>Merge</div>
+    <div class="workflow-step"><b>发布</b>文档+Release</div>
+  </div>
+
+  <div class="section">
+    <h2>Builder Team <span class="line"></span></h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-id">T1</div>
+        <div class="team-name">Curriculum</div>
+        <div class="team-desc">课程设计</div>
+      </div>
+      <div class="team-card">
+        <div class="team-id">T2</div>
+        <div class="team-name">Challenge</div>
+        <div class="team-desc">PBL 挑战</div>
+      </div>
+      <div class="team-card">
+        <div class="team-id">T3</div>
+        <div class="team-name">Agent</div>
+        <div class="team-desc">7 个课程 Agent</div>
+      </div>
+      <div class="team-card">
+        <div class="team-id">T4</div>
+        <div class="team-name">Ontology</div>
+        <div class="team-desc">本体建模</div>
+      </div>
+      <div class="team-card current">
+        <div class="team-id">T5</div>
+        <div class="team-name">Platform</div>
+        <div class="team-desc">平台基建（当前）</div>
+      </div>
+      <div class="team-card">
+        <div class="team-id">T6</div>
+        <div class="team-name">Knowledge</div>
+        <div class="team-desc">知识库文档</div>
+      </div>
+      <div class="team-card">
+        <div class="team-id">T7</div>
+        <div class="team-name">Demo</div>
+        <div class="team-desc">演示宣传</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Platform 交付物 <span class="line"></span></h2>
+    <div class="grid">
+      <a class="card" href="module-template.html">
+        <div class="icon">🌐</div>
+        <div class="num">Website</div>
+        <h3>课程展示平台</h3>
+        <p>静态网站，GitHub Pages 部署，展示课程内容、挑战、Agent</p>
+      </a>
+      <a class="card" href="docs/deployment-guide.md">
+        <div class="icon">🚀</div>
+        <div class="num">Deployment</div>
+        <h3>部署方案</h3>
+        <p>GitHub Pages 部署指南、本地开发、Operator Manual</p>
+      </a>
+      <a class="card" href="docs/agent-interface.md">
+        <div class="icon">🤖</div>
+        <div class="num">P3394</div>
+        <h3>Agent 接口规范</h3>
+        <p>对齐 IEEE P3394：Manifest / UMF / Channel / Session / Security</p>
+      </a>
+      <a class="card" href="docs/index.md">
+        <div class="icon">📚</div>
+        <div class="num">Docs</div>
+        <h3>文档中心</h3>
+        <p>Deployment Guide、Agent Interface、贡献指南</p>
+      </a>
+      <a class="card" href="CONTRIBUTING.md">
+        <div class="icon">📋</div>
+        <div class="num">Contributing</div>
+        <h3>贡献指南</h3>
+        <p>Builder Workflow、分支规范、Commit 规范、PR 模板</p>
+      </a>
+      <a class="card" href="module-template.html">
+        <div class="icon">📄</div>
+        <div class="num">Template</div>
+        <h3>模块页模板</h3>
+        <p>课程内容页标准模板，6 区块结构</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>课程模块 <span class="line"></span></h2>
+    <div class="grid">
+      <a class="card" href="curriculum/01_KSTAR学习循环.html">
+        <div class="icon">🔄</div>
+        <div class="num">模块 01</div>
+        <h3>KSTAR 学习循环</h3>
+        <p>Knowledge → Situation → Task → Action → Reflection。快速迭代优于完美首发。</p>
+      </a>
+      <a class="card" href="curriculum/02_核心竞争力三层结构.html">
+        <div class="icon">🏗️</div>
+        <div class="num">模块 02</div>
+        <h3>核心竞争力三层结构</h3>
+        <p>底层建模 → 中层 AI 协作 → 顶层元认知。护城河在顶层。</p>
+      </a>
+      <a class="card" href="curriculum/03_范畴论与AI哲学基础.html">
+        <div class="icon">🧠</div>
+        <div class="num">模块 03</div>
+        <h3>范畴论与 AI 哲学基础</h3>
+        <p>能指/所指、函子、结构保持的映射。学会看见结构。</p>
+      </a>
+      <a class="card" href="curriculum/04_NEOLAF与AgentSkill.html">
+        <div class="icon">🤖</div>
+        <div class="num">模块 04</div>
+        <h3>NEOLAF 与 Agent Skill</h3>
+        <p>元语言栈、AG2 15 Skills、C4 四挑战详解。</p>
+      </a>
+      <a class="card" href="curriculum/05_C4A评估体系.html">
+        <div class="icon">📊</div>
+        <div class="num">模块 05</div>
+        <h3>C4A 评估体系</h3>
+        <p>拿来主义 · 有效反馈 · 多次迭代。三维评估标准。</p>
+      </a>
+      <a class="card" href="curriculum/06_作业方法与提交规范.html">
+        <div class="icon">📋</div>
+        <div class="num">模块 06</div>
+        <h3>作业方法与提交规范</h3>
+        <p>Richard 的 6 条硬性规范 + AI 日志模板 + 元提示链。</p>
+      </a>
+      <a class="card" href="curriculum/07_挑战体系C1到C10.html">
+        <div class="icon">🏆</div>
+        <div class="num">模块 07</div>
+        <h3>挑战体系 C1 → C10</h3>
+        <p>全景图 + 每个挑战详解 + 进度标注 + 拿来索引。</p>
+      </a>
+      <a class="card" href="curriculum/08_学习实践指南.html">
+        <div class="icon">🎯</div>
+        <div class="num">模块 08</div>
+        <h3>学习实践指南</h3>
+        <p>每日 KSTAR 日志 + C4A 自评 + 瓶颈突破 + 进度追踪。</p>
+      </a>
+      <a class="card" href="curriculum/vibe-coding-3-课堂笔记.html">
+        <div class="icon">🎙️</div>
+        <div class="num">课堂笔记</div>
+        <h3>Vibe Coding 第3课</h3>
+        <p>智能体 · Skills · 元认知方法论 — S-T-C-A 框架、Ontology。</p>
+      </a>
+      <a class="card" href="curriculum/09_VibeCoding实战指南.html">
+        <div class="icon">🌊</div>
+        <div class="num">模块 09</div>
+        <h3>Vibe Coding 实战指南</h3>
+        <p>6 步学习路径：核心理念 → 项目结构 → 道法术器 → 技能体系。</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10 个 Builder Challenge <span class="line"></span></h2>
+    <div class="grid">
+      <div class="card" style="cursor:default;">
+        <div class="num">C01</div>
+        <h3>课程首页</h3>
+        <p>Website, README, Landing Page</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C02</div>
+        <h3>Week 1 重设计</h3>
+        <p>任何老师都能直接授课</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C03</div>
+        <h3>Challenge 模板</h3>
+        <p>企业可直接复用</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C04</div>
+        <h3>Skill Ontology</h3>
+        <p>Ontology Graph, JSON Schema</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C05</div>
+        <h3>Coding Coach</h3>
+        <p>指导所有 Challenge</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C06</div>
+        <h3>Evaluation Agent</h3>
+        <p>自动评分</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C07</div>
+        <h3>Knowledge Base</h3>
+        <p>课程资料全检索</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C08</div>
+        <h3>企业部署版</h3>
+        <p>Deploy Guide, Operator Manual</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C09</div>
+        <h3>课程产品化</h3>
+        <p>安装包, 配置, License</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">C10</div>
+        <h3>NSEAP OS V1.0</h3>
+        <p>完整系统集成</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Agent Library（对齐 P3394）<span class="line"></span></h2>
+    <div class="grid">
+      <div class="card" style="cursor:default;">
+        <div class="num">Student</div>
+        <h3>Student Companion</h3>
+        <p>学生学习伙伴 — owner 关系，全能力访问</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">Instructor</div>
+        <h3>Instructor Agent</h3>
+        <p>教师辅助 — client/peer 关系，课程讲解</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">Mentor</div>
+        <h3>Mentor Agent</h3>
+        <p>职业指导 — persistent session，长期跟踪</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">Coach</div>
+        <h3>Coding Coach</h3>
+        <p>编码指导 — openapi + cli 双通道</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">Librarian</div>
+        <h3>Knowledge Librarian</h3>
+        <p>知识检索 — mcp 通道，Graph-RAG</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">Evaluation</div>
+        <h3>Evaluation Agent</h3>
+        <p>自动评分 — administrator 关系</p>
+      </div>
+      <div class="card" style="cursor:default;">
+        <div class="num">PM</div>
+        <h3>Project Manager</h3>
+        <p>项目管理 — administrator + peer</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>关于 Elite20 Builder Program</h3>
+    <p>由 <strong>佟博士（Richard Tong）</strong>— NEOLAF Inc. 创始人、IEEE P3394 工作组成员发起。目标是将 SIAS University Vibe Coding 课程重构为一套可部署、可复制的 <strong>Agent Native Learning Operating System</strong>。</p>
+    <p>本项目是 NSEAP 教育架构的 <strong>Reference Implementation</strong>（参考实现）。任何学校、企业只需部署这套系统即可运行同样的课程。</p>
+    <p style="margin-top:10px;">协调人: 丽霞 (@Cosnπ) · Platform Team: 子安 (牛保康)</p>
+  </div>
+
+</div>
+
+<div id="search-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:9999;backdrop-filter:blur(4px);">
+  <div style="max-width:700px;margin:80px auto 0;padding:20px;">
+    <div style="background:#ffffff;border:1px solid #e2e5ea;border-radius:0;overflow:hidden;">
+      <div style="display:flex;border-bottom:1px solid #e2e5ea;">
+        <input id="search-input" type="text" placeholder="搜索课程内容… (按 Esc 关闭)"
+          style="flex:1;background:transparent;border:none;padding:16px 20px;color:#1a1d23;font-size:1em;outline:none;font-family:inherit;">
+        <button onclick="closeSearch()" style="background:transparent;border:none;color:#6b7280;padding:0 20px;cursor:pointer;font-size:1.2em;">✕</button>
+      </div>
+      <div id="search-results" style="max-height:60vh;overflow-y:auto;padding:0;">
+        <div style="padding:20px;text-align:center;color:#6b7280;font-size:.85em;">输入关键词搜索课程内容</div>
+      </div>
+      <div style="padding:10px 20px;border-top:1px solid #e2e5ea;display:flex;justify-content:space-between;align-items:center;font-size:.72em;color:#6b7280;">
+        <span>搜索 10 个课程模块</span>
+        <span>Cmd+K 打开 · Esc 关闭</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var searchIndex = [];
+var searchModules = [];
+
+fetch('search-index.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    searchIndex = data.entries || [];
+    searchModules = data.modules || [];
+  })
+  .catch(function() { console.log('Search index not loaded'); });
+
+function search(query) {
+  var results = [];
+  var q = query.toLowerCase();
+  if (!q || q.length < 1) return results;
+  for (var i = 0; i < searchIndex.length; i++) {
+    var entry = searchIndex[i];
+    var text = (entry.text || '').toLowerCase();
+    var score = 0;
+    if (text.indexOf(q) >= 0) {
+      score += text.split(q).length - 1;
+    }
+    for (var j = 0; j < q.length - 1; j++) {
+      var bigram = q.substring(j, j + 2);
+      if (text.indexOf(bigram) >= 0) score += 0.5;
+    }
+    if (score > 0) results.push({ entry: entry, score: score });
+  }
+  results.sort(function(a, b) { return b.score - a.score; });
+  var out = [];
+  for (var i = 0; i < Math.min(results.length, 20); i++) {
+    var r = results[i];
+    var text = r.entry.text;
+    var idx = text.toLowerCase().indexOf(q);
+    if (idx >= 0) {
+      var start = Math.max(0, idx - 30);
+      var end = Math.min(text.length, idx + q.length + 60);
+      r.snippet = (start > 0 ? '…' : '') + text.substring(start, end) + (end < text.length ? '…' : '');
+    } else {
+      r.snippet = text.substring(0, 120);
+    }
+    out.push(r);
+  }
+  return out;
+}
+
+function showResults(query) {
+  var area = document.getElementById('search-results');
+  if (!query || query.length < 1) {
+    area.innerHTML = '<div style="padding:20px;text-align:center;color:#6b7280;font-size:.85em;">输入关键词搜索课程内容</div>';
+    return;
+  }
+  var results = search(query);
+  if (results.length === 0) {
+    area.innerHTML = '<div style="padding:20px;text-align:center;color:#6b7280;font-size:.85em;">没有找到相关结果，试试其他关键词</div>';
+    return;
+  }
+  var html = '<div style="padding:4px 16px;color:#6b7280;font-size:.72em;">找到 ' + results.length + ' 条结果</div>';
+  for (var i = 0; i < results.length; i++) {
+    var r = results[i];
+    html += '<div style="padding:10px 20px;border-bottom:1px solid #e2e5ea;cursor:pointer;" onclick="goToModule(\'' + r.entry.file + '\')">'
+      + '<div style="font-size:.7em;color:#e74c3c;margin-bottom:2px;">' + r.entry.module + ' · ' + r.entry.module_name.substring(0, 30) + '</div>'
+      + '<div style="font-size:.85em;color:#374151;line-height:1.5;">' + r.snippet + '</div>'
+      + '</div>';
+  }
+  area.innerHTML = html;
+}
+
+function goToModule(file) {
+  closeSearch();
+  window.location.href = file;
+}
+
+function openSearch() {
+  document.getElementById('search-overlay').style.display = 'block';
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 100);
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay').style.display = 'none';
+  document.getElementById('search-results').innerHTML = '<div style="padding:20px;text-align:center;color:#6b7280;font-size:.85em;">输入关键词搜索课程内容</div>';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSearch();
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('search-input');
+  if (input) {
+    var timer;
+    input.addEventListener('input', function() {
+      clearTimeout(timer);
+      timer = setTimeout(function() { showResults(input.value); }, 200);
+    });
+  }
+});
+</script>
+
+<footer>
+  <p>Elite20 Builder Program · NSEAP AI Learning Operating System · 2026</p>
+  <p>基于 IEEE P3394 / AAMF P3428 / P2807.6 / FDE 方法论</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Sitemap
+# Elite20 Builder Program
+# 更新日期: 2026-06-29
+
+https://elite20.edu/
+https://elite20.edu/curriculum/01_KSTAR学习循环.html
+https://elite20.edu/curriculum/02_核心竞争力三层结构.html
+https://elite20.edu/curriculum/03_范畴论与AI哲学基础.html
+https://elite20.edu/curriculum/04_NEOLAF与AgentSkill.html
+https://elite20.edu/curriculum/05_C4A评估体系.html
+https://elite20.edu/curriculum/06_作业方法与提交规范.html
+https://elite20.edu/curriculum/07_挑战体系C1到C10.html
+https://elite20.edu/curriculum/08_学习实践指南.html
+https://elite20.edu/curriculum/vibe-coding-3-课堂笔记.html
+https://elite20.edu/curriculum/09_VibeCoding实战指南.html
+https://elite20.edu/module-template.html
+https://elite20.edu/docs/index.md
+https://elite20.edu/docs/deployment-guide.md
+https://elite20.edu/docs/agent-interface.md
+https://elite20.edu/docs/operator-manual.md
+https://elite20.edu/CONTRIBUTING.md
+https://elite20.edu/README.md

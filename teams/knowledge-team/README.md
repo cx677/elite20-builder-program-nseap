@@ -16,34 +16,37 @@
 
 ### 1. 知识库结构
 
-- `knowledge-base/README.md`：知识库总览和目录结构
+- [x] `knowledge-base/README.md`：知识库总览和目录结构
+- [x] `knowledge-base/knowledge-cognitive-cell/design.md`：Knowledge Cognitive Cell 精简设计
+- [x] `knowledge-base/schemas/knowledge-item.schema.json`：知识条目 schema
+- [x] `knowledge-base/schemas/prompt.schema.json`：Prompt schema
 
 ### 2. Prompt Library
 
-- `prompt-library/README.md`：Prompt 库总览
-- `prompt-library/submission-self-check.md`：学生提交前自查 Prompt
-- `prompt-library/aar-template.md`：AAR 复盘 Prompt
-- `prompt-library/github-check.md`：GitHub 仓库检查 Prompt
+- [ ] `prompt-library/README.md`：Prompt 库总览
+- [x] `prompt-library/submission-self-check.md`：学生提交前自查 Prompt
+- [x] `prompt-library/aar-template.md`：AAR 复盘 Prompt
+- [ ] `prompt-library/github-check.md`：GitHub 仓库检查 Prompt
 
 ### 3. Best Practices（踩坑记录）
 
-- `best-practices/github-submission.md`：GitHub 提交规范
+- [x] `best-practices/github-submission.md`：GitHub 提交规范
 
-- `best-practices/feishu-setup.md`：飞书配置说明（含踩坑）
+- [x] `best-practices/feishu-setup.md`：飞书配置说明（含踩坑）
 
   至少包含：
   - 飞书 91403 Forbidden 如何解决
   - 飞书多维表授权步骤
   - 飞书 API 写入失败常见原因
 
-- `best-practices/deepseek-api.md`：DeepSeek API 接入说明
+- [x] `best-practices/deepseek-api.md`：DeepSeek API 接入说明
 
   至少包含：
   - DeepSeek 如何接入 OpenAI-compatible API
   - model name 正确写法
   - 常见 401 / 429 错误处理
 
-- `best-practices/github-private-repo.md`：GitHub private repo 检查说明
+- [ ] `best-practices/github-private-repo.md`：GitHub private repo 检查说明
 
   至少包含：
   - 如何通过 token 检查 private 仓库
@@ -51,8 +54,8 @@
 
 ### 4. 真实案例
 
-- `case-studies/zhiyin-ai-navigator.md`：智引 AI 导航导师项目案例
-- `case-studies/c2s-zhanghao.md`：张浩 C2S 挑战提交案例
+- [x] `case-studies/zhiyin-ai-navigator.md`：智引 AI 导航导师项目案例
+- [ ] `case-studies/c2s-zhanghao.md`：张浩 C2S 挑战提交案例
 
 每个案例至少包含：
 - 项目背景
@@ -122,11 +125,20 @@ knowledge-base/
 
 ## 验收标准
 
-- [ ] 飞书 Forbidden 错误的解决方法有文档记录
-- [ ] DeepSeek API 接入步骤清晰
+- [x] 飞书 Forbidden 错误的解决方法有文档记录
+- [x] DeepSeek API 接入步骤清晰
 - [ ] GitHub private repo 检查方法有文档
 - [ ] 至少 2 个真实案例整理完成
 - [ ] Prompt Library 包含至少 3 个可用 Prompt
+
+## Review 状态
+
+2026-07-07 已从 PR #1 中精选合并 Knowledge Team 的核心成果：
+
+- 保留：知识库结构、Knowledge Cognitive Cell 精简设计、schema、Prompt、Best Practices、真实案例。
+- 未合入：根目录 docx 资料包、重复的 `nseap-knowledge-base/` 工程、截图、上传文件、可再生成搜索索引。
+
+下一步应由 Knowledge Team 补齐 GitHub private repo 文档、C2S 案例和 Prompt Library README。
 
 ## 参考资料
 
