@@ -35,7 +35,7 @@
 | Team 4 Ontology | 建立本体和知识图谱 | `teams/ontology-team/` | Richard（方向），张浩（落地） | agent-ontology.md, relationship-graph-schema.md, message-envelope-schema.md, resource-config-schema.md |
 | Team 5 Platform | 平台开发与部署 | `teams/platform-team/` | 吴嘉宇、牛保康，张浩（handoff） | Vercel 部署，feishu-setup-guide.md，github-integration.md，agent-workflow-refactor-plan.md |
 | Team 6 Knowledge | 整理可复用知识 | `teams/knowledge-team/` | 尹镇宇 | prompt-library/README.md, best-practices/feishu-setup.md, case-studies/c2s-zhanghao.md |
-| Team 7 Demo | 准备演示与传播 | `teams/demo-team/` | 待明确 | demo-script.md, progress-update-for-group.md |
+| Team 7 Demo | 准备演示与传播 | `teams/demo-team/` | 张浩 | demo-script.md, progress-update-for-group.md |
 
 ---
 
