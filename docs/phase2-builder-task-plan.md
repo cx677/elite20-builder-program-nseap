@@ -408,12 +408,12 @@ create_submission_request()
 | 4 | 写清楚当前 MVP 的边界和下一步计划 | ✅ 已做 | 白皮书 `docs/technical-whitepaper-20260708.md` 完整覆盖 |
 | 5 | 定义 4 个核心 Agent Manifest | ✅ 已做 | `agents/manifests/` 下 Student/Teacher Companion + Submission/Review Task Agent schema 齐全 |
 | 6 | 定义最小 Message Envelope 和 Audit Log schema | ✅ 已做 | `agents/messages/message-envelope-schema.md` + `agents/audit/audit-log-schema.md` 完整 |
-| 7 | 在飞书表中补充 Agent ID / Routing Status / Audit Pointer 字段 | ⚠️ 设计完成 | Schema 已设计，飞书表字段尚未实际创建 |
+| 7 | 在飞书表中补充 Agent ID / Routing Status / Audit Pointer 字段 | ✅ 已做 | Submissions 表新增12个字段 + Challenges表新增2个字段 (2026-07-09) |
 | 8 | Challenge 详情页 | ⬜ 待做 | WebApp 侧需补，白皮书 §13.2 已规划 |
 | 9 | 提交详情页（含 AI 初评、状态、缺失项） | ⬜ 待做 | 白皮书 §13.2 P0 |
 | 10 | Challenge Library 结构化 C01-C10 | ✅ 已做 | `challenges/Challenge-Library/` 三级 10 个 Challenge + Rubric + 模板齐全 |
-| 11 | 飞书表字段中文规范化 | ⚠️ 部分 | MVP 代码已支持中文字段（07-07 commit），但表结构文档待补 |
-| 12 | 增加提交状态流转（已提交→检查失败→待评审→需修改→已完成） | ⬜ 待做 | Schema 已定义，代码实现待做 |
+| 11 | 飞书表字段中文规范化 | ✅ 已做 | Submissions表所有字段已改为中文名，AuditLogs + InboxQueue 两张新表已创建 |
+| 12 | 增加提交状态流转（已提交→检查失败→待评审→需修改→已完成） | ⚠️ 字段已建 | 状态字段（系统校验结果/路由状态/评审状态）已创建，代码流转逻辑待实现 |
 
 ### P1：一周内做
 

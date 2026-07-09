@@ -8,15 +8,17 @@
 
 ---
 
-## 总览：五张核心表
+## 总览：五张核心表 + 两张 Agent 扩展表
 
-| 表名 | 飞书 table_id 环境变量 | 用途 | 当前状态 |
-|---|---|---|---|
-| Students | `FEISHU_STUDENTS_TABLE_ID` | 学生身份、班级、飞书、GitHub | ✅ 已建 |
-| Challenges | `FEISHU_CHALLENGES_TABLE_ID` | 任务标题、描述、交付物、Rubric | ✅ 已建 |
-| Submissions | `FEISHU_SUBMISSIONS_TABLE_ID` | 学生提交记录 | ✅ 已建（字段待补） |
-| Evaluations | `FEISHU_EVALUATIONS_TABLE_ID` | AI/教师/同伴评审结果 | ✅ 已建 |
-| PortfolioItems | `FEISHU_PORTFOLIO_TABLE_ID` | 可展示作品集条目 | ✅ 已建 |
+| 表名 | 飞书 table_id | 环境变量 | 用途 | 当前状态 |
+|---|---|---|---|---|
+| Students | `tblZNoZuykeoSLZL` | `FEISHU_STUDENTS_TABLE_ID` | 学生身份、班级、飞书、GitHub | ✅ 已建 |
+| Challenges | `tbl63XxcXrFa1Wob` | `FEISHU_CHALLENGES_TABLE_ID` | 任务标题、描述、交付物、Rubric | ✅ 已建 |
+| Submissions | `tblk0W13dUdeJCqr` | `FEISHU_SUBMISSIONS_TABLE_ID` | 学生提交记录 | ✅ 已建 + Agent字段已补 |
+| Evaluations | `tbljVBBaMPeJ7biJ` | `FEISHU_EVALUATIONS_TABLE_ID` | AI/教师/同伴评审结果 | ✅ 已建 |
+| PortfolioItems | `tblJQGf5W3og3gux` | `FEISHU_PORTFOLIO_TABLE_ID` | 可展示作品集条目 | ✅ 已建 |
+| AuditLogs | `tbl31l2XhXDMOB7K` | `FEISHU_AUDITLOGS_TABLE_ID` | 审计日志 | ✅ 已建 (2026-07-09) |
+| InboxQueue | `tbllCuyN67TyCBcm` | `FEISHU_INBOX_TABLE_ID` | 消息队列 | ✅ 已建 (2026-07-09) |
 
 ---
 
@@ -152,44 +154,46 @@
 
 ## 6. 下一版扩展表（Agent-native 阶段）
 
-### 6.1 AuditLogs 表
+### 6.1 AuditLogs 表（已创建 ✅）
 
-| 飞书字段名（英文） | 类型 | 说明 |
+| 飞书 table_id | `tbl31l2XhXDMOB7K` |
+|---|---|
+
+| 飞书字段名（中文） | 类型 | 说明 |
 |---|---|---|
-| `audit_id` | 文本 | 格式 `audit-{nanoid}` |
-| `timestamp` | 日期 | 操作时间 |
-| `agent_id` | 文本 | 执行操作的 Agent ID |
-| `action` | 单选 | create_submission_record / update_submission_status / create_evaluation_record / ... |
-| `target_resource` | 文本 | 格式 `{系统}.{表}.{ID}` |
-| `before_state_json` | 多行文本 | 操作前状态（JSON） |
-| `after_state_json` | 多行文本 | 操作后状态（JSON） |
-| `routing_path` | 多行文本 | 消息路由路径（逗号分隔） |
-| `related_message_id` | 文本 | 关联消息 ID |
-| `related_request_id` | 文本 | 关联请求 ID |
-| `metadata_json` | 多行文本 | 附加元数据 |
+| 审计ID | 文本 | 格式 `audit-{nanoid}` |
+| 操作时间 | 文本 | ISO 格式 |
+| Agent ID | 文本 | 执行操作的 Agent ID |
+| 操作类型 | 单选 | create_submission_record / update_submission_status / ... |
+| 目标资源 | 文本 | 格式 `{系统}.{表}.{ID}` |
+| 操作前状态 | 文本 | JSON |
+| 操作后状态 | 文本 | JSON |
+| 路由路径 | 文本 | 逗号分隔 |
+| 关联消息ID | 文本 | |
+| 关联请求ID | 文本 | |
+| 附加元数据 | 文本 | JSON |
 
-设计来源：`agents/audit/audit-log-schema.md`
+### 6.2 InboxQueue 表（已创建 ✅）
 
-### 6.2 InboxQueue 表
+| 飞书 table_id | `tbllCuyN67TyCBcm` |
+|---|---|
 
-| 飞书字段名（英文） | 类型 | 说明 |
+| 飞书字段名（中文） | 类型 | 说明 |
 |---|---|---|
-| `queue_id` | 文本 | 格式 `q-{nanoid}` |
-| `message_id` | 文本 | 消息 ID |
-| `request_id` | 文本 | 请求链路 ID |
-| `from_agent` | 文本 | 发送方 |
-| `to_agent` | 文本 | 接收方 |
-| `message_type` | 单选 | challenge_publish / submission_request / ... |
-| `status` | 单选 | pending / processing / done / failed / rejected |
-| `priority` | 单选 | urgent / high / normal / low |
-| `payload_json` | 多行文本 | 消息体 |
-| `received_at` | 日期 | |
-| `processed_at` | 日期 | |
-| `retry_count` | 数字 | |
-| `error_message` | 多行文本 | |
-| `audit_trace_pointer` | 文本 | |
-
-设计来源：`agents/inbox/README.md`
+| 队列ID | 文本 | 格式 `q-{nanoid}` |
+| 消息ID | 文本 | |
+| 请求ID | 文本 | |
+| 发送方 | 文本 | |
+| 接收方 | 文本 | |
+| 消息类型 | 单选 | challenge_publish / submission_request / ... |
+| 状态 | 单选 | pending / processing / done / failed / rejected |
+| 优先级 | 单选 | urgent / high / normal / low |
+| 消息体 | 文本 | JSON |
+| 接收时间 | 文本 | |
+| 处理时间 | 文本 | |
+| 重试次数 | 数字 | |
+| 错误信息 | 文本 | |
+| 审计追踪指针 | 文本 | |
 
 ---
 

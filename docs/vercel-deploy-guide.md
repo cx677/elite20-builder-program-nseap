@@ -51,11 +51,13 @@ git push origin main
 | `FEISHU_APP_TOKEN` | 飞书多维表 URL 中 `/base/` 后面的字符串 |
 | `FEISHU_STUDENTS_TABLE_ID` | 飞书多维表 → Students 表 → URL 中 `/table/` 后面的字符串 |
 | `FEISHU_CHALLENGES_TABLE_ID` | 同上，Challenges 表 |
-| `FEISHU_SUBMISSIONS_TABLE_ID` | 同上，Submissions 表 |
-| `FEISHU_EVALUATIONS_TABLE_ID` | 同上，Evaluations 表 |
-| `FEISHU_PORTFOLIO_TABLE_ID` | 同上，PortfolioItems 表 |
+| `FEISHU_SUBMISSIONS_TABLE_ID` | 飞书多维表 → Submissions 表 → URL 中 `/table/` 后面的字符串 |
+| `FEISHU_EVALUATIONS_TABLE_ID` | 飞书多维表 → Evaluations 表 → URL 中 `/table/` 后面的字符串 |
+| `FEISHU_PORTFOLIO_TABLE_ID` | 飞书多维表 → PortfolioItems 表 → URL 中 `/table/` 后面的字符串 |
+| `FEISHU_AUDITLOGS_TABLE_ID` | Agent 审计日志表 | `tbl31l2XhXDMOB7K` |
+| `FEISHU_INBOX_TABLE_ID` | Agent 消息队列表 | `tbllCuyN67TyCBcm` |
 
-### GitHub（1 个）
+### GitHub
 
 | Key | 值来源 |
 |---|---|
