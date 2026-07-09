@@ -1,6 +1,6 @@
 # Elite20 / NSEAP 二期建设任务、进展与分工说明（7.6 更新版）
 
-更新时间：2026-07-06  
+更新时间：2026-07-08（P0 状态已刷新，对齐白皮书）  
 整理人：张浩  
 用途：与佟博士、老师和二期 Builder 成员对齐方向、进展、问题与下一步分工  
 
@@ -400,16 +400,20 @@ create_submission_request()
 
 ### P0：马上要做
 
-1. 部署当前 Web App 到 Vercel / 服务器。
-2. 整理演示脚本和截图说明。
-3. 把 C2S 和真实项目作为演示数据。
-4. 写清楚当前 MVP 的边界和下一步计划。
-5. 定义 3 个最小 Agent Manifest：
-   - Student Companion Agent
-   - Teacher Companion Agent
-   - Submission Task Agent
-6. 定义最小 Message Envelope 和 Audit Log schema。
-7. 在飞书表中补充 Agent ID、Routing Status、Audit Pointer 字段。
+| # | 任务 | 状态 | 说明 |
+|---|---|---|---|
+| 1 | 部署当前 Web App 到 Vercel / 服务器 | ⬜ 待做 | 代码在 `ai-x-challenge-learning-mvp` 独立仓库，本地 localhost:3000 可运行 |
+| 2 | 整理演示脚本和截图说明 | ⬜ 待做 | `teams/demo-team/` 已建，内容待补 |
+| 3 | 把 C2S 和真实项目作为演示数据 | ✅ 已做 | `ai-x-student-homework-demo` 已有真实提交，飞书已有记录 |
+| 4 | 写清楚当前 MVP 的边界和下一步计划 | ✅ 已做 | 白皮书 `docs/technical-whitepaper-20260708.md` 完整覆盖 |
+| 5 | 定义 4 个核心 Agent Manifest | ✅ 已做 | `agents/manifests/` 下 Student/Teacher Companion + Submission/Review Task Agent schema 齐全 |
+| 6 | 定义最小 Message Envelope 和 Audit Log schema | ✅ 已做 | `agents/messages/message-envelope-schema.md` + `agents/audit/audit-log-schema.md` 完整 |
+| 7 | 在飞书表中补充 Agent ID / Routing Status / Audit Pointer 字段 | ⚠️ 设计完成 | Schema 已设计，飞书表字段尚未实际创建 |
+| 8 | Challenge 详情页 | ⬜ 待做 | WebApp 侧需补，白皮书 §13.2 已规划 |
+| 9 | 提交详情页（含 AI 初评、状态、缺失项） | ⬜ 待做 | 白皮书 §13.2 P0 |
+| 10 | Challenge Library 结构化 C01-C10 | ✅ 已做 | `challenges/Challenge-Library/` 三级 10 个 Challenge + Rubric + 模板齐全 |
+| 11 | 飞书表字段中文规范化 | ⚠️ 部分 | MVP 代码已支持中文字段（07-07 commit），但表结构文档待补 |
+| 12 | 增加提交状态流转（已提交→检查失败→待评审→需修改→已完成） | ⬜ 待做 | Schema 已定义，代码实现待做 |
 
 ### P1：一周内做
 

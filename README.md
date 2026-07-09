@@ -15,8 +15,9 @@ Situation -> Ontology -> Workflow -> Skill -> Task Agent -> Evaluation -> Knowle
 - `methodology/`: Situation-to-Agent, FDE workflow, Skill construction, and KSTAR loop
 - `ontology/`: Course, Skill, Challenge, Project, and Assessment ontology drafts
 - `challenges/`: standard Challenge, Rubric, and submission templates
-- `agents/`: specifications for the first three task agents
-- `agents/manifests/`: MVP agent manifests aligned with the LLM Agent Interface direction
+- `agents/`: Agent architecture — manifests, message envelope, inbox/outbox, audit log
+- `agents/manifests/`: machine-readable agent manifests (Student/Teacher Companion, Submission/Review Task Agents)
+- `docs/technical-whitepaper-20260708.md`: full system whitepaper covering architecture, agents, data models, and roadmap
 - `examples/`: end-to-end cases that show how a Challenge becomes a Cognitive Cell
 - `teams/`: seven Builder Team workspaces aligned with Richard's team structure
 - `knowledge-base/`: examples, FAQ, prompts, and reusable lessons
@@ -31,11 +32,18 @@ The MVP now focuses on four layers:
 3. Ontology Layer: how Course, Skill, Challenge, Project, and Assessment connect.
 4. Agent Interface Layer: how Agents declare identity, capability, inputs, outputs, and permissions.
 
-## First Three Agents
+## Core Agents (see whitepaper §6 for full architecture)
 
-- Project Manager Agent: tracks progress and coordinates work.
-- Coding Coach Agent: helps students build, debug, and document.
-- Evaluation Agent: reviews submissions according to rubrics.
+### Student-side
+- **Student Companion Agent**: each student's personal learning assistant — understands Challenges, checks local workspace, prepares submission metadata, sends submission requests, receives feedback. Cannot directly write submission records.
+
+### Teacher-side
+- **Teacher Companion Agent**: teacher's teaching assistant — creates and publishes Challenges, views submission progress, triggers reviews, aggregates class feedback.
+
+### System-side (platform agents)
+- **Submission Task Agent**: the submission hub and **architecture red line** — the ONLY agent that can write final submission records. Validates identity, checks GitHub pointers, writes Feishu records, routes to review, records audit trails.
+- **Review Task Agent**: evaluation executor — reads submission packages, reads rubrics, checks GitHub evidence (README, AAR, demo, code structure), generates AI initial reviews, provides reviewable feedback to teachers.
+- **Peer Review Agent** (future): handles peer review assignments with isolated visibility and audit trails.
 
 ## Communication Channels
 
@@ -60,9 +68,12 @@ Start here:
 - `challenges/challenge-template.md`: standard Challenge format
 - `challenges/rubric-template.md`: standard scoring format
 - `challenges/sample-challenge-01.md`: first sample Challenge
-- `agents/agent-collaboration-flow.md`: how the first three agents work together
-- `agents/manifests/`: machine-readable MVP Agent manifests
+- `agents/agent-collaboration-flow.md`: how the five core agents collaborate
+- `agents/manifests/`: machine-readable Agent manifests (Student/Teacher Companion, Submission/Review Task)
+- `agents/messages/message-envelope-schema.md`: standard message format for all agent communication
+- `agents/inbox/README.md`: Inbox/Outbox design and processing flow
+- `agents/audit/audit-log-schema.md`: audit trail structure for every state change
 - `examples/challenge-to-cognitive-cell-case/`: first end-to-end example
 - `.github/ISSUE_TEMPLATE/`: GitHub issue templates for Challenges and submissions
 - `reviews/evaluation-report-template.md`: standard review report format
-- `prompts/`: reusable prompts for the first three agents
+- `prompts/`: reusable agent prompts
