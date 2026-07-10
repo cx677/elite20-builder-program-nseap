@@ -1,0 +1,1137 @@
+@prefix :        <http://elite20.team3/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix team3:   <http://elite20.team3/ontology#> .
+
+# ====================================================================
+# Team 3 主本体 - agent-ontology.ttl
+# 来源: 6 份抽取报告（语义模块 / 实体概念 / 关系 / 规则 / 事件 / 流程 / 技能）
+# 抽取物: ~430 个 (T-Box 80+ / A-Box 41 / R-Box 130 / E-Box 14 / P-Box 36 / S-Box 10 / AG-Box 15)
+# 架构红线: 10 条 (RED-001..010)
+# 版本: 0.1.0
+# 创建日期: 2026-07-08
+# ====================================================================
+
+<http://elite20.team3/ontology> a owl:Ontology ;
+    dcterms:title "Team 3 Agent Ontology"@en, "Team 3 智能体本体"@zh ;
+    dcterms:description "Team 3 智能体系统本体的主 OWL 文件，定义 Agent 体系 / 协议 / 业务对象 / 技能 / 事件 等核心概念"@zh ;
+    dcterms:creator "Team 3 (Agent Team)"@zh ;
+    dcterms:created "2026-07-08"^^xsd:date ;
+    dcterms:license "<https://creativecommons.org/licenses/by/4.0/>" ;
+    vann:preferredNamespacePrefix "team3" ;
+    vann:preferredNamespaceUri "http://elite20.team3/ontology#" ;
+    owl:versionInfo "0.1.0" ;
+    owl:imports <http://elite20.team3/ontology/core/agent-ontology-shapes> ;
+    rdfs:comment """
+        主 OWL 文件遵循以下设计原则：
+        1. 类层次：Agent 顶层 → Companion/Task 二分 → 具体 Agent
+        2. 协议层：Manifest/Inbox/Outbox/Message/Audit/Trust 完整
+        3. 业务层：Course/Challenge/Submission/Review 闭环
+        4. 技能层：6 抽象类型 → 10 具体 Skill
+        5. 事件层：9 message_type 完整映射
+        6. 10 条架构红线用 OWL Restrictions + FunctionalProperty 形式化
+    """@zh .
+
+# ====================================================================
+# Module 1: Agent 顶层抽象
+# ====================================================================
+
+# ---------- 顶层抽象 ----------
+:Agent a owl:Class ;
+    rdfs:label "Agent"@en, "智能体"@zh ;
+    rdfs:comment "所有智能体的抽象父类。系统内有 4 类 Agent：StudentCompanion / TeacherCompanion / SubmissionTask / ReviewTask（外加旧方向 CodingCoach/PM/Eval/PeerReview）"@zh ;
+    skos:definition "A persistent, addressable, auditable software entity with a manifest, inbox/outbox, and memory bindings"@en ;
+    rdfs:isDefinedBy <http://elite20.team3/ontology> .
+
+:CompanionAgent a owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Companion Agent"@en, "伴随型智能体"@zh ;
+    rdfs:comment "负责个人上下文（身份/学习历史/资源），是学生/教师的'第二大脑'。每用户一个实例。"@zh .
+
+:TaskAgent a owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Task Agent"@en, "任务型智能体"@zh ;
+    rdfs:comment "负责完整任务流程（提交/评审），不负责长期个人记忆。单例或池。"@zh .
+
+# ---------- Companion 子类（6 个）----------
+:StudentCompanion a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Student Companion"@en, "学生伴随智能体"@zh ;
+    rdfs:comment "agent_type=student-companion；每学生 1 个实例；ID 模式 student-companion-{student_id}"@zh .
+
+:TeacherCompanion a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Teacher Companion"@en, "教师伴随智能体"@zh ;
+    rdfs:comment "agent_type=teacher-companion；每教师 1 个实例"@zh .
+
+:AdminCompanion a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Admin Companion"@en, "管理员伴随智能体"@zh ;
+    rdfs:comment "agent_type=admin-companion；负责 MVP 初始化（ExcelImport/FeishuSetup）"@zh .
+
+:CodingCoachAgent a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Coding Coach"@en, "代码教练"@zh ;
+    rdfs:comment "课程要求 BC05；当前仓库仅有 stub，未出 Manifest"@zh ;
+    rdfs:seeAlso <http://elite20.team3/ontology/agents/coding-coach-agent.manifest> .
+
+:MentorAgent a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Mentor Agent"@en, "导师智能体"@zh ;
+    rdfs:comment "课程 C4 要求 1v1 答疑；v1.1 路线图"@zh .
+
+:KnowledgeLibrarianAgent a owl:Class ;
+    rdfs:subClassOf :CompanionAgent ;
+    rdfs:label "Knowledge Librarian"@en, "知识馆员智能体"@zh ;
+    rdfs:comment "课程 C4 要求；v1.1 路线图"@zh .
+
+# ---------- Task Agent 子类（17 个）----------
+:SubmissionTaskAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Submission Task Agent"@en, "提交任务智能体"@zh ;
+    rdfs:comment "agent_type=submission-task；🔴 架构红线 RED-001：唯一能写 Submission Record 的 Agent。单例或池。"@zh .
+
+:ReviewTaskAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Review Task Agent"@en, "评审任务智能体"@zh ;
+    rdfs:comment "agent_type=review-task；按 Rubric 评审并写回 Evaluations"@zh .
+
+:PeerReviewStudentAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Peer Review Student Agent"@en, "同伴评审学生智能体"@zh ;
+    rdfs:comment "agent_type=peer-review；可作为 Review Task 的子模式或独立实例"@zh .
+
+:CourseSetupAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Course Setup Agent"@en, "课程搭建智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 ProfessorRaymond；调用 FeishuSetupSkill"@zh .
+
+:ChallengeCreationAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Challenge Creation Agent"@en, "挑战创建智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 ProfessorRaymond"@zh .
+
+:SubmissionReviewAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Submission Review Agent"@en, "提交审核智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 ProfessorRaymond；教师侧审核"@zh .
+
+:RubricEvaluationAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Rubric Evaluation Agent"@en, "评分智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 ProfessorRaymond"@zh .
+
+:CohortMonitoringAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Cohort Monitoring Agent"@en, "班级监控智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 ProfessorRaymond"@zh .
+
+:CompanionSetupAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Companion Setup Agent"@en, "伴随初始化智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond；调用 PersonalOKFSkill"@zh .
+
+:ChallengeWorkAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Challenge Work Agent"@en, "挑战执行智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond"@zh .
+
+:ChallengeSubmissionAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Challenge Submission Agent"@en, "挑战提交智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 (system)；调用 FeishuSubmissionSkill"@zh .
+
+:GitHubArtifactAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "GitHub Artifact Agent"@en, "GitHub 产物智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond"@zh .
+
+:SelfEvaluationAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Self Evaluation Agent"@en, "自评智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond"@zh .
+
+:PortfolioSubmissionAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Portfolio Submission Agent"@en, "作品集智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond"@zh .
+
+:AARAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "AAR Agent"@en, "复盘智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 StudentRaymond；生成 After Action Review"@zh .
+
+:ProjectExecutionAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Project Execution Agent"@en, "项目执行智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 (system)"@zh .
+
+:EvaluationAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Evaluation Agent"@en, "评估智能体"@zh ;
+    rdfs:comment "MVP 系统设计：归属 (system)；广义评估"@zh .
+
+# ---------- 旧方向 Agent（待定）----------
+:ProjectManagerAgent a owl:Class ;
+    rdfs:subClassOf :TaskAgent ;
+    rdfs:label "Project Manager Agent"@en, "项目管理智能体"@zh ;
+    rdfs:comment "课程要求 7 Agent 之一；当前仓库仅有 stub，待定去留"@zh .
+
+# ====================================================================
+# Module 2: 业务对象类（12 个）
+# ====================================================================
+
+:Person a owl:Class ;
+    rdfs:label "Person"@en, "人（抽象）"@zh ;
+    rdfs:comment "人抽象父类：Learner / Professor"@zh .
+
+:Learner a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Learner"@en, "学生"@zh ;
+    rdfs:comment "MVP 学生类型；9 个属性（student_id, name, school, major, feishu_id, github_username, cohort_id, learning_goals, ai_x_direction）"@zh .
+
+:Professor a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Professor"@en, "教师"@zh ;
+    rdfs:comment "MVP 教师类型"@zh .
+
+:Course a owl:Class ;
+    rdfs:label "Course"@en, "课程"@zh ;
+    rdfs:comment "课程是 Challenge 的容器；MVP 第一门课 = Elite20 AI+X Web Coding MVP"@zh .
+
+:Challenge a owl:Class ;
+    rdfs:label "Challenge"@en, "挑战"@zh ;
+    rdfs:comment "PRD §8.1：16 字段（challenge_id, title, teacher_id, ontology_nodes, skills, learning_objectives, required_deliverables, rubric_pointer, due_date, status 等）"@zh ;
+    dcterms:references "PRD §8.1"@zh .
+
+:Artifact a owl:Class ;
+    rdfs:label "Artifact"@en, "产物"@zh ;
+    rdfs:comment "产物基类；9 个子类：GitHubRepo / README / Demo / DesignDoc / PromptLog / ContextPack / AAR / SelfEvaluation / PortfolioPage"@zh .
+
+:SubmissionArtifact a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Submission Artifact"@en, "提交物"@zh ;
+    rdfs:comment "Artifact 子类；学生提交的具体产物"@zh .
+
+:GitHubRepo a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "GitHub Repository"@en, "GitHub 仓库"@zh .
+
+:README a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "README Document"@en, "README 文档"@zh .
+
+:Demo a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Demo"@en, "演示"@zh .
+
+:DesignDoc a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Design Document"@en, "设计文档"@zh .
+
+:PromptLog a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Prompt Log"@en, "Prompt 日志"@zh .
+
+:ContextPack a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Context Pack"@en, "上下文包"@zh .
+
+:PortfolioPage a owl:Class ;
+    rdfs:subClassOf :Artifact ;
+    rdfs:label "Portfolio Page"@en, "作品集页面"@zh .
+
+:AAR a owl:Class ;
+    rdfs:label "AAR"@en, "行动后反思"@zh ;
+    rdfs:comment "After Action Review；11 字段（task, expected_result, actual_result, what_worked, what_failed, lesson_learned, skill_update, memory_update, next_action 等）"@zh .
+
+:Rubric a owl:Class ;
+    rdfs:label "Rubric"@en, "评分量规"@zh ;
+    rdfs:comment "评分量规；含 dimensions 数组 + max_score"@zh .
+
+:Submission a owl:Class ;
+    rdfs:label "Submission"@en, "提交"@zh ;
+    rdfs:comment "PRD §8.2：25 字段（submission_id, challenge_id, student_id, submitted_by_agent_id, processed_by_agent_id, admin_identity_mode, github_repo, system_validation_status, review_mode, routing_status, review_status, audit_log_pointer 等）"@zh ;
+    dcterms:references "PRD §8.2"@zh .
+
+:Evaluation a owl:Class ;
+    rdfs:label "Evaluation"@en, "评审"@zh ;
+    rdfs:comment "评审记录；含 scores_json, feedback, evaluator_type, evaluator_id"@zh .
+
+:Portfolio a owl:Class ;
+    rdfs:label "Portfolio"@en, "作品集"@zh ;
+    rdfs:comment "学生作品集；含 items 数组（Artifact）+ visibility"@zh .
+
+# ====================================================================
+# Module 3: 协议类（17 个）
+# ====================================================================
+
+:AgentIdentity a owl:Class ;
+    rdfs:label "Agent Identity"@en, "智能体身份"@zh ;
+    rdfs:comment "智能体身份信息；含 agent_id, agent_type, display_name, status, last_active_at, owner_id"@zh .
+
+:AgentManifest a owl:Class ;
+    rdfs:label "Agent Manifest"@en, "智能体清单"@zh ;
+    rdfs:comment "智能体的能力声明；含 capabilities, interfaces, permissions, trusted_agents, memory_binding, channel_bindings, constraints"@zh ;
+    rdfs:seeAlso <http://p3394.ieee.org/agent-manifest> .
+
+:Capability a owl:Class ;
+    rdfs:label "Capability"@en, "能力"@zh ;
+    rdfs:comment "Agent 能力的最小单位；含 capability_id, name, description"@zh .
+
+:Interface a owl:Class ;
+    rdfs:label "Interface"@en, "接口"@zh ;
+    rdfs:comment "Agent 暴露的接口；含 interface_name, input_schema, output_schema"@zh .
+
+:Permission a owl:Class ;
+    rdfs:label "Permission"@en, "权限"@zh ;
+    rdfs:comment "Agent 拥有的权限；含 permission_id, scope（如 feishu.submissions.write）"@zh .
+
+:Constraint a owl:Class ;
+    rdfs:label "Constraint"@en, "约束"@zh ;
+    rdfs:comment "Agent 受到的约束；含 constraint_id, rule"@zh .
+
+:MemoryBinding a owl:Class ;
+    rdfs:label "Memory Binding"@en, "记忆绑定"@zh ;
+    rdfs:comment "Agent 与 Ontology/PersonalOntology 的绑定；🔴 RED-004 用 owner_id 字段防跨学生访问"@zh .
+
+:ChannelBinding a owl:Class ;
+    rdfs:label "Channel Binding"@en, "通道绑定"@zh ;
+    rdfs:comment "Agent 与外部通道的绑定；🔴 RED-010：人触达通道必须是 feishu"@zh .
+
+:TrustedRelationship a owl:Class ;
+    rdfs:label "Trusted Relationship"@en, "可信关系"@zh ;
+    rdfs:comment "Agent 之间的可信关系；🔴 RED-007：消息发送前必查；含 relationship_id, agent_a, agent_b, relationship_type, trust_level, expiration"@zh .
+
+:MessageEnvelope a owl:Class ;
+    rdfs:label "Message Envelope"@en, "消息外壳"@zh ;
+    rdfs:comment "消息的标准外壳；含 message_id, request_id, from_agent, to_agent, message_type, timestamp, payload, routing_metadata, audit_trace_pointer"@zh .
+
+:AgentInbox a owl:Class ;
+    rdfs:label "Agent Inbox"@en, "智能体收件箱"@zh ;
+    rdfs:comment "Agent 的入站消息队列；🔴 RED-006：所有消息必经 Inbox；10 步校验链"@zh .
+
+:AgentOutbox a owl:Class ;
+    rdfs:label "Agent Outbox"@en, "智能体发件箱"@zh ;
+    rdfs:comment "Agent 的出站消息队列"@zh .
+
+:AuditTrace a owl:Class ;
+    rdfs:label "Audit Trace"@en, "审计追踪"@zh ;
+    rdfs:comment "🔴 RED-008：每次状态变化必写；含 audit_id, agent_id, action, target_resource, before_state, after_state, routing_path, related_message_id"@zh .
+
+:Presence a owl:Class ;
+    rdfs:label "Presence"@en, "在线状态"@zh ;
+    rdfs:comment "Agent 在线状态；含 status (online/busy/offline/do-not-disturb/paused), last_seen, current_task"@zh .
+
+:ResourceConfig a owl:Class ;
+    rdfs:label "Resource Config"@en, "资源配置"@zh ;
+    rdfs:comment "Agent 关联的资源配置；含 feishu, github, course 三个子配置 + admin_identity_mode 字段"@zh .
+
+:PersonalOntology a owl:Class ;
+    rdfs:subClassOf :OKF ;
+    rdfs:label "Personal Ontology"@en, "个人本体"@zh ;
+    rdfs:comment "学生的个人本体；MVP 设计有 9 个子模块：identity, learning_goals, courses, skills, projects, schedule, exams, resume, job_applications"@zh .
+
+:OKF a owl:Class ;
+    rdfs:label "OKF"@en, "开放知识格式"@zh ;
+    rdfs:comment "Open Knowledge Format；个人 OKF 包含 profile.yaml + ontology.md + skills.md + memory.md + resources.md + goals.md + challenges/ + artifacts/ + aar/"@zh .
+
+# ====================================================================
+# Module 4: 资源类（3 个）
+# ====================================================================
+
+:FeishuResource a owl:Class ;
+    rdfs:label "Feishu Resource"@en, "飞书资源"@zh ;
+    rdfs:comment "飞书集成资源；含 tenant_id, user_id, 5 张表 ID, wiki_url, professor_handle"@zh .
+
+:GitHubResource a owl:Class ;
+    rdfs:label "GitHub Resource"@en, "GitHub 资源"@zh ;
+    rdfs:comment "GitHub 集成资源；含 username, personal_repo, portfolio_repo, artifact_repo_root, github_pages_url"@zh .
+
+:CourseResource a owl:Class ;
+    rdfs:label "Course Resource"@en, "课程资源"@zh ;
+    rdfs:comment "课程关联资源；含 course_id, cohort_id, challenge_id, rubric_id"@zh .
+
+# ====================================================================
+# Module 5: Skill 类（16 个：6 抽象 + 10 具体）
+# ====================================================================
+
+:Skill a owl:Class ;
+    rdfs:label "Skill"@en, "技能"@zh ;
+    rdfs:comment "Skill 的最小可复用能力单元；13 字段（skill_id, skill_name, description, input_schema, output_schema, required_context, required_permissions, linked_task_agent, linked_ontology, evaluation_rubric, action_plan, constraints, learning_signals）"@zh .
+
+# 6 个抽象类型
+:FeishuSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "Feishu Skill"@en, "飞书交互技能"@zh ;
+    rdfs:comment "与飞书交互的技能抽象"@zh .
+
+:GitHubSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "GitHub Skill"@en, "GitHub 交互技能"@zh .
+
+:OKFSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "OKF Skill"@en, "OKF 读写技能"@zh .
+
+:ChallengeSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "Challenge Skill"@en, "挑战元数据技能"@zh .
+
+:AARSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "AAR Skill"@en, "复盘技能"@zh .
+
+:EvaluationSkill a owl:Class ;
+    rdfs:subClassOf :Skill ;
+    rdfs:label "Evaluation Skill"@en, "评估技能"@zh .
+
+# 10 个具体 Skill
+:ExcelImportSkill a owl:Class ;
+    rdfs:subClassOf :FeishuSkill ;
+    rdfs:label "Excel Import Skill"@en, "Excel 导入技能"@zh ;
+    rdfs:comment "linked_task_agent: CourseSetupAgent"@zh .
+
+:FeishuSetupSkill a owl:Class ;
+    rdfs:subClassOf :FeishuSkill ;
+    rdfs:label "Feishu Setup Skill"@en, "飞书初始化技能"@zh ;
+    rdfs:comment "linked_task_agent: CourseSetupAgent"@zh .
+
+:PersonalOKFSkill a owl:Class ;
+    rdfs:subClassOf :OKFSkill ;
+    rdfs:label "Personal OKF Skill"@en, "个人 OKF 技能"@zh ;
+    rdfs:comment "linked_task_agent: CompanionSetupAgent"@zh .
+
+:ChallengeCreationSkill a owl:Class ;
+    rdfs:subClassOf :ChallengeSkill ;
+    rdfs:label "Challenge Creation Skill"@en, "挑战创建技能"@zh ;
+    rdfs:comment "linked_task_agent: ChallengeCreationAgent"@zh .
+
+:GitHubArtifactSkill a owl:Class ;
+    rdfs:subClassOf :GitHubSkill ;
+    rdfs:label "GitHub Artifact Skill"@en, "GitHub 产物技能"@zh ;
+    rdfs:comment "linked_task_agent: GitHubArtifactAgent"@zh .
+
+:AARSkillImpl a owl:Class ;
+    rdfs:subClassOf :AARSkill ;
+    rdfs:label "AAR Skill (Implementation)"@en, "复盘生成技能"@zh ;
+    rdfs:comment "linked_task_agent: AARAgent"@zh .
+
+:SelfEvaluationSkill a owl:Class ;
+    rdfs:subClassOf :EvaluationSkill ;
+    rdfs:label "Self Evaluation Skill"@en, "自评技能"@zh ;
+    rdfs:comment "linked_task_agent: SelfEvaluationAgent"@zh .
+
+:PortfolioSubmissionSkill a owl:Class ;
+    rdfs:subClassOf :FeishuSkill ;
+    rdfs:label "Portfolio Submission Skill"@en, "作品集提交技能"@zh ;
+    rdfs:comment "linked_task_agent: PortfolioSubmissionAgent"@zh .
+
+:FeishuSubmissionSkill a owl:Class ;
+    rdfs:subClassOf :FeishuSkill ;
+    rdfs:label "Feishu Submission Skill"@en, "飞书提交技能"@zh ;
+    rdfs:comment "linked_task_agent: ChallengeSubmissionAgent；🔴 RED-002 关联"@zh .
+
+:RubricEvaluationSkill a owl:Class ;
+    rdfs:subClassOf :EvaluationSkill ;
+    rdfs:label "Rubric Evaluation Skill"@en, "评分技能"@zh ;
+    rdfs:comment "linked_task_agent: RubricEvaluationAgent"@zh .
+
+# ====================================================================
+# Module 6: 事件类（15 个：1 抽象 + 14 具体）
+# ====================================================================
+
+:Event a owl:Class ;
+    rdfs:label "Event"@en, "事件"@zh ;
+    rdfs:comment "事件抽象父类；9 字段（event_id, event_type, timestamp, source_agent, target_agent, payload, correlation_id, audit_trace_pointer）"@zh .
+
+:ChallengePublished a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Challenge Published"@en, "挑战已发布"@zh ;
+    rdfs:comment "EV-01；message_type=challenge_publish"@zh .
+
+:ChallengeAvailable a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Challenge Available"@en, "挑战可接收"@zh ;
+    rdfs:comment "EV-02；message_type=challenge_available"@zh .
+
+:SubmissionRequested a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Submission Requested"@en, "提交已请求"@zh ;
+    rdfs:comment "EV-03；message_type=submission_request；🔴 RED-002/004/005 关联"@zh .
+
+:ReviewRequested a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Review Requested"@en, "评审已请求"@zh ;
+    rdfs:comment "EV-04；message_type=review_request"@zh .
+
+:ReviewCompleted a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Review Completed"@en, "评审完成"@zh ;
+    rdfs:comment "EV-05；message_type=review_result"@zh .
+
+:FeedbackDelivered a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Feedback Delivered"@en, "反馈已送达"@zh ;
+    rdfs:comment "EV-06；message_type=feedback；🔴 RED-009/010 关联"@zh .
+
+:StatusUpdated a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Status Updated"@en, "状态已更新"@zh ;
+    rdfs:comment "EV-07；message_type=status_update"@zh .
+
+:FinalAdjusted a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Final Adjusted"@en, "最终调整"@zh ;
+    rdfs:comment "EV-08；message_type=final_adjustment"@zh .
+
+:PeerReviewRequested a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Peer Review Requested"@en, "同伴评审请求"@zh ;
+    rdfs:comment "EV-09；message_type=peer_review_request"@zh .
+
+:AgentOnline a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Agent Online"@en, "智能体上线"@zh ;
+    rdfs:comment "EV-10；系统事件"@zh .
+
+:AgentOffline a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Agent Offline"@en, "智能体离线"@zh ;
+    rdfs:comment "EV-11；系统事件"@zh .
+
+:AuditLogWritten a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Audit Log Written"@en, "审计日志写入"@zh ;
+    rdfs:comment "EV-12；🔴 RED-008 关联；所有状态变化都触发"@zh .
+
+:TeacherRejected a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Teacher Rejected"@en, "教师驳回"@zh ;
+    rdfs:comment "EV-13"@zh .
+
+:TeacherAccepted a owl:Class ;
+    rdfs:subClassOf :Event ;
+    rdfs:label "Teacher Accepted"@en, "教师接受"@zh ;
+    rdfs:comment "EV-14"@zh .
+
+# ====================================================================
+# Module 7: Object Properties（30+ 个）
+# ====================================================================
+
+# ---------- 协议关系（13 个）----------
+:hasManifest a owl:ObjectProperty ;
+    rdfs:label "has manifest"@en, "有清单"@zh ;
+    rdfs:domain :Agent ; rdfs:range :AgentManifest ;
+    owl:FunctionalProperty ;
+    rdfs:comment "1:1；每个 Agent 只能有 1 个 Manifest"@zh .
+
+:hasIdentity a owl:ObjectProperty ;
+    rdfs:label "has identity"@en, "有身份"@zh ;
+    rdfs:domain :Agent ; rdfs:range :AgentIdentity ;
+    owl:FunctionalProperty .
+
+:hasCapability a owl:ObjectProperty ;
+    rdfs:label "has capability"@en, "有能力"@zh ;
+    rdfs:domain :Agent ; rdfs:range :Capability ;
+    rdfs:comment "1:N；Agent 可拥有多个能力"@zh .
+
+:exposesInterface a owl:ObjectProperty ;
+    rdfs:label "exposes interface"@en, "暴露接口"@zh ;
+    rdfs:domain :Agent ; rdfs:range :Interface .
+
+:hasPermission a owl:ObjectProperty ;
+    rdfs:label "has permission"@en, "有权限"@zh ;
+    rdfs:domain :Agent ; rdfs:range :Permission ;
+    rdfs:comment "1:N；🔴 RED-002/003 关联：StudentCompanion 不能有 submission.write；TeacherCompanion 不能有 student_memory.read"@zh .
+
+:hasConstraint a owl:ObjectProperty ;
+    rdfs:label "has constraint"@en, "有约束"@zh ;
+    rdfs:domain :Agent ; rdfs:range :Constraint .
+
+:trusts a owl:ObjectProperty ;
+    rdfs:label "trusts"@en, "信任"@zh ;
+    rdfs:domain :Agent ; rdfs:range :Agent ;
+    rdfs:comment "N:N；🔴 RED-007：消息发送前必查 TrustedRelationship"@zh .
+
+:bindsToMemory a owl:ObjectProperty ;
+    rdfs:label "binds to memory"@en, "绑定记忆"@zh ;
+    rdfs:domain :Agent ; rdfs:range :MemoryBinding ;
+    rdfs:comment "1:N；🔴 RED-004：MemoryBinding.ownerId 必须 = StudentCompanion.agentId"@zh .
+
+:bindsToChannel a owl:ObjectProperty ;
+    rdfs:label "binds to channel"@en, "绑定通道"@zh ;
+    rdfs:domain :Agent ; rdfs:range :ChannelBinding ;
+    rdfs:comment "1:N；🔴 RED-010：人触达通道 channelType 必须是 feishu"@zh .
+
+:inbounds a owl:ObjectProperty ;
+    rdfs:label "inbounds"@en, "有收件箱"@zh ;
+    rdfs:domain :Agent ; rdfs:range :AgentInbox ;
+    owl:FunctionalProperty ;
+    rdfs:comment "1:1；🔴 RED-006：消息必经 Inbox"@zh .
+
+:outbounds a owl:ObjectProperty ;
+    rdfs:label "outbounds"@en, "有发件箱"@zh ;
+    rdfs:domain :Agent ; rdfs:range :AgentOutbox ;
+    owl:FunctionalProperty .
+
+:sends a owl:ObjectProperty ;
+    rdfs:label "sends"@en, "发送"@zh ;
+    rdfs:domain :Agent ; rdfs:range :MessageEnvelope .
+
+:creates a owl:ObjectProperty ;
+    rdfs:label "creates"@en, "创建"@zh ;
+    rdfs:domain :Agent ; rdfs:range :AuditTrace ;
+    rdfs:comment "1:N；🔴 RED-008：每次状态变化 Agent 必创建 AuditTrace"@zh .
+
+# ---------- 业务关系（17 个）----------
+:owns a owl:ObjectProperty ;
+    rdfs:label "owns"@en, "拥有"@zh ;
+    rdfs:domain :CompanionAgent ; rdfs:range :PersonalOntology ;
+    owl:FunctionalProperty ;
+    rdfs:comment "1:1；CompanionAgent 唯一拥有 PersonalOntology"@zh .
+
+:configures a owl:ObjectProperty ;
+    rdfs:label "configures"@en, "配置"@zh ;
+    rdfs:domain :CompanionAgent ; rdfs:range :ResourceConfig ;
+    owl:FunctionalProperty .
+
+:belongsTo a owl:ObjectProperty ;
+    rdfs:label "belongs to"@en, "归属"@zh ;
+    rdfs:domain :TaskAgent ; rdfs:range :CompanionAgent ;
+    rdfs:comment "N:1；MVP 系统设计：TaskAgent 归属某个 CompanionAgent"@zh .
+
+:invokes a owl:ObjectProperty ;
+    rdfs:label "invokes"@en, "调用"@zh ;
+    rdfs:domain :TaskAgent ; rdfs:range :Skill ;
+    rdfs:comment "1:N；TaskAgent 调用 Skill"@zh .
+
+:writesTo a owl:ObjectProperty ;
+    rdfs:label "writes to"@en, "写入"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :Submission ;
+    owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+    rdfs:comment "🔴 RED-001：唯一关系；SubmissionTaskAgent 是唯一可写 Submission 的 Agent"@zh .
+
+:routesTo a owl:ObjectProperty ;
+    rdfs:label "routes to"@en, "路由到"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :ReviewTaskAgent ;
+    rdfs:comment "1:N；SubmissionTaskAgent 路由给 ReviewTaskAgent"@zh .
+
+:teaches a owl:ObjectProperty ;
+    rdfs:label "teaches"@en, "教"@zh ;
+    rdfs:domain :Professor ; rdfs:range :Course .
+
+:enrolls a owl:ObjectProperty ;
+    rdfs:label "enrolls"@en, "选课"@zh ;
+    rdfs:domain :Learner ; rdfs:range :Course .
+
+:contains a owl:ObjectProperty ;
+    rdfs:label "contains"@en, "包含"@zh ;
+    rdfs:domain :Course ; rdfs:range :Challenge ;
+    rdfs:comment "1:N；课程包含多个挑战"@zh .
+
+:referencesRubric a owl:ObjectProperty ;
+    rdfs:label "references rubric"@en, "引用 Rubric"@zh ;
+    rdfs:domain :Challenge ; rdfs:range :Rubric ;
+    owl:FunctionalProperty ;
+    rdfs:comment "1:1；每个挑战引用一个评分量规"@zh .
+
+:produces a owl:ObjectProperty ;
+    rdfs:label "produces"@en, "产出"@zh ;
+    rdfs:domain :Challenge ; rdfs:range :Artifact ;
+    rdfs:comment "1:N；挑战产出多个产物"@zh .
+
+:submits a owl:ObjectProperty ;
+    rdfs:label "submits"@en, "提交"@zh ;
+    rdfs:domain :Learner ; rdfs:range :Submission .
+
+:evaluates a owl:ObjectProperty ;
+    rdfs:label "evaluates"@en, "评审"@zh ;
+    rdfs:domain :Submission ; rdfs:range :Evaluation ;
+    owl:FunctionalProperty .
+
+:learns a owl:ObjectProperty ;
+    rdfs:label "learns"@en, "学习"@zh ;
+    rdfs:domain :Learner ; rdfs:range :Skill .
+
+:hasPortfolio a owl:ObjectProperty ;
+    rdfs:label "has portfolio"@en, "有作品集"@zh ;
+    rdfs:domain :Learner ; rdfs:range :Portfolio ;
+    owl:FunctionalProperty .
+
+# ---------- 9 种消息流关系 ----------
+:publishesChallenge a owl:ObjectProperty ;
+    rdfs:label "publishes challenge"@en, "发布挑战"@zh ;
+    rdfs:domain :TeacherCompanion ; rdfs:range :SubmissionTaskAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-01；message_type=challenge_publish"@zh .
+
+:notifiesAvailable a owl:ObjectProperty ;
+    rdfs:label "notifies available"@en, "通知可接收"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :StudentCompanion ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-02；message_type=challenge_available"@zh .
+
+:requestsSubmission a owl:ObjectProperty ;
+    rdfs:label "requests submission"@en, "请求提交"@zh ;
+    rdfs:domain :StudentCompanion ; rdfs:range :SubmissionTaskAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-03；message_type=submission_request"@zh .
+
+:routesForReview a owl:ObjectProperty ;
+    rdfs:label "routes for review"@en, "路由评审"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :ReviewTaskAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-04；message_type=review_request"@zh .
+
+:returnsReview a owl:ObjectProperty ;
+    rdfs:label "returns review"@en, "返回评审"@zh ;
+    rdfs:domain :ReviewTaskAgent ; rdfs:range :SubmissionTaskAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-05；message_type=review_result"@zh .
+
+:deliversFeedback a owl:ObjectProperty ;
+    rdfs:label "delivers feedback"@en, "送达反馈"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :StudentCompanion ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-06；message_type=feedback"@zh .
+
+:updatesStatus a owl:ObjectProperty ;
+    rdfs:label "updates status"@en, "更新状态"@zh ;
+    rdfs:domain :SubmissionTaskAgent ; rdfs:range :TeacherCompanion ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-07；message_type=status_update"@zh .
+
+:adjustsFinal a owl:ObjectProperty ;
+    rdfs:label "adjusts final"@en, "最终调整"@zh ;
+    rdfs:domain :TeacherCompanion ; rdfs:range :SubmissionTaskAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-08；message_type=final_adjustment"@zh .
+
+:requestsPeerReview a owl:ObjectProperty ;
+    rdfs:label "requests peer review"@en, "请求同伴评审"@zh ;
+    rdfs:domain :ReviewTaskAgent ; rdfs:range :PeerReviewStudentAgent ;
+    rdfs:subPropertyOf :sends ;
+    rdfs:comment "EV-09；message_type=peer_review_request"@zh .
+
+# ====================================================================
+# Module 8: Datatype Properties（15+ 个）
+# ====================================================================
+
+:agentId a owl:DatatypeProperty ;
+    rdfs:label "agent ID"@en, "智能体 ID"@zh ;
+    rdfs:domain :Agent ; rdfs:range xsd:string ;
+    owl:FunctionalProperty ;
+    rdfs:comment "模式：{agent_type}-{entity_id}；如 student-companion-s001 / submission-task-agent"@zh .
+
+:agentType a owl:DatatypeProperty ;
+    rdfs:label "agent type"@en, "智能体类型"@zh ;
+    rdfs:domain :Agent ; rdfs:range xsd:string ;
+    rdfs:comment "5 个枚举值：student-companion / teacher-companion / submission-task / review-task / peer-review"@zh .
+
+:displayName a owl:DatatypeProperty ;
+    rdfs:label "display name"@en, "显示名"@zh ;
+    rdfs:domain :Agent ; rdfs:range xsd:string .
+
+:status a owl:DatatypeProperty ;
+    rdfs:label "status"@en, "状态"@zh ;
+    rdfs:domain :Agent ; rdfs:range xsd:string ;
+    rdfs:comment "5 个枚举值：online / busy / offline / do-not-disturb / paused"@zh .
+
+:lastActiveAt a owl:DatatypeProperty ;
+    rdfs:label "last active at"@en, "最后活跃时间"@zh ;
+    rdfs:domain :Agent ; rdfs:range xsd:dateTime .
+
+:ownerId a owl:DatatypeProperty ;
+    rdfs:label "owner ID"@en, "所有者 ID"@zh ;
+    rdfs:domain :MemoryBinding ; rdfs:range xsd:string ;
+    owl:FunctionalProperty ;
+    rdfs:comment "🔴 RED-004：MemoryBinding.ownerId 必须 = StudentCompanion.agentId"@zh .
+
+:permissionScope a owl:DatatypeProperty ;
+    rdfs:label "permission scope"@en, "权限范围"@zh ;
+    rdfs:domain :Permission ; rdfs:range xsd:string .
+
+:capabilityName a owl:DatatypeProperty ;
+    rdfs:label "capability name"@en, "能力名"@zh ;
+    rdfs:domain :Capability ; rdfs:range xsd:string ;
+    owl:FunctionalProperty .
+
+:channelType a owl:DatatypeProperty ;
+    rdfs:label "channel type"@en, "通道类型"@zh ;
+    rdfs:domain :ChannelBinding ; rdfs:range xsd:string ;
+    rdfs:comment "🔴 RED-010：人触达通道必须是 feishu"@zh .
+
+:dueDate a owl:DatatypeProperty ;
+    rdfs:label "due date"@en, "截止日期"@zh ;
+    rdfs:domain :Challenge ; rdfs:range xsd:dateTime .
+
+:processedByAgentId a owl:DatatypeProperty ;
+    rdfs:label "processed by agent ID"@en, "处理 Agent ID"@zh ;
+    rdfs:domain :Submission ; rdfs:range xsd:string ;
+    owl:FunctionalProperty ;
+    rdfs:comment "🔴 RED-001 关键字段：必须以 submission-task- 开头"@zh .
+
+:submittedByAgentId a owl:DatatypeProperty ;
+    rdfs:label "submitted by agent ID"@en, "提交 Agent ID"@zh ;
+    rdfs:domain :Submission ; rdfs:range xsd:string .
+
+:messageId a owl:DatatypeProperty ;
+    rdfs:label "message ID"@en, "消息 ID"@zh ;
+    rdfs:domain :MessageEnvelope ; rdfs:range xsd:string ;
+    owl:FunctionalProperty .
+
+:messageType a owl:DatatypeProperty ;
+    rdfs:label "message type"@en, "消息类型"@zh ;
+    rdfs:domain :MessageEnvelope ; rdfs:range xsd:string ;
+    rdfs:comment "9 个枚举值：challenge_publish / challenge_available / submission_request / review_request / review_result / feedback / status_update / final_adjustment / peer_review_request"@zh .
+
+:timestamp a owl:DatatypeProperty ;
+    rdfs:label "timestamp"@en, "时间戳"@zh ;
+    rdfs:domain :MessageEnvelope ; rdfs:range xsd:dateTime .
+
+:auditId a owl:DatatypeProperty ;
+    rdfs:label "audit ID"@en, "审计 ID"@zh ;
+    rdfs:domain :AuditTrace ; rdfs:range xsd:string ;
+    owl:FunctionalProperty .
+
+:action a owl:DatatypeProperty ;
+    rdfs:label "action"@en, "动作"@zh ;
+    rdfs:domain :AuditTrace ; rdfs:range xsd:string ;
+    rdfs:comment "18 个枚举值：publish_challenge / notify_students / submission_request / route_to_review / review_completed / feedback_delivered / status_update / final_adjusted / peer_review_requested / agent_online / agent_offline / audit_log_written / teacher_rejected / teacher_accepted / state_change / create / update / delete"@zh .
+
+# 3 个 PRD §8.2 关键字段
+:adminIdentityMode a owl:DatatypeProperty ;
+    rdfs:label "admin identity mode"@en, "管理员身份模式"@zh ;
+    rdfs:domain :Submission ; rdfs:range xsd:string ;
+    rdfs:comment "PRD §4.3：2 个枚举值 independent_admin / teacher_delegated"@zh .
+
+:reviewMode a owl:DatatypeProperty ;
+    rdfs:label "review mode"@en, "评审模式"@zh ;
+    rdfs:domain :Submission ; rdfs:range xsd:string ;
+    rdfs:comment "PRD §8.2：3 个枚举值 teacher_only / peer_only / teacher_and_peer"@zh .
+
+:routingStatus a owl:DatatypeProperty ;
+    rdfs:label "routing status"@en, "路由状态"@zh ;
+    rdfs:domain :Submission ; rdfs:range xsd:string ;
+    rdfs:comment "PRD §8.2：4 个枚举值 not_routed / routed_to_teacher / routed_to_peer / routed_to_both"@zh .
+
+# ====================================================================
+# Module 9: Class Restrictions（10 条架构红线形式化）
+# ====================================================================
+
+# 🔴 RED-001: Submission Task Agent 是唯一能写 Submission 的 Agent
+# 用 owl:FunctionalProperty + owl:InverseFunctionalProperty 实现
+:Submission rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :processedByAgentId ;
+    owl:cardinality 1
+] , [
+    a owl:Restriction ;
+    owl:onProperty :hasAuditTrace ;
+    owl:minCardinality 1
+] .
+
+# 🔴 RED-002: Student Companion 不能有 submission 写权限
+:StudentCompanion rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasPermission ;
+    owl:allValuesFrom [ a owl:Class ;
+        owl:intersectionOf ( :Permission
+            [ a owl:Restriction ;
+                owl:onProperty :permissionScope ;
+                owl:complementOf [ a owl:Class ;
+                    owl:oneOf ( "feishu.submissions.write" ) ] ] ) ] ] .
+
+# 🔴 RED-003: Teacher Companion 不能有 student 私有记忆读权限
+:TeacherCompanion rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasPermission ;
+    owl:allValuesFrom [ a owl:Class ;
+        owl:intersectionOf ( :Permission
+            [ a owl:Restriction ;
+                owl:onProperty :permissionScope ;
+                owl:complementOf [ a owl:Class ;
+                    owl:oneOf ( "feishu.student_memory.read"
+                                "feishu.personal_ontology.read" ) ] ] ) ] ] .
+
+# 🔴 RED-004: MemoryBinding.ownerId 必须等于 StudentCompanion.agentId
+:StudentCompanion rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :bindsToMemory ;
+    owl:allValuesFrom [ a owl:Class ;
+        owl:intersectionOf ( :MemoryBinding
+            [ a owl:Restriction ;
+                owl:onProperty :ownerId ;
+                owl:cardinality 1 ] ) ] ] .
+
+# 🔴 RED-005: Challenge 状态必须是 active 才能被提交
+:Challenge rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasStatus ;
+    owl:cardinality 1
+] .
+
+# 🔴 RED-006: Agent 必须有 Inbox
+:Agent rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :inbounds ;
+    owl:cardinality 1
+] .
+
+# 🔴 RED-007: TrustedRelationship 必须存在
+:TrustedRelationship rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :agentA ;
+    owl:cardinality 1
+] , [
+    a owl:Restriction ;
+    owl:onProperty :agentB ;
+    owl:cardinality 1
+] , [
+    a owl:Restriction ;
+    owl:onProperty :trustLevel ;
+    owl:cardinality 1
+] .
+
+# 🔴 RED-008: Submission 必须有至少一个 AuditTrace
+# (已在上面 Submission 限制中包含 hasAuditTrace minCardinality 1)
+
+# 🔴 RED-009: AgentManifest 不能有推送通知能力
+:AgentManifest rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasCapability ;
+    owl:allValuesFrom [ a owl:Class ;
+        owl:intersectionOf ( :Capability
+            [ a owl:Restriction ;
+                owl:onProperty :capabilityName ;
+                owl:complementOf [ a owl:Class ;
+                    owl:oneOf ( "notify_student" "notify_teacher"
+                                "send_push" "send_email" "send_sms" ) ] ] ) ] ] .
+
+# 🔴 RED-010: 人触达通道 channelType 必须是 feishu
+:ChannelBinding rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :channelType ;
+    owl:cardinality 1
+] .
+
+# ---------- Skill 属性必填约束 ----------
+:Skill rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :skillId ; owl:cardinality 1 ] ,
+    [ a owl:Restriction ;
+        owl:onProperty :skillName ; owl:cardinality 1 ] ,
+    [ a owl:Restriction ;
+        owl:onProperty :linkedTaskAgent ; owl:cardinality 1 ] .
+
+# ---------- Event 必填约束 ----------
+:Event rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :eventId ; owl:cardinality 1 ] ,
+    [ a owl:Restriction ;
+        owl:onProperty :timestamp ; owl:cardinality 1 ] ,
+    [ a owl:Restriction ;
+        owl:onProperty :sourceAgent ; owl:cardinality 1 ] ,
+    [ a owl:Restriction ;
+        owl:onProperty :targetAgent ; owl:cardinality 1 ] .
+
+# ====================================================================
+# Module 10: 枚举定义（14 个）
+# ====================================================================
+
+# AgentType 枚举
+:AgentType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :student-companion :teacher-companion :submission-task :review-task :peer-review ) ] .
+
+:student-companion :AgentType .
+:teacher-companion :AgentType .
+:submission-task :AgentType .
+:review-task :AgentType .
+:peer-review :AgentType .
+
+# PresenceStatus 枚举
+:PresenceStatus a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :online :busy :offline :do-not-disturb :paused ) ] .
+
+:online :PresenceStatus .
+:busy :PresenceStatus .
+:offline :PresenceStatus .
+:do-not-disturb :PresenceStatus .
+:paused :PresenceStatus .
+
+# ChannelType 枚举
+:ChannelType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :web :github :feishu ) ] .
+
+:web :ChannelType .
+:github :ChannelType .
+:feishu :ChannelType .
+
+# SubmissionStatus 11 态枚举
+:SubmissionStatus a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :statusDraft :statusSubmitted :statusValidating :statusNeedsRevision :statusChecked :statusPendingReview :statusUnderReview :statusReviewed :statusPendingTeacherReview :statusAccepted :statusNeedsTeacherRevision ) ] .
+
+:statusDraft :SubmissionStatus .
+:statusSubmitted :SubmissionStatus .
+:statusValidating :SubmissionStatus .
+:statusNeedsRevision :SubmissionStatus .
+:statusChecked :SubmissionStatus .
+:statusPendingReview :SubmissionStatus .
+:statusUnderReview :SubmissionStatus .
+:statusReviewed :SubmissionStatus .
+:statusPendingTeacherReview :SubmissionStatus .
+:statusAccepted :SubmissionStatus .
+:statusNeedsTeacherRevision :SubmissionStatus .
+
+# ChallengeStatus 5 态枚举
+:ChallengeStatus a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :challengeDraft :challengePublished :challengeActive :challengeClosed :challengeArchived ) ] .
+
+:challengeDraft :ChallengeStatus .
+:challengePublished :ChallengeStatus .
+:challengeActive :ChallengeStatus .
+:challengeClosed :ChallengeStatus .
+:challengeArchived :ChallengeStatus .
+
+# AdminIdentityMode 2 态枚举（PRD §4.3）
+:AdminIdentityMode a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :independent_admin :teacher_delegated ) ] .
+
+:independent_admin :AdminIdentityMode .
+:teacher_delegated :AdminIdentityMode .
+
+# ReviewMode 3 态枚举（PRD §8.2）
+:ReviewMode a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :teacher_only :peer_only :teacher_and_peer ) ] .
+
+:teacher_only :ReviewMode .
+:peer_only :ReviewMode .
+:teacher_and_peer :ReviewMode .
+
+# RoutingStatus 4 态枚举（PRD §8.2）
+:RoutingStatus a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :not_routed :routed_to_teacher :routed_to_peer :routed_to_both ) ] .
+
+:not_routed :RoutingStatus .
+:routed_to_teacher :RoutingStatus .
+:routed_to_peer :RoutingStatus .
+:routed_to_both :RoutingStatus .
+
+# TrustLevel 3 态枚举
+:TrustLevel a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :trustAuto :trustRequireApproval :trustDenied ) ] .
+
+:trustAuto :TrustLevel .
+:trustRequireApproval :TrustLevel .
+:trustDenied :TrustLevel .
+
+# RelationshipType 3 态枚举
+:RelationshipType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :relationshipCompanion :relationshipTaskAgent :relationshipPeer ) ] .
+
+:relationshipCompanion :RelationshipType .
+:relationshipTaskAgent :RelationshipType .
+:relationshipPeer :RelationshipType .
+
+# MessageType 9 态枚举
+:MessageType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :challenge_publish :challenge_available :submission_request :review_request :review_result :feedback :status_update :final_adjustment :peer_review_request ) ] .
+
+:challenge_publish :MessageType .
+:challenge_available :MessageType .
+:submission_request :MessageType .
+:review_request :MessageType .
+:review_result :MessageType .
+:feedback :MessageType .
+:status_update :MessageType .
+:final_adjustment :MessageType .
+:peer_review_request :MessageType .
+
+# AuditAction 18 态枚举
+:AuditAction a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :action_publish_challenge :action_notify_students :action_submission_request :action_route_to_review :action_review_completed :action_feedback_delivered :action_status_update :action_final_adjusted :action_peer_review_requested :action_agent_online :action_agent_offline :action_audit_log_written :action_teacher_rejected :action_teacher_accepted :action_state_change :action_create :action_update :action_delete ) ] .
+
+:action_publish_challenge :AuditAction .
+:action_notify_students :AuditAction .
+:action_submission_request :AuditAction .
+:action_route_to_review :AuditAction .
+:action_review_completed :AuditAction .
+:action_feedback_delivered :AuditAction .
+:action_status_update :AuditAction .
+:action_final_adjusted :AuditAction .
+:action_peer_review_requested :AuditAction .
+:action_agent_online :AuditAction .
+:action_agent_offline :AuditAction .
+:action_audit_log_written :AuditAction .
+:action_teacher_rejected :AuditAction .
+:action_teacher_accepted :AuditAction .
+:action_state_change :AuditAction .
+:action_create :AuditAction .
+:action_update :AuditAction .
+:action_delete :AuditAction .
+
+# InboxQueueType 3 态枚举
+:InboxQueueType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :queueOnline :queueOffline :queuePendingApproval ) ] .
+
+:queueOnline :InboxQueueType .
+:queueOffline :InboxQueueType .
+:queuePendingApproval :InboxQueueType .
+
+# ReviewStatus 6 态枚举（Assessment Ontology）
+:ReviewStatus a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :reviewSubmitted :reviewPeerReviewed :reviewAgentReviewed :reviewNeedsRevision :reviewAccepted :reviewKnowledgeCandidate ) ] .
+
+:reviewSubmitted :ReviewStatus .
+:reviewPeerReviewed :ReviewStatus .
+:reviewAgentReviewed :ReviewStatus .
+:reviewNeedsRevision :ReviewStatus .
+:reviewAccepted :ReviewStatus .
+:reviewKnowledgeCandidate :ReviewStatus .
+
+# ArtifactType 9 态枚举
+:ArtifactType a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( :artifactGitHubRepo :artifactREADME :artifactDemo :artifactDesignDoc :artifactPromptLog :artifactContextPack :artifactAAR :artifactSelfEvaluation :artifactPortfolioPage ) ] .
+
+:artifactGitHubRepo :ArtifactType .
+:artifactREADME :ArtifactType .
+:artifactDemo :ArtifactType .
+:artifactDesignDoc :ArtifactType .
+:artifactPromptLog :ArtifactType .
+:artifactContextPack :ArtifactType .
+:artifactAAR :ArtifactType .
+:artifactSelfEvaluation :ArtifactType .
+:artifactPortfolioPage :ArtifactType .
+
+# ====================================================================
+# 结束
+# ====================================================================
+# 统计：
+# - T-Box Classes: 80+
+# - Object Properties: 30+
+# - Datatype Properties: 20+
+# - Named Individuals (枚举值): 80+
+# - Class Restrictions: 10+ (覆盖 10 条架构红线)
+# - Enumerations: 14 个
+# ====================================================================

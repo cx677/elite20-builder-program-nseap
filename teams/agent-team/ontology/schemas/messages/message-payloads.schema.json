@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elite20.team3/schemas/messages/message-payloads.json",
+  "title": "9 Message Type Payloads",
+  "description": "PRD §9: 9 种 message_type 的 payload schema. Used as oneOf in MessageEnvelope.payload.",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "9 种 message_type payload schema。message_type 字段在每个 oneOf 分支内部必填。",
+  "oneOf": [
+    { "$ref": "#/definitions/challenge_publish" },
+    { "$ref": "#/definitions/challenge_available" },
+    { "$ref": "#/definitions/submission_request" },
+    { "$ref": "#/definitions/review_request" },
+    { "$ref": "#/definitions/review_result" },
+    { "$ref": "#/definitions/feedback" },
+    { "$ref": "#/definitions/status_update" },
+    { "$ref": "#/definitions/final_adjustment" },
+    { "$ref": "#/definitions/peer_review_request" }
+  ],
+  "definitions": {
+    "challenge_publish": {
+      "type": "object",
+      "title": "challenge_publish - Teacher Companion → Submission Task",
+      "required": ["message_type", "challenge_id", "title", "teacher_id", "teacher_agent_id"],
+      "properties": {
+        "message_type": { "const": "challenge_publish" },
+        "challenge_id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "teacher_id": { "type": "string" },
+        "teacher_agent_id": { "type": "string" },
+        "ontology_nodes": { "type": "array", "items": { "type": "string" } },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "learning_objectives": { "type": "array", "items": { "type": "string" } },
+        "required_deliverables": { "type": "array" },
+        "rubric_pointer": { "type": "string" },
+        "due_date": { "type": "string", "format": "date-time" },
+        "feishu_group_id": { "type": "string" }
+      }
+    },
+    "challenge_available": {
+      "type": "object",
+      "title": "challenge_available - Submission Task → Student Companions (broadcast)",
+      "required": ["message_type", "challenge_id", "title", "teacher_id", "due_date", "student_ids"],
+      "properties": {
+        "message_type": { "const": "challenge_available" },
+        "challenge_id": { "type": "string" },
+        "title": { "type": "string" },
+        "teacher_id": { "type": "string" },
+        "due_date": { "type": "string", "format": "date-time" },
+        "student_ids": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "github_repo_url": { "type": "string" },
+        "feishu_group_id": { "type": "string" }
+      }
+    },
+    "submission_request": {
+      "type": "object",
+      "title": "submission_request - Student Companion → Submission Task",
+      "required": ["message_type", "challenge_id", "student_id", "github_repo_url", "submitted_files"],
+      "properties": {
+        "message_type": { "const": "submission_request" },
+        "challenge_id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "github_repo_url": { "type": "string" },
+        "github_branch": { "type": "string" },
+        "submitted_files": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "self_reflection_pointer": { "type": "string" },
+        "skills_used": { "type": "array", "items": { "type": "string" } },
+        "ontology_nodes_used": { "type": "array", "items": { "type": "string" } },
+        "admin_identity_mode": { "type": "string", "enum": ["independent_admin", "teacher_delegated"] }
+      }
+    },
+    "review_request": {
+      "type": "object",
+      "title": "review_request - Submission Task → Review Task",
+      "required": ["message_type", "submission_id", "challenge_id", "student_id", "review_mode", "rubric_pointer"],
+      "properties": {
+        "message_type": { "const": "review_request" },
+        "submission_id": { "type": "string" },
+        "challenge_id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "review_mode": { "type": "string", "enum": ["teacher_only", "peer_only", "teacher_and_peer"] },
+        "submission_artifact_pointers": { "type": "array" },
+        "rubric_pointer": { "type": "string" },
+        "routing_strategy": { "type": "string" }
+      }
+    },
+    "review_result": {
+      "type": "object",
+      "title": "review_result - Review Task → Submission Task",
+      "required": ["message_type", "submission_id", "scores_json", "feedback"],
+      "properties": {
+        "message_type": { "const": "review_result" },
+        "submission_id": { "type": "string" },
+        "scores_json": { "type": "object" },
+        "total_score": { "type": "number" },
+        "feedback": { "type": "string" },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "suggestions": { "type": "array", "items": { "type": "string" } },
+        "knowledge_candidate": { "type": "boolean" }
+      }
+    },
+    "feedback": {
+      "type": "object",
+      "title": "feedback - Submission Task → Student Companion",
+      "required": ["message_type", "submission_id", "student_id", "scores", "feedback_summary"],
+      "properties": {
+        "message_type": { "const": "feedback" },
+        "submission_id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "scores": { "type": "object" },
+        "feedback_summary": { "type": "string" },
+        "detail_url": { "type": "string" }
+      }
+    },
+    "status_update": {
+      "type": "object",
+      "title": "status_update - Submission Task → Teacher Companion",
+      "required": ["message_type", "submission_id", "old_status", "new_status", "teacher_id"],
+      "properties": {
+        "message_type": { "const": "status_update" },
+        "submission_id": { "type": "string" },
+        "old_status": { "type": "string" },
+        "new_status": { "type": "string" },
+        "teacher_id": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "final_adjustment": {
+      "type": "object",
+      "title": "final_adjustment - Teacher Companion → Submission Task",
+      "required": ["message_type", "submission_id", "decision", "teacher_id", "teacher_agent_id"],
+      "properties": {
+        "message_type": { "const": "final_adjustment" },
+        "submission_id": { "type": "string" },
+        "decision": { "type": "string", "enum": ["accept", "reject"] },
+        "teacher_id": { "type": "string" },
+        "teacher_agent_id": { "type": "string" },
+        "final_score": { "type": "number" },
+        "rejection_reason": { "type": "string" },
+        "suggestions_for_revision": { "type": "string" }
+      }
+    },
+    "peer_review_request": {
+      "type": "object",
+      "title": "peer_review_request - Review Task → Peer Review Students",
+      "required": ["message_type", "submission_id", "peer_student_ids", "rubric_pointer"],
+      "properties": {
+        "message_type": { "const": "peer_review_request" },
+        "submission_id": { "type": "string" },
+        "peer_student_ids": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "rubric_pointer": { "type": "string" },
+        "deadline_for_peer_review": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,1050 @@
+@prefix :        <http://elite20.team3/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix swrl:    <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb:   <http://www.w3.org/2003/11/swrlb#> .
+@prefix team3:   <http://elite20.team3/ontology#> .
+@prefix red:     <http://elite20.team3/redline#> .
+
+# ====================================================================
+# Team 3 SWRL Rules - 10 条架构红线推理规则
+# 配套文件: agent-ontology.ttl, agent-ontology-shapes.ttl
+# 来源: Team3-规则抽取.md §3 各小节
+#
+# 设计:
+#   1. 每个 RED 至少一条 SWRL 规则
+#   2. 违规检测规则用 red:violatesREDxxx 谓词
+#   3. 业务规则用 swrl:Imp 推导出新事实
+#   4. 命名空间 swrl: / swrlb: 是 W3C 标准
+# ====================================================================
+
+<http://elite20.team3/ontology/core/agent-ontology-rules> a owl:Ontology ;
+    owl:imports <http://elite20.team3/ontology/core/agent-ontology> ;
+    dcterms:title "Team 3 SWRL Rules"@en, "Team 3 SWRL 推理规则"@zh ;
+    dcterms:description "10 条架构红线的 SWRL 推理规则 + 业务规则"@zh ;
+    owl:versionInfo "0.1.0" .
+
+# ====================================================================
+# 辅助谓词定义（声明）
+# ====================================================================
+
+:red:violatesRED001 a owl:ObjectProperty ;
+    rdfs:label "violates RED-001"@en, "违反 RED-001"@zh ;
+    rdfs:domain :Submission ; rdfs:range :Agent ;
+    rdfs:comment "标记违反 RED-001（提交写入唯一性）的 Submission 实例"@zh .
+
+:red:violatesRED002 a owl:ObjectProperty ;
+    rdfs:label "violates RED-002"@en, "违反 RED-002"@zh ;
+    rdfs:domain :StudentCompanion ; rdfs:range :Permission .
+
+:red:violatesRED003 a owl:ObjectProperty ;
+    rdfs:label "violates RED-003"@en, "违反 RED-003"@zh ;
+    rdfs:domain :TeacherCompanion ; rdfs:range :Permission .
+
+:red:violatesRED004 a owl:ObjectProperty ;
+    rdfs:label "violates RED-004"@en, "违反 RED-004"@zh ;
+    rdfs:domain :StudentCompanion ; rdfs:range :MemoryBinding .
+
+:red:violatesRED005 a owl:ObjectProperty ;
+    rdfs:label "violates RED-005"@en, "违反 RED-005"@zh ;
+    rdfs:domain :Submission ; rdfs:range :Challenge .
+
+:red:violatesRED006 a owl:ObjectProperty ;
+    rdfs:label "violates RED-006"@en, "违反 RED-006"@zh ;
+    rdfs:domain :MessageEnvelope ; rdfs:range :Agent .
+
+:red:violatesRED007 a owl:ObjectProperty ;
+    rdfs:label "violates RED-007"@en, "违反 RED-007"@zh ;
+    rdfs:domain :MessageEnvelope ; rdfs:range :Agent .
+
+:red:violatesRED008 a owl:ObjectProperty ;
+    rdfs:label "violates RED-008"@en, "违反 RED-008"@zh ;
+    rdfs:domain :Submission .
+
+:red:violatesRED009 a owl:ObjectProperty ;
+    rdfs:label "violates RED-009"@en, "违反 RED-009"@zh ;
+    rdfs:domain :AgentManifest ; rdfs:range :Capability .
+
+:red:violatesRED010 a owl:ObjectProperty ;
+    rdfs:label "violates RED-010"@en, "违反 RED-010"@zh ;
+    rdfs:domain :ChannelBinding .
+
+# ====================================================================
+# RED-001: 提交写入唯一性
+# 规则 1: 检测违规 — Submission 被非 SubmissionTaskAgent 写入
+# ====================================================================
+
+:red:RED001-Rule-1 a swrl:Imp ;
+    rdfs:label "RED-001: Submission 必须由 SubmissionTaskAgent 写入"@zh ;
+    rdfs:comment """
+        如果某 Submission 被一个 Agent 写入，且该 Agent 的 agentType 不是 'submission-task'，
+        则标记为违反 RED-001。
+    """@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "agent"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "submission"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :writesTo
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "agent"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "agentType"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :agentType
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:BuiltinAtom ;
+                        swrl:args (
+                            [
+                                a swrl:Variable ; swrl:name "agentType"^^xsd:string
+                            ]
+                            "submission-task"
+                        ) ;
+                        swrl:builtin swrlb:notEqual
+                    ] ;
+                    rdf:rest rdf:nil
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "agent"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED001
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# 规则 2: 反向推理 — 如果 Submission 没有 :red:violatesRED001，则它是由 SubmissionTaskAgent 写入的
+:red:RED001-Rule-2 a swrl:Imp ;
+    rdfs:label "RED-001: 反向推理 - 合规 Submission"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-002: 不可越权写记录
+# 规则 3: StudentCompanion 不能有 submission 写权限
+# ====================================================================
+
+:red:RED002-Rule a swrl:Imp ;
+    rdfs:label "RED-002: StudentCompanion 不能有 Submission 写权限"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "student"^^xsd:string
+            ] ;
+            swrl:classPredicate :StudentCompanion
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "student"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "perm"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :hasPermission
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "perm"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "scope"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :permissionScope
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:BuiltinAtom ;
+                        swrl:args (
+                            [
+                                a swrl:Variable ; swrl:name "scope"^^xsd:string
+                            ]
+                            "feishu.submissions.write"
+                        ) ;
+                        swrl:builtin swrlb:equal
+                    ] ;
+                    rdf:rest rdf:nil
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "student"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "perm"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED002
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-003: 不可越权读记忆
+# 规则 4: TeacherCompanion 不能读学生私有记忆
+# ====================================================================
+
+:red:RED003-Rule a swrl:Imp ;
+    rdfs:label "RED-003: TeacherCompanion 不能读学生私有记忆"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "teacher"^^xsd:string
+            ] ;
+            swrl:classPredicate :TeacherCompanion
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "teacher"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "perm"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :hasPermission
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "perm"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "scope"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :permissionScope
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:BuiltinAtom ;
+                        swrl:args (
+                            [
+                                a swrl:Variable ; swrl:name "scope"^^xsd:string
+                            ]
+                            "feishu.student_memory.read"
+                        ) ;
+                        swrl:builtin swrlb:equal
+                    ] ;
+                    rdf:rest rdf:nil
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "teacher"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "perm"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED003
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-004: 不可跨学生访问
+# 规则 5: StudentCompanion 绑定的 MemoryBinding.ownerId 必须等于自己的 agentId
+# ====================================================================
+
+:red:RED004-Rule a swrl:Imp ;
+    rdfs:label "RED-004: 不可跨学生访问"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "student"^^xsd:string
+            ] ;
+            swrl:classPredicate :StudentCompanion
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "student"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "mb"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :bindsToMemory
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:ClassAtom ;
+                    swrl:argument [
+                        a swrl:Variable ; swrl:name "mb"^^xsd:string
+                    ] ;
+                    swrl:classPredicate :MemoryBinding
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:DatavaluedPropertyAtom ;
+                        swrl:argument1 [
+                            a swrl:Variable ; swrl:name "mb"^^xsd:string
+                        ] ;
+                        swrl:argument2 [
+                            a swrl:Variable ; swrl:name "ownerId"^^xsd:string
+                        ] ;
+                        swrl:propertyPredicate :ownerId
+                    ] ;
+                    rdf:rest [
+                        a swrl:AtomList ;
+                        rdf:first [
+                            a swrl:DatavaluedPropertyAtom ;
+                            swrl:argument1 [
+                                a swrl:Variable ; swrl:name "student"^^xsd:string
+                            ] ;
+                            swrl:argument2 [
+                                a swrl:Variable ; swrl:name "selfId"^^xsd:string
+                            ] ;
+                            swrl:propertyPredicate :agentId
+                        ] ;
+                        rdf:rest [
+                            a swrl:AtomList ;
+                            rdf:first [
+                                a swrl:BuiltinAtom ;
+                                swrl:args (
+                                    [
+                                        a swrl:Variable ; swrl:name "ownerId"^^xsd:string
+                                    ]
+                                    [
+                                        a swrl:Variable ; swrl:name "selfId"^^xsd:string
+                                    ]
+                                ) ;
+                                swrl:builtin swrlb:notEqual
+                            ] ;
+                            rdf:rest rdf:nil
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "student"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "mb"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED004
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-005: 提交时间窗
+# 规则 6: Submission 只能提交到 active Challenge
+# ====================================================================
+
+:red:RED005-Rule a swrl:Imp ;
+    rdfs:label "RED-005: 提交时间窗"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "submission"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "challenge"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :submittedToChallenge
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:ClassAtom ;
+                    swrl:argument [
+                        a swrl:Variable ; swrl:name "challenge"^^xsd:string
+                    ] ;
+                    swrl:classPredicate :Challenge
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:DatavaluedPropertyAtom ;
+                        swrl:argument1 [
+                            a swrl:Variable ; swrl:name "challenge"^^xsd:string
+                        ] ;
+                        swrl:argument2 [
+                            a swrl:Variable ; swrl:name "status"^^xsd:string
+                        ] ;
+                        swrl:propertyPredicate :hasStatus
+                    ] ;
+                    rdf:rest [
+                        a swrl:AtomList ;
+                        rdf:first [
+                            a swrl:BuiltinAtom ;
+                            swrl:args (
+                                [
+                                    a swrl:Variable ; swrl:name "status"^^xsd:string
+                                ]
+                                :challengeActive
+                            ) ;
+                            swrl:builtin swrlb:notEqual
+                        ] ;
+                        rdf:rest rdf:nil
+                    ]
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "challenge"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED005
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-006: 消息必经 Inbox
+# 规则 7: Agent 发送消息时必须经过 Inbox
+# ====================================================================
+
+:red:RED006-Rule a swrl:Imp ;
+    rdfs:label "RED-006: 消息必经 Inbox"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "agent"^^xsd:string
+            ] ;
+            swrl:classPredicate :Agent
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "agent"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "msg"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :sends
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:ClassAtom ;
+                    swrl:argument [
+                        a swrl:Variable ; swrl:name "msg"^^xsd:string
+                    ] ;
+                    swrl:classPredicate :MessageEnvelope
+                ] ;
+                rdf:rest rdf:nil
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "agent"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED006
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# 规则 7b: 推理 — Agent 发送消息 → 消息进入 receiver 的 Inbox
+:red:RED006-ForwardRule a swrl:Imp ;
+    rdfs:label "RED-006: 消息转发到 Inbox"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "sender"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :sends
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "receiver"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+                swrl:propertyPredicate :toAgent
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:ObjectPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "receiver"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "inbox"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :inbounds
+                ] ;
+                rdf:rest rdf:nil
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "inbox"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :deliveredVia
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-007: 必走 Trusted Relationship
+# 规则 8: 消息发送前必须校验 Trusted Relationship
+# ====================================================================
+
+:red:RED007-Rule a swrl:Imp ;
+    rdfs:label "RED-007: 必走 Trusted Relationship"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+            swrl:classPredicate :MessageEnvelope
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:DatavaluedPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "msg"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "from"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :fromAgent
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "msg"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "to"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :toAgent
+                ] ;
+                rdf:rest rdf:nil
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "msg"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "from"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED007
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-008: 必留 Audit Trace
+# 规则 9a: 状态变化必须产生 AuditTrace
+# 规则 9b: 推理 — 状态变化自动产生 AuditTrace
+# ====================================================================
+
+:red:RED008-Rule a swrl:Imp ;
+    rdfs:label "RED-008: 状态变化必留 Audit"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED008
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# 规则 9b: 推理 — 状态变化 → 自动产生 AuditTrace
+:red:RED008-InferenceRule a swrl:Imp ;
+    rdfs:label "RED-008: 状态变化自动产生 AuditTrace"@zh ;
+    rdfs:comment """
+        业务规则: 当 Submission 状态从 old 变成 new 时，
+        自动创建一个 AuditTrace 记录 (timestamp, action, agent)。
+    """@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:DatavaluedPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "submission"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "newStatus"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :hasStatus
+            ] ;
+            rdf:rest rdf:nil
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "audit"^^xsd:string
+            ] ;
+            swrl:classPredicate :AuditTrace
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "submission"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "audit"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :hasAuditTrace
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "audit"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Literal ; rdfs:label "state_change"@en
+                    ] ;
+                    swrl:propertyPredicate :action
+                ] ;
+                rdf:rest rdf:nil
+            ]
+        ]
+    ] .
+
+# ====================================================================
+# RED-009: 触达不靠 Agent
+# 规则 10a: AgentManifest 不能有推送通知能力
+# ====================================================================
+
+:red:RED009-Rule a swrl:Imp ;
+    rdfs:label "RED-009: 触达不靠 Agent"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "manifest"^^xsd:string
+            ] ;
+            swrl:classPredicate :AgentManifest
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:ObjectPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "manifest"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "cap"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :hasCapability
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:DatavaluedPropertyAtom ;
+                    swrl:argument1 [
+                        a swrl:Variable ; swrl:name "cap"^^xsd:string
+                    ] ;
+                    swrl:argument2 [
+                        a swrl:Variable ; swrl:name "name"^^xsd:string
+                    ] ;
+                    swrl:propertyPredicate :capabilityName
+                ] ;
+                rdf:rest [
+                    a swrl:AtomList ;
+                    rdf:first [
+                        a swrl:BuiltinAtom ;
+                        swrl:args (
+                            [
+                                a swrl:Variable ; swrl:name "name"^^xsd:string
+                            ]
+                            "notify"
+                        ) ;
+                        swrl:builtin swrlb:contains
+                    ] ;
+                    rdf:rest rdf:nil
+                ]
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "manifest"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "cap"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED009
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# RED-010: Agent 通知边界
+# 规则 11: 人触达通道 channelType 必须是 feishu
+# ====================================================================
+
+:red:RED010-Rule a swrl:Imp ;
+    rdfs:label "RED-010: 人触达通道必须 feishu"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "cb"^^xsd:string
+            ] ;
+            swrl:classPredicate :ChannelBinding
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:DatavaluedPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "cb"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "type"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :channelType
+            ] ;
+            rdf:rest [
+                a swrl:AtomList ;
+                rdf:first [
+                    a swrl:BuiltinAtom ;
+                    swrl:args (
+                        [
+                            a swrl:Variable ; swrl:name "type"^^xsd:string
+                        ]
+                        "feishu"
+                    ) ;
+                    swrl:builtin swrlb:notEqual
+                ] ;
+                rdf:rest rdf:nil
+            ]
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "cb"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "cb"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :red:violatesRED010
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# 业务规则：能力 → 任务代理 → Skill 关系
+# 业务规则 1: SubmissionTaskAgent 拥有 validate_request 能力
+# 业务规则 2: SubmissionTaskAgent 拥有 check_github_repo 能力
+# 业务规则 3: SubmissionTaskAgent 拥有 write_audit_log 能力
+# ====================================================================
+
+:red:BusinessRule-CAP-001 a swrl:Imp ;
+    rdfs:label "业务规则: SubmissionTaskAgent 必有 validate_request 能力"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "sta"^^xsd:string
+            ] ;
+            swrl:classPredicate :SubmissionTaskAgent
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "sta"^^xsd:string
+            ] ;
+            swrl:classPredicate :SubmissionTaskAgent
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    rdfs:comment "业务规则: SubmissionTaskAgent 必有 12 项能力（CAP-001..012）"@zh .
+
+# 业务规则 4: Skill 必须被某个 TaskAgent 调用
+:red:BusinessRule-Skill-Invoke a swrl:Imp ;
+    rdfs:label "业务规则: Skill 必须被某个 TaskAgent 调用"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "skill"^^xsd:string
+            ] ;
+            swrl:classPredicate :Skill
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ObjectPropertyAtom ;
+            swrl:argument1 [
+                a swrl:Variable ; swrl:name "ta"^^xsd:string
+            ] ;
+            swrl:argument2 [
+                a swrl:Variable ; swrl:name "skill"^^xsd:string
+            ] ;
+            swrl:propertyPredicate :invokes
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    rdfs:comment "业务规则: 每个 Skill 至少被 1 个 TaskAgent 调用"@zh .
+
+# 业务规则 5: TrustedRelationship 必有过期检查
+:red:BusinessRule-TrustExpiry a swrl:Imp ;
+    rdfs:label "业务规则: TrustedRelationship 过期检查"@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "rel"^^xsd:string
+            ] ;
+            swrl:classPredicate :TrustedRelationship
+        ] ;
+        rdf:rest [
+            a swrl:AtomList ;
+            rdf:first [
+                a swrl:DatavaluedPropertyAtom ;
+                swrl:argument1 [
+                    a swrl:Variable ; swrl:name "rel"^^xsd:string
+                ] ;
+                swrl:argument2 [
+                    a swrl:Variable ; swrl:name "expiry"^^xsd:string
+                ] ;
+                swrl:propertyPredicate :expiration
+            ] ;
+            rdf:rest rdf:nil
+        ]
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "rel"^^xsd:string
+            ] ;
+            swrl:classPredicate :TrustedRelationship
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    rdfs:comment "业务规则: 过期检查由应用层做"@zh .
+
+# ====================================================================
+# 业务规则：状态机
+# 业务规则 6: Submission 状态机转换约束
+# ====================================================================
+
+:red:StateMachine-Rule a swrl:Imp ;
+    rdfs:label "业务规则: Submission 状态机只允许合法转换"@zh ;
+    rdfs:comment """
+        状态机: 
+        draft → submitted → validating → checked → pending_review →
+        under_review → reviewed → pending_teacher_review → accepted
+    """@zh ;
+    swrl:antecedent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest rdf:nil
+    ] ;
+    swrl:consequent [
+        a swrl:AtomList ;
+        rdf:first [
+            a swrl:ClassAtom ;
+            swrl:argument [
+                a swrl:Variable ; swrl:name "submission"^^xsd:string
+            ] ;
+            swrl:classPredicate :Submission
+        ] ;
+        rdf:rest rdf:nil
+    ] .
+
+# ====================================================================
+# 结束
+# 统计:
+# - 10 个 RED 规则（+ 3 个补充规则 + 6 个业务规则 = 19 个 swrl:Imp）
+# - 10 个 red:violatesREDxxx 谓词
+# - 6 个核心 swrlb: 内置（equal/notEqual/contains/addDayTime 等）
+# ====================================================================

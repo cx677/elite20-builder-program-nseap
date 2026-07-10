@@ -1,0 +1,280 @@
+name: Validate Team 3 Ontology
+
+# 触发条件：ontology/ 目录或 schema/ 目录下任何 .ttl/.json/.sparql/.sparql 文件改动
+on:
+  pull_request:
+    paths:
+      - 'ontology/**'
+      - '.github/workflows/ontology-validate.yml'
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'ontology/**'
+
+# 取消旧任务
+concurrency:
+  group: ontology-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ====================================================================
+  # Job 1: OWL 一致性检查
+  # ====================================================================
+  owl-consistency:
+    name: 🦉 OWL Consistency
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install rdflib owlrl
+
+      - name: 🔍 Validate OWL syntax
+        run: |
+          python3 ontology/scripts/python/validate_owl.py \
+            --owl ontology/core/agent-ontology.ttl
+
+      - name: 🧠 Run OWL reasoner (HermiT-style)
+        run: |
+          python3 ontology/scripts/python/owl_reasoner.py \
+            --owl ontology/core/agent-ontology.ttl
+
+  # ====================================================================
+  # Job 2: SHACL Shapes 验证
+  # ====================================================================
+  shacl-validation:
+    name: 🔷 SHACL Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: owl-consistency
+
+    services:
+      fuseki:
+        image: stain/jena-fuseki:2.0.0
+        env:
+          FUSEKI_ADMIN: admin
+          FUSEKI_PASSWORD: admin
+        ports:
+          - 3030:3030
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:3030/$$/ping || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⏳ Wait for Fuseki
+        run: |
+          for i in {1..30}; do
+            if curl -sf -u admin:admin http://localhost:3030/\$/ping > /dev/null; then
+              echo "✅ Fuseki ready"
+              break
+            fi
+            sleep 2
+          done
+
+      - name: 🔧 Setup dataset
+        run: |
+          curl -sf -X POST -u admin:admin \
+            --data-urlencode "dbName=team3" \
+            --data-urlencode "dbType=tdb2" \
+            http://localhost:3030/\$/datasets || true
+
+      - name: 📤 Load OWL to Fuseki
+        run: |
+          curl -sf -X POST -u admin:admin \
+            -H "Content-Type: text/turtle" \
+            --data-binary "@ontology/core/agent-ontology.ttl" \
+            http://localhost:3030/team3/data
+
+      - name: 📤 Load SHACL to Fuseki
+        run: |
+          curl -sf -X POST -u admin:admin \
+            -H "Content-Type: text/turtle" \
+            --data-binary "@ontology/core/agent-ontology-shapes.ttl" \
+            http://localhost:3030/team3/data
+
+      - name: 🔍 Run 10 Red Line SPARQL queries
+        run: |
+          bash ontology/scripts/python/run_red_line_queries.py \
+            --fuseki-url http://localhost:3030/team3 \
+            --queries ontology/graph/fuseki/red-line-queries.sparql \
+            --output ontology/docs/red-line-report.md
+
+      - name: 💬 Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('ontology/docs/red-line-report.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+
+  # ====================================================================
+  # Job 3: JSON Schema 校验
+  # ====================================================================
+  json-schema-validation:
+    name: 📋 JSON Schema Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install jsonschema
+        run: pip install jsonschema
+
+      - name: 🔍 Validate JSON Schemas
+        run: |
+          python3 ontology/scripts/python/validate_json_schemas.py \
+            --schemas ontology/schemas/ \
+            --output ontology/docs/json-schema-report.md
+
+      - name: 🟦 Validate TypeScript/Zod
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Zod
+        run: |
+          cd /tmp && npm init -y > /dev/null && npm install zod 2>&1 | tail -1
+
+      - name: 🔍 TypeScript type-check
+        run: |
+          cd /tmp && npx --yes -p typescript@5 tsc \
+            --noEmit \
+            --strict \
+            --target es2020 \
+            --moduleResolution node \
+            --module esnext \
+            /Users/runner/work/_temp/ontology/schemas/typescript-zod/zod-from-schemas.ts || true
+
+  # ====================================================================
+  # Job 4: Neo4j 加载测试
+  # ====================================================================
+  neo4j-load-test:
+    name: 🕸️ Neo4j Load Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: owl-consistency
+
+    services:
+      neo4j:
+        image: neo4j:5.13.0
+        env:
+          NEO4J_AUTH: neo4j/password
+          NEO4J_PLUGINS: '["n10s"]'
+        ports:
+          - 7687:7687
+          - 7474:7474
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:7474 || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⏳ Wait for Neo4j
+        run: |
+          for i in {1..60}; do
+            if curl -sf http://localhost:7474 > /dev/null; then
+              echo "✅ Neo4j ready"
+              break
+            fi
+            sleep 3
+          done
+
+      - name: 📤 Load OWL to Neo4j via n10s
+        run: |
+          # 安装 n10s
+          curl -sf -u neo4j:password -H "Content-Type: application/json" \
+            -d '{"name":"n10s"}' \
+            http://localhost:7474/service/deactivate/neo4j || true
+
+          # 初始化 n10s
+          curl -sf -u neo4j:password -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"handleVocabUris":"IGNORE","handleMultival":"OVERWRITE","keepLangTag":false,"keepCustomDataTypes":true,"applyNeo4jNaming":false}' \
+            http://localhost:7474/rdf/onto/install
+
+          # 加载 OWL
+          curl -sf -u neo4j:password -H "Content-Type: text/turtle" \
+            --data-binary "@ontology/core/agent-ontology.ttl" \
+            http://localhost:7474/rdf/onto/import/stream
+
+      - name: 🧪 Run Cypher queries
+        run: |
+          bash ontology/scripts/python/run_neo4j_queries.py \
+            --uri bolt://localhost:7687 \
+            --user neo4j \
+            --password password \
+            --queries ontology/graph/neo4j/queries.cypher
+
+  # ====================================================================
+  # Job 5: 汇总报告
+  # ====================================================================
+  summary:
+    name: 📊 Summary
+    runs-on: ubuntu-latest
+    needs:
+      - owl-consistency
+      - shacl-validation
+      - json-schema-validation
+      - neo4j-load-test
+    if: always()
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📊 Generate Summary
+        run: |
+          echo "## Ontology Validation Summary" > ontology/docs/SUMMARY.md
+          echo "" >> ontology/docs/SUMMARY.md
+          echo "| Job | Status |" >> ontology/docs/SUMMARY.md
+          echo "|-----|--------|" >> ontology/docs/SUMMARY.md
+          echo "| OWL Consistency | ${{ needs.owl-consistency.result }} |" >> ontology/docs/SUMMARY.md
+          echo "| SHACL Validation | ${{ needs.shacl-validation.result }} |" >> ontology/docs/SUMMARY.md
+          echo "| JSON Schema | ${{ needs.json-schema-validation.result }} |" >> ontology/docs/SUMMARY.md
+          echo "| Neo4j Load | ${{ needs.neo4j-load-test.result }} |" >> ontology/docs/SUMMARY.md
+          echo "" >> ontology/docs/SUMMARY.md
+          cat ontology/docs/SUMMARY.md
+
+      - name: 📤 Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ontology-reports
+          path: |
+            ontology/docs/red-line-report.md
+            ontology/docs/json-schema-report.md
+            ontology/docs/SUMMARY.md
+          retention-days: 30

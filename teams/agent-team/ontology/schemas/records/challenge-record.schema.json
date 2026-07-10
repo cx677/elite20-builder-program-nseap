@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elite20.team3/schemas/records/challenge-record.json",
+  "title": "Challenge Record",
+  "description": "PRD §8.1 Challenge Record 16 字段. Source ontology: agent-ontology.ttl",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "challenge_id", "title", "description",
+    "teacher_id", "teacher_agent_id",
+    "ontology_nodes", "skills", "learning_objectives",
+    "required_deliverables", "rubric_pointer", "due_date",
+    "status", "created_at", "updated_at"
+  ],
+  "properties": {
+    "challenge_id": {
+      "type": "string",
+      "pattern": "^C\\d{2,}-[a-zA-Z0-9-]+$",
+      "description": "唯一 ID，如 C02-AI-Literacy"
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "teacher_id": {
+      "type": "string",
+      "description": "PRD §8.1: 教师 ID"
+    },
+    "teacher_agent_id": {
+      "type": "string",
+      "pattern": "^teacher-companion-.*$",
+      "description": "教师 Agent ID"
+    },
+    "feishu_group_id": {
+      "type": "string",
+      "description": "飞书群 ID（用于通知）"
+    },
+    "github_pointer": {
+      "type": "string",
+      "description": "GitHub issue URL 或 repo 路径"
+    },
+    "airtable_record_id": {
+      "type": "string",
+      "description": "Airtable/飞书表 record ID"
+    },
+    "ontology_nodes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "关联的 Ontology 节点（如 :AI-Literacy, :Prompt-Engineering）"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SK-\\d{2}$"
+      },
+      "minItems": 1,
+      "description": "训练目标技能"
+    },
+    "learning_objectives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "学习目标"
+    },
+    "required_deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "GitHubRepo", "README", "Demo", "DesignDoc",
+          "PromptLog", "ContextPack", "AAR",
+          "SelfEvaluation", "PortfolioPage"
+        ]
+      },
+      "minItems": 1,
+      "description": "必需产物（9 种 Artifact 子类）"
+    },
+    "rubric_pointer": {
+      "type": "string",
+      "description": "Rubric 引用（如 rub:C2-2026-07）"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "active", "closed", "archived"],
+      "description": "Challenge 5 态状态机"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

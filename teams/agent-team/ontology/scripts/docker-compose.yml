@@ -1,0 +1,49 @@
+# ====================================================================
+# Team 3 Ontology - Docker Compose
+# 同时启动 Neo4j（图表）和 Fuseki（语义 + SHACL）
+# ====================================================================
+
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:5.13.0
+    container_name: team3-neo4j
+    ports:
+      - "7474:7474"   # HTTP Browser
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/password
+      NEO4J_PLUGINS: '["n10s"]'   # Neosemantics: OWL ⇄ Cypher
+      NEO4J_dbms_security_procedures_unrestricted: 'n10s.*'
+      NEO4J_initial_dbms_default__database: team3
+    volumes:
+      - neo4j_data:/data
+      - ./graph/neo4j:/var/lib/neo4j/import
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fuseki:
+    image: stain/jena-fuseki:2.0.0
+    container_name: team3-fuseki
+    ports:
+      - "3030:3030"
+    environment:
+      FUSEKI_ADMIN: admin
+      FUSEKI_PASSWORD: admin
+      JVM_ARGS: '-Xmx2g'
+    volumes:
+      - fuseki_data:/fuseki
+      - ./core:/ontology/core
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf -u admin:admin http://localhost:3030/\\$$ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  neo4j_data:
+  fuseki_data:
