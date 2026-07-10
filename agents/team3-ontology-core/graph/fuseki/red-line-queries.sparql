@@ -1,0 +1,222 @@
+# ====================================================================
+# Team 3 - 10 条架构红线 SPARQL 一致性查询
+# 用于 Fuseki / GraphDB / Stardog 等 RDF 三元组存储
+# ====================================================================
+
+PREFIX :        <http://elite20.team3/ontology#>
+PREFIX red:     <http://elite20.team3/redline#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX sh:      <http://www.w3.org/ns/shacl#>
+
+# ====================================================================
+# RED-001: 提交写入唯一性
+# ====================================================================
+# Query-001: 找出所有违反 RED-001 的 Submission
+SELECT ?submission ?agent ?agentType WHERE {
+    ?submission a :Submission ;
+                :processedByAgentId ?agent .
+    FILTER (!STRSTARTS(?agent, "submission-task-"))
+}
+
+# ====================================================================
+# RED-002: 不可越权写记录
+# ====================================================================
+# Query-002: 找出所有有 submission write 权限的 StudentCompanion
+SELECT ?agent ?permission ?scope WHERE {
+    ?agent a :StudentCompanion ;
+           :hasPermission ?permission .
+    ?permission :permissionScope ?scope .
+    FILTER (CONTAINS(?scope, "submission") && CONTAINS(?scope, "write"))
+}
+
+# ====================================================================
+# RED-003: 不可越权读记忆
+# ====================================================================
+# Query-003: 找出所有有 student memory 读权限的 TeacherCompanion
+SELECT ?agent ?permission ?scope WHERE {
+    ?agent a :TeacherCompanion ;
+           :hasPermission ?permission .
+    ?permission :permissionScope ?scope .
+    FILTER (
+        CONTAINS(?scope, "student_memory") ||
+        CONTAINS(?scope, "personal_ontology") ||
+        CONTAINS(?scope, "personal_memory")
+    )
+}
+
+# ====================================================================
+# RED-004: 不可跨学生访问
+# ====================================================================
+# Query-004: 找出 MemoryBinding.ownerId 与 StudentCompanion.agentId 不一致的实例
+SELECT ?student ?memoryBinding ?ownerId ?selfId WHERE {
+    ?student a :StudentCompanion ;
+             :agentId ?selfId ;
+             :bindsToMemory ?memoryBinding .
+    ?memoryBinding :ownerId ?ownerId .
+    FILTER (?ownerId != ?selfId)
+}
+
+# ====================================================================
+# RED-005: 提交时间窗
+# ====================================================================
+# Query-005: 找出提交到非 active Challenge 的 Submission
+SELECT ?submission ?challenge ?status WHERE {
+    ?submission a :Submission ;
+                :submittedToChallenge ?challenge .
+    ?challenge :hasStatus ?status .
+    FILTER (?status != :challengeActive)
+}
+
+# ====================================================================
+# RED-006: 消息必经 Inbox
+# ====================================================================
+# Query-006: 找出没有 Inbox 的 Agent
+SELECT ?agent WHERE {
+    ?agent a :Agent .
+    FILTER NOT EXISTS { ?agent :inbounds ?inbox }
+}
+
+# Query-006b: 找出未经过 Inbox 的 MessageEnvelope
+SELECT ?message ?sender WHERE {
+    ?sender :sends ?message .
+    ?message a :MessageEnvelope .
+    FILTER NOT EXISTS { ?message :deliveredVia ?inbox }
+}
+
+# ====================================================================
+# RED-007: 必走 Trusted Relationship
+# ====================================================================
+# Query-007: 找出没有 Trusted Relationship 的消息
+SELECT ?message ?from ?to WHERE {
+    ?message a :MessageEnvelope ;
+             :fromAgent ?from ;
+             :toAgent ?to .
+    FILTER NOT EXISTS {
+        ?rel a :TrustedRelationship ;
+             :agentA ?from ;
+             :agentB ?to .
+    }
+}
+
+# ====================================================================
+# RED-008: 必留 Audit Trace
+# ====================================================================
+# Query-008: 找出没有 AuditTrace 的 Submission
+SELECT ?submission ?status WHERE {
+    ?submission a :Submission ;
+                :hasStatus ?status .
+    FILTER NOT EXISTS { ?submission :hasAuditTrace ?audit }
+}
+
+# Query-008b: 找出没有必填字段的 AuditTrace
+SELECT ?audit ?agentId ?action WHERE {
+    ?audit a :AuditTrace .
+    OPTIONAL { ?audit :agentId ?agentId }
+    OPTIONAL { ?audit :action ?action }
+    FILTER (!BOUND(?agentId) || !BOUND(?action))
+}
+
+# ====================================================================
+# RED-009: 触达不靠 Agent
+# ====================================================================
+# Query-009: 找出有推送通知能力的 AgentManifest
+SELECT ?manifest ?capability ?name WHERE {
+    ?manifest a :AgentManifest ;
+              :hasCapability ?capability .
+    ?capability :capabilityName ?name .
+    FILTER (
+        CONTAINS(?name, "notify") ||
+        CONTAINS(?name, "send_push") ||
+        CONTAINS(?name, "send_email") ||
+        CONTAINS(?name, "send_sms")
+    )
+}
+
+# ====================================================================
+# RED-010: Agent 通知边界
+# ====================================================================
+# Query-010: 找出非 feishu 的人触达通道
+SELECT ?channel ?type WHERE {
+    ?channel a :ChannelBinding ;
+             :channelType ?type .
+    FILTER (?type != "feishu")
+}
+
+# ====================================================================
+# 综合红线监控（一次查所有违规）
+# ====================================================================
+# Query-ALL: 返回所有红线违规
+SELECT ?redLineId ?violationType ?target WHERE {
+    {
+        BIND("RED-001" AS ?redLineId)
+        BIND("submission_written_by_wrong_agent" AS ?violationType)
+        ?target a :Submission ;
+                :processedByAgentId ?agent .
+        FILTER (!STRSTARTS(?agent, "submission-task-"))
+    } UNION {
+        BIND("RED-002" AS ?redLineId)
+        BIND("student_has_submission_write" AS ?violationType)
+        ?target a :Permission ;
+                :permissionScope ?scope .
+        ?agent a :StudentCompanion ;
+               :hasPermission ?target .
+        FILTER (CONTAINS(?scope, "submission") && CONTAINS(?scope, "write"))
+    } UNION {
+        BIND("RED-003" AS ?redLineId)
+        BIND("teacher_reads_student_memory" AS ?violationType)
+        ?target a :Permission ;
+                :permissionScope ?scope .
+        ?agent a :TeacherCompanion ;
+               :hasPermission ?target .
+        FILTER (CONTAINS(?scope, "student_memory") || CONTAINS(?scope, "personal_"))
+    } UNION {
+        BIND("RED-004" AS ?redLineId)
+        BIND("cross_student_access" AS ?violationType)
+        ?student a :StudentCompanion ;
+                 :agentId ?selfId ;
+                 :bindsToMemory ?target .
+        ?target :ownerId ?ownerId .
+        FILTER (?ownerId != ?selfId)
+    } UNION {
+        BIND("RED-005" AS ?redLineId)
+        BIND("inactive_challenge_submission" AS ?violationType)
+        ?target a :Submission ;
+                :submittedToChallenge ?challenge .
+        ?challenge :hasStatus ?status .
+        FILTER (?status != :challengeActive)
+    } UNION {
+        BIND("RED-006" AS ?redLineId)
+        BIND("message_bypassed_inbox" AS ?violationType)
+        ?sender :sends ?target .
+        ?target a :MessageEnvelope .
+        FILTER NOT EXISTS { ?target :deliveredVia ?inbox }
+    } UNION {
+        BIND("RED-007" AS ?redLineId)
+        BIND("untrusted_message" AS ?violationType)
+        ?target a :MessageEnvelope ;
+                :fromAgent ?from ;
+                :toAgent ?to .
+        FILTER NOT EXISTS { ?from :trusts ?to }
+    } UNION {
+        BIND("RED-008" AS ?redLineId)
+        BIND("submission_without_audit" AS ?violationType)
+        ?target a :Submission .
+        FILTER NOT EXISTS { ?target :hasAuditTrace ?audit }
+    } UNION {
+        BIND("RED-009" AS ?redLineId)
+        BIND("agent_has_push_capability" AS ?violationType)
+        ?target a :AgentManifest ;
+                :hasCapability ?cap .
+        ?cap :capabilityName ?name .
+        FILTER (CONTAINS(?name, "notify") || CONTAINS(?name, "push"))
+    } UNION {
+        BIND("RED-010" AS ?redLineId)
+        BIND("non_feishu_human_channel" AS ?violationType)
+        ?target a :ChannelBinding ;
+                :channelType ?type .
+        FILTER (?type != "feishu")
+    }
+}
+ORDER BY ?redLineId

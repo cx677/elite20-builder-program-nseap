@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elite20.team3/schemas/records/submission-record.json",
+  "title": "Submission Record",
+  "description": "PRD §8.2 Submission Record 25 字段. 🔴 RED-001: processedByAgentId MUST start with 'submission-task-'. Source ontology: agent-ontology.ttl",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "submission_id", "submission_request_id", "challenge_id", "student_id",
+    "submitted_by_agent_id", "student_feishu_bot_id", "processed_by_agent_id",
+    "submission_task_agent_id", "admin_identity_mode", "admin_user_id",
+    "github_repo", "github_branch", "submitted_files", "self_reflection_pointer",
+    "skills_used", "system_validation_status", "review_mode",
+    "routing_status", "review_status", "feedback_pointer", "audit_log_pointer",
+    "submitted_at", "updated_at"
+  ],
+  "properties": {
+    "submission_id": {
+      "type": "string",
+      "pattern": "^sub-[a-zA-Z0-9-]+$",
+      "description": "唯一 ID，模式 sub-{yyyyMMdd}-{seq}"
+    },
+    "submission_request_id": {
+      "type": "string",
+      "pattern": "^req-[a-zA-Z0-9-]+$",
+      "description": "MessageEnvelope.request_id"
+    },
+    "challenge_id": {
+      "type": "string",
+      "description": "引用的 Challenge ID"
+    },
+    "student_id": {
+      "type": "string",
+      "description": "学生 ID"
+    },
+    "submitted_by_agent_id": {
+      "type": "string",
+      "description": "提交方 Agent ID（StudentCompanion）"
+    },
+    "student_feishu_bot_id": {
+      "type": "string",
+      "description": "学生飞书 Bot ID"
+    },
+    "processed_by_agent_id": {
+      "type": "string",
+      "pattern": "^submission-task-.*$",
+      "description": "🔴 RED-001: 处理方 Agent ID，必须以 submission-task- 开头（SubmissionTaskAgent 单例）"
+    },
+    "submission_task_agent_id": {
+      "type": "string",
+      "description": "SubmissionTaskAgent 自身的 agent_id（用于路由）"
+    },
+    "admin_identity_mode": {
+      "type": "string",
+      "enum": ["independent_admin", "teacher_delegated"],
+      "description": "PRD §4.3: 管理员身份模式"
+    },
+    "admin_user_id": {
+      "type": "string",
+      "description": "系统管理员/教师 user_id"
+    },
+    "github_repo": {
+      "type": "string",
+      "pattern": "^https://github\\.com/[\\w-]+/[\\w-]+/?$",
+      "description": "GitHub repo URL"
+    },
+    "github_branch": {
+      "type": "string",
+      "description": "GitHub branch"
+    },
+    "github_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{7,40}$",
+      "description": "GitHub commit SHA"
+    },
+    "submitted_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "提交的文件列表（README.md, AAR.md, code 等）"
+    },
+    "self_reflection_pointer": {
+      "type": "string",
+      "description": "AAR 文件路径"
+    },
+    "skills_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SK-\\d{2}$"
+      },
+      "description": "使用的 Skill ID 列表"
+    },
+    "ontology_nodes_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "使用的 Ontology 节点"
+    },
+    "system_validation_status": {
+      "type": "string",
+      "enum": [
+        "validating", "checked", "needs_revision",
+        "pending_review", "under_review", "reviewed",
+        "pending_teacher_review", "accepted", "needs_teacher_revision"
+      ],
+      "description": "PRD §8.2 系统校验状态"
+    },
+    "review_mode": {
+      "type": "string",
+      "enum": ["teacher_only", "peer_only", "teacher_and_peer"],
+      "description": "PRD §8.2 评审模式"
+    },
+    "routed_to_teacher_agent_id": {
+      "type": "string",
+      "description": "被路由到的教师 Agent ID"
+    },
+    "routed_to_peer_agent_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "被路由到的同伴 Agent ID 列表"
+    },
+    "routing_status": {
+      "type": "string",
+      "enum": ["not_routed", "routed_to_teacher", "routed_to_peer", "routed_to_both"],
+      "description": "PRD §8.2 路由状态"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "submitted", "peer-reviewed", "agent-reviewed",
+        "needs-revision", "accepted", "knowledge-candidate"
+      ],
+      "description": "评审状态"
+    },
+    "feedback_pointer": {
+      "type": "string",
+      "description": "Feedback 记录指针"
+    },
+    "audit_log_pointer": {
+      "type": "string",
+      "pattern": "^audit-[a-zA-Z0-9-]+$",
+      "description": "🔴 RED-008 必填：关联的 AuditLog ID"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

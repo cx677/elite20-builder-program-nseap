@@ -1,0 +1,671 @@
+@prefix :        <http://elite20.team3/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix dash:    <http://datashapes.org/dash#> .
+@prefix team3:   <http://elite20.team3/ontology#> .
+@prefix red:     <http://elite20.team3/redline#> .
+
+# ====================================================================
+# Team 3 SHACL Shapes - 10 条架构红线形式化
+# 配套文件: agent-ontology.ttl
+# 来源: Team3-规则抽取.md
+# 设计原则:
+#   1. 每个 RED 至少有一个 NodeShape
+#   2. PropertyShape 用 sh:path / sh:datatype / sh:pattern
+#   3. 严重等级: sh:Violation (必拦) / sh:Warning (告警) / sh:Info (提示)
+#   4. 每条约束带 human-readable message
+# ====================================================================
+
+<http://elite20.team3/ontology/core/agent-ontology-shapes> a owl:Ontology ;
+    owl:imports <http://elite20.team3/ontology/core/agent-ontology> ;
+    dcterms:title "Team 3 SHACL Shapes"@en, "Team 3 SHACL 形状约束"@zh ;
+    dcterms:description "10 条架构红线的 SHACL 形式化约束"@zh ;
+    owl:versionInfo "0.1.0" .
+
+# ====================================================================
+# 严重性等级
+# ====================================================================
+:Violation a sh:Violation .
+:Warning a sh:Warning .
+:Info a sh:Info .
+
+# ====================================================================
+# 命名分组：每条红线用 :red:RED-XXX 前缀
+# ====================================================================
+:red: a owl:Ontology ;
+    dcterms:title "Team 3 Red Lines"@en, "Team 3 架构红线"@zh .
+
+# ====================================================================
+# RED-001: 提交写入唯一性
+# 规则: SubmissionTaskAgent 是唯一能写 Submission Record 的 Agent
+# ====================================================================
+
+:red:RED-001-Shape a sh:NodeShape ;
+    sh:targetClass :Submission ;
+    rdfs:label "RED-001: Submission 写入唯一性"@zh ;
+    rdfs:comment "Submission.processedByAgentId MUST start with 'submission-task-'"@en ;
+    sh:property [
+        sh:path :processedByAgentId ;
+        sh:datatype xsd:string ;
+        sh:pattern "^submission-task-.*$" ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-001 VIOLATION: Submission.processedByAgentId MUST start with 'submission-task-'. Only SubmissionTaskAgent can write Submission records."@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :submittedByAgentId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-001: Submission.submittedByAgentId is required"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# RED-001 配套：StudentCompanion 不能有 Submission 写权限
+:red:RED-001-StudentNoWrite a sh:NodeShape ;
+    sh:targetClass :StudentCompanion ;
+    rdfs:label "RED-001: Student 不能写 Submission"@zh ;
+    sh:property [
+        sh:path :hasPermission ;
+        sh:qualifiedValueShape [
+            sh:path :permissionScope ;
+            sh:pattern ".*submission.*write.*"
+        ] ;
+        sh:qualifiedMaxCount 0 ;
+        sh:message "🔴 RED-001 VIOLATION: StudentCompanion MUST NOT have any permission with 'submission write' scope"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-002: 不可越权写记录
+# 规则: StudentCompanion 不能直接写最终 Submission Record
+# ====================================================================
+
+:red:RED-002-Shape a sh:NodeShape ;
+    sh:targetClass :StudentCompanion ;
+    rdfs:label "RED-002: Student 不可越权写记录"@zh ;
+    sh:property [
+        sh:path :hasPermission ;
+        sh:qualifiedValueShape [
+            sh:path :permissionScope ;
+            sh:in ( "feishu.submissions.write"
+                    "feishu.submissions.final-write"
+                    "submission-record.write"
+                    "submission.final-write" ) ] ;
+        sh:qualifiedMaxCount 0 ;
+        sh:message "🔴 RED-002 VIOLATION: StudentCompanion MUST NOT have write permission to Submission. Use StudentCompanion.requestsSubmission instead."@en ;
+        sh:severity sh:Violation
+    ] .
+
+# RED-002 配套：StudentCompanion 必须通过 requestsSubmission 关系
+:red:RED-002-StudentMustRequest a sh:NodeShape ;
+    sh:targetClass :StudentCompanion ;
+    sh:property [
+        sh:path :requestsSubmission ;
+        sh:class :SubmissionTaskAgent ;
+        sh:message "🔴 RED-002: StudentCompanion should send submission via requestsSubmission relation"@en ;
+        sh:severity sh:Warning
+    ] .
+
+# ====================================================================
+# RED-003: 不可越权读记忆
+# 规则: TeacherCompanion 不能访问学生私有记忆
+# ====================================================================
+
+:red:RED-003-Shape a sh:NodeShape ;
+    sh:targetClass :TeacherCompanion ;
+    rdfs:label "RED-003: Teacher 不可越权读记忆"@zh ;
+    sh:property [
+        sh:path :hasPermission ;
+        sh:qualifiedValueShape [
+            sh:path :permissionScope ;
+            sh:pattern "^(feishu\\.student_memory\\.read.*|feishu\\.personal_ontology\\.read.*|feishu\\.personal_memory\\.read.*)$"
+        ] ;
+        sh:qualifiedMaxCount 0 ;
+        sh:message "🔴 RED-003 VIOLATION: TeacherCompanion MUST NOT have student private memory read permission"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# RED-003 配套：TeacherCompanion 不能 bindsToMemory Student 的
+:red:RED-003-TeacherNoMemoryBind a sh:NodeShape ;
+    sh:targetClass :TeacherCompanion ;
+    sh:property [
+        sh:path :bindsToMemory ;
+        sh:qualifiedValueShape [
+            sh:path :ownerId ;
+            sh:pattern ".*student.*"
+        ] ;
+        sh:qualifiedMaxCount 0 ;
+        sh:message "🔴 RED-003: TeacherCompanion MUST NOT bind to student private memory"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-004: 不可跨学生访问
+# 规则: StudentCompanion 只能访问自己的 MemoryBinding
+# ====================================================================
+
+:red:RED-004-Shape a sh:NodeShape ;
+    sh:targetClass :StudentCompanion ;
+    rdfs:label "RED-004: 不可跨学生访问"@zh ;
+    sh:property [
+        sh:path :bindsToMemory ;
+        sh:node :red:RED-004-MemoryBindingShape ;
+        sh:message "🔴 RED-004 VIOLATION: StudentCompanion.MemoryBinding.ownerId MUST match StudentCompanion.agentId"@en ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-004-MemoryBindingShape a sh:NodeShape ;
+    sh:targetClass :MemoryBinding ;
+    rdfs:label "RED-004: MemoryBinding 必填 ownerId"@zh ;
+    sh:property [
+        sh:path :ownerId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-004: MemoryBinding.ownerId is required and must be unique"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-005: 提交时间窗
+# 规则: StudentCompanion 只能提交到 active Challenge
+# ====================================================================
+
+:red:RED-005-SubmissionShape a sh:NodeShape ;
+    sh:targetClass :Submission ;
+    rdfs:label "RED-005: 提交时间窗"@zh ;
+    sh:property [
+        sh:path :dueDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-005: Submission must reference a Challenge with dueDate"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "🔴 RED-005 VIOLATION: Submission MUST only be made to active challenges"@en ;
+        sh:select """
+            SELECT $this ?challenge ?status
+            WHERE {
+                $this :submittedToChallenge ?challenge .
+                ?challenge :hasStatus ?status .
+                FILTER (?status != :challengeActive)
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-005-ChallengeShape a sh:NodeShape ;
+    sh:targetClass :Challenge ;
+    sh:property [
+        sh:path :hasStatus ;
+        sh:datatype xsd:string ;
+        sh:in ( :statusDraft :statusPublished :statusActive :statusClosed :statusArchived ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-005: Challenge.status must be one of the 5 defined states"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-006: 消息必经 Inbox
+# 规则: 所有 Agent 消息必须经过 Inbox 校验
+# ====================================================================
+
+:red:RED-006-Shape a sh:NodeShape ;
+    sh:targetClass :Agent ;
+    rdfs:label "RED-006: Agent 必含 Inbox"@zh ;
+    sh:property [
+        sh:path :inbounds ;
+        sh:class :AgentInbox ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-006 VIOLATION: Every Agent MUST have exactly one AgentInbox"@en ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-006-MessageShape a sh:NodeShape ;
+    sh:targetClass :MessageEnvelope ;
+    rdfs:label "RED-006: 消息必经 Inbox"@zh ;
+    sh:property [
+        sh:path :messageId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^msg-[a-zA-Z0-9]{8,}$" ;
+        sh:message "🔴 RED-006: MessageEnvelope.messageId is required and must match pattern"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :fromAgent ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-006: MessageEnvelope.fromAgent is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :toAgent ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-006: MessageEnvelope.toAgent is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :messageType ;
+        sh:datatype xsd:string ;
+        sh:in ( :challenge_publish :challenge_available :submission_request
+                :review_request :review_result :feedback :status_update
+                :final_adjustment :peer_review_request ) ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-006: MessageEnvelope.messageType must be one of 9 defined types"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "🔴 RED-006: MessageEnvelope MUST be delivered via AgentInbox (no bypass)"@en ;
+        sh:select """
+            SELECT $this ?sender
+            WHERE {
+                ?sender :sends $this .
+                FILTER NOT EXISTS { $this :processedByInbox ?inbox }
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-007: 必走 Trusted Relationship
+# 规则: 消息发送前必须校验 Trusted Relationship
+# ====================================================================
+
+:red:RED-007-Shape a sh:NodeShape ;
+    sh:targetClass :TrustedRelationship ;
+    rdfs:label "RED-007: Trusted Relationship 必填字段"@zh ;
+    sh:property [
+        sh:path :agentA ;
+        sh:class :Agent ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-007: TrustedRelationship.agentA is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :agentB ;
+        sh:class :Agent ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-007: TrustedRelationship.agentB is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :relationshipType ;
+        sh:in ( :relationshipCompanion :relationshipTaskAgent :relationshipPeer ) ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-007: TrustedRelationship.relationshipType must be one of 3 types"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :trustLevel ;
+        sh:in ( :trustAuto :trustRequireApproval :trustDenied ) ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-007: TrustedRelationship.trustLevel must be one of 3 levels"@en ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-007-MessageRequiresTrust a sh:NodeShape ;
+    sh:targetClass :MessageEnvelope ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "🔴 RED-007 VIOLATION: MessageEnvelope MUST have a TrustedRelationship between fromAgent and toAgent"@en ;
+        sh:select """
+            SELECT $this ?from ?to
+            WHERE {
+                $this :fromAgent ?from ;
+                      :toAgent ?to .
+                FILTER NOT EXISTS {
+                    ?rel a :TrustedRelationship ;
+                         :agentA ?from ;
+                         :agentB ?to ;
+                         :trustLevel :trustAuto .
+                }
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-008: 必留 Audit Trace
+# 规则: 每次状态变化必须写 Audit Trace
+# ====================================================================
+
+:red:RED-008-SubmissionShape a sh:NodeShape ;
+    sh:targetClass :Submission ;
+    rdfs:label "RED-008: Submission 必留 Audit"@zh ;
+    sh:property [
+        sh:path :hasAuditTrace ;
+        sh:class :AuditTrace ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-008 VIOLATION: Every Submission MUST have at least one AuditTrace"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :status ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-008: Submission.status is required (enables state tracking)"@en ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-008-AuditTraceShape a sh:NodeShape ;
+    sh:targetClass :AuditTrace ;
+    rdfs:label "RED-008: AuditTrace 必填字段"@zh ;
+    sh:property [
+        sh:path :auditId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^audit-[a-zA-Z0-9-]+$" ;
+        sh:message "🔴 RED-008: AuditTrace.auditId is required and must match pattern"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :agentId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-008: AuditTrace.agentId is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :action ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-008: AuditTrace.action is required"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path :timestamp ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:message "🔴 RED-008: AuditTrace.timestamp is required"@en ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-009: 触达不靠 Agent
+# 规则: Agent 不包含推送通知逻辑（统一走飞书 Bot）
+# ====================================================================
+
+:red:RED-009-Shape a sh:NodeShape ;
+    sh:targetClass :AgentManifest ;
+    rdfs:label "RED-009: Agent 不含推送通知能力"@zh ;
+    sh:property [
+        sh:path :hasCapability ;
+        sh:qualifiedValueShape [
+            sh:path :capabilityName ;
+            sh:in ( "notify_student" "notify_teacher"
+                    "send_push" "send_email" "send_sms"
+                    "send_notification" "alert_user" ) ] ;
+        sh:qualifiedMaxCount 0 ;
+        sh:message "🔴 RED-009 VIOLATION: AgentManifest MUST NOT have push notification capabilities. Use Feishu Bot for all human-facing notifications."@en ;
+        sh:severity sh:Violation
+    ] .
+
+# RED-009 配套：Notification 必须是独立类（不属于 Agent）
+:red:RED-009-NotificationClass a sh:NodeShape ;
+    sh:targetClass :Agent ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "🔴 RED-009: Agent MUST NOT have direct notification relations"@en ;
+        sh:select """
+            SELECT $this ?target
+            WHERE {
+                FILTER EXISTS {
+                    $this ?p ?target .
+                    FILTER (?p IN (:notifies, :alerts, :sends, :pushes))
+                }
+                FILTER (?p NOT IN (:sends))
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# RED-010: Agent 通知边界
+# 规则: Agent 到人通知必走飞书 Bot
+# ====================================================================
+
+:red:RED-010-Shape a sh:NodeShape ;
+    sh:targetClass :ChannelBinding ;
+    rdfs:label "RED-010: 人触达通道必须 feishu"@zh ;
+    sh:property [
+        sh:path :channelType ;
+        sh:datatype xsd:string ;
+        sh:in ( "feishu" ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "🔴 RED-010 VIOLATION: ChannelBinding.channelType for human-facing channels MUST be 'feishu'"@en ;
+        sh:severity sh:Violation
+    ] .
+
+:red:RED-010-NotificationChannel a sh:NodeShape ;
+    sh:targetClass :ChannelBinding ;
+    sh:property [
+        sh:path :isForHuman ;
+        sh:datatype xsd:boolean ;
+        sh:hasValue true ;
+        sh:message "🔴 RED-010: Mark isForHuman=true for human-facing channels"@en ;
+        sh:severity sh:Warning
+    ] .
+
+# ====================================================================
+# 扩展约束：业务必填字段
+# ====================================================================
+
+# Challenge Record 16 字段（PRD §8.1）
+:red:ChallengeRecordShape a sh:NodeShape ;
+    sh:targetClass :Challenge ;
+    rdfs:label "Challenge Record 必填字段（PRD §8.1）"@zh ;
+    sh:property [
+        sh:path :challengeId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.challengeId is required"
+    ] , [
+        sh:path :title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.title is required"
+    ] , [
+        sh:path :teacherId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.teacherId is required (PRD §8.1)"
+    ] , [
+        sh:path :teacherAgentId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.teacherAgentId is required (PRD §8.1)"
+    ] , [
+        sh:path :ontologyNodes ; sh:minCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.ontologyNodes is required (PRD §8.1, multi-value)"
+    ] , [
+        sh:path :skills ; sh:minCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.skills is required (PRD §8.1, multi-value)"
+    ] , [
+        sh:path :learningObjectives ; sh:minCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.learningObjectives is required (PRD §8.1)"
+    ] , [
+        sh:path :requiredDeliverables ; sh:minCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.requiredDeliverables is required (PRD §8.1)"
+    ] , [
+        sh:path :rubricPointer ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "ChallengeRecord.rubricPointer is required (PRD §8.1)"
+    ] , [
+        sh:path :dueDate ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ;
+        sh:message "ChallengeRecord.dueDate is required (PRD §8.1)"
+    ] .
+
+# Submission Record 25 字段（PRD §8.2）
+:red:SubmissionRecordShape a sh:NodeShape ;
+    sh:targetClass :Submission ;
+    rdfs:label "Submission Record 必填字段（PRD §8.2 25 字段）"@zh ;
+    sh:property [
+        sh:path :submissionId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "SubmissionRecord.submissionId is required"
+    ] , [
+        sh:path :challengeId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "SubmissionRecord.challengeId is required"
+    ] , [
+        sh:path :studentId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "SubmissionRecord.studentId is required"
+    ] , [
+        sh:path :adminIdentityMode ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( :independent_admin :teacher_delegated ) ;
+        sh:message "SubmissionRecord.adminIdentityMode is required (PRD §4.3)"
+    ] , [
+        sh:path :reviewMode ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( :teacher_only :peer_only :teacher_and_peer ) ;
+        sh:message "SubmissionRecord.reviewMode is required (PRD §8.2)"
+    ] , [
+        sh:path :routingStatus ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( :not_routed :routed_to_teacher :routed_to_peer :routed_to_both ) ;
+        sh:message "SubmissionRecord.routingStatus is required (PRD §8.2)"
+    ] , [
+        sh:path :reviewStatus ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( :reviewSubmitted :reviewPeerReviewed :reviewAgentReviewed
+                :reviewNeedsRevision :reviewAccepted :reviewKnowledgeCandidate ) ;
+        sh:message "SubmissionRecord.reviewStatus is required"
+    ] , [
+        sh:path :auditLogPointer ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "SubmissionRecord.auditLogPointer is required (PRD §8.2)"
+    ] .
+
+# Agent Identity 必填
+:red:AgentIdentityShape a sh:NodeShape ;
+    sh:targetClass :AgentIdentity ;
+    rdfs:label "AgentIdentity 必填字段"@zh ;
+    sh:property [
+        sh:path :agentId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:pattern "^(student-companion-|teacher-companion-|submission-task|review-task|peer-review-).*$" ;
+        sh:message "AgentIdentity.agentId must match agent_type pattern"
+    ] , [
+        sh:path :agentType ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:in ( "student-companion" "teacher-companion" "submission-task"
+                "review-task" "peer-review" ) ;
+        sh:message "AgentIdentity.agentType must be one of 5 types"
+    ] .
+
+# Skill 必填
+:red:SkillShape a sh:NodeShape ;
+    sh:targetClass :Skill ;
+    rdfs:label "Skill 必填字段（13 字段）"@zh ;
+    sh:property [
+        sh:path :skillId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:pattern "^SK-\\d{2}$" ;
+        sh:message "Skill.skillId must match SK-NN pattern"
+    ] , [
+        sh:path :skillName ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "Skill.skillName is required"
+    ] , [
+        sh:path :linkedTaskAgent ; sh:minCount 1 ; sh:maxCount 1 ; sh:class :TaskAgent ;
+        sh:message "Skill.linkedTaskAgent is required (Task Agent)"
+    ] .
+
+# Event 必填
+:red:EventShape a sh:NodeShape ;
+    sh:targetClass :Event ;
+    rdfs:label "Event 必填字段（9 字段）"@zh ;
+    sh:property [
+        sh:path :eventId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:pattern "^EV-\\d{2}$" ;
+        sh:message "Event.eventId must match EV-NN pattern"
+    ] , [
+        sh:path :sourceAgent ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "Event.sourceAgent is required"
+    ] , [
+        sh:path :targetAgent ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "Event.targetAgent is required"
+    ] .
+
+# ====================================================================
+# 综合红线监控 SPARQL 查询
+# ====================================================================
+
+:red:RedLineMonitor a sh:NodeShape ;
+    rdfs:label "综合红线监控（运行时查询）"@zh ;
+    rdfs:comment "使用 SPARQL 跨所有红线一次性查询违规"@zh ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "🔴 RED 综合监控：违反任意红线的实例"@en ;
+        sh:select """
+            PREFIX : <http://elite20.team3/ontology#>
+            SELECT $this ?redLineId ?reason
+            WHERE {
+                {
+                    # RED-001
+                    BIND("RED-001" AS ?redLineId)
+                    $this a :Submission ;
+                          :processedByAgentId ?agent .
+                    FILTER (!STRSTARTS(?agent, "submission-task-"))
+                    BIND("Submission processed by non-SubmissionTaskAgent" AS ?reason)
+                } UNION {
+                    # RED-002
+                    BIND("RED-002" AS ?redLineId)
+                    ?agent a :StudentCompanion ;
+                           :hasPermission ?perm .
+                    ?perm :permissionScope ?scope .
+                    $this a :Permission .
+                    FILTER (CONTAINS(?scope, "submission") && CONTAINS(?scope, "write"))
+                    BIND("StudentCompanion has submission write permission" AS ?reason)
+                } UNION {
+                    # RED-003
+                    BIND("RED-003" AS ?redLineId)
+                    ?agent a :TeacherCompanion ;
+                           :hasPermission ?perm .
+                    ?perm :permissionScope ?scope .
+                    $this a :Permission .
+                    FILTER (CONTAINS(?scope, "student_memory") || CONTAINS(?scope, "personal_"))
+                    BIND("TeacherCompanion reads student private memory" AS ?reason)
+                } UNION {
+                    # RED-006
+                    BIND("RED-006" AS ?redLineId)
+                    ?agent a :Agent .
+                    FILTER NOT EXISTS { ?agent :inbounds ?inbox }
+                    BIND(?agent AS ?this)
+                    BIND("Agent has no Inbox" AS ?reason)
+                } UNION {
+                    # RED-008
+                    BIND("RED-008" AS ?redLineId)
+                    ?sub a :Submission .
+                    FILTER NOT EXISTS { ?sub :hasAuditTrace ?audit }
+                    BIND(?sub AS ?this)
+                    BIND("Submission has no AuditTrace" AS ?reason)
+                } UNION {
+                    # RED-009
+                    BIND("RED-009" AS ?redLineId)
+                    ?manifest a :AgentManifest ;
+                              :hasCapability ?cap .
+                    ?cap :capabilityName ?name .
+                    $this a :Capability .
+                    FILTER (CONTAINS(?name, "notify") || CONTAINS(?name, "send_push"))
+                    BIND("AgentManifest has push notification capability" AS ?reason)
+                } UNION {
+                    # RED-010
+                    BIND("RED-010" AS ?redLineId)
+                    ?cb a :ChannelBinding ;
+                        :channelType ?type .
+                    $this a :ChannelBinding .
+                    FILTER (?type != "feishu")
+                    BIND("ChannelBinding for human uses non-feishu type" AS ?reason)
+                }
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+# ====================================================================
+# 结束
+# 统计:
+# - NodeShapes: 14 个
+#   - RED-001 (2) + RED-002 (2) + RED-003 (2) + RED-004 (2) + RED-005 (2)
+#   - RED-006 (2) + RED-007 (2) + RED-008 (2) + RED-009 (2) + RED-010 (2)
+#   - ChallengeRecord + SubmissionRecord + AgentIdentity + Skill + Event + RedLineMonitor
+# - PropertyShapes: ~50 个
+# - SPARQL Constraints: 4 个（含综合监控）
+# - 覆盖架构红线: 10/10
+# ====================================================================

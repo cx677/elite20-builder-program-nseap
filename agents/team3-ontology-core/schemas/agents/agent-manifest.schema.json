@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elite20.team3/schemas/agents/agent-manifest.json",
+  "title": "Agent Manifest",
+  "description": "PRD §5: 4 个核心 Agent 的 Manifest. Source: agents/manifests/*.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_id", "agent_type", "manifest_version",
+    "capabilities", "interfaces", "permissions",
+    "trusted_agents", "channel_bindings", "constraints"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^(student-companion-|teacher-companion-|submission-task|review-task|peer-review-).*$"
+    },
+    "agent_type": {
+      "type": "string",
+      "enum": ["student-companion", "teacher-companion", "submission-task", "review-task", "peer-review"]
+    },
+    "manifest_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "display_name": { "type": "string" },
+    "description": { "type": "string" },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["capability_id", "name"],
+        "properties": {
+          "capability_id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["interface_name"],
+        "properties": {
+          "interface_name": { "type": "string" },
+          "input_schema": { "type": "object" },
+          "output_schema": { "type": "object" }
+        }
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["permission_id", "scope"],
+        "properties": {
+          "permission_id": { "type": "string" },
+          "scope": {
+            "type": "string",
+            "description": "如 feishu.submissions.read, github.repo.read"
+          }
+        }
+      }
+    },
+    "trusted_agents": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(student-companion-|teacher-companion-|submission-task|review-task|peer-review-).*$"
+      }
+    },
+    "memory_binding": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ontology_path": { "type": "string" }
+        }
+      }
+    },
+    "channel_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["channel_type", "channel_id"],
+        "properties": {
+          "channel_type": {
+            "type": "string",
+            "enum": ["web", "github", "feishu"]
+          },
+          "channel_id": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "constraints": {
+      "type": "object",
+      "description": "🔴 RED-002/003/009 用 constraints 强制权限边界"
+    },
+    "admin_identity_mode": {
+      "type": "string",
+      "enum": ["independent_admin", "teacher_delegated"],
+      "description": "PRD §4.3: 管理员身份模式（仅 SubmissionTaskAgent 必填）"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "agent_type": { "const": "student-companion" } }
+      },
+      "then": {
+        "properties": {
+          "permissions": {
+            "not": {
+              "items": {
+                "properties": {
+                  "scope": { "pattern": ".*submission.*write.*" }
+                }
+              }
+            },
+            "description": "🔴 RED-002: StudentCompanion MUST NOT have submission write permission"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "agent_type": { "const": "teacher-companion" } }
+      },
+      "then": {
+        "properties": {
+          "permissions": {
+            "not": {
+              "items": {
+                "properties": {
+                  "scope": { "pattern": ".*student_memory.*read.*" }
+                }
+              }
+            },
+            "description": "🔴 RED-003: TeacherCompanion MUST NOT have student_memory read permission"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "agent_type": { "const": "submission-task" } }
+      },
+      "then": {
+        "required": ["admin_identity_mode"],
+        "description": "SubmissionTaskAgent 必须有 admin_identity_mode"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://elite20.team3/schemas/messages/message-envelope.json",
+  "title": "MessageEnvelope",
+  "description": "PRD §6.2 MessageEnvelope 9 字段. Used in Hermes/OpenClaw routing. Source: agent-ontology.ttl + P3394",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "message_id", "request_id", "from_agent", "to_agent",
+    "message_type", "timestamp", "payload", "audit_trace_pointer"
+  ],
+  "properties": {
+    "message_id": {
+      "type": "string",
+      "pattern": "^msg-[a-zA-Z0-9]{8,}$",
+      "description": "唯一消息 ID"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^req-[a-zA-Z0-9-]+$",
+      "description": "关联请求 ID（用于幂等去重）"
+    },
+    "from_agent": {
+      "type": "string",
+      "description": "发送方 Agent ID"
+    },
+    "to_agent": {
+      "type": "string",
+      "description": "接收方 Agent ID（或 broadcast 标记）"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "challenge_publish",
+        "challenge_available",
+        "submission_request",
+        "review_request",
+        "review_result",
+        "feedback",
+        "status_update",
+        "final_adjustment",
+        "peer_review_request"
+      ],
+      "description": "PRD §9: 9 种 message_type 之一"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object",
+      "description": "消息载荷，具体 schema 见 message-payloads.schema.json"
+    },
+    "routing_metadata": {
+      "type": "object",
+      "properties": {
+        "priority": { "type": "string", "enum": ["low", "normal", "high", "critical"] },
+        "ttl_seconds": { "type": "integer", "minimum": 1 },
+        "retry_count": { "type": "integer", "minimum": 0 },
+        "requires_ack": { "type": "boolean" }
+      }
+    },
+    "audit_trace_pointer": {
+      "type": "string",
+      "pattern": "^audit-[a-zA-Z0-9-]+$",
+      "description": "🔴 RED-008 必填：审计追踪指针"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Agent 签名（用于验证身份）"
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "关联上游消息"
+    }
+  }
+}

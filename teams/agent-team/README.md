@@ -2,6 +2,41 @@
 
 负责开发课程 Agent 与智能体架构。
 
+---
+
+## 🏗️ Team 3 工程化产出（v1, 2026-07-10）
+
+> 我们把 `ontology/agent-ontology.md`（380 行 Markdown）**工程化为 22 个 W3C 标准文件 + 可运行 Demo**。
+
+### 快速导航
+
+| 目录 | 内容 | 行数 |
+|---|---|---:|
+| [`agents/team3-ontology-core/`](../agents/team3-ontology-core/) | OWL/SHACL/SWRL 本体工程 | ~2850 |
+| [`agents/team3-ontology-core/schemas/`](../agents/team3-ontology-core/schemas/) | JSON Schema + Zod（运行时校验）| ~940 |
+| [`agents/team3-ontology-core/graph/`](../agents/team3-ontology-core/graph/) | Neo4j Cypher + Fuseki SPARQL | ~220 |
+| [`teams/agent-team/demo/`](../teams/agent-team/demo/) | MVP Demo（`node demo.mjs`）| ~400 |
+| [`teams/agent-team/docs/`](../teams/agent-team/docs/) | 架构文档（总览/对比/迁移）| ~900 |
+
+### 验证
+
+```bash
+# 跑 MVP Demo
+cd teams/agent-team/demo && node demo.mjs
+
+# 验证 JSON Schema
+pip install jsonschema && python3 agents/team3-ontology-core/../python/validate_json_schemas.py --schemas agents/team3-ontology-core/schemas/
+```
+
+### 关键设计
+
+- 113 个 OWL 类 + 37 对象属性 + 20 数据属性 + 80+ 枚举值
+- 10 条红线 × 5 维度形式化（OWL/SHACL/SWRL/Zod/SPARQL）= **50 处强制**
+- 25 字段 Submission Record Schema（对齐 PRD §8.2）
+- 28 个 Zod Schema（TypeScript 运行时校验）
+
+详细文档：[`docs/Team3-架构总览.md`](docs/Team3-架构总览.md) | [`docs/架构对比.md`](docs/架构对比.md) | [`docs/Mock到真实迁移方案.md`](docs/Mock到真实迁移方案.md)
+
 ## 当前成员
 
 - 冯静雯
